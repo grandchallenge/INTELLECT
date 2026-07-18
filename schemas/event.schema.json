@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.dev/intellect/schemas/event.schema.json",
+  "title": "Grand Intellect Event",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "work_package_id",
+    "actor",
+    "payload",
+    "occurred_at"
+  ],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1},
+    "event_type": {
+      "type": "string",
+      "enum": [
+        "work_package.chartered",
+        "alternative.registered",
+        "specification.recorded",
+        "realization.recorded",
+        "contact.recorded",
+        "review.submitted",
+        "judgment.recorded",
+        "memory.recorded",
+        "disposal.recorded",
+        "frontier.recorded",
+        "phase.advanced",
+        "phase.reopened"
+      ]
+    },
+    "work_package_id": {"type": "string", "minLength": 1},
+    "actor": {"type": "string", "minLength": 1},
+    "payload": {"type": "object"},
+    "occurred_at": {"type": "string", "format": "date-time"},
+    "correlation_id": {"type": ["string", "null"]},
+    "causation_id": {"type": ["string", "null"]},
+    "idempotency_key": {"type": ["string", "null"]}
+  }
+}

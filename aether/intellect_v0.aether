@@ -1,0 +1,52 @@
+# INTELLECT event envelope schema for AETHER.
+#
+# Attribute numeric IDs are fixed by deployment registration:
+#   1 event.type
+#   2 event.work_package_id
+#   3 event.actor
+#   4 event.payload_json
+#   5 event.occurred_at
+#   6 event.event_id
+#   7 event.correlation_id
+#   8 event.causation_id
+#
+# The current Python adapter appends these facts through /v1/append. This DSL
+# document defines the semantic projection and the first provenance-bearing
+# queries. Gate cardinality remains in the executable application constitution
+# until the AETHER DSL can express the complete obligation matrix without
+# weakening its meaning.
+
+schema intellect_v0 {
+  attr event.type: ScalarLWW<String>
+  attr event.work_package_id: ScalarLWW<String>
+  attr event.actor: ScalarLWW<String>
+  attr event.payload_json: ScalarLWW<String>
+  attr event.occurred_at: ScalarLWW<String>
+  attr event.event_id: ScalarLWW<String>
+  attr event.correlation_id: ScalarLWW<String>
+  attr event.causation_id: ScalarLWW<String>
+}
+
+predicates {
+  event_type(Entity, String)
+  event_work_package_id(Entity, String)
+  event_actor(Entity, String)
+  event_payload_json(Entity, String)
+  event_occurred_at(Entity, String)
+  event_id(Entity, String)
+  work_package_event(String, Entity, String, String)
+}
+
+rules {
+  work_package_event(wp, e, kind, actor) <- event_work_package_id(e, wp), event_type(e, kind), event_actor(e, actor)
+}
+
+materialize {
+  work_package_event
+}
+
+query {
+  current
+  goal work_package_event(wp, e, kind, actor)
+  keep wp, e, kind, actor
+}
