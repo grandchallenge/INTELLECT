@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.dev/intellect/schemas/work_package.schema.json",
+  "title": "Grand Intellect Work Package Charter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["work_package_id", "title", "purpose", "scope", "acceptance_criteria"],
+  "properties": {
+    "work_package_id": {"type": "string", "pattern": "^WP-[A-Za-z0-9._-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "purpose": {"type": "string", "minLength": 1},
+    "scope": {"type": "string", "minLength": 1},
+    "stakeholders": {"type": "array", "items": {"type": "string"}, "default": []},
+    "constraints": {"type": "array", "items": {"type": "string"}, "default": []},
+    "acceptance_criteria": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "risk_class": {"enum": ["exploratory", "standard", "high", "constitutional"], "default": "standard"}
+  }
+}
