@@ -39,6 +39,9 @@ old-campaign generate \
   --profile profiles/tied_transformer_stable.json \
   --template templates/submission.py.tmpl \
   --output artifacts/submissions/tied_transformer_stable/submission.py
+
+python .upstream/one-layer-deeper/client/cli.py validate \
+  artifacts/submissions/tied_transformer_stable/submission.py
 ```
 
 ## Run an H100 profile
@@ -52,6 +55,10 @@ Expose exactly one H100 and install the campaign package inside the pinned evalu
 
 Each profile record contains the evaluator `RESULT_JSON`, completed updates, measured examples per second, peak visible GPU memory, environment identity, stdout, and stderr.
 
+## Phase 1 execution
+
+See [`PHASE1.md`](PHASE1.md). Official-faithful E1/M1/M5 runs require one visible H100. Resource-adapted seed sweeps are labeled separately and are not admissible for the Hard gate.
+
 ## Campaign sequence
 
 1. **Reproduction:** establish official AdamW throughput, memory, and score variance.
@@ -61,6 +68,8 @@ Each profile record contains the evaluator `RESULT_JSON`, completed updates, mea
 5. **Optimizer:** compare AdamW, hybrid Muon, and groupwise adaptive betas on a fixed recurrent architecture.
 6. **Hard governance:** require M1–M5 evidence, multi-seed replication, throughput, memory, held-out-depth, and dynamical checks before asking the Human Steward to authorize one hosted Hard attempt.
 
+See `SPEC.md`, `RUN_MATRIX.md`, `METRICS.md`, and `governance/HARD_GATE.md`.
+
 ## Current status
 
-The campaign scaffold and CPU contract tests are implemented. No H100 or hosted Hard result is claimed until corresponding evidence files are committed.
+The campaign scaffold and CPU contract tests are implemented. No H100 or hosted Hard result is claimed in this repository until corresponding evidence files are committed.

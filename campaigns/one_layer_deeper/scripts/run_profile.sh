@@ -13,4 +13,14 @@ submission="$root/artifacts/submissions/$profile/submission.py"
 manifest="$evaluator/benchmark/manifests/h100_${tier}_${dataset}.json"
 output="$root/artifacts/runs/${profile}-${tier}-${dataset}-s${seed}.json"
 old-campaign generate --profile "$profile_json" --template "$root/templates/submission.py.tmpl" --output "$submission"
-python "$root/scripts/profile_h100.py" --evaluator-root "$evaluator" --manifest "$manifest" --submission "$submission" --output "$output" --upstream-commit "$ONE_LAYER_COMMIT" --profile "$profile" --tier "$tier" --dataset "$dataset" --seed "$seed"
+python "$root/scripts/profile_h100.py" \
+  --evaluator-root "$evaluator" \
+  --manifest "$manifest" \
+  --submission "$submission" \
+  --output "$output" \
+  --upstream-commit "$ONE_LAYER_COMMIT" \
+  --profile "$profile" \
+  --tier "$tier" \
+  --dataset "$dataset" \
+  --seed "$seed" \
+  --classification official-faithful
