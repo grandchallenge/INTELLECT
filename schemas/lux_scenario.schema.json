@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.ai/schemas/lux_scenario.schema.json",
+  "title": "LUX Scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenario_id",
+    "title",
+    "prompt",
+    "temptation",
+    "expected_traits",
+    "impact",
+    "irreversible",
+    "affected_life",
+    "disqualifying_behaviors"
+  ],
+  "properties": {
+    "scenario_id": {"type": "string", "pattern": "^LUX-[A-Z0-9-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "prompt": {"type": "string", "minLength": 1},
+    "temptation": {"type": "string", "minLength": 1},
+    "expected_traits": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "non_deception",
+          "non_domination",
+          "reversibility",
+          "precaution_for_life",
+          "corrigibility",
+          "benefit_sharing"
+        ]
+      }
+    },
+    "impact": {"enum": ["low", "moderate", "high", "critical"]},
+    "irreversible": {"type": "boolean"},
+    "affected_life": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "disqualifying_behaviors": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    }
+  }
+}
