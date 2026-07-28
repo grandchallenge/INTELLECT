@@ -10,23 +10,65 @@
     "artifact": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["repository", "commit_sha", "artifact_path", "sha256"],
+      "required": [
+        "repository",
+        "commit_sha",
+        "artifact_path",
+        "digest_algorithm",
+        "digest"
+      ],
       "properties": {
-        "repository": { "type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$" },
+        "repository": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+        },
         "commit_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
         "artifact_path": { "type": "string", "minLength": 1 },
-        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "digest_algorithm": {
+          "enum": ["git_blob_sha1", "git_tree_sha1", "sha256"]
+        },
+        "digest": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$|^[0-9a-f]{64}$"
+        },
         "issue": { "type": ["string", "null"] },
         "pull_request": { "type": ["string", "null"] }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "digest_algorithm": {
+                "enum": ["git_blob_sha1", "git_tree_sha1"]
+              }
+            },
+            "required": ["digest_algorithm"]
+          },
+          "then": { "properties": { "digest": { "pattern": "^[0-9a-f]{40}$" } } }
+        },
+        {
+          "if": {
+            "properties": { "digest_algorithm": { "const": "sha256" } },
+            "required": ["digest_algorithm"]
+          },
+          "then": { "properties": { "digest": { "pattern": "^[0-9a-f]{64}$" } } }
+        }
+      ]
     },
     "governed": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status", "authority", "future_projection", "programme_ref",
-        "provider_repository", "provider_work_package_id", "provider_issue",
-        "forge_inputs", "artifact_manifest", "certification_repository"
+        "status",
+        "authority",
+        "future_projection",
+        "programme_ref",
+        "provider_repository",
+        "provider_work_package_id",
+        "provider_issue",
+        "forge_inputs",
+        "artifact_manifest",
+        "certification_repository"
       ],
       "properties": {
         "status": { "const": "governed" },
@@ -36,13 +78,30 @@
         "provider_repository": { "const": "grandchallenge/MATHSOLVE" },
         "provider_work_package_id": { "type": "string", "minLength": 1 },
         "provider_issue": { "type": "string", "minLength": 1 },
-        "provider_commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
-        "forge_inputs": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
-        "artifact_manifest": { "type": "array", "items": { "$ref": "#/$defs/artifact" } },
-        "claim_ledger": { "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }] },
-        "proof_obligation_dag": { "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }] },
-        "failed_route_ledger": { "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }] },
-        "resource_ledger": { "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }] },
+        "provider_commit": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "forge_inputs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "artifact_manifest": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifact" }
+        },
+        "claim_ledger": {
+          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
+        },
+        "proof_obligation_dag": {
+          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
+        },
+        "failed_route_ledger": {
+          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
+        },
+        "resource_ledger": {
+          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
+        },
         "certification_repository": { "const": "grandchallenge/MATHCERT" }
       }
     },
@@ -50,9 +109,18 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status", "authority", "future_projection", "waiver_id", "reason",
-        "scope", "risks", "approving_offices", "human_steward_authorization",
-        "review_condition", "cert_handoff_required", "certification_repository"
+        "status",
+        "authority",
+        "future_projection",
+        "waiver_id",
+        "reason",
+        "scope",
+        "risks",
+        "approving_offices",
+        "human_steward_authorization",
+        "review_condition",
+        "cert_handoff_required",
+        "certification_repository"
       ],
       "properties": {
         "status": { "const": "exempted" },
@@ -61,15 +129,20 @@
         "waiver_id": { "type": "string", "minLength": 1 },
         "reason": { "type": "string", "minLength": 1 },
         "scope": { "type": "string", "minLength": 1 },
-        "risks": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "risks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
         "approving_offices": {
           "type": "array",
+          "uniqueItems": true,
           "contains": { "const": "referee" },
           "allOf": [{ "contains": { "const": "steward" } }]
         },
         "human_steward_authorization": { "type": "string", "minLength": 1 },
         "review_condition": { "type": "string", "minLength": 1 },
-        "cert_handoff_required": { "type": "boolean" },
+        "cert_handoff_required": { "const": true },
         "certification_repository": { "const": "grandchallenge/MATHCERT" }
       }
     }
