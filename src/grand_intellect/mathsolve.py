@@ -152,7 +152,9 @@ class MathematicalConstitution(Constitution):
                 if route_missing:
                     missing.extend(route_missing)
                 else:
-                    satisfied.append("MATHSOLVE realization lineage is commit-and-digest complete")
+                    satisfied.append(
+                        "MATHSOLVE realization lineage is commit-and-digest complete"
+                    )
             elif state.mathsolve_exemption is not None:
                 if _admissible_exemption(state.mathsolve_exemption):
                     satisfied.append("MATHSOLVE exemption remains valid through realization")
@@ -161,17 +163,35 @@ class MathematicalConstitution(Constitution):
             else:
                 missing.append("mathematical realization has no MATHSOLVE route or waiver")
 
-        if state.phase == Phase.JUDGMENT and state.mathematical_claims:
-            uncovered = [
+        if state.phase == Phase.JUDGMENT:
+            declared_claims = {
+                str(claim).strip()
+                for claim in (state.specification or {}).get("claims", [])
+                if str(claim).strip()
+            }
+            registered_claims = {
                 str(claim["claim_id"])
                 for claim in state.mathematical_claims
-                if state.mathcert_handoff_for(str(claim["claim_id"])) is None
-            ]
+                if str(claim.get("claim_id", "")).strip()
+            }
+            unregistered = sorted(declared_claims - registered_claims)
+            if unregistered:
+                missing.append(
+                    "mathematical claim records missing for specification claims: "
+                    + ", ".join(unregistered)
+                )
+
+            all_claims = declared_claims | registered_claims
+            uncovered = sorted(
+                claim_id
+                for claim_id in all_claims
+                if state.mathcert_handoff_for(claim_id) is None
+            )
             if uncovered:
                 missing.append(
-                    "MATHCERT handoff missing for claims: " + ", ".join(sorted(uncovered))
+                    "MATHCERT handoff missing for claims: " + ", ".join(uncovered)
                 )
-            else:
+            elif all_claims:
                 satisfied.append("every mathematical claim has a MATHCERT handoff")
 
         return GateReport(
@@ -311,8 +331,18 @@ class MathematicalGrandIntellect(GrandIntellect):
         known = {str(claim["claim_id"]) for claim in state.mathematical_claims}
         unknown = sorted(set(claim_ids) - known)
         if unknown:
-            raise ValueError("MATHCERT handoff references unknown claims: " + ", ".join(unknown))
-        allowed = {"pending", "certified", "qualified", "rejected", "proof_debt"}
+            raise ValueError(
+                "MATHCERT handoff references unknown claims: " + ", ".join(unknown)
+            )
+        allowed = {
+            "pending",
+            "ready",
+            "submitted",
+            "certified",
+            "qualified",
+            "rejected",
+            "proof_debt",
+        }
         if status not in allowed:
             raise ValueError(f"invalid MATHCERT status: {status}")
         if commit_sha is not None:
@@ -386,7 +416,9 @@ def _completed_route_missing(route: Mapping[str, Any]) -> list[str]:
     else:
         for index, item in enumerate(manifest):
             if not isinstance(item, Mapping) or not _valid_artifact_ref(item):
-                missing.append(f"MATHSOLVE artifact_manifest[{index}] lacks stable identity")
+                missing.append(
+                    f"MATHSOLVE artifact_manifest[{index}] lacks stable identity"
+                )
     if not route.get("claim_ledger"):
         missing.append("MATHSOLVE route requires a claim ledger")
     if not route.get("proof_obligation_dag"):
