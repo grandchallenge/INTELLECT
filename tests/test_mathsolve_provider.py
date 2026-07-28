@@ -138,7 +138,7 @@ class MathSolveProviderTests(unittest.TestCase):
         )
         self.assertTrue(self.system.gate_report(self.wp).ready)
 
-    def test_every_registered_claim_requires_mathcert_handoff(self) -> None:
+    def judgment_state(self) -> WorkPackageState:
         constitution = MathematicalConstitution()
         phase = Phase.JUDGMENT
         state = WorkPackageState(
@@ -150,7 +150,6 @@ class MathSolveProviderTests(unittest.TestCase):
                 "tradeoffs": ["Restricted scope"],
                 "reversal_conditions": ["Counterexample"],
             },
-            mathematical_claims=[{"claim_id": "C1"}],
         )
         for office in constitution.required_offices(phase):
             state.reviews.append(
@@ -163,6 +162,12 @@ class MathSolveProviderTests(unittest.TestCase):
                     ),
                 )
             )
+        return state
+
+    def test_every_registered_claim_requires_mathcert_handoff(self) -> None:
+        constitution = MathematicalConstitution()
+        state = self.judgment_state()
+        state.mathematical_claims.append({"claim_id": "C1"})
         report = constitution.evaluate(state)
         self.assertFalse(report.ready)
         self.assertIn("MATHCERT handoff missing for claims: C1", report.missing)
@@ -173,6 +178,34 @@ class MathSolveProviderTests(unittest.TestCase):
                 "repository": "grandchallenge/MATHCERT",
                 "target_claim_ids": ["C1"],
                 "status": "pending",
+            }
+        )
+        self.assertTrue(constitution.evaluate(state).ready)
+
+    def test_specification_claim_cannot_bypass_registration_and_handoff(self) -> None:
+        constitution = MathematicalConstitution()
+        state = self.judgment_state()
+        state.specification = {
+            "claims": ["C-SPEC"],
+            "evaluation_contract": {"failure_condition": "checker rejects"},
+            "reversal_conditions": ["counterexample"],
+        }
+
+        report = constitution.evaluate(state)
+        self.assertFalse(report.ready)
+        self.assertIn(
+            "mathematical claim records missing for specification claims: C-SPEC",
+            report.missing,
+        )
+        self.assertIn("MATHCERT handoff missing for claims: C-SPEC", report.missing)
+
+        state.mathematical_claims.append({"claim_id": "C-SPEC"})
+        state.mathcert_handoffs.append(
+            {
+                "handoff_id": "MC-C-SPEC",
+                "repository": "grandchallenge/MATHCERT",
+                "target_claim_ids": ["C-SPEC"],
+                "status": "ready",
             }
         )
         self.assertTrue(constitution.evaluate(state).ready)
