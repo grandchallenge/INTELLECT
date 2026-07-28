@@ -166,10 +166,23 @@ class WorkPackageState:
     transitions: list[JsonObject] = field(default_factory=list)
     event_ids: list[str] = field(default_factory=list)
 
+    mathematical: bool = False
+    mathematics_profile: JsonObject | None = None
+    mathsolve_route: JsonObject | None = None
+    mathsolve_exemption: JsonObject | None = None
+    mathematical_claims: list[JsonObject] = field(default_factory=list)
+    mathcert_handoffs: list[JsonObject] = field(default_factory=list)
+
     def review_for(self, phase: Phase, office: Office) -> Review | None:
         for review in reversed(self.reviews):
             if review.phase == phase and review.office == office:
                 return review
+        return None
+
+    def mathcert_handoff_for(self, claim_id: str) -> JsonObject | None:
+        for handoff in reversed(self.mathcert_handoffs):
+            if claim_id in handoff.get("target_claim_ids", []):
+                return handoff
         return None
 
 
@@ -190,6 +203,31 @@ def project(work_package_id: str, events: list[IntellectEvent]) -> WorkPackageSt
                     str(x) for x in payload.get("acceptance_criteria", [])
                 ]
                 state.stakeholders = [str(x) for x in payload.get("stakeholders", [])]
+            case "mathematics.declared":
+                state.mathematical = True
+                state.mathematics_profile = dict(payload)
+            case "mathsolve.route.recorded":
+                state.mathsolve_route = dict(payload)
+                state.mathsolve_exemption = None
+            case "mathsolve.exemption.recorded":
+                state.mathsolve_exemption = dict(payload)
+                state.mathsolve_route = None
+            case "mathematical.claim.registered":
+                claim_id = str(payload["claim_id"])
+                state.mathematical_claims = [
+                    claim
+                    for claim in state.mathematical_claims
+                    if str(claim.get("claim_id")) != claim_id
+                ]
+                state.mathematical_claims.append(dict(payload))
+            case "mathcert.handoff.recorded":
+                handoff_id = str(payload["handoff_id"])
+                state.mathcert_handoffs = [
+                    handoff
+                    for handoff in state.mathcert_handoffs
+                    if str(handoff.get("handoff_id")) != handoff_id
+                ]
+                state.mathcert_handoffs.append(dict(payload))
             case "alternative.registered":
                 state.alternatives.append(dict(payload))
             case "specification.recorded":
