@@ -2,15 +2,19 @@
 
 ## Review status
 
-`CORRECTIVE_REVIEW_IMPLEMENTED_CI_PENDING`
+`CORRECTIVE_REVIEW_VALIDATED`
 
 Reviewed object: merged `grandchallenge/INTELLECT#4` at merge commit `c135aa658658c503db3d8bf5aa79f5c5c3d6fdb5`.
+
+Corrective head: `c0c43182694b5e3a897393862d645d0f4db2aa1b`.
+
+Validation: GitHub Actions CI run `30407114381` completed successfully.
 
 This is a post-merge constitutional review. It does not certify mathematics. It reviews the correctness of the machinery that governs mathematical routing and promotion.
 
 ## Council review
 
-**Status:** reviewed with required corrections applied.
+**Status:** reviewed with required corrections applied and validated.
 
 The Council accepts the placement of the Solve route at Specification, the completed lineage check at Realization, and the Cert disposition check at Judgment. The lifecycle remains proportionate and does not duplicate MATH-PROGRAMME, MATHSOLVE, or MATHCERT authority.
 
@@ -24,7 +28,7 @@ The reviewed implementation separates them. `rejected` and `proof_debt` close li
 
 ## Adversary review
 
-**Status:** reviewed; five bypass classes tested.
+**Status:** reviewed; five bypass classes tested and green.
 
 Findings:
 
@@ -64,14 +68,13 @@ No previous event is deleted. New route or handoff events supersede projected cu
 
 ## Referee review
 
-**Status:** conditional approval pending repository CI and linked Programme/Solve corrective review.
+**Status:** technically approved; cross-repository promotion remains conditional.
 
-The constitutional design is admissible after the corrections in this branch. Final approval requires:
+The exact corrective head passed repository CI. The constitutional design is admissible. Final cross-repository promotion still requires:
 
-1. all INTELLECT tests to pass on the exact corrective head;
-2. MATHSOLVE to require true artifact identities and positive Cert status for promotion;
-3. MATH-PROGRAMME to distinguish completed handoff from positive claim promotion and to enforce waiver scope and authority;
-4. exact cross-repository provider commits to be reconciled after corrective merges.
+1. MATHSOLVE PR `#72` to preserve true artifact identities and positive Cert promotion semantics;
+2. MATH-PROGRAMME PR `#119` to preserve completed-disposition versus positive-promotion semantics and stage-scoped waiver authority;
+3. final cross-repository provider commits and manifest identities to be reconciled after upstream merges.
 
 ## Claim boundary
 
