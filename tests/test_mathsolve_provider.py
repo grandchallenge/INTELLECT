@@ -167,10 +167,11 @@ class MathSolveProviderTests(unittest.TestCase):
     def test_every_registered_claim_requires_mathcert_handoff(self) -> None:
         constitution = MathematicalConstitution()
         state = self.judgment_state()
+        state.specification = {"claims": ["C1"]}
         state.mathematical_claims.append({"claim_id": "C1"})
         report = constitution.evaluate(state)
         self.assertFalse(report.ready)
-        self.assertIn("MATHCERT handoff missing for claims: C1", report.missing)
+        self.assertIn("MATHCERT handoff missing for claim: C1", report.missing)
 
         state.mathcert_handoffs.append(
             {
@@ -197,7 +198,7 @@ class MathSolveProviderTests(unittest.TestCase):
             "mathematical claim records missing for specification claims: C-SPEC",
             report.missing,
         )
-        self.assertIn("MATHCERT handoff missing for claims: C-SPEC", report.missing)
+        self.assertIn("MATHCERT handoff missing for claim: C-SPEC", report.missing)
 
         state.mathematical_claims.append({"claim_id": "C-SPEC"})
         state.mathcert_handoffs.append(
@@ -205,7 +206,7 @@ class MathSolveProviderTests(unittest.TestCase):
                 "handoff_id": "MC-C-SPEC",
                 "repository": "grandchallenge/MATHCERT",
                 "target_claim_ids": ["C-SPEC"],
-                "status": "ready",
+                "status": "pending",
             }
         )
         self.assertTrue(constitution.evaluate(state).ready)
