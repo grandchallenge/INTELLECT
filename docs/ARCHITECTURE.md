@@ -6,11 +6,30 @@ INTELLECT is the constitutional application layer of the Grand Intellect. AETHER
 
 > INTELLECT decides what institutional obligations exist; AETHER establishes what coordination facts are authoritatively present and why.
 
+The compact Constitution and effective amendments govern INTELLECT.
+Constitutional commentary guides interpretation without adding powers.
+Cross-programme standards are registered and published by `gcl-standards` only
+after constitutional admission; programme adoption and GitHub state remain
+subordinate projections.
+
+```text
+Human Steward
+  → Constitution and effective amendments
+    → INTELLECT constitutional policy and gates
+      → admitted standards and programme adoption
+        → repository and GitHub projections
+
+AETHER independently owns the production semantic order, cuts, replay,
+policy-visible provenance, derivation, and proof traces named by Article IX.
+```
+
 ## 2. Components
 
 - `model.py` defines offices, phases, reviews, dispositions, decisions, immutable events, projected work-package state, and deterministic replay.
 - `fabric.py` defines append and ordered-history boundaries. `InMemoryFabric` is non-authoritative.
 - `constitution.py` defines explanatory phase gates combining substance and office obligations.
+- `constitutional_authority.py` validates the allocation of constitutional,
+  semantic, standards-registry, programme, certification, and GitHub powers.
 - `engine.py` defines lawful commands and phase restrictions. Commands emit events and never mutate projected state directly.
 - `agents.py` defines office-bounded reviewers, one-agent-per-office registration, and Council dispatch without automatic advancement.
 - `aether.py` implements the production HTTP boundary without reimplementing AETHER resolver or rule semantics.
