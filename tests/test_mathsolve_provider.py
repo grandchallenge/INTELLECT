@@ -5,10 +5,14 @@ import unittest
 from grand_intellect import (
     GitHubArtifactRef,
     InMemoryFabric,
+    MATHCERT_PROVIDER_COMMIT,
+    MATHCERT_ROUTE_REGISTRY_DIGEST,
     MathematicalConstitution,
     MathematicalGrandIntellect,
     MathSolveProvider,
     Office,
+    PROGRAMME_POLICY_COMMIT,
+    PROGRAMME_POLICY_DIGEST,
     Phase,
     ReviewStatus,
 )
@@ -85,6 +89,22 @@ class MathSolveProviderTests(unittest.TestCase):
         with self.assertRaises(GateBlocked):
             self.system.advance(self.wp)
 
+    def test_provider_records_exact_programme_and_cert_contracts(self) -> None:
+        route = MathSolveProvider().governed_route(
+            programme_ref="grandchallenge/MATH-PROGRAMME#123",
+            provider_work_package_id="MS-TEST-WP00",
+            provider_issue="https://github.com/grandchallenge/MATHSOLVE/issues/73",
+        )
+        self.assertEqual(route["programme_policy"]["commit_sha"], PROGRAMME_POLICY_COMMIT)
+        self.assertEqual(route["programme_policy"]["digest"], PROGRAMME_POLICY_DIGEST)
+        self.assertEqual(
+            route["certification_contract"]["commit_sha"], MATHCERT_PROVIDER_COMMIT
+        )
+        self.assertEqual(
+            route["certification_contract"]["digest"],
+            MATHCERT_ROUTE_REGISTRY_DIGEST,
+        )
+
     def test_route_must_be_commit_and_digest_complete_before_confrontation(self) -> None:
         self.reach_specification()
         self.system.register_mathsolve_route(
@@ -146,9 +166,10 @@ class MathSolveProviderTests(unittest.TestCase):
             phase=phase,
             mathematical=True,
             judgment={
-                "rationale": "Evidence supports qualified integration.",
+                "decision": "reject",
+                "rationale": "No adjudicated evidence is available.",
                 "tradeoffs": ["Restricted scope"],
-                "reversal_conditions": ["Counterexample"],
+                "reversal_conditions": ["New evidence"],
             },
         )
         for office in constitution.required_offices(phase):
@@ -164,7 +185,7 @@ class MathSolveProviderTests(unittest.TestCase):
             )
         return state
 
-    def test_every_registered_claim_requires_mathcert_handoff(self) -> None:
+    def test_every_registered_claim_requires_mathcert_adjudication(self) -> None:
         constitution = MathematicalConstitution()
         state = self.judgment_state()
         state.specification = {"claims": ["C1"]}
@@ -181,9 +202,14 @@ class MathSolveProviderTests(unittest.TestCase):
                 "status": "pending",
             }
         )
-        self.assertTrue(constitution.evaluate(state).ready)
+        report = constitution.evaluate(state)
+        self.assertFalse(report.ready)
+        self.assertIn(
+            "MATHCERT adjudicated disposition missing for claim: C1",
+            report.missing,
+        )
 
-    def test_specification_claim_cannot_bypass_registration_and_handoff(self) -> None:
+    def test_specification_claim_cannot_bypass_registration_and_adjudication(self) -> None:
         constitution = MathematicalConstitution()
         state = self.judgment_state()
         state.specification = {
@@ -206,10 +232,20 @@ class MathSolveProviderTests(unittest.TestCase):
                 "handoff_id": "MC-C-SPEC",
                 "repository": "grandchallenge/MATHCERT",
                 "target_claim_ids": ["C-SPEC"],
-                "status": "pending",
+                "status": "ready",
+                "packet_repository": "grandchallenge/MATHSOLVE",
+                "packet_commit_sha": "a" * 40,
+                "packet_artifact_path": "cert_handoffs/C-SPEC.json",
+                "packet_digest_algorithm": "git_blob_sha1",
+                "packet_digest": "b" * 40,
             }
         )
-        self.assertTrue(constitution.evaluate(state).ready)
+        report = constitution.evaluate(state)
+        self.assertFalse(report.ready)
+        self.assertIn(
+            "MATHCERT adjudicated disposition missing for claim: C-SPEC",
+            report.missing,
+        )
 
     def test_exemption_requires_referee_steward_and_human_authority(self) -> None:
         provider = MathSolveProvider()
@@ -235,6 +271,8 @@ class MathSolveProviderTests(unittest.TestCase):
         )
         self.assertEqual(waiver["status"], "exempted")
         self.assertTrue(waiver["cert_handoff_required"])
+        self.assertIn("programme_policy", waiver)
+        self.assertIn("certification_contract", waiver)
 
 
 if __name__ == "__main__":
