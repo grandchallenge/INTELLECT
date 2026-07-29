@@ -1,4 +1,4 @@
-# GI-MS-WP00 future semantic projection.
+# GI-MC-WP00 future semantic projection.
 #
 # GitHub is authoritative in the present release. These predicates describe the
 # future AETHER projection of GitHub-first lineage events. They do not claim
@@ -7,6 +7,9 @@
 schema intellect_math_v0 {
   attr math.campaign_id: ScalarLWW<String>
   attr math.programme_ref: ScalarLWW<String>
+  attr math.programme_policy_commit: ScalarLWW<String>
+  attr math.programme_policy_path: ScalarLWW<String>
+  attr math.programme_policy_digest: ScalarLWW<String>
   attr math.route_status: ScalarLWW<String>
   attr math.solve_work_package_id: ScalarLWW<String>
   attr math.solve_repository: ScalarLWW<String>
@@ -16,6 +19,15 @@ schema intellect_math_v0 {
   attr math.claim_id: RefSet<Entity>
   attr math.cert_handoff_id: RefSet<Entity>
   attr math.cert_status: ScalarLWW<String>
+  attr math.cert_contract_commit: ScalarLWW<String>
+  attr math.cert_contract_path: ScalarLWW<String>
+  attr math.cert_contract_digest: ScalarLWW<String>
+  attr math.cert_packet_repository: ScalarLWW<String>
+  attr math.cert_packet_commit: ScalarLWW<String>
+  attr math.cert_packet_path: ScalarLWW<String>
+  attr math.cert_packet_digest_algorithm: ScalarLWW<String>
+  attr math.cert_packet_digest: ScalarLWW<String>
+  attr math.cert_intake_acknowledgement: ScalarLWW<String>
   attr math.cert_commit: ScalarLWW<String>
   attr math.cert_artifact_path: ScalarLWW<String>
   attr math.cert_digest_algorithm: ScalarLWW<String>
@@ -27,9 +39,21 @@ predicates {
   math_campaign_id(Entity, String)
   math_route_status(Entity, String)
   math_solve_work_package_id(Entity, String)
+  math_programme_policy_commit(Entity, String)
+  math_programme_policy_path(Entity, String)
+  math_programme_policy_digest(Entity, String)
+  math_cert_contract_commit(Entity, String)
+  math_cert_contract_path(Entity, String)
+  math_cert_contract_digest(Entity, String)
   math_claim_id(Entity, Entity)
   math_cert_handoff_id(Entity, Entity)
   math_cert_status(Entity, String)
+  math_cert_packet_repository(Entity, String)
+  math_cert_packet_commit(Entity, String)
+  math_cert_packet_path(Entity, String)
+  math_cert_packet_digest_algorithm(Entity, String)
+  math_cert_packet_digest(Entity, String)
+  math_cert_intake_acknowledgement(Entity, String)
   math_cert_commit(Entity, String)
   math_cert_artifact_path(Entity, String)
   math_cert_digest_algorithm(Entity, String)
@@ -37,7 +61,10 @@ predicates {
   math_governed(Entity)
   math_exempted(Entity)
   math_routed(Entity)
+  math_provider_contracts_pinned(Entity)
   math_claim_handed_off(Entity, Entity)
+  math_claim_packet_ready(Entity, Entity)
+  math_claim_intake_acknowledged(Entity, Entity)
   math_claim_disposition_complete(Entity, Entity)
   math_claim_promotable(Entity, Entity)
 }
@@ -48,24 +75,40 @@ rules {
   math_routed(wp) <- math_governed(wp)
   math_routed(wp) <- math_exempted(wp)
 
+  math_provider_contracts_pinned(wp) <- math_programme_policy_commit(wp, programme_commit), math_programme_policy_path(wp, programme_path), math_programme_policy_digest(wp, programme_digest), math_cert_contract_commit(wp, cert_commit), math_cert_contract_path(wp, cert_path), math_cert_contract_digest(wp, cert_digest)
+
   math_claim_handed_off(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, status)
 
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "ready"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "submitted"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "rejected"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "proof_debt"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "ready"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "submitted"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "rejected"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
+  math_claim_packet_ready(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "proof_debt"), math_cert_packet_repository(handoff, repository), math_cert_packet_commit(handoff, commit), math_cert_packet_path(handoff, path), math_cert_packet_digest_algorithm(handoff, algorithm), math_cert_packet_digest(handoff, digest)
 
-  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
-  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_intake_acknowledged(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "submitted"), math_cert_intake_acknowledgement(handoff, acknowledgement)
+  math_claim_intake_acknowledged(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_intake_acknowledgement(handoff, acknowledgement)
+  math_claim_intake_acknowledged(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_intake_acknowledgement(handoff, acknowledgement)
+  math_claim_intake_acknowledged(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "rejected"), math_cert_intake_acknowledgement(handoff, acknowledgement)
+  math_claim_intake_acknowledged(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "proof_debt"), math_cert_intake_acknowledgement(handoff, acknowledgement)
+
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "rejected"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "proof_debt"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+
+  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_intake_acknowledgement(handoff, acknowledgement), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
 }
 
 materialize {
   math_governed
   math_exempted
   math_routed
+  math_provider_contracts_pinned
   math_claim_handed_off
+  math_claim_packet_ready
+  math_claim_intake_acknowledged
   math_claim_disposition_complete
   math_claim_promotable
 }
