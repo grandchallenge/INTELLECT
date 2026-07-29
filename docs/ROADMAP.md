@@ -43,3 +43,7 @@ Deliver live phase and gate views, unresolved obligations, evidence lineage, tem
 ## WP-8: Constitutional hardening
 
 Deliver risk profiles, policy model checking, adversarial governance simulations, migration tooling, constitutional versioning, and distributed authority-partition posture.
+
+Current proposal: review and, if warranted, ratify `GI-AMEND-0001`; bind
+GCL-GHOS as a subordinate exact-commit operating standard; and migrate live
+repository profiles only after the activation record is complete.

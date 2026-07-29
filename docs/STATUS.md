@@ -2,7 +2,11 @@
 
 ## Release position
 
-`0.1.0` is an executable constitutional foundation.
+`0.2.2` is an executable constitutional foundation.
+
+`GI-AMEND-0001` is proposed, not effective. The compact Constitution remains
+unchanged. Human Steward approval and independent Adversary and Referee review
+have not yet been recorded.
 
 ## Implemented
 
@@ -15,6 +19,8 @@
 - authoritative AETHER HTTP adapter with tagged values, canonical operations, provenance, policy, namespace, pagination, and idempotency;
 - CLI ledger projection, work-package materialization, metrics, JSON schemas, and Union-Closed bootstrap;
 - CI for Python 3.11 and 3.12.
+- a fail-closed constitutional authority schedule and validator separating
+  INTELLECT, AETHER, GCL-GHOS, programme, MATHCERT, and GitHub powers.
 
 ## Verified locally
 
@@ -36,6 +42,13 @@
 - semantic equivalence between application gates and AETHER-derived predicates;
 - lease-fenced Executors, sidecar artifacts, and distributed authority partitions.
 
-## Next acceptance frontier
+## Constitutional acceptance frontier
+
+Obtain substantive Human Steward, independent Adversary, and independent
+Referee findings at exact INTELLECT and `gcl-standards` commits. Then record
+GCL-GHOS acceptance, exact commit identities, and the effective timestamp
+before changing the amendment schedule from `proposed` to `active`.
+
+## Technical acceptance frontier
 
 Launch the current AETHER service, register the INTELLECT schema, append and replay a complete cycle at multiple cuts, derive one readiness predicate, resolve its trace handle, and publish application-versus-AETHER conformance evidence.

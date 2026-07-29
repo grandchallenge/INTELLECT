@@ -1,0 +1,77 @@
+{
+  "$schema": "../schemas/constitutional_authority_schedule.schema.json",
+  "schema_version": "1.0.0",
+  "status": "proposed",
+  "constitution": {
+    "repository": "grandchallenge/INTELLECT",
+    "path": "CONSTITUTION.md",
+    "authority": "supreme_constitutional_law",
+    "effective_version": "1.0.0",
+    "content_sha256": "6eeaeea60f760f6d5b42ae63f849b3cce56e0695339490be0681faa0ec7afe3e"
+  },
+  "amendment": {
+    "identifier": "GI-AMEND-0001",
+    "path": "AMENDMENTS/0001-commentary-and-gcl-ghos.md",
+    "status": "proposed",
+    "proposed_effective_version": "1.1.0"
+  },
+  "commentary": {
+    "path": "docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md",
+    "authority": "interpretive_nonbinding"
+  },
+  "production_semantic_authority": {
+    "repository": "grandchallenge/AETHER",
+    "powers": [
+      "append_order",
+      "semantic_cuts",
+      "replay",
+      "policy_visibility",
+      "provenance_bearing_facts",
+      "recursive_derivation",
+      "proof_traces"
+    ]
+  },
+  "operating_standard": {
+    "identifier": "GCL-GHOS-00",
+    "registry_repository": "grandchallenge/gcl-standards",
+    "path": "standards/GCL-GHOS-00.md",
+    "version": "0.1.0",
+    "status": "candidate",
+    "registry_role": "subordinate_registry_and_publication"
+  },
+  "github": {
+    "authority": "operational_and_evidentiary_projection",
+    "permitted_functions": [
+      "authoring",
+      "review_routing",
+      "integration",
+      "execution",
+      "evidence_publication",
+      "work_indexing",
+      "deliberation"
+    ],
+    "forbidden_authorities": [
+      "constitutional_amendment",
+      "mathematical_certification",
+      "production_semantic_authority"
+    ]
+  },
+  "domain_authorities": {
+    "mathematics_certification": {
+      "repository": "grandchallenge/MATHCERT",
+      "scope": "bounded mathematical claim dispositions through accepted routes"
+    },
+    "mathematics_programme": {
+      "repository": "grandchallenge/MATH-PROGRAMME",
+      "scope": "mathematics-specific policy, integration, publication, and archival decisions"
+    }
+  },
+  "activation": {
+    "human_steward_approval": null,
+    "independent_adversary_review": null,
+    "independent_referee_review": null,
+    "intellect_commit": null,
+    "standards_commit": null,
+    "effective_at": null
+  }
+}

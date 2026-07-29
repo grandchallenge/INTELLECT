@@ -25,6 +25,11 @@ Changes to AETHER datom mapping, capability requirements, policy envelopes, hist
 
 Changes to phases, offices, required reviews, gate minima, automatic powers, disposal authority, or human checkpoints. These require a new ADR, threat analysis, migration plan, and explicit Human Steward review.
 
+Interpretive commentary may explain but may not change those powers. A
+constitutional proposal is not effective because its pull request merged or
+its checks passed. Activation requires the records and exact identities
+declared by Article XI and the applicable amendment.
+
 ## Pull request evidence
 
 Every pull request should state:
@@ -34,4 +39,5 @@ Every pull request should state:
 - tests run;
 - known limitations;
 - whether the change is constitutional;
+- if constitutional, the Human, Adversary, and Referee approval status;
 - what should be disposed of or superseded after merge.
