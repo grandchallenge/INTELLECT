@@ -113,6 +113,13 @@ The amendment adds:
 - negative tests for commentary, registry, GitHub, and activation-boundary
   violations.
 
+The shared Council Clerk additionally resolves all coordinated PR heads and
+checks into one digest-addressed packet, publishes one attestation per required
+human office, validates role-bound reactions, and emits a machine-readable
+receipt. Humans inspect and sign; automation performs transcription. Any new
+commit invalidates the old packet without requiring humans to copy commit IDs
+or fill forms.
+
 The coordinated `gcl-standards` change validates both constitutional and
 operating-policy sources and rejects active programme adoption without an
 effective amendment and exact commit identities.

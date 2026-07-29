@@ -384,6 +384,15 @@ Review depth should be proportional to novelty, risk, and irreversibility, but
 the substantive and office minima of a constitutional gate cannot be reduced
 by calling the work lightweight.
 
+Review bookkeeping should impose as little clerical burden as possible.
+Automation may resolve exact revisions, gather checks, enumerate obligations,
+detect staleness, and produce a durable receipt. A human may sign a
+role-specific attestation with one authenticated action when the full
+attestation and evidence packet are visible at that action. The action is valid
+because it records deliberate assent to stated obligations—not because a
+reaction, button, or platform state has authority by itself. Blocking findings
+are recorded instead of signing.
+
 ## X. States of knowledge
 
 Claim and artifact states help the institution know the status of what it

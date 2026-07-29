@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/grandchallenge/INTELLECT/schemas/constitutional_review_receipt.schema.json",
+  "title": "Grand Intellect constitutional review receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "packet_sha256",
+    "subjects",
+    "signoffs",
+    "recorded_at",
+    "status",
+    "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "subjects": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["repository", "pull_request", "head_sha"],
+        "properties": {
+          "repository": {
+            "type": "string",
+            "pattern": "^grandchallenge/[A-Za-z0-9._-]+$"
+          },
+          "pull_request": {"type": "integer", "minimum": 1},
+          "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+        }
+      }
+    },
+    "signoffs": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "office",
+          "reviewer",
+          "reaction_id",
+          "reacted_at",
+          "attestation_comment",
+          "attestation_sha256"
+        ],
+        "properties": {
+          "office": {
+            "enum": ["adversary", "referee", "human_steward"]
+          },
+          "reviewer": {"type": "string", "minLength": 1},
+          "reaction_id": {"type": "integer", "minimum": 1},
+          "reacted_at": {"type": ["string", "null"], "format": "date-time"},
+          "attestation_comment": {"type": "string", "format": "uri"},
+          "attestation_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "status": {"const": "complete"},
+    "authority_boundary": {"type": "string", "minLength": 1}
+  }
+}

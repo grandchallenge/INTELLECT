@@ -26,6 +26,7 @@ _FORBIDDEN_GITHUB_POWERS = {
     "mathematical_certification",
     "production_semantic_authority",
 }
+_REQUIRED_REVIEW_OFFICES = {"adversary", "referee", "human_steward"}
 
 
 def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
@@ -135,6 +136,68 @@ def load_and_validate(path: Path) -> dict[str, Any]:
         raise ConstitutionalAuthorityError("authority schedule must be an object")
     validate_authority_schedule(schedule)
     return schedule
+
+
+def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
+    """Validate the durable record produced from human review attestations."""
+
+    if receipt.get("schema_version") != "1.0.0":
+        raise ConstitutionalAuthorityError("unsupported review receipt version")
+    digest = receipt.get("packet_sha256")
+    if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise ConstitutionalAuthorityError("review receipt requires packet digest")
+    if receipt.get("status") != "complete":
+        raise ConstitutionalAuthorityError("review receipt is not complete")
+
+    subjects = receipt.get("subjects")
+    if not isinstance(subjects, list) or not subjects:
+        raise ConstitutionalAuthorityError("review receipt requires subjects")
+    for subject in subjects:
+        if not isinstance(subject, Mapping):
+            raise ConstitutionalAuthorityError("review subject must be an object")
+        if not _COMMIT_PATTERN.fullmatch(str(subject.get("head_sha", ""))):
+            raise ConstitutionalAuthorityError(
+                "every review subject requires an exact head commit"
+            )
+
+    signoffs = receipt.get("signoffs")
+    if not isinstance(signoffs, list):
+        raise ConstitutionalAuthorityError("review receipt requires signoffs")
+    by_office: dict[str, Mapping[str, Any]] = {}
+    for signoff in signoffs:
+        if not isinstance(signoff, Mapping):
+            raise ConstitutionalAuthorityError("review signoff must be an object")
+        office = signoff.get("office")
+        if not isinstance(office, str) or office in by_office:
+            raise ConstitutionalAuthorityError("review offices must be unique")
+        by_office[office] = signoff
+        if not signoff.get("reviewer") or not signoff.get("reaction_id"):
+            raise ConstitutionalAuthorityError(
+                f"{office} signoff requires reviewer and reaction identity"
+            )
+        if not signoff.get("attestation_comment"):
+            raise ConstitutionalAuthorityError(
+                f"{office} signoff requires attestation reference"
+            )
+        attestation_digest = signoff.get("attestation_sha256")
+        if not isinstance(attestation_digest, str) or not re.fullmatch(
+            r"[0-9a-f]{64}", attestation_digest
+        ):
+            raise ConstitutionalAuthorityError(
+                f"{office} signoff requires attestation digest"
+            )
+
+    if set(by_office) != _REQUIRED_REVIEW_OFFICES:
+        raise ConstitutionalAuthorityError(
+            "receipt requires Adversary, Referee, and Human Steward signoffs"
+        )
+    if (
+        by_office["adversary"]["reviewer"]
+        == by_office["referee"]["reviewer"]
+    ):
+        raise ConstitutionalAuthorityError(
+            "Adversary and Referee must be distinct humans"
+        )
 
 
 def _mapping(parent: Mapping[str, Any], key: str) -> Mapping[str, Any]:

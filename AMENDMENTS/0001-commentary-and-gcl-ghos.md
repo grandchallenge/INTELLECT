@@ -132,9 +132,21 @@ automation, or publication.
    - the exact `gcl-standards` commit;
    - acceptance of the referenced GCL-GHOS revision; and
    - an effective timestamp.
-3. The executable validator and negative tests must reject authority inversion
+3. The Council Clerk may assemble one immutable, digest-addressed review packet
+   for all coordinated repositories and publish separate Adversary, Referee,
+   and Human Steward attestations. A named human signs only by reacting to the
+   role-specific attestation for the current packet after substantive
+   inspection.
+4. Automation shall reject stale packets, authors acting as independent
+   reviewers, reuse of one human as both Adversary and Referee, ineligible
+   reviewers, incomplete checks, and non-steward authorization.
+5. Automation may transcribe accepted human attestations into a review receipt
+   and propose an activation record. It may not sign, approve, merge, or
+   activate the amendment.
+6. The executable validator and negative tests must reject authority inversion
    and incomplete activation.
-4. Merge, CI success, release, or publication does not satisfy an unrecorded
+7. Merge, CI success, release, publication, assignment, or presence does not
+   satisfy an unrecorded
    approval.
 
 ## Article 9: Effect
