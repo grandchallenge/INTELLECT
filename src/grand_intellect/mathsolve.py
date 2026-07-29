@@ -1,6 +1,6 @@
 """Compatibility facade for the reviewed MATHSOLVE and MATHCERT provider contract."""
 
-from .mathsolve_cert_reviewed import (
+from .mathsolve_cert import (
     ADJUDICATED_HANDOFF_STATES,
     ALL_HANDOFF_STATES,
     INTAKE_HANDOFF_STATES,
