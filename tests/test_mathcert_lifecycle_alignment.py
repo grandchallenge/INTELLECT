@@ -6,6 +6,7 @@ from grand_intellect import (
     InMemoryFabric,
     MathematicalConstitution,
     MathematicalGrandIntellect,
+    Office,
     Phase,
     ReviewStatus,
 )
@@ -42,24 +43,38 @@ class MathCertLifecycleAlignmentTests(unittest.TestCase):
             )
         return state
 
+    def system_with_claim(self) -> MathematicalGrandIntellect:
+        system = MathematicalGrandIntellect(InMemoryFabric())
+        system.charter_mathematical(
+            "WP",
+            campaign_id="TEST-001",
+            programme_ref="grandchallenge/MATH-PROGRAMME#123",
+            title="Test Cert lifecycle",
+            purpose="Exercise fail-closed certification semantics.",
+            scope="One synthetic claim.",
+            acceptance_criteria=("Invalid Cert state is rejected.",),
+        )
+        system._append(
+            "mathematical.claim.registered",
+            "WP",
+            Office.FORMALIST.value,
+            {
+                "claim_id": "C1",
+                "statement": "Synthetic claim for lifecycle validation.",
+                "claim_type": "test",
+                "support_type": "test",
+                "source_refs": ["test-fixture"],
+            },
+        )
+        return system
+
     def test_integration_rejects_missing_handoff(self) -> None:
         report = MathematicalConstitution().evaluate(self.reviewed_integration_state())
         self.assertFalse(report.ready)
         self.assertIn("MATHCERT handoff missing for claim: C1", report.missing)
 
     def test_runtime_rejects_ready_without_packet_identity(self) -> None:
-        system = MathematicalGrandIntellect(InMemoryFabric())
-        system.charter_mathematical(
-            "WP",
-            campaign_id="TEST-001",
-            programme_ref="grandchallenge/MATH-PROGRAMME#123",
-            title="Test Cert intake",
-            purpose="Exercise fail-closed intake semantics.",
-            scope="One synthetic claim.",
-            acceptance_criteria=("Ready requires a packet identity.",),
-        )
-        state = system.state("WP")
-        state.mathematical_claims.append({"claim_id": "C1"})
+        system = self.system_with_claim()
         with self.assertRaisesRegex(ValueError, "requires packet artifact identity"):
             system.record_mathcert_handoff(
                 "WP",
@@ -70,17 +85,7 @@ class MathCertLifecycleAlignmentTests(unittest.TestCase):
             )
 
     def test_runtime_rejects_submitted_without_acknowledgement(self) -> None:
-        system = MathematicalGrandIntellect(InMemoryFabric())
-        system.charter_mathematical(
-            "WP",
-            campaign_id="TEST-001",
-            programme_ref="grandchallenge/MATH-PROGRAMME#123",
-            title="Test Cert submission",
-            purpose="Exercise fail-closed submission semantics.",
-            scope="One synthetic claim.",
-            acceptance_criteria=("Submitted requires acknowledgement.",),
-        )
-        system.state("WP").mathematical_claims.append({"claim_id": "C1"})
+        system = self.system_with_claim()
         with self.assertRaisesRegex(ValueError, "requires an intake acknowledgement"):
             system.record_mathcert_handoff(
                 "WP",
@@ -96,17 +101,7 @@ class MathCertLifecycleAlignmentTests(unittest.TestCase):
             )
 
     def test_runtime_rejects_adjudication_without_cert_output(self) -> None:
-        system = MathematicalGrandIntellect(InMemoryFabric())
-        system.charter_mathematical(
-            "WP",
-            campaign_id="TEST-001",
-            programme_ref="grandchallenge/MATH-PROGRAMME#123",
-            title="Test Cert adjudication",
-            purpose="Exercise fail-closed adjudication semantics.",
-            scope="One synthetic claim.",
-            acceptance_criteria=("Adjudication requires output identity.",),
-        )
-        system.state("WP").mathematical_claims.append({"claim_id": "C1"})
+        system = self.system_with_claim()
         with self.assertRaisesRegex(ValueError, "requires Cert output artifact identity"):
             system.record_mathcert_handoff(
                 "WP",
