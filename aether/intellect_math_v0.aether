@@ -1,7 +1,7 @@
 # GI-MS-WP00 future semantic projection.
 #
 # GitHub is authoritative in the present release. These predicates describe the
-# future AETHER projection of the GitHub-first lineage events. They do not claim
+# future AETHER projection of GitHub-first lineage events. They do not claim
 # that an AETHER namespace has been registered or populated.
 
 schema intellect_math_v0 {
@@ -16,6 +16,10 @@ schema intellect_math_v0 {
   attr math.claim_id: RefSet<Entity>
   attr math.cert_handoff_id: RefSet<Entity>
   attr math.cert_status: ScalarLWW<String>
+  attr math.cert_commit: ScalarLWW<String>
+  attr math.cert_artifact_path: ScalarLWW<String>
+  attr math.cert_digest_algorithm: ScalarLWW<String>
+  attr math.cert_digest: ScalarLWW<String>
   attr math.github_lineage_json: ScalarLWW<String>
 }
 
@@ -26,10 +30,16 @@ predicates {
   math_claim_id(Entity, Entity)
   math_cert_handoff_id(Entity, Entity)
   math_cert_status(Entity, String)
+  math_cert_commit(Entity, String)
+  math_cert_artifact_path(Entity, String)
+  math_cert_digest_algorithm(Entity, String)
+  math_cert_digest(Entity, String)
   math_governed(Entity)
   math_exempted(Entity)
   math_routed(Entity)
   math_claim_handed_off(Entity, Entity)
+  math_claim_disposition_complete(Entity, Entity)
+  math_claim_promotable(Entity, Entity)
 }
 
 rules {
@@ -37,7 +47,18 @@ rules {
   math_exempted(wp) <- math_route_status(wp, "exempted")
   math_routed(wp) <- math_governed(wp)
   math_routed(wp) <- math_exempted(wp)
+
   math_claim_handed_off(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, status)
+
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "ready"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "submitted"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "rejected"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_disposition_complete(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "proof_debt"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+
+  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "certified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
+  math_claim_promotable(wp, claim) <- math_claim_id(wp, claim), math_cert_handoff_id(claim, handoff), math_cert_status(handoff, "qualified"), math_cert_commit(handoff, commit), math_cert_artifact_path(handoff, path), math_cert_digest_algorithm(handoff, algorithm), math_cert_digest(handoff, digest)
 }
 
 materialize {
@@ -45,6 +66,8 @@ materialize {
   math_exempted
   math_routed
   math_claim_handed_off
+  math_claim_disposition_complete
+  math_claim_promotable
 }
 
 query {
