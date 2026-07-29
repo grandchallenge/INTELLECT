@@ -2,11 +2,18 @@ from __future__ import annotations
 
 import unittest
 
-from grand_intellect import GitHubArtifactRef, MathematicalConstitution, Office, Phase, ReviewStatus
+from grand_intellect import GitHubArtifactRef, MathematicalConstitution, Phase, ReviewStatus
 from grand_intellect.model import Review, WorkPackageState
 
 
-def reviewed_judgment_state(*, status: str, include_artifact: bool = True) -> WorkPackageState:
+def reviewed_judgment_state(
+    *,
+    status: str,
+    include_packet: bool = True,
+    include_acknowledgement: bool = True,
+    include_output: bool = True,
+    decision: str = "accept",
+) -> WorkPackageState:
     constitution = MathematicalConstitution()
     handoff = {
         "handoff_id": "MC-C1",
@@ -15,11 +22,29 @@ def reviewed_judgment_state(*, status: str, include_artifact: bool = True) -> Wo
         "target_claim_ids": ["C1"],
         "status": status,
     }
-    if include_artifact:
+    if include_packet and status != "pending":
+        handoff.update(
+            {
+                "packet_repository": "grandchallenge/MATHSOLVE",
+                "packet_commit_sha": "c" * 40,
+                "packet_artifact_path": "cert_handoffs/C1.json",
+                "packet_digest_algorithm": "git_blob_sha1",
+                "packet_digest": "d" * 40,
+            }
+        )
+    if include_acknowledgement and status in {
+        "submitted",
+        "certified",
+        "qualified",
+        "rejected",
+        "proof_debt",
+    }:
+        handoff["intake_acknowledgement"] = "MATHCERT-INTAKE-C1"
+    if include_output and status in {"certified", "qualified", "rejected", "proof_debt"}:
         handoff.update(
             {
                 "commit_sha": "a" * 40,
-                "artifact_path": "handoffs/MC-C1.json",
+                "artifact_path": "dispositions/MC-C1.json",
                 "digest_algorithm": "git_blob_sha1",
                 "digest": "b" * 40,
             }
@@ -30,10 +55,10 @@ def reviewed_judgment_state(*, status: str, include_artifact: bool = True) -> Wo
         mathematical=True,
         specification={"claims": ["C1"]},
         judgment={
-            "decision": "accept",
-            "rationale": "The certified claim is admitted.",
+            "decision": decision,
+            "rationale": "The disposition is applied under its exact scope.",
             "tradeoffs": ["Restricted scope"],
-            "reversal_conditions": ["Certificate withdrawal"],
+            "reversal_conditions": ["Disposition withdrawal"],
         },
         mathematical_claims=[{"claim_id": "C1"}],
         mathcert_handoffs=[handoff],
@@ -63,17 +88,37 @@ class PostMergeMathSolveReviewTests(unittest.TestCase):
         )
         self.assertEqual(artifact.to_dict()["digest_algorithm"], "git_blob_sha1")
 
-    def test_complete_handoff_requires_artifact_identity(self) -> None:
+    def test_ready_packet_is_not_an_adjudication(self) -> None:
         report = MathematicalConstitution().evaluate(
-            reviewed_judgment_state(status="qualified", include_artifact=False)
+            reviewed_judgment_state(status="ready", include_acknowledgement=False, include_output=False)
         )
         self.assertFalse(report.ready)
         self.assertIn(
-            "MATHCERT handoff for C1 lacks commit-and-artifact identity",
+            "MATHCERT adjudicated disposition missing for claim: C1",
             report.missing,
         )
 
-    def test_rejected_handoff_cannot_promote_accepted_claim(self) -> None:
+    def test_submitted_packet_is_not_an_adjudication(self) -> None:
+        report = MathematicalConstitution().evaluate(
+            reviewed_judgment_state(status="submitted", include_output=False)
+        )
+        self.assertFalse(report.ready)
+        self.assertIn(
+            "MATHCERT adjudicated disposition missing for claim: C1",
+            report.missing,
+        )
+
+    def test_adjudicated_handoff_requires_output_identity(self) -> None:
+        report = MathematicalConstitution().evaluate(
+            reviewed_judgment_state(status="qualified", include_output=False)
+        )
+        self.assertFalse(report.ready)
+        self.assertIn(
+            "MATHCERT disposition for C1 lacks output artifact identity",
+            report.missing,
+        )
+
+    def test_rejected_handoff_closes_lineage_but_cannot_promote(self) -> None:
         report = MathematicalConstitution().evaluate(
             reviewed_judgment_state(status="rejected")
         )
@@ -84,6 +129,12 @@ class PostMergeMathSolveReviewTests(unittest.TestCase):
                 for item in report.missing
             )
         )
+
+    def test_rejected_handoff_allows_nonpositive_judgment(self) -> None:
+        report = MathematicalConstitution().evaluate(
+            reviewed_judgment_state(status="rejected", decision="reject")
+        )
+        self.assertTrue(report.ready, report.missing)
 
     def test_qualified_handoff_can_support_accepted_claim(self) -> None:
         report = MathematicalConstitution().evaluate(
@@ -101,8 +152,14 @@ class PostMergeMathSolveReviewTests(unittest.TestCase):
                 "issue": "https://github.com/grandchallenge/MATHCERT/issues/2",
                 "target_claim_ids": ["C2"],
                 "status": "qualified",
+                "packet_repository": "grandchallenge/MATHSOLVE",
+                "packet_commit_sha": "e" * 40,
+                "packet_artifact_path": "cert_handoffs/C2.json",
+                "packet_digest_algorithm": "git_blob_sha1",
+                "packet_digest": "f" * 40,
+                "intake_acknowledgement": "MATHCERT-INTAKE-C2",
                 "commit_sha": "c" * 40,
-                "artifact_path": "handoffs/MC-C2.json",
+                "artifact_path": "dispositions/MC-C2.json",
                 "digest_algorithm": "git_blob_sha1",
                 "digest": "d" * 40,
             }

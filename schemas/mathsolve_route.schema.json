@@ -1,57 +1,61 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://grandchallenge.ai/schemas/mathsolve_route.schema.json",
-  "title": "Grand Intellect MATHSOLVE routing record",
+  "title": "Grand Intellect MATHSOLVE and MATHCERT routing record",
   "oneOf": [
-    { "$ref": "#/$defs/governed" },
-    { "$ref": "#/$defs/exempted" }
+    {"$ref": "#/$defs/governed"},
+    {"$ref": "#/$defs/exempted"}
   ],
   "$defs": {
     "artifact": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "repository",
-        "commit_sha",
-        "artifact_path",
-        "digest_algorithm",
-        "digest"
-      ],
+      "required": ["repository", "commit_sha", "artifact_path", "digest_algorithm", "digest"],
       "properties": {
-        "repository": {
-          "type": "string",
-          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
-        },
-        "commit_sha": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-        "artifact_path": { "type": "string", "minLength": 1 },
-        "digest_algorithm": {
-          "enum": ["git_blob_sha1", "git_tree_sha1", "sha256"]
-        },
-        "digest": {
-          "type": "string",
-          "pattern": "^[0-9a-f]{40}$|^[0-9a-f]{64}$"
-        },
-        "issue": { "type": ["string", "null"] },
-        "pull_request": { "type": ["string", "null"] }
+        "repository": {"type": "string", "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"},
+        "commit_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "artifact_path": {"type": "string", "minLength": 1},
+        "digest_algorithm": {"enum": ["git_blob_sha1", "git_tree_sha1", "sha256"]},
+        "digest": {"type": "string", "pattern": "^[0-9a-f]{40}$|^[0-9a-f]{64}$"},
+        "issue": {"type": ["string", "null"]},
+        "pull_request": {"type": ["string", "null"]}
       },
       "allOf": [
         {
-          "if": {
-            "properties": {
-              "digest_algorithm": {
-                "enum": ["git_blob_sha1", "git_tree_sha1"]
-              }
-            },
-            "required": ["digest_algorithm"]
-          },
-          "then": { "properties": { "digest": { "pattern": "^[0-9a-f]{40}$" } } }
+          "if": {"properties": {"digest_algorithm": {"enum": ["git_blob_sha1", "git_tree_sha1"]}}, "required": ["digest_algorithm"]},
+          "then": {"properties": {"digest": {"pattern": "^[0-9a-f]{40}$"}}}
         },
         {
-          "if": {
-            "properties": { "digest_algorithm": { "const": "sha256" } },
-            "required": ["digest_algorithm"]
-          },
-          "then": { "properties": { "digest": { "pattern": "^[0-9a-f]{64}$" } } }
+          "if": {"properties": {"digest_algorithm": {"const": "sha256"}}, "required": ["digest_algorithm"]},
+          "then": {"properties": {"digest": {"pattern": "^[0-9a-f]{64}$"}}}
+        }
+      ]
+    },
+    "programme_policy": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact"},
+        {
+          "properties": {
+            "repository": {"const": "grandchallenge/MATH-PROGRAMME"},
+            "commit_sha": {"const": "8182b8a5dc7b157d1a6b2a0f43d66c0598a2b072"},
+            "artifact_path": {"const": "governance/mathsolve_routing_audit.json"},
+            "digest_algorithm": {"const": "git_blob_sha1"},
+            "digest": {"const": "39e907cce79137168e5b2a240674d7f4e6f56cdd"}
+          }
+        }
+      ]
+    },
+    "certification_contract": {
+      "allOf": [
+        {"$ref": "#/$defs/artifact"},
+        {
+          "properties": {
+            "repository": {"const": "grandchallenge/MATHCERT"},
+            "commit_sha": {"const": "3854dd1b4f6e162a7e74c3da1993f022ee691e5e"},
+            "artifact_path": {"const": "governance/certification_routes.json"},
+            "digest_algorithm": {"const": "git_blob_sha1"},
+            "digest": {"const": "065f0531e4d763b389b207d4922d5a85b4335ee3"}
+          }
         }
       ]
     },
@@ -59,91 +63,60 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status",
-        "authority",
-        "future_projection",
-        "programme_ref",
-        "provider_repository",
-        "provider_work_package_id",
-        "provider_issue",
-        "forge_inputs",
-        "artifact_manifest",
-        "certification_repository"
+        "status", "authority", "future_projection", "programme_ref",
+        "programme_policy", "provider_repository", "provider_work_package_id",
+        "provider_issue", "forge_inputs", "artifact_manifest",
+        "certification_repository", "certification_contract"
       ],
       "properties": {
-        "status": { "const": "governed" },
-        "authority": { "const": "github" },
-        "future_projection": { "const": "aether" },
-        "programme_ref": { "type": "string", "minLength": 1 },
-        "provider_repository": { "const": "grandchallenge/MATHSOLVE" },
-        "provider_work_package_id": { "type": "string", "minLength": 1 },
-        "provider_issue": { "type": "string", "minLength": 1 },
-        "provider_commit": {
-          "type": ["string", "null"],
-          "pattern": "^[0-9a-f]{40}$"
-        },
-        "forge_inputs": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/artifact" }
-        },
-        "artifact_manifest": {
-          "type": "array",
-          "items": { "$ref": "#/$defs/artifact" }
-        },
-        "claim_ledger": {
-          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
-        },
-        "proof_obligation_dag": {
-          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
-        },
-        "failed_route_ledger": {
-          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
-        },
-        "resource_ledger": {
-          "oneOf": [{ "$ref": "#/$defs/artifact" }, { "type": "null" }]
-        },
-        "certification_repository": { "const": "grandchallenge/MATHCERT" }
+        "status": {"const": "governed"},
+        "authority": {"const": "github"},
+        "future_projection": {"const": "aether"},
+        "programme_ref": {"type": "string", "minLength": 1},
+        "programme_policy": {"$ref": "#/$defs/programme_policy"},
+        "provider_repository": {"const": "grandchallenge/MATHSOLVE"},
+        "provider_work_package_id": {"type": "string", "minLength": 1},
+        "provider_issue": {"type": "string", "minLength": 1},
+        "provider_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "forge_inputs": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+        "artifact_manifest": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+        "claim_ledger": {"oneOf": [{"$ref": "#/$defs/artifact"}, {"type": "null"}]},
+        "proof_obligation_dag": {"oneOf": [{"$ref": "#/$defs/artifact"}, {"type": "null"}]},
+        "failed_route_ledger": {"oneOf": [{"$ref": "#/$defs/artifact"}, {"type": "null"}]},
+        "resource_ledger": {"oneOf": [{"$ref": "#/$defs/artifact"}, {"type": "null"}]},
+        "certification_repository": {"const": "grandchallenge/MATHCERT"},
+        "certification_contract": {"$ref": "#/$defs/certification_contract"}
       }
     },
     "exempted": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "status",
-        "authority",
-        "future_projection",
-        "waiver_id",
-        "reason",
-        "scope",
-        "risks",
-        "approving_offices",
-        "human_steward_authorization",
-        "review_condition",
-        "cert_handoff_required",
-        "certification_repository"
+        "status", "authority", "future_projection", "programme_policy",
+        "waiver_id", "reason", "scope", "risks", "approving_offices",
+        "human_steward_authorization", "review_condition", "cert_handoff_required",
+        "certification_repository", "certification_contract"
       ],
       "properties": {
-        "status": { "const": "exempted" },
-        "authority": { "const": "github" },
-        "future_projection": { "const": "aether" },
-        "waiver_id": { "type": "string", "minLength": 1 },
-        "reason": { "type": "string", "minLength": 1 },
-        "scope": { "type": "string", "minLength": 1 },
-        "risks": {
-          "type": "array",
-          "minItems": 1,
-          "items": { "type": "string", "minLength": 1 }
-        },
+        "status": {"const": "exempted"},
+        "authority": {"const": "github"},
+        "future_projection": {"const": "aether"},
+        "programme_policy": {"$ref": "#/$defs/programme_policy"},
+        "waiver_id": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "risks": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
         "approving_offices": {
           "type": "array",
           "uniqueItems": true,
-          "contains": { "const": "referee" },
-          "allOf": [{ "contains": { "const": "steward" } }]
+          "contains": {"const": "referee"},
+          "allOf": [{"contains": {"const": "steward"}}]
         },
-        "human_steward_authorization": { "type": "string", "minLength": 1 },
-        "review_condition": { "type": "string", "minLength": 1 },
-        "cert_handoff_required": { "const": true },
-        "certification_repository": { "const": "grandchallenge/MATHCERT" }
+        "human_steward_authorization": {"type": "string", "minLength": 1},
+        "review_condition": {"type": "string", "minLength": 1},
+        "cert_handoff_required": {"const": true},
+        "certification_repository": {"const": "grandchallenge/MATHCERT"},
+        "certification_contract": {"$ref": "#/$defs/certification_contract"}
       }
     }
   }
