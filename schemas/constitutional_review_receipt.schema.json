@@ -7,6 +7,9 @@
   "required": [
     "schema_version",
     "campaign_id",
+    "staffing_mode",
+    "human_steward",
+    "proposal_authors",
     "packet_sha256",
     "subjects",
     "signoffs",
@@ -15,8 +18,16 @@
     "authority_boundary"
   ],
   "properties": {
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"const": "1.1.0"},
     "campaign_id": {"type": "string", "minLength": 1},
+    "staffing_mode": {"const": "steward_supervised_agents"},
+    "human_steward": {"type": "string", "minLength": 1},
+    "proposal_authors": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
     "packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
     "subjects": {
       "type": "array",
@@ -45,9 +56,11 @@
         "required": [
           "office",
           "reviewer",
-          "reaction_id",
-          "reacted_at",
-          "attestation_comment",
+          "reviewer_kind",
+          "session_id",
+          "authentication_id",
+          "authenticated_at",
+          "attestation_record",
           "attestation_sha256"
         ],
         "properties": {
@@ -55,9 +68,14 @@
             "enum": ["adversary", "referee", "human_steward"]
           },
           "reviewer": {"type": "string", "minLength": 1},
-          "reaction_id": {"type": "integer", "minimum": 1},
-          "reacted_at": {"type": ["string", "null"], "format": "date-time"},
-          "attestation_comment": {"type": "string", "format": "uri"},
+          "reviewer_kind": {"enum": ["agent", "human"]},
+          "session_id": {"type": ["string", "null"], "minLength": 1},
+          "authentication_id": {"type": "string", "minLength": 1},
+          "authenticated_at": {
+            "type": ["string", "null"],
+            "format": "date-time"
+          },
+          "attestation_record": {"type": "string", "format": "uri"},
           "attestation_sha256": {
             "type": "string",
             "pattern": "^[0-9a-f]{64}$"

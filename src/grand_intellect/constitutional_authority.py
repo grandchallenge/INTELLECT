@@ -27,15 +27,75 @@ _FORBIDDEN_GITHUB_POWERS = {
     "production_semantic_authority",
 }
 _REQUIRED_REVIEW_OFFICES = {"adversary", "referee", "human_steward"}
+_AGENT_STAFFED_OFFICES = {
+    "possibility_minder",
+    "reality_minder",
+    "purpose_minder",
+    "continuity_minder",
+    "capacity_minder",
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee",
+    "executor",
+}
 
 
 def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
-    if schedule.get("schema_version") != "1.0.0":
+    if schedule.get("schema_version") != "1.1.0":
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
+
+    staffing = _mapping(schedule, "staffing")
+    if (
+        staffing.get("mode") != "steward_supervised_agents"
+        or staffing.get("external_human_review_required") is not False
+    ):
+        raise ConstitutionalAuthorityError(
+            "bootstrap staffing must use Steward-supervised agents"
+        )
+    directive = _mapping(staffing, "directive")
+    if (
+        directive.get("identifier") != "GI-STEWARD-0001"
+        or directive.get("path")
+        != "governance/steward_directives/GI-STEWARD-0001.md"
+        or directive.get("status") != "effective"
+    ):
+        raise ConstitutionalAuthorityError(
+            "agent staffing requires the effective Steward directive"
+        )
+    human_steward = staffing.get("human_steward")
+    if not isinstance(human_steward, str) or not human_steward:
+        raise ConstitutionalAuthorityError("staffing requires one Human Steward")
+    agent_staffed_offices = set(_list(staffing, "agent_staffed_offices"))
+    if agent_staffed_offices != _AGENT_STAFFED_OFFICES:
+        missing = sorted(_AGENT_STAFFED_OFFICES - agent_staffed_offices)
+        extra = sorted(agent_staffed_offices - _AGENT_STAFFED_OFFICES)
+        raise ConstitutionalAuthorityError(
+            "agent staffing roster is incomplete or invalid: "
+            f"missing={missing}, extra={extra}"
+        )
+    separation_controls = set(_list(staffing, "separation_controls"))
+    required_separation = {
+        "non_author_adversary",
+        "distinct_agent_referee",
+        "distinct_agent_sessions",
+        "exact_revision_findings",
+        "human_steward_reserved_authority",
+    }
+    if missing := sorted(required_separation - separation_controls):
+        raise ConstitutionalAuthorityError(
+            f"agent separation controls are incomplete: {missing}"
+        )
 
     constitution = _mapping(schedule, "constitution")
     if (
@@ -108,16 +168,41 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
             raise ConstitutionalAuthorityError(
                 "an active schedule requires an accepted operating standard"
             )
-        for key in (
-            "human_steward_approval",
-            "independent_adversary_review",
-            "independent_referee_review",
-        ):
-            record = _mapping(activation, key)
-            if record.get("status") != "approved" or not record.get("record_ref"):
+        authors = set(_list(activation, "proposal_author_ids"))
+        if not authors:
+            raise ConstitutionalAuthorityError(
+                "active schedule requires proposal author identities"
+            )
+        steward_record = _approved_review_record(
+            activation, "human_steward_approval", reviewer_kind="human"
+        )
+        if steward_record.get("reviewer_id") != human_steward:
+            raise ConstitutionalAuthorityError(
+                "Human Steward approval must match the staffing record"
+            )
+        adversary = _approved_review_record(
+            activation, "independent_adversary_review", reviewer_kind="agent"
+        )
+        referee = _approved_review_record(
+            activation, "independent_referee_review", reviewer_kind="agent"
+        )
+        for office, record in (("Adversary", adversary), ("Referee", referee)):
+            if record.get("reviewer_id") in authors:
                 raise ConstitutionalAuthorityError(
-                    f"active schedule requires {key}"
+                    f"{office} reviewer must not be a proposal author"
                 )
+            if not record.get("session_id"):
+                raise ConstitutionalAuthorityError(
+                    f"{office} review requires an agent session identity"
+                )
+        if adversary.get("reviewer_id") == referee.get("reviewer_id"):
+            raise ConstitutionalAuthorityError(
+                "Adversary and Referee require distinct agent identities"
+            )
+        if adversary.get("session_id") == referee.get("session_id"):
+            raise ConstitutionalAuthorityError(
+                "Adversary and Referee require distinct agent sessions"
+            )
         for key in ("intellect_commit", "standards_commit"):
             value = activation.get(key)
             if not isinstance(value, str) or not _COMMIT_PATTERN.fullmatch(value):
@@ -139,10 +224,14 @@ def load_and_validate(path: Path) -> dict[str, Any]:
 
 
 def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
-    """Validate the durable record produced from human review attestations."""
+    """Validate separated agent findings and Human Steward authorization."""
 
-    if receipt.get("schema_version") != "1.0.0":
+    if receipt.get("schema_version") != "1.1.0":
         raise ConstitutionalAuthorityError("unsupported review receipt version")
+    if receipt.get("staffing_mode") != "steward_supervised_agents":
+        raise ConstitutionalAuthorityError(
+            "review receipt requires Steward-supervised agent staffing"
+        )
     digest = receipt.get("packet_sha256")
     if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
         raise ConstitutionalAuthorityError("review receipt requires packet digest")
@@ -160,6 +249,11 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
                 "every review subject requires an exact head commit"
             )
 
+    proposal_authors = receipt.get("proposal_authors")
+    if not isinstance(proposal_authors, list) or not proposal_authors:
+        raise ConstitutionalAuthorityError("receipt requires proposal authors")
+    author_ids = {str(item) for item in proposal_authors}
+
     signoffs = receipt.get("signoffs")
     if not isinstance(signoffs, list):
         raise ConstitutionalAuthorityError("review receipt requires signoffs")
@@ -171,11 +265,11 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
         if not isinstance(office, str) or office in by_office:
             raise ConstitutionalAuthorityError("review offices must be unique")
         by_office[office] = signoff
-        if not signoff.get("reviewer") or not signoff.get("reaction_id"):
+        if not signoff.get("reviewer") or not signoff.get("authentication_id"):
             raise ConstitutionalAuthorityError(
-                f"{office} signoff requires reviewer and reaction identity"
+                f"{office} signoff requires reviewer and authentication identity"
             )
-        if not signoff.get("attestation_comment"):
+        if not signoff.get("attestation_record"):
             raise ConstitutionalAuthorityError(
                 f"{office} signoff requires attestation reference"
             )
@@ -191,13 +285,53 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
         raise ConstitutionalAuthorityError(
             "receipt requires Adversary, Referee, and Human Steward signoffs"
         )
-    if (
-        by_office["adversary"]["reviewer"]
-        == by_office["referee"]["reviewer"]
-    ):
+    for office in ("adversary", "referee"):
+        signoff = by_office[office]
+        if signoff.get("reviewer_kind") != "agent":
+            raise ConstitutionalAuthorityError(
+                f"{office} must be staffed by an agent"
+            )
+        if signoff["reviewer"] in author_ids:
+            raise ConstitutionalAuthorityError(
+                f"{office} reviewer must not be a proposal author"
+            )
+        if not signoff.get("session_id"):
+            raise ConstitutionalAuthorityError(
+                f"{office} requires an agent session identity"
+            )
+    if by_office["human_steward"].get("reviewer_kind") != "human":
         raise ConstitutionalAuthorityError(
-            "Adversary and Referee must be distinct humans"
+            "Human Steward authorization must be human"
         )
+    if by_office["human_steward"]["reviewer"] != receipt.get("human_steward"):
+        raise ConstitutionalAuthorityError(
+            "Human Steward signoff must match the receipt authority"
+        )
+    if by_office["adversary"]["reviewer"] == by_office["referee"]["reviewer"]:
+        raise ConstitutionalAuthorityError(
+            "Adversary and Referee must be distinct agents"
+        )
+    if by_office["adversary"]["session_id"] == by_office["referee"]["session_id"]:
+        raise ConstitutionalAuthorityError(
+            "Adversary and Referee must use distinct agent sessions"
+        )
+
+
+def _approved_review_record(
+    activation: Mapping[str, Any],
+    key: str,
+    *,
+    reviewer_kind: str,
+) -> Mapping[str, Any]:
+    record = _mapping(activation, key)
+    if (
+        record.get("status") != "approved"
+        or not record.get("record_ref")
+        or record.get("reviewer_kind") != reviewer_kind
+        or not record.get("reviewer_id")
+    ):
+        raise ConstitutionalAuthorityError(f"active schedule requires {key}")
+    return record
 
 
 def _mapping(parent: Mapping[str, Any], key: str) -> Mapping[str, Any]:
