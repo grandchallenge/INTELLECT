@@ -114,6 +114,21 @@ Every transition requires both substantive artifacts and approved office reviews
 
 See [`CONSTITUTION.md`](CONSTITUTION.md) and [`docs/WORK_PACKAGE_LIFECYCLE.md`](docs/WORK_PACKAGE_LIFECYCLE.md).
 
+## Constitutional document hierarchy
+
+1. [`CONSTITUTION.md`](CONSTITUTION.md) is the compact constitutional law.
+2. Effective instruments in [`AMENDMENTS/`](AMENDMENTS/) supplement it.
+3. [`The Grand Intellect: Constitutional Commentary and Operating Doctrine`](docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md)
+   explains the law but cannot change it.
+4. [`governance/constitutional_authority_schedule.json`](governance/constitutional_authority_schedule.json)
+   records the proposed authority binding and fails closed until Human,
+   Adversary, and Referee approvals and exact commits are present.
+
+The current GCL-GHOS reconciliation is a proposal. It preserves AETHER's
+production semantic authority, reserves mathematical certification to
+MATHCERT, and treats `gcl-standards` as a subordinate registry and publication
+repository.
+
 ## Quick start
 
 Python 3.11 or later is required. The core has no runtime dependencies outside the standard library.
@@ -224,8 +239,10 @@ A change that modifies office powers, phase gates, deletion authority, or the AE
 ## Read next
 
 1. [`CONSTITUTION.md`](CONSTITUTION.md)
-2. [`SPEC.md`](SPEC.md)
-3. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
-4. [`docs/PEDAGOGY.md`](docs/PEDAGOGY.md)
-5. [`docs/ROADMAP.md`](docs/ROADMAP.md)
-6. [`docs/STATUS.md`](docs/STATUS.md)
+2. [`docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md`](docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md)
+3. [`AMENDMENTS/0001-commentary-and-gcl-ghos.md`](AMENDMENTS/0001-commentary-and-gcl-ghos.md)
+4. [`SPEC.md`](SPEC.md)
+5. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+6. [`docs/PEDAGOGY.md`](docs/PEDAGOGY.md)
+7. [`docs/ROADMAP.md`](docs/ROADMAP.md)
+8. [`docs/STATUS.md`](docs/STATUS.md)

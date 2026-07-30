@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/grandchallenge/INTELLECT/schemas/constitutional_authority_schedule.schema.json",
+  "title": "Grand Intellect constitutional authority schedule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "constitution",
+    "amendment",
+    "commentary",
+    "production_semantic_authority",
+    "operating_standard",
+    "github",
+    "domain_authorities",
+    "activation"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": "1.0.0"},
+    "status": {"enum": ["proposed", "active", "superseded"]},
+    "constitution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "path", "authority", "effective_version", "content_sha256"],
+      "properties": {
+        "repository": {"const": "grandchallenge/INTELLECT"},
+        "path": {"const": "CONSTITUTION.md"},
+        "authority": {"const": "supreme_constitutional_law"},
+        "effective_version": {"type": "string", "minLength": 1},
+        "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "amendment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identifier", "path", "status", "proposed_effective_version"],
+      "properties": {
+        "identifier": {"const": "GI-AMEND-0001"},
+        "path": {"const": "AMENDMENTS/0001-commentary-and-gcl-ghos.md"},
+        "status": {"enum": ["proposed", "effective", "superseded", "rejected"]},
+        "proposed_effective_version": {"const": "1.1.0"}
+      }
+    },
+    "commentary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "authority"],
+      "properties": {
+        "path": {"const": "docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md"},
+        "authority": {"const": "interpretive_nonbinding"}
+      }
+    },
+    "production_semantic_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "powers"],
+      "properties": {
+        "repository": {"const": "grandchallenge/AETHER"},
+        "powers": {
+          "type": "array",
+          "minItems": 7,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "operating_standard": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identifier",
+        "registry_repository",
+        "path",
+        "version",
+        "status",
+        "registry_role"
+      ],
+      "properties": {
+        "identifier": {"const": "GCL-GHOS-00"},
+        "registry_repository": {"const": "grandchallenge/gcl-standards"},
+        "path": {"const": "standards/GCL-GHOS-00.md"},
+        "version": {"type": "string", "minLength": 1},
+        "status": {"enum": ["candidate", "accepted", "superseded"]},
+        "registry_role": {"const": "subordinate_registry_and_publication"}
+      }
+    },
+    "github": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "permitted_functions", "forbidden_authorities"],
+      "properties": {
+        "authority": {"const": "operational_and_evidentiary_projection"},
+        "permitted_functions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
+        "forbidden_authorities": {
+          "type": "array",
+          "minItems": 3,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "domain_authorities": {"type": "object"},
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "human_steward_approval",
+        "independent_adversary_review",
+        "independent_referee_review",
+        "intellect_commit",
+        "standards_commit",
+        "effective_at"
+      ],
+      "properties": {
+        "human_steward_approval": {"type": ["object", "null"]},
+        "independent_adversary_review": {"type": ["object", "null"]},
+        "independent_referee_review": {"type": ["object", "null"]},
+        "intellect_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "standards_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
+        "effective_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    }
+  }
+}

@@ -1,3 +1,7 @@
-* @grandchallenge/provider-maintainers
-/governance/ @grandchallenge/the-council @grandchallenge/amanuensis
-/.github/ @grandchallenge/security @grandchallenge/provider-maintainers
+* @grandchallenge/amanuensis
+/CONSTITUTION.md @grandchallenge/the-council @grandchallenge/referees @grandchallenge/amanuensis
+/AMENDMENTS/ @grandchallenge/the-council @grandchallenge/referees @grandchallenge/amanuensis
+/governance/ @grandchallenge/the-council @grandchallenge/referees @grandchallenge/amanuensis
+/schemas/constitutional_* @grandchallenge/the-council @grandchallenge/referees @grandchallenge/amanuensis
+/src/grand_intellect/constitutional_authority.py @grandchallenge/the-council @grandchallenge/referees
+/.github/ @grandchallenge/security @grandchallenge/amanuensis
