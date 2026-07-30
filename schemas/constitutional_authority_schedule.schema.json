@@ -29,6 +29,7 @@
         "directive",
         "human_steward",
         "external_human_review_required",
+        "agent_staffed_offices",
         "separation_controls"
       ],
       "properties": {
@@ -48,6 +49,13 @@
         },
         "human_steward": {"type": "string", "minLength": 1},
         "external_human_review_required": {"const": false},
+        "agent_staffed_offices": {
+          "type": "array",
+          "minItems": 16,
+          "maxItems": 16,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
         "separation_controls": {
           "type": "array",
           "minItems": 5,

@@ -29,6 +29,12 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         self.assertFalse(
             self.schedule["staffing"]["external_human_review_required"]
         )
+        self.assertEqual(
+            len(self.schedule["staffing"]["agent_staffed_offices"]), 16
+        )
+        self.assertIn(
+            "executor", self.schedule["staffing"]["agent_staffed_offices"]
+        )
         self.assertIsNone(self.schedule["activation"]["human_steward_approval"])
 
     def test_commentary_cannot_become_constitutional_law(self) -> None:
@@ -36,6 +42,14 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         broken["commentary"]["authority"] = "normative"
         with self.assertRaisesRegex(
             ConstitutionalAuthorityError, "interpretive and nonbinding"
+        ):
+            validate_authority_schedule(broken)
+
+    def test_agent_staffing_roster_cannot_omit_an_office(self) -> None:
+        broken = copy.deepcopy(self.schedule)
+        broken["staffing"]["agent_staffed_offices"].remove("adversary")
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "staffing roster"
         ):
             validate_authority_schedule(broken)
 

@@ -27,6 +27,24 @@ _FORBIDDEN_GITHUB_POWERS = {
     "production_semantic_authority",
 }
 _REQUIRED_REVIEW_OFFICES = {"adversary", "referee", "human_steward"}
+_AGENT_STAFFED_OFFICES = {
+    "possibility_minder",
+    "reality_minder",
+    "purpose_minder",
+    "continuity_minder",
+    "capacity_minder",
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee",
+    "executor",
+}
 
 
 def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
@@ -58,6 +76,14 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
     human_steward = staffing.get("human_steward")
     if not isinstance(human_steward, str) or not human_steward:
         raise ConstitutionalAuthorityError("staffing requires one Human Steward")
+    agent_staffed_offices = set(_list(staffing, "agent_staffed_offices"))
+    if agent_staffed_offices != _AGENT_STAFFED_OFFICES:
+        missing = sorted(_AGENT_STAFFED_OFFICES - agent_staffed_offices)
+        extra = sorted(agent_staffed_offices - _AGENT_STAFFED_OFFICES)
+        raise ConstitutionalAuthorityError(
+            "agent staffing roster is incomplete or invalid: "
+            f"missing={missing}, extra={extra}"
+        )
     separation_controls = set(_list(staffing, "separation_controls"))
     required_separation = {
         "non_author_adversary",
