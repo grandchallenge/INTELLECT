@@ -253,7 +253,9 @@ Practical separation requires attention to identity as well as labels:
 
 - a proposer is not an independent verifier merely because it uses a second
   model or session;
-- a bot cannot supply independent human review;
+- while `GI-STEWARD-0001` is effective, non-Steward offices may be staffed by
+  agents, but an agent cannot independently review its own proposal and one
+  invocation cannot be relabelled as multiple reviewers;
 - a GitHub approval is a routing signal unless it is linked to the required
   office finding at the exact revision;
 - a metric owner may explain measurement but may not silently choose the
@@ -386,12 +388,14 @@ by calling the work lightweight.
 
 Review bookkeeping should impose as little clerical burden as possible.
 Automation may resolve exact revisions, gather checks, enumerate obligations,
-detect staleness, and produce a durable receipt. A human may sign a
-role-specific attestation with one authenticated action when the full
-attestation and evidence packet are visible at that action. The action is valid
-because it records deliberate assent to stated obligations—not because a
-reaction, button, or platform state has authority by itself. Blocking findings
-are recorded instead of signing.
+detect staleness, and produce a durable receipt. Under temporary
+Steward-supervised agent staffing, agent reviewers publish structured,
+role-specific findings with distinct recorded identities and sessions. The
+Human Steward may authorize a reserved decision with one authenticated action
+when the full findings and evidence packet are visible at that action. The
+action is valid because it records deliberate assent to stated obligations—not
+because a reaction, button, or platform state has authority by itself.
+Blocking findings are recorded instead of signing.
 
 ## X. States of knowledge
 
@@ -438,10 +442,12 @@ earned and properly recorded.
 ## XIII. Human authority
 
 The Grand Intellect extends accountable human institutional capacity; it does
-not abolish human responsibility. Human authority remains reserved where
-decisions concern constitutional powers, irreversible consequences, ethics,
-major resources, legal responsibility, public representation, safety-critical
-deployment, destructive disposal, or autonomous permission escalation.
+not abolish human responsibility. During bootstrap, `GI-STEWARD-0001` permits
+agents to staff every non-Steward office under one Human Steward. Human
+authority remains reserved where decisions concern constitutional powers,
+irreversible consequences, ethics, major resources, legal responsibility,
+public representation, safety-critical deployment, destructive disposal, or
+autonomous permission escalation.
 
 Human review must be substantive. A click, presence in a meeting, ownership of
 a repository, or instruction to draft a proposal is not by itself the
@@ -530,8 +536,10 @@ provenance, and disposal planning.
 ### Constitutional mode
 
 Required when changing the system of powers itself: broad Council scrutiny,
-independent Adversary and Referee review, Human Steward authorization,
+separated non-author Adversary and Referee review, Human Steward authorization,
 compatibility analysis, executable negative tests, and transition planning.
+The staffing policy determines whether the review offices are occupied by
+humans or agents; it does not change their obligations.
 
 ## XVI. GitHub operating doctrine
 

@@ -1,7 +1,25 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "status": "proposed",
+  "staffing": {
+    "mode": "steward_supervised_agents",
+    "directive": {
+      "identifier": "GI-STEWARD-0001",
+      "path": "governance/steward_directives/GI-STEWARD-0001.md",
+      "status": "effective",
+      "issued_at": "2026-07-29"
+    },
+    "human_steward": "fyremael",
+    "external_human_review_required": false,
+    "separation_controls": [
+      "non_author_adversary",
+      "distinct_agent_referee",
+      "distinct_agent_sessions",
+      "exact_revision_findings",
+      "human_steward_reserved_authority"
+    ]
+  },
   "constitution": {
     "repository": "grandchallenge/INTELLECT",
     "path": "CONSTITUTION.md",
@@ -67,6 +85,7 @@
     }
   },
   "activation": {
+    "proposal_author_ids": [],
     "human_steward_approval": null,
     "independent_adversary_review": null,
     "independent_referee_review": null,

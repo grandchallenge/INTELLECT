@@ -4,8 +4,8 @@
 **Proposed constitutional version:** 1.1.0
 **Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`
 **Human Steward approval:** Pending
-**Independent Adversary review:** Pending
-**Independent Referee review:** Pending
+**Agent Adversary review:** Pending under `GI-STEWARD-0001`
+**Agent Referee review:** Pending under `GI-STEWARD-0001`
 
 ## Recitals
 
@@ -126,23 +126,25 @@ automation, or publication.
    activation record for this amendment.
 2. The schedule must remain `proposed` until it records:
    - substantive Human Steward approval;
-   - an independent Adversary review;
-   - an independent Referee review of the exact revision;
+   - a non-author agent Adversary review;
+   - a different non-author agent Referee review of the exact revision;
    - the exact INTELLECT commit;
    - the exact `gcl-standards` commit;
    - acceptance of the referenced GCL-GHOS revision; and
    - an effective timestamp.
-3. The Council Clerk may assemble one immutable, digest-addressed review packet
-   for all coordinated repositories and publish separate Adversary, Referee,
-   and Human Steward attestations. A named human signs only by reacting to the
-   role-specific attestation for the current packet after substantive
-   inspection.
-4. Automation shall reject stale packets, authors acting as independent
-   reviewers, reuse of one human as both Adversary and Referee, ineligible
-   reviewers, incomplete checks, and non-steward authorization.
-5. Automation may transcribe accepted human attestations into a review receipt
-   and propose an activation record. It may not sign, approve, merge, or
-   activate the amendment.
+3. While `GI-STEWARD-0001` is effective, the Council Clerk may assemble one
+   immutable, digest-addressed packet for all coordinated repositories, admit
+   separate structured agent Adversary and Referee findings, and publish a
+   Human Steward attestation. The named Human Steward signs only by an
+   authenticated action on the current packet after substantive inspection.
+4. Automation shall reject stale packets, proposal authors acting as
+   independent reviewers, reuse of one agent identity, invocation, or session
+   as both Adversary and Referee, incomplete findings, incomplete checks, and
+   non-steward authorization.
+5. Automation may transcribe accepted agent findings and the authenticated
+   Human Steward attestation into a review receipt and propose an activation
+   record. It may not impersonate the Steward, approve or merge its own work,
+   or activate the amendment.
 6. The executable validator and negative tests must reject authority inversion
    and incomplete activation.
 7. Merge, CI success, release, publication, assignment, or presence does not
@@ -152,5 +154,7 @@ automation, or publication.
 ## Article 9: Effect
 
 Upon satisfaction of Article 8 and recorded Human Steward promulgation, this
-amendment becomes effective as Constitution version 1.1.0. Until then it is a
-reviewable proposal and creates no binding authority.
+amendment becomes effective as Constitution version 1.1.0. `GI-STEWARD-0001`
+changes who may staff the review offices during bootstrap; it does not make
+this amendment self-ratifying. Until activation is recorded, this amendment is
+a reviewable proposal and creates no binding authority.

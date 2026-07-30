@@ -5,8 +5,9 @@
 `0.2.2` is an executable constitutional foundation.
 
 `GI-AMEND-0001` is proposed, not effective. The compact Constitution remains
-unchanged. Human Steward approval and independent Adversary and Referee review
-have not yet been recorded.
+unchanged. `GI-STEWARD-0001` establishes temporary Steward-supervised agent
+staffing. Human Steward approval and distinct non-author agent Adversary and
+Referee findings have not yet been recorded for the amendment.
 
 ## Implemented
 
@@ -44,10 +45,12 @@ have not yet been recorded.
 
 ## Constitutional acceptance frontier
 
-Obtain substantive Human Steward, independent Adversary, and independent
-Referee findings at exact INTELLECT and `gcl-standards` commits. Then record
-GCL-GHOS acceptance, exact commit identities, and the effective timestamp
-before changing the amendment schedule from `proposed` to `active`.
+Obtain substantive Human Steward authorization plus non-author agent Adversary
+and distinct agent Referee findings at exact INTELLECT and `gcl-standards`
+commits. Then record GCL-GHOS acceptance, exact commit identities, and the
+effective timestamp before changing the amendment schedule from `proposed` to
+`active`. Additional human reviewers are not an activation prerequisite while
+`GI-STEWARD-0001` is effective.
 
 ## Technical acceptance frontier
 

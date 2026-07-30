@@ -7,6 +7,7 @@
   "required": [
     "schema_version",
     "status",
+    "staffing",
     "constitution",
     "amendment",
     "commentary",
@@ -18,8 +19,43 @@
   ],
   "properties": {
     "$schema": {"type": "string"},
-    "schema_version": {"const": "1.0.0"},
+    "schema_version": {"const": "1.1.0"},
     "status": {"enum": ["proposed", "active", "superseded"]},
+    "staffing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "directive",
+        "human_steward",
+        "external_human_review_required",
+        "separation_controls"
+      ],
+      "properties": {
+        "mode": {"const": "steward_supervised_agents"},
+        "directive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["identifier", "path", "status", "issued_at"],
+          "properties": {
+            "identifier": {"const": "GI-STEWARD-0001"},
+            "path": {
+              "const": "governance/steward_directives/GI-STEWARD-0001.md"
+            },
+            "status": {"const": "effective"},
+            "issued_at": {"type": "string", "format": "date"}
+          }
+        },
+        "human_steward": {"type": "string", "minLength": 1},
+        "external_human_review_required": {"const": false},
+        "separation_controls": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
     "constitution": {
       "type": "object",
       "additionalProperties": false,
@@ -111,6 +147,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
+        "proposal_author_ids",
         "human_steward_approval",
         "independent_adversary_review",
         "independent_referee_review",
@@ -119,6 +156,11 @@
         "effective_at"
       ],
       "properties": {
+        "proposal_author_ids": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "string", "minLength": 1}
+        },
         "human_steward_approval": {"type": ["object", "null"]},
         "independent_adversary_review": {"type": ["object", "null"]},
         "independent_referee_review": {"type": ["object", "null"]},

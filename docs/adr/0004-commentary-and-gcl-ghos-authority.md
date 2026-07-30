@@ -4,7 +4,8 @@
 **Status:** Proposed constitutional amendment
 **Amendment:** `GI-AMEND-0001`
 **Decision owner:** Human Steward
-**Required reviews:** independent Adversary and independent Referee
+**Required reviews:** non-author agent Adversary and distinct agent Referee
+under `GI-STEWARD-0001`
 
 ## Problem
 
@@ -37,7 +38,7 @@ Propose `GI-AMEND-0001` to:
 - designate `gcl-standards` as a registry and publication repository rather
   than the source of constitutional power; and
 - authorize commit-addressed GCL-GHOS adoption only after the amendment and
-  standard complete independent review.
+  standard complete separated agent review and Human Steward authorization.
 
 ## Alternatives considered
 
@@ -72,14 +73,16 @@ direction of authority. Prose alone would allow the inversion to recur.
 | Platform capture | Green checks, merged PRs, or releases manufacture authority | GitHub exclusions and exact authoritative references |
 | Semantic split brain | Repository state competes with AETHER event order or replay | Article IX restated and validator requires all AETHER powers |
 | Mathematical overclaim | Council closure or CI is represented as certification | MATHCERT reservation and forbidden-inference clauses |
-| Self-ratification | Author, bot, or merge event is treated as approval | Separate Human, Adversary, and Referee records at exact commits |
+| Self-ratification | Author, agent, bot, or merge event is treated as approval | Distinct non-author agent Adversary and Referee records plus Human Steward authorization at exact commits |
+| Correlated agent review | One invocation is relabelled as multiple offices | Distinct recorded agent sessions, role briefs, findings, and exact-packet binding |
 | Profile drift | Future schemas again classify INTELLECT as a provider | Constitutional profile plus cross-repository validation |
 | Formality evasion | “Exploratory mode” is used to waive constitutional substance | Modes scale manifestation and review depth, not Article V gates |
 | Documentary fork | Expanded compact or lifecycle becomes shadow law | Authoritative Compact and phase reconciliation clauses |
 
-Residual risk remains until independent humans occupy the required offices.
-Automation can prove record shape and authority boundaries but cannot supply
-the missing judgment.
+Residual risk includes correlated agent judgment and Human Steward
+concentration. `GI-STEWARD-0001` accepts that temporary bootstrap risk while
+requiring distinct agent identities, explicit findings, exact revisions, and
+single-human accountability.
 
 ## Compatibility and migration
 
@@ -94,8 +97,8 @@ the missing judgment.
    work and must not be changed before ratification.
 5. Amend GCL-GHOS and its ADR to state the subordinate registry and AETHER
    boundaries.
-6. After independent review, pin exact commits in both authority records and
-   the mathematics adoption record.
+6. After separated agent review and Human Steward authorization, pin exact
+   commits in both authority records and the mathematics adoption record.
 7. The Human Steward may then promulgate version 1.1.0. A later implementation
    PR may migrate live GitHub properties and settings against the accepted
    commits.
@@ -114,11 +117,11 @@ The amendment adds:
   violations.
 
 The shared Council Clerk additionally resolves all coordinated PR heads and
-checks into one digest-addressed packet, publishes one attestation per required
-human office, validates role-bound reactions, and emits a machine-readable
-receipt. Humans inspect and sign; automation performs transcription. Any new
-commit invalidates the old packet without requiring humans to copy commit IDs
-or fill forms.
+checks into one digest-addressed packet, validates distinct structured agent
+Adversary and Referee findings, publishes the Human Steward attestation, and
+emits a machine-readable receipt. The Human Steward inspects and signs;
+automation performs transcription. Any new subject commit invalidates the old
+packet.
 
 The coordinated `gcl-standards` change validates both constitutional and
 operating-policy sources and rejects active programme adoption without an
@@ -126,9 +129,9 @@ effective amendment and exact commit identities.
 
 ## Approval and effective version
 
-Human Steward approval is **pending**. Independent Adversary and Referee review
-are **pending**. Authoring this proposal, passing CI, or merging it does not
-constitute approval.
+Human Steward approval is **pending**. Non-author agent Adversary and distinct
+agent Referee review are **pending** under `GI-STEWARD-0001`. Authoring this
+proposal, passing CI, or merging it does not constitute approval.
 
 If all activation conditions are satisfied and recorded, the effective
 constitutional version will be **1.1.0**.
