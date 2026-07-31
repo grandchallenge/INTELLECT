@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from .engine import GrandIntellect
 from .fabric import CoordinationFabric
-from .mathsolve_cert_reviewed import (
+from .mathsolve_cert_current import (
     ADJUDICATED_HANDOFF_STATES,
     ALL_HANDOFF_STATES,
     INTAKE_HANDOFF_STATES,
@@ -12,18 +12,20 @@ from .mathsolve_cert_reviewed import (
     PROGRAMME_POLICY_COMMIT,
     PROGRAMME_POLICY_DIGEST,
     PROGRAMME_POLICY_PATH,
+    PROGRAMME_UMBRELLA_STATE_DIGEST,
+    PROGRAMME_UMBRELLA_STATE_PATH,
     PROMOTING_HANDOFF_STATES,
     GitHubArtifactRef,
-    MathematicalConstitution as _ReviewedMathematicalConstitution,
-    MathematicalGrandIntellect as _ReviewedMathematicalGrandIntellect,
+    MathematicalConstitution as _CurrentMathematicalConstitution,
+    MathematicalGrandIntellect as _CurrentMathematicalGrandIntellect,
     MathSolveProvider,
-    _claim_ids,
 )
+from .mathsolve_cert_reviewed import _claim_ids
 from .model import Phase, WorkPackageState
 
 
-class MathematicalConstitution(_ReviewedMathematicalConstitution):
-    """Final reviewed constitution with fail-closed Integration lineage."""
+class MathematicalConstitution(_CurrentMathematicalConstitution):
+    """Final constitution with current provider pins and fail-closed lineage."""
 
     def evaluate(self, state: WorkPackageState):
         report = super().evaluate(state)
@@ -45,8 +47,8 @@ class MathematicalConstitution(_ReviewedMathematicalConstitution):
         )
 
 
-class MathematicalGrandIntellect(_ReviewedMathematicalGrandIntellect):
-    """Runtime using the final reviewed mathematical constitution."""
+class MathematicalGrandIntellect(_CurrentMathematicalGrandIntellect):
+    """Runtime using the final current mathematical constitution."""
 
     def __init__(
         self,
@@ -74,6 +76,8 @@ __all__ = [
     "PROGRAMME_POLICY_COMMIT",
     "PROGRAMME_POLICY_DIGEST",
     "PROGRAMME_POLICY_PATH",
+    "PROGRAMME_UMBRELLA_STATE_DIGEST",
+    "PROGRAMME_UMBRELLA_STATE_PATH",
     "PROMOTING_HANDOFF_STATES",
     "GitHubArtifactRef",
     "MathematicalConstitution",
