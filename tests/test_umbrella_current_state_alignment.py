@@ -9,6 +9,8 @@ from grand_intellect import (
     MATHCERT_PROVIDER_COMMIT,
     MATHCERT_ROUTE_REGISTRY_DIGEST,
     MathSolveProvider,
+    PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
+    PROGRAMME_CANDIDATE_ADMISSION_PATH,
     PROGRAMME_POLICY_COMMIT,
     PROGRAMME_POLICY_DIGEST,
     PROGRAMME_RUNTIME_CONTRACT_DIGEST,
@@ -26,26 +28,29 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
     def setUp(self) -> None:
         self.fixture = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
         self.route = MathSolveProvider().governed_route(
-            programme_ref="grandchallenge/MATH-PROGRAMME#167",
+            programme_ref="grandchallenge/MATH-PROGRAMME#172",
             provider_work_package_id="MS-TEST-CURRENT",
             provider_issue="https://github.com/grandchallenge/MATHSOLVE/issues/80",
         )
 
     def test_provider_exports_exact_current_contracts(self) -> None:
-        self.assertEqual(PROGRAMME_POLICY_COMMIT, "b620703ccc38e10382488dd87d743ea0af0461cf")
+        self.assertEqual(PROGRAMME_POLICY_COMMIT, "b78b73e73a62cdb3d54f08ba1af104ceac9c90b8")
         self.assertEqual(PROGRAMME_POLICY_DIGEST, "4a27ec8aaaa60f919ba51028807b83dc522bfcff")
-        self.assertEqual(PROGRAMME_RUNTIME_CONTRACT_PATH, "governance/umbrella_runtime_contract.json")
-        self.assertEqual(PROGRAMME_RUNTIME_CONTRACT_DIGEST, "6828f552cdd3aff006aed7f23477d2541af4b2e7")
+        self.assertEqual(PROGRAMME_RUNTIME_CONTRACT_PATH, "governance/umbrella_runtime_contract_v4.json")
+        self.assertEqual(PROGRAMME_RUNTIME_CONTRACT_DIGEST, "d1503fba284aee29fb517a554ee3440da691fd16")
+        self.assertEqual(PROGRAMME_CANDIDATE_ADMISSION_PATH, "governance/campaign_admission_registry.json")
+        self.assertEqual(PROGRAMME_CANDIDATE_ADMISSION_DIGEST, "9b1a307fde8bfe814210088d544ec8b03f2b413e")
         self.assertEqual(PROGRAMME_UMBRELLA_STATE_PATH, PROGRAMME_RUNTIME_CONTRACT_PATH)
         self.assertEqual(PROGRAMME_UMBRELLA_STATE_DIGEST, PROGRAMME_RUNTIME_CONTRACT_DIGEST)
         self.assertEqual(MATHCERT_PROVIDER_COMMIT, "0258e4f0bca0d90fac05b62aeef108f16dccffdd")
         self.assertEqual(MATHCERT_ROUTE_REGISTRY_DIGEST, "5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1")
         self.assertEqual(current_provider_contract_errors(self.route), [])
 
-    def test_provider_route_contains_three_content_addressed_contracts(self) -> None:
+    def test_provider_route_contains_four_content_addressed_contracts(self) -> None:
         expected = {
             "programme_policy",
             "programme_runtime_contract",
+            "programme_candidate_admission",
             "certification_contract",
         }
         self.assertEqual(set(self.route) & expected, expected)
@@ -56,7 +61,7 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
 
     def test_stale_programme_contract_is_rejected(self) -> None:
         stale = copy.deepcopy(self.route)
-        stale["programme_policy"]["commit_sha"] = "6c0b3e55eeca9be1ef5a538b0fb659f3bf1045a2"
+        stale["programme_policy"]["commit_sha"] = "b620703ccc38e10382488dd87d743ea0af0461cf"
         self.assertIn(
             "mathematical route programme_policy identity drift",
             current_provider_contract_errors(stale),
@@ -72,10 +77,26 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
 
     def test_stale_runtime_contract_is_rejected(self) -> None:
         stale = copy.deepcopy(self.route)
-        stale["programme_runtime_contract"]["artifact_path"] = "governance/umbrella_current_state_conformance.json"
-        stale["programme_runtime_contract"]["digest"] = "a2a1c3d590f535972c87f57d9b86155a246a61ba"
+        stale["programme_runtime_contract"]["artifact_path"] = "governance/umbrella_runtime_contract.json"
+        stale["programme_runtime_contract"]["digest"] = "6828f552cdd3aff006aed7f23477d2541af4b2e7"
         self.assertIn(
             "mathematical route programme_runtime_contract identity drift",
+            current_provider_contract_errors(stale),
+        )
+
+    def test_missing_candidate_admission_is_rejected(self) -> None:
+        stale = copy.deepcopy(self.route)
+        stale.pop("programme_candidate_admission")
+        self.assertIn(
+            "mathematical route requires content-addressed programme_candidate_admission",
+            current_provider_contract_errors(stale),
+        )
+
+    def test_stale_candidate_admission_is_rejected(self) -> None:
+        stale = copy.deepcopy(self.route)
+        stale["programme_candidate_admission"]["digest"] = "0" * 40
+        self.assertIn(
+            "mathematical route programme_candidate_admission identity drift",
             current_provider_contract_errors(stale),
         )
 
@@ -95,12 +116,14 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
             current_provider_contract_errors(stale),
         )
 
-    def test_fixture_pins_runtime_and_campaign_contracts(self) -> None:
+    def test_fixture_pins_runtime_campaign_and_candidate_contracts(self) -> None:
         programme = self.fixture["programme_contract"]
         self.assertEqual(programme["commit_sha"], PROGRAMME_POLICY_COMMIT)
         self.assertEqual(programme["routing_digest"], PROGRAMME_POLICY_DIGEST)
         self.assertEqual(programme["runtime_path"], PROGRAMME_RUNTIME_CONTRACT_PATH)
         self.assertEqual(programme["runtime_digest"], PROGRAMME_RUNTIME_CONTRACT_DIGEST)
+        self.assertEqual(programme["candidate_admission_path"], PROGRAMME_CANDIDATE_ADMISSION_PATH)
+        self.assertEqual(programme["candidate_admission_digest"], PROGRAMME_CANDIDATE_ADMISSION_DIGEST)
         self.assertEqual(programme["campaign_registry_digest"], "b1f1e4682d0f3ff0108d020e466fa2ecb0809b57")
 
     def test_fixture_declares_repository_authority(self) -> None:
@@ -108,6 +131,26 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
         self.assertEqual(authority["state_authority"], "protected_branch_repository_records")
         self.assertEqual(authority["github_issue_role"], "mutable_navigational_mirror")
         self.assertFalse(authority["issue_mutation_can_change_state"])
+        self.assertTrue(authority["candidate_registry_is_separate_from_active_registry"])
+
+    def test_candidate_portfolio_is_pre_admission_only(self) -> None:
+        candidate = self.fixture["candidate_portfolio"]
+        self.assertEqual(candidate["pre_admission"], ["VGSE-001"])
+        self.assertEqual(candidate["active_portfolio_effect"], "none")
+        self.assertEqual(candidate["source_provenance_state"], "unverified_candidate")
+        self.assertEqual(candidate["certification_state"], "pre_route_candidate")
+        self.assertFalse(candidate["candidate_campaign_admitted"])
+        self.assertFalse(candidate["candidate_work_can_self_admit"])
+
+    def test_candidate_self_admission_inflation_is_rejected_by_fixture_contract(self) -> None:
+        inflated = copy.deepcopy(self.fixture)
+        inflated["candidate_portfolio"]["candidate_work_can_self_admit"] = True
+        invalid = (
+            inflated["candidate_portfolio"]["candidate_work_can_self_admit"] is not False
+            or inflated["candidate_portfolio"]["active_portfolio_effect"] != "none"
+            or inflated["candidate_portfolio"]["candidate_campaign_admitted"] is not False
+        )
+        self.assertTrue(invalid)
 
     def test_rh_and_ns_fixtures_are_interface_only(self) -> None:
         records = {item["campaign_id"]: item for item in self.fixture["qualifications"]}
