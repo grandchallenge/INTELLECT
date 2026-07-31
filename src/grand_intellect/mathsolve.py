@@ -1,4 +1,4 @@
-"""Compatibility facade for the reviewed MATHSOLVE and MATHCERT provider contract."""
+"""Compatibility facade for the current MATHSOLVE and MATHCERT provider contract."""
 
 from .mathsolve_cert import (
     ADJUDICATED_HANDOFF_STATES,
@@ -10,6 +10,8 @@ from .mathsolve_cert import (
     PROGRAMME_POLICY_COMMIT,
     PROGRAMME_POLICY_DIGEST,
     PROGRAMME_POLICY_PATH,
+    PROGRAMME_UMBRELLA_STATE_DIGEST,
+    PROGRAMME_UMBRELLA_STATE_PATH,
     PROMOTING_HANDOFF_STATES,
     GitHubArtifactRef,
     MathematicalConstitution,
@@ -27,6 +29,8 @@ __all__ = [
     "PROGRAMME_POLICY_COMMIT",
     "PROGRAMME_POLICY_DIGEST",
     "PROGRAMME_POLICY_PATH",
+    "PROGRAMME_UMBRELLA_STATE_DIGEST",
+    "PROGRAMME_UMBRELLA_STATE_PATH",
     "PROMOTING_HANDOFF_STATES",
     "GitHubArtifactRef",
     "MathematicalConstitution",
