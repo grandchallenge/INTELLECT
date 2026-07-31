@@ -28,6 +28,11 @@ PROGRAMME_CANDIDATE_ADMISSION_DIGEST = "a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24
 # Backward-compatible names for callers that imported the previous constants.
 PROGRAMME_UMBRELLA_STATE_PATH = PROGRAMME_RUNTIME_CONTRACT_PATH
 PROGRAMME_UMBRELLA_STATE_DIGEST = PROGRAMME_RUNTIME_CONTRACT_DIGEST
+
+MATHSOLVE_PROVIDER_COMMIT = "26c1060c2e40b170570fcf2fccc88539fa5b26e6"
+MATHSOLVE_CURRENT_CERT_ROUTES_PATH = "contracts/mathcert_current_routes.json"
+MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST = "2f6bb27a453a8615ba3af75ca77452ceb7b83ca8"
+
 MATHCERT_PROVIDER_COMMIT = "0258e4f0bca0d90fac05b62aeef108f16dccffdd"
 MATHCERT_ROUTE_REGISTRY_PATH = "governance/certification_routes.json"
 MATHCERT_ROUTE_REGISTRY_DIGEST = "5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1"
@@ -41,7 +46,7 @@ _OBSOLETE_CONTRACT_DIAGNOSTICS = {
 
 
 class MathSolveProvider(_HistoricalMathSolveProvider):
-    """Provider bound to current Programme active, candidate, and Cert contracts."""
+    """Provider bound to current Programme, Solve route-state, and Cert contracts."""
 
     def _programme_policy(self) -> dict[str, Any]:
         return GitHubArtifactRef(
@@ -50,7 +55,7 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_POLICY_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_POLICY_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/175",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
             pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
         ).to_dict()
 
@@ -61,7 +66,7 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_RUNTIME_CONTRACT_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_RUNTIME_CONTRACT_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/175",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
             pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
         ).to_dict()
 
@@ -72,8 +77,19 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_CANDIDATE_ADMISSION_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/175",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
             pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
+        ).to_dict()
+
+    def _mathsolve_current_cert_routes(self) -> dict[str, Any]:
+        return GitHubArtifactRef(
+            repository="grandchallenge/MATHSOLVE",
+            commit_sha=MATHSOLVE_PROVIDER_COMMIT,
+            artifact_path=MATHSOLVE_CURRENT_CERT_ROUTES_PATH,
+            digest_algorithm="git_blob_sha1",
+            digest=MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST,
+            issue="https://github.com/grandchallenge/MATHSOLVE/issues/87",
+            pull_request="https://github.com/grandchallenge/MATHSOLVE/pull/88",
         ).to_dict()
 
     def _certification_contract(self) -> dict[str, Any]:
@@ -93,6 +109,7 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
         route["programme_runtime_contract"] = self._programme_runtime_contract()
         route["programme_candidate_admission"] = self._programme_candidate_admission()
         route.pop("programme_umbrella_state", None)
+        route["mathsolve_current_cert_routes"] = self._mathsolve_current_cert_routes()
         route["certification_contract"] = self._certification_contract()
         return route
 
@@ -102,12 +119,13 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
         exemption["programme_runtime_contract"] = self._programme_runtime_contract()
         exemption["programme_candidate_admission"] = self._programme_candidate_admission()
         exemption.pop("programme_umbrella_state", None)
+        exemption["mathsolve_current_cert_routes"] = self._mathsolve_current_cert_routes()
         exemption["certification_contract"] = self._certification_contract()
         return exemption
 
 
 class MathematicalConstitution(_HistoricalMathematicalConstitution):
-    """Constitution enforcing current active, candidate, runtime, and Cert identities."""
+    """Constitution enforcing current Programme, Solve, and Cert identities."""
 
     def evaluate(self, state: WorkPackageState) -> GateReport:
         report = super().evaluate(state)
@@ -130,7 +148,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
                 missing.extend(contract_errors)
                 if not contract_errors:
                     satisfied.append(
-                        "Programme routing, reviewed candidate admission, runtime, and MATHCERT registry identities are current"
+                        "Programme routing, reviewed candidate admission, runtime, current Solve route-state, and MATHCERT registry identities are current"
                     )
 
         return GateReport(
@@ -143,7 +161,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
 
 
 class MathematicalGrandIntellect(_HistoricalMathematicalGrandIntellect):
-    """Runtime using current Programme and Cert provider identities."""
+    """Runtime using current Programme, Solve route-state, and Cert identities."""
 
     def __init__(
         self,
@@ -186,6 +204,13 @@ def current_provider_contract_errors(record: Mapping[str, Any]) -> list[str]:
             PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
         ),
         (
+            "mathsolve_current_cert_routes",
+            "grandchallenge/MATHSOLVE",
+            MATHSOLVE_PROVIDER_COMMIT,
+            MATHSOLVE_CURRENT_CERT_ROUTES_PATH,
+            MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST,
+        ),
+        (
             "certification_contract",
             "grandchallenge/MATHCERT",
             MATHCERT_PROVIDER_COMMIT,
@@ -218,6 +243,9 @@ __all__ = [
     "MATHCERT_PROVIDER_COMMIT",
     "MATHCERT_ROUTE_REGISTRY_DIGEST",
     "MATHCERT_ROUTE_REGISTRY_PATH",
+    "MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST",
+    "MATHSOLVE_CURRENT_CERT_ROUTES_PATH",
+    "MATHSOLVE_PROVIDER_COMMIT",
     "PROGRAMME_CANDIDATE_ADMISSION_DIGEST",
     "PROGRAMME_CANDIDATE_ADMISSION_PATH",
     "PROGRAMME_POLICY_COMMIT",
