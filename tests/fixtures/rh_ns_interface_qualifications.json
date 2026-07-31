@@ -1,1 +1,84 @@
-{"schema_version":"1.3.0","fixture_id":"GI-UMBRELLA-FIFTH-PASS-001-RH-NS","programme_contract":{"repository":"grandchallenge/MATH-PROGRAMME","commit_sha":"d56edc23152f3ccde4c7db272b7af37f6cf698b9","routing_path":"governance/mathsolve_routing_audit.json","routing_digest":"4a27ec8aaaa60f919ba51028807b83dc522bfcff","runtime_path":"governance/umbrella_runtime_contract_v4.json","runtime_digest":"02cdfabb04f5d273fcb7531c515a73baab2bc52d","campaign_registry_path":"governance/governed_campaign_registry.json","campaign_registry_digest":"b1f1e4682d0f3ff0108d020e466fa2ecb0809b57","candidate_admission_path":"governance/campaign_admission_registry.json","candidate_admission_digest":"a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24"},"candidate_portfolio":{"pre_admission":["VGSE-001"],"reviewed_candidate_work_packages":["VGSE-001"],"candidate_execution_state":"merged_candidate_work_package","active_portfolio_effect":"none","source_provenance_state":"unverified_candidate","certification_state":"pre_route_candidate","candidate_campaign_admitted":false,"candidate_work_can_self_admit":false},"cert_contract":{"repository":"grandchallenge/MATHCERT","commit_sha":"0258e4f0bca0d90fac05b62aeef108f16dccffdd","registry_path":"governance/certification_routes.json","registry_digest":"5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1"},"authority_model":{"state_authority":"protected_branch_repository_records","github_issue_role":"mutable_navigational_mirror","issue_mutation_can_change_state":false,"candidate_registry_is_separate_from_active_registry":true},"qualifications":[{"campaign_id":"RH-001","status":"qualified","qualification_scope":"qualified_interface_only","certificate_path":"certificates/formal_sources/MC-FC-WP00-RH-001.json","certificate_digest":"3668bbf792d994a6d8919101417f2f3cad342cdc","mathematical_target_proved":false,"blocked_claims":["Riemann Hypothesis","new zero-free region","new certified zero range"]},{"campaign_id":"NS-CI-001","status":"qualified","qualification_scope":"qualified_interface_only","certificate_path":"certificates/formal_sources/MC-FC-WP00-NS-CI-001.json","certificate_digest":"6047ad774957974a6c2aa86bae72b51841e774a4","mathematical_target_proved":false,"blocked_claims":["universal critical integrability","NS-A2 bridge","global Navier-Stokes regularity"]}],"claim_boundary":"The fixture establishes current protected active, reviewed-candidate, runtime, and Cert identities. VGSE-001 has a reviewed and merged candidate work package but remains pre-admission with unverified source provenance and no Cert route. RH and NS remain interface-only qualifications. No mathematical target is proved."}
+{
+  "schema_version": "1.4.0",
+  "fixture_id": "GI-UMBRELLA-SIXTH-PASS-001-RH-NS",
+  "programme_contract": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "commit_sha": "d56edc23152f3ccde4c7db272b7af37f6cf698b9",
+    "routing_path": "governance/mathsolve_routing_audit.json",
+    "routing_digest": "4a27ec8aaaa60f919ba51028807b83dc522bfcff",
+    "runtime_path": "governance/umbrella_runtime_contract_v4.json",
+    "runtime_digest": "02cdfabb04f5d273fcb7531c515a73baab2bc52d",
+    "campaign_registry_path": "governance/governed_campaign_registry.json",
+    "campaign_registry_digest": "b1f1e4682d0f3ff0108d020e466fa2ecb0809b57",
+    "candidate_admission_path": "governance/campaign_admission_registry.json",
+    "candidate_admission_digest": "a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24"
+  },
+  "solve_current_cert_contract": {
+    "repository": "grandchallenge/MATHSOLVE",
+    "commit_sha": "26c1060c2e40b170570fcf2fccc88539fa5b26e6",
+    "path": "contracts/mathcert_current_routes.json",
+    "digest": "2f6bb27a453a8615ba3af75ca77452ceb7b83ca8",
+    "producer_handoff_status_is_immutable": true,
+    "route_state_is_current_adjudication": true,
+    "judgment_gate_uses": "route_state"
+  },
+  "candidate_portfolio": {
+    "pre_admission": [
+      "VGSE-001"
+    ],
+    "reviewed_candidate_work_packages": [
+      "VGSE-001"
+    ],
+    "candidate_execution_state": "merged_candidate_work_package",
+    "active_portfolio_effect": "none",
+    "source_provenance_state": "unverified_candidate",
+    "certification_state": "pre_route_candidate",
+    "candidate_campaign_admitted": false,
+    "candidate_work_can_self_admit": false
+  },
+  "cert_contract": {
+    "repository": "grandchallenge/MATHCERT",
+    "commit_sha": "0258e4f0bca0d90fac05b62aeef108f16dccffdd",
+    "registry_path": "governance/certification_routes.json",
+    "registry_digest": "5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1"
+  },
+  "authority_model": {
+    "state_authority": "protected_branch_repository_records",
+    "github_issue_role": "mutable_navigational_mirror",
+    "issue_mutation_can_change_state": false,
+    "candidate_registry_is_separate_from_active_registry": true
+  },
+  "qualifications": [
+    {
+      "campaign_id": "RH-001",
+      "handoff_state": "pending",
+      "route_state": "qualified",
+      "status": "qualified",
+      "qualification_scope": "qualified_interface_only",
+      "certificate_path": "certificates/formal_sources/MC-FC-WP00-RH-001.json",
+      "certificate_digest": "3668bbf792d994a6d8919101417f2f3cad342cdc",
+      "mathematical_target_proved": false,
+      "blocked_claims": [
+        "Riemann Hypothesis",
+        "new zero-free region",
+        "new certified zero range"
+      ]
+    },
+    {
+      "campaign_id": "NS-CI-001",
+      "handoff_state": "ready",
+      "route_state": "qualified",
+      "status": "qualified",
+      "qualification_scope": "qualified_interface_only",
+      "certificate_path": "certificates/formal_sources/MC-FC-WP00-NS-CI-001.json",
+      "certificate_digest": "6047ad774957974a6c2aa86bae72b51841e774a4",
+      "mathematical_target_proved": false,
+      "blocked_claims": [
+        "universal critical integrability",
+        "NS-A2 bridge",
+        "global Navier-Stokes regularity"
+      ]
+    }
+  ],
+  "claim_boundary": "The fixture establishes current protected Programme, Solve route-state, reviewed-candidate, runtime, and Cert identities. Producer handoff status is preserved separately from current Cert adjudication. VGSE-001 remains pre-admission with unverified source provenance and no Cert route. RH and NS remain interface-only qualifications. No mathematical target is proved."
+}
