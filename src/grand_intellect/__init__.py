@@ -14,6 +14,8 @@ from .mathsolve import (
     PROGRAMME_POLICY_COMMIT,
     PROGRAMME_POLICY_DIGEST,
     PROGRAMME_POLICY_PATH,
+    PROGRAMME_UMBRELLA_STATE_DIGEST,
+    PROGRAMME_UMBRELLA_STATE_PATH,
     PROMOTING_HANDOFF_STATES,
     GitHubArtifactRef,
     MathematicalConstitution,
@@ -46,6 +48,8 @@ __all__ = [
     "PROGRAMME_POLICY_COMMIT",
     "PROGRAMME_POLICY_DIGEST",
     "PROGRAMME_POLICY_PATH",
+    "PROGRAMME_UMBRELLA_STATE_DIGEST",
+    "PROGRAMME_UMBRELLA_STATE_PATH",
     "PROMOTING_HANDOFF_STATES",
     "Phase",
     "ReviewStatus",
@@ -54,4 +58,4 @@ __all__ = [
     "calculate_metrics",
 ]
 
-__version__ = "0.2.2"
+__version__ = "0.2.3"
