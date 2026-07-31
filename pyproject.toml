@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "grand-intellect"
-version = "0.2.2"
+version = "0.2.3"
 description = "Constitutional collective intelligence over the AETHER semantic coordination fabric"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -12,7 +12,6 @@ authors = [{name = "Grand Challenge Labs"}]
 dependencies = []
 classifiers = [
   "Development Status :: 3 - Alpha",
-  "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Typing :: Typed",
