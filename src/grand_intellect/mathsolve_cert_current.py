@@ -18,11 +18,14 @@ from .mathsolve_cert_reviewed import (
 )
 from .model import Phase, WorkPackageState
 
-PROGRAMME_POLICY_COMMIT = "6c0b3e55eeca9be1ef5a538b0fb659f3bf1045a2"
+PROGRAMME_POLICY_COMMIT = "b620703ccc38e10382488dd87d743ea0af0461cf"
 PROGRAMME_POLICY_PATH = "governance/mathsolve_routing_audit.json"
 PROGRAMME_POLICY_DIGEST = "4a27ec8aaaa60f919ba51028807b83dc522bfcff"
-PROGRAMME_UMBRELLA_STATE_PATH = "governance/umbrella_current_state_conformance.json"
-PROGRAMME_UMBRELLA_STATE_DIGEST = "a2a1c3d590f535972c87f57d9b86155a246a61ba"
+PROGRAMME_RUNTIME_CONTRACT_PATH = "governance/umbrella_runtime_contract.json"
+PROGRAMME_RUNTIME_CONTRACT_DIGEST = "6828f552cdd3aff006aed7f23477d2541af4b2e7"
+# Backward-compatible names for callers that imported the previous constants.
+PROGRAMME_UMBRELLA_STATE_PATH = PROGRAMME_RUNTIME_CONTRACT_PATH
+PROGRAMME_UMBRELLA_STATE_DIGEST = PROGRAMME_RUNTIME_CONTRACT_DIGEST
 MATHCERT_PROVIDER_COMMIT = "0258e4f0bca0d90fac05b62aeef108f16dccffdd"
 MATHCERT_ROUTE_REGISTRY_PATH = "governance/certification_routes.json"
 MATHCERT_ROUTE_REGISTRY_DIGEST = "5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1"
@@ -36,7 +39,7 @@ _OBSOLETE_CONTRACT_DIAGNOSTICS = {
 
 
 class MathSolveProvider(_HistoricalMathSolveProvider):
-    """Provider bound to the current Programme and Cert umbrella contracts."""
+    """Provider bound to the current Programme runtime and Cert contracts."""
 
     def _programme_policy(self) -> dict[str, Any]:
         return GitHubArtifactRef(
@@ -45,19 +48,19 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_POLICY_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_POLICY_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/159",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/160",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/167",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/169",
         ).to_dict()
 
-    def _umbrella_current_state(self) -> dict[str, Any]:
+    def _programme_runtime_contract(self) -> dict[str, Any]:
         return GitHubArtifactRef(
             repository="grandchallenge/MATH-PROGRAMME",
             commit_sha=PROGRAMME_POLICY_COMMIT,
-            artifact_path=PROGRAMME_UMBRELLA_STATE_PATH,
+            artifact_path=PROGRAMME_RUNTIME_CONTRACT_PATH,
             digest_algorithm="git_blob_sha1",
-            digest=PROGRAMME_UMBRELLA_STATE_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/159",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/160",
+            digest=PROGRAMME_RUNTIME_CONTRACT_DIGEST,
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/167",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/169",
         ).to_dict()
 
     def _certification_contract(self) -> dict[str, Any]:
@@ -74,20 +77,22 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
     def governed_route(self, **fields: Any) -> dict[str, Any]:
         route = super().governed_route(**fields)
         route["programme_policy"] = self._programme_policy()
-        route["programme_umbrella_state"] = self._umbrella_current_state()
+        route["programme_runtime_contract"] = self._programme_runtime_contract()
+        route.pop("programme_umbrella_state", None)
         route["certification_contract"] = self._certification_contract()
         return route
 
     def exemption(self, **fields: Any) -> dict[str, Any]:
         exemption = super().exemption(**fields)
         exemption["programme_policy"] = self._programme_policy()
-        exemption["programme_umbrella_state"] = self._umbrella_current_state()
+        exemption["programme_runtime_contract"] = self._programme_runtime_contract()
+        exemption.pop("programme_umbrella_state", None)
         exemption["certification_contract"] = self._certification_contract()
         return exemption
 
 
 class MathematicalConstitution(_HistoricalMathematicalConstitution):
-    """Constitution enforcing the current three-artifact umbrella contract."""
+    """Constitution enforcing the current three-artifact runtime contract."""
 
     def evaluate(self, state: WorkPackageState) -> GateReport:
         report = super().evaluate(state)
@@ -110,7 +115,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
                 missing.extend(contract_errors)
                 if not contract_errors:
                     satisfied.append(
-                        "Programme routing, umbrella state, and MATHCERT registry identities are current"
+                        "Programme routing, consumer-independent runtime contract, and MATHCERT registry identities are current"
                     )
 
         return GateReport(
@@ -123,7 +128,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
 
 
 class MathematicalGrandIntellect(_HistoricalMathematicalGrandIntellect):
-    """Runtime using current Programme, umbrella, and Cert provider identities."""
+    """Runtime using current Programme and Cert provider identities."""
 
     def __init__(
         self,
@@ -152,11 +157,11 @@ def current_provider_contract_errors(record: Mapping[str, Any]) -> list[str]:
             PROGRAMME_POLICY_DIGEST,
         ),
         (
-            "programme_umbrella_state",
+            "programme_runtime_contract",
             "grandchallenge/MATH-PROGRAMME",
             PROGRAMME_POLICY_COMMIT,
-            PROGRAMME_UMBRELLA_STATE_PATH,
-            PROGRAMME_UMBRELLA_STATE_DIGEST,
+            PROGRAMME_RUNTIME_CONTRACT_PATH,
+            PROGRAMME_RUNTIME_CONTRACT_DIGEST,
         ),
         (
             "certification_contract",
@@ -179,6 +184,8 @@ def current_provider_contract_errors(record: Mapping[str, Any]) -> list[str]:
             or value.get("digest") != digest
         ):
             errors.append(f"mathematical route {field} identity drift")
+    if "programme_umbrella_state" in record:
+        errors.append("mathematical route contains superseded programme_umbrella_state")
     return errors
 
 
@@ -192,6 +199,8 @@ __all__ = [
     "PROGRAMME_POLICY_COMMIT",
     "PROGRAMME_POLICY_DIGEST",
     "PROGRAMME_POLICY_PATH",
+    "PROGRAMME_RUNTIME_CONTRACT_DIGEST",
+    "PROGRAMME_RUNTIME_CONTRACT_PATH",
     "PROGRAMME_UMBRELLA_STATE_DIGEST",
     "PROGRAMME_UMBRELLA_STATE_PATH",
     "PROMOTING_HANDOFF_STATES",
