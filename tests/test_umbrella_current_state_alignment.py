@@ -8,6 +8,9 @@ from pathlib import Path
 from grand_intellect import (
     MATHCERT_PROVIDER_COMMIT,
     MATHCERT_ROUTE_REGISTRY_DIGEST,
+    MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST,
+    MATHSOLVE_CURRENT_CERT_ROUTES_PATH,
+    MATHSOLVE_PROVIDER_COMMIT,
     MathSolveProvider,
     PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
     PROGRAMME_CANDIDATE_ADMISSION_PATH,
@@ -28,9 +31,9 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
     def setUp(self) -> None:
         self.fixture = json.loads(FIXTURE_PATH.read_text(encoding="utf-8"))
         self.route = MathSolveProvider().governed_route(
-            programme_ref="grandchallenge/MATH-PROGRAMME#175",
+            programme_ref="grandchallenge/MATH-PROGRAMME#178",
             provider_work_package_id="MS-TEST-CURRENT",
-            provider_issue="https://github.com/grandchallenge/MATHSOLVE/issues/80",
+            provider_issue="https://github.com/grandchallenge/MATHSOLVE/issues/87",
         )
 
     def test_provider_exports_exact_current_contracts(self) -> None:
@@ -42,15 +45,19 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
         self.assertEqual(PROGRAMME_CANDIDATE_ADMISSION_DIGEST, "a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24")
         self.assertEqual(PROGRAMME_UMBRELLA_STATE_PATH, PROGRAMME_RUNTIME_CONTRACT_PATH)
         self.assertEqual(PROGRAMME_UMBRELLA_STATE_DIGEST, PROGRAMME_RUNTIME_CONTRACT_DIGEST)
+        self.assertEqual(MATHSOLVE_PROVIDER_COMMIT, "26c1060c2e40b170570fcf2fccc88539fa5b26e6")
+        self.assertEqual(MATHSOLVE_CURRENT_CERT_ROUTES_PATH, "contracts/mathcert_current_routes.json")
+        self.assertEqual(MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST, "2f6bb27a453a8615ba3af75ca77452ceb7b83ca8")
         self.assertEqual(MATHCERT_PROVIDER_COMMIT, "0258e4f0bca0d90fac05b62aeef108f16dccffdd")
         self.assertEqual(MATHCERT_ROUTE_REGISTRY_DIGEST, "5b3e8d48b9f6c5b03ed3dc439bf9e43876e017b1")
         self.assertEqual(current_provider_contract_errors(self.route), [])
 
-    def test_provider_route_contains_four_content_addressed_contracts(self) -> None:
+    def test_provider_route_contains_five_content_addressed_contracts(self) -> None:
         expected = {
             "programme_policy",
             "programme_runtime_contract",
             "programme_candidate_admission",
+            "mathsolve_current_cert_routes",
             "certification_contract",
         }
         self.assertEqual(set(self.route) & expected, expected)
@@ -99,6 +106,22 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
             current_provider_contract_errors(stale),
         )
 
+    def test_missing_current_solve_route_contract_is_rejected(self) -> None:
+        stale = copy.deepcopy(self.route)
+        stale.pop("mathsolve_current_cert_routes")
+        self.assertIn(
+            "mathematical route requires content-addressed mathsolve_current_cert_routes",
+            current_provider_contract_errors(stale),
+        )
+
+    def test_stale_current_solve_route_contract_is_rejected(self) -> None:
+        stale = copy.deepcopy(self.route)
+        stale["mathsolve_current_cert_routes"]["digest"] = "0" * 40
+        self.assertIn(
+            "mathematical route mathsolve_current_cert_routes identity drift",
+            current_provider_contract_errors(stale),
+        )
+
     def test_superseded_umbrella_field_is_rejected(self) -> None:
         stale = copy.deepcopy(self.route)
         stale["programme_umbrella_state"] = copy.deepcopy(stale["programme_runtime_contract"])
@@ -115,7 +138,7 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
             current_provider_contract_errors(stale),
         )
 
-    def test_fixture_pins_runtime_campaign_and_candidate_contracts(self) -> None:
+    def test_fixture_pins_runtime_campaign_candidate_and_solve_contracts(self) -> None:
         programme = self.fixture["programme_contract"]
         self.assertEqual(programme["commit_sha"], PROGRAMME_POLICY_COMMIT)
         self.assertEqual(programme["routing_digest"], PROGRAMME_POLICY_DIGEST)
@@ -124,6 +147,14 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
         self.assertEqual(programme["candidate_admission_path"], PROGRAMME_CANDIDATE_ADMISSION_PATH)
         self.assertEqual(programme["candidate_admission_digest"], PROGRAMME_CANDIDATE_ADMISSION_DIGEST)
         self.assertEqual(programme["campaign_registry_digest"], "b1f1e4682d0f3ff0108d020e466fa2ecb0809b57")
+
+        solve = self.fixture["solve_current_cert_contract"]
+        self.assertEqual(solve["commit_sha"], MATHSOLVE_PROVIDER_COMMIT)
+        self.assertEqual(solve["path"], MATHSOLVE_CURRENT_CERT_ROUTES_PATH)
+        self.assertEqual(solve["digest"], MATHSOLVE_CURRENT_CERT_ROUTES_DIGEST)
+        self.assertTrue(solve["producer_handoff_status_is_immutable"])
+        self.assertTrue(solve["route_state_is_current_adjudication"])
+        self.assertEqual(solve["judgment_gate_uses"], "route_state")
 
     def test_fixture_declares_repository_authority(self) -> None:
         authority = self.fixture["authority_model"]
@@ -153,15 +184,27 @@ class UmbrellaCurrentStateAlignmentTests(unittest.TestCase):
         )
         self.assertTrue(invalid)
 
-    def test_rh_and_ns_fixtures_are_interface_only(self) -> None:
+    def test_rh_and_ns_fixtures_separate_handoff_from_route_state(self) -> None:
         records = {item["campaign_id"]: item for item in self.fixture["qualifications"]}
         self.assertEqual(set(records), {"RH-001", "NS-CI-001"})
+        self.assertEqual(records["RH-001"]["handoff_state"], "pending")
+        self.assertEqual(records["NS-CI-001"]["handoff_state"], "ready")
         for record in records.values():
+            self.assertEqual(record["route_state"], "qualified")
             self.assertEqual(record["status"], "qualified")
             self.assertEqual(record["qualification_scope"], "qualified_interface_only")
             self.assertFalse(record["mathematical_target_proved"])
             self.assertTrue(record["blocked_claims"])
             self.assertEqual(len(record["certificate_digest"]), 40)
+
+    def test_route_state_cannot_be_replaced_by_producer_handoff_state(self) -> None:
+        mutated = copy.deepcopy(self.fixture)
+        mutated["qualifications"][0]["route_state"] = mutated["qualifications"][0]["handoff_state"]
+        invalid = [
+            item for item in mutated["qualifications"]
+            if item["route_state"] != "qualified"
+        ]
+        self.assertEqual(len(invalid), 1)
 
     def test_qualification_scope_inflation_is_rejected_by_fixture_contract(self) -> None:
         inflated = copy.deepcopy(self.fixture)
