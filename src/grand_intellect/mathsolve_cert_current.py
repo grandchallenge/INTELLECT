@@ -18,11 +18,13 @@ from .mathsolve_cert_reviewed import (
 )
 from .model import Phase, WorkPackageState
 
-PROGRAMME_POLICY_COMMIT = "b620703ccc38e10382488dd87d743ea0af0461cf"
+PROGRAMME_POLICY_COMMIT = "b78b73e73a62cdb3d54f08ba1af104ceac9c90b8"
 PROGRAMME_POLICY_PATH = "governance/mathsolve_routing_audit.json"
 PROGRAMME_POLICY_DIGEST = "4a27ec8aaaa60f919ba51028807b83dc522bfcff"
-PROGRAMME_RUNTIME_CONTRACT_PATH = "governance/umbrella_runtime_contract.json"
-PROGRAMME_RUNTIME_CONTRACT_DIGEST = "6828f552cdd3aff006aed7f23477d2541af4b2e7"
+PROGRAMME_RUNTIME_CONTRACT_PATH = "governance/umbrella_runtime_contract_v4.json"
+PROGRAMME_RUNTIME_CONTRACT_DIGEST = "d1503fba284aee29fb517a554ee3440da691fd16"
+PROGRAMME_CANDIDATE_ADMISSION_PATH = "governance/campaign_admission_registry.json"
+PROGRAMME_CANDIDATE_ADMISSION_DIGEST = "9b1a307fde8bfe814210088d544ec8b03f2b413e"
 # Backward-compatible names for callers that imported the previous constants.
 PROGRAMME_UMBRELLA_STATE_PATH = PROGRAMME_RUNTIME_CONTRACT_PATH
 PROGRAMME_UMBRELLA_STATE_DIGEST = PROGRAMME_RUNTIME_CONTRACT_DIGEST
@@ -39,7 +41,7 @@ _OBSOLETE_CONTRACT_DIAGNOSTICS = {
 
 
 class MathSolveProvider(_HistoricalMathSolveProvider):
-    """Provider bound to the current Programme runtime and Cert contracts."""
+    """Provider bound to current Programme active, candidate, and Cert contracts."""
 
     def _programme_policy(self) -> dict[str, Any]:
         return GitHubArtifactRef(
@@ -48,8 +50,8 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_POLICY_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_POLICY_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/167",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/169",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/172",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/173",
         ).to_dict()
 
     def _programme_runtime_contract(self) -> dict[str, Any]:
@@ -59,8 +61,19 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_RUNTIME_CONTRACT_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_RUNTIME_CONTRACT_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/167",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/169",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/172",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/173",
+        ).to_dict()
+
+    def _programme_candidate_admission(self) -> dict[str, Any]:
+        return GitHubArtifactRef(
+            repository="grandchallenge/MATH-PROGRAMME",
+            commit_sha=PROGRAMME_POLICY_COMMIT,
+            artifact_path=PROGRAMME_CANDIDATE_ADMISSION_PATH,
+            digest_algorithm="git_blob_sha1",
+            digest=PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/172",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/173",
         ).to_dict()
 
     def _certification_contract(self) -> dict[str, Any]:
@@ -78,6 +91,7 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
         route = super().governed_route(**fields)
         route["programme_policy"] = self._programme_policy()
         route["programme_runtime_contract"] = self._programme_runtime_contract()
+        route["programme_candidate_admission"] = self._programme_candidate_admission()
         route.pop("programme_umbrella_state", None)
         route["certification_contract"] = self._certification_contract()
         return route
@@ -86,13 +100,14 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
         exemption = super().exemption(**fields)
         exemption["programme_policy"] = self._programme_policy()
         exemption["programme_runtime_contract"] = self._programme_runtime_contract()
+        exemption["programme_candidate_admission"] = self._programme_candidate_admission()
         exemption.pop("programme_umbrella_state", None)
         exemption["certification_contract"] = self._certification_contract()
         return exemption
 
 
 class MathematicalConstitution(_HistoricalMathematicalConstitution):
-    """Constitution enforcing the current three-artifact runtime contract."""
+    """Constitution enforcing current active, candidate, runtime, and Cert identities."""
 
     def evaluate(self, state: WorkPackageState) -> GateReport:
         report = super().evaluate(state)
@@ -115,7 +130,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
                 missing.extend(contract_errors)
                 if not contract_errors:
                     satisfied.append(
-                        "Programme routing, consumer-independent runtime contract, and MATHCERT registry identities are current"
+                        "Programme routing, candidate admission, runtime, and MATHCERT registry identities are current"
                     )
 
         return GateReport(
@@ -164,6 +179,13 @@ def current_provider_contract_errors(record: Mapping[str, Any]) -> list[str]:
             PROGRAMME_RUNTIME_CONTRACT_DIGEST,
         ),
         (
+            "programme_candidate_admission",
+            "grandchallenge/MATH-PROGRAMME",
+            PROGRAMME_POLICY_COMMIT,
+            PROGRAMME_CANDIDATE_ADMISSION_PATH,
+            PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
+        ),
+        (
             "certification_contract",
             "grandchallenge/MATHCERT",
             MATHCERT_PROVIDER_COMMIT,
@@ -196,6 +218,8 @@ __all__ = [
     "MATHCERT_PROVIDER_COMMIT",
     "MATHCERT_ROUTE_REGISTRY_DIGEST",
     "MATHCERT_ROUTE_REGISTRY_PATH",
+    "PROGRAMME_CANDIDATE_ADMISSION_DIGEST",
+    "PROGRAMME_CANDIDATE_ADMISSION_PATH",
     "PROGRAMME_POLICY_COMMIT",
     "PROGRAMME_POLICY_DIGEST",
     "PROGRAMME_POLICY_PATH",
