@@ -152,10 +152,10 @@
           "authority_status": {"const": "PROTECTED_CONTENT_ADDRESSED_AUTHORITY"},
           "phase_b_requirements": {
             "properties": {
-              "exact_programme_merge_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-              "maintenance_control_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-              "decision_record_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
-              "mirror_policy_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+              "exact_programme_merge_commit": {"const": "f3bea6f632a6fc653262c6c6ca0b667d0219d3e6"},
+              "maintenance_control_blob": {"const": "b13e34f74367cc16f6c7251505c2a6bb3830c6d7"},
+              "decision_record_blob": {"const": "a1172c78a8622640a29605ec99f366c2b1acf6b2"},
+              "mirror_policy_blob": {"const": "e404c8187becc6a51f43c621e779a7fc1d7f10b9"}
             }
           }
         }
