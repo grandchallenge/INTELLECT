@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0.0",
+  "adoption_id": "GI-ADMIN-MAINT-001",
+  "programme_control_id": "MP-ADMIN-MAINT-001",
+  "programme_decision_id": "MP-ADMIN-DECISION-001",
+  "programme_mirror_policy_id": "MP-ADMIN-MIRROR-001",
+  "intellect_issue": 21,
+  "phase": "PHASE_A_COMMITTED_PENDING_PROTECTED_PIN",
+  "effective": false,
+  "authority_status": "CANDIDATE_COMMITMENT_NOT_PROTECTED_AUTHORITY",
+  "programme_candidate": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "pull_request": 184,
+    "branch": "agent/mp-admin-maintenance-core-clarity",
+    "candidate_can_create_authority": false
+  },
+  "required_protected_artifacts": [
+    "governance/administrative_maintenance_control.json",
+    "governance/administrative_maintenance_council_decision.json",
+    "governance/issue_mirror_enforcement_policy.json"
+  ],
+  "accepted_semantics": {
+    "protected_records_are_state_authority": true,
+    "issues_are_navigation_only": true,
+    "repository_head_is_distinct_from_material_artifact_identity": true,
+    "unchanged_consumed_blobs_do_not_require_repin": true,
+    "event_triggered_material_synchronization_is_immediate": true,
+    "acceleration_factor": 0.1,
+    "pilot_duration": "P9D",
+    "structural_sweep": "PT16H48M",
+    "administrative_review": "P3D",
+    "deep_conformance_review": "P9D",
+    "constitutional_review": "P36DT12H",
+    "tracker_refresh": "PT7H12M",
+    "ordinary_local_waiver_limit": "P3D",
+    "emergency_override_limit": "PT7H12M",
+    "emergency_steward_review": "PT2H24M",
+    "emergency_retrospective": "PT16H48M",
+    "unresolved_p1_limit": "PT16H48M"
+  },
+  "fail_closed_requirements": {
+    "missing_contract_rejected": true,
+    "stale_commit_rejected": true,
+    "stale_blob_rejected": true,
+    "branch_floating_reference_rejected": true,
+    "candidate_pr_used_as_authority_rejected": true,
+    "claim_inflation_rejected": true,
+    "protected_phase_b_pin_required_for_effective_adoption": true
+  },
+  "provider_identity_disposition": {
+    "existing_mathematical_provider_identities_changed": false,
+    "reason": "The maintenance contract is an additional Programme administrative provider contract. Existing routing, runtime, candidate admission, Solve route-state, and Cert registry blobs are unchanged."
+  },
+  "phase_b_requirements": {
+    "exact_programme_merge_commit": null,
+    "maintenance_control_blob": null,
+    "decision_record_blob": null,
+    "mirror_policy_blob": null,
+    "exact_head_ci_required": true,
+    "gcl_conformance_required": true,
+    "protected_merge_required": true
+  },
+  "claim_boundaries": {
+    "mathematical_target_proved": false,
+    "interface_qualification_promoted_to_theorem": false,
+    "campaign_admitted": false,
+    "source_verified": false,
+    "certificate_issued": false,
+    "novelty_claim_authorized": false,
+    "priority_claim_authorized": false,
+    "patentability_claim_authorized": false,
+    "mechanical_claim_authorized": false,
+    "manufacturing_claim_authorized": false,
+    "commercial_claim_authorized": false
+  }
+}
