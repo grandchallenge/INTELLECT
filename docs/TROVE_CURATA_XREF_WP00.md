@@ -2,31 +2,34 @@
 
 ## Status
 
-Approved GCL-side crossover work package. This record does not bind, modify, or govern `teraflop-ai/llm-data`.
+Approved GCL-contained foundation and capability-reconciliation work package.
 
 ## Purpose
 
-TROVE-CURATA is an open pre-training data curation programme built around two distinct responsibilities:
+TROVE-CURATA is a Grand Challenge Labs pre-training data curation programme with two distinct responsibilities:
 
-- **TROVE** is the governed data estate: source objects, shards, corpus versions, and mixture-ready releases.
-- **CURATA** is the curation control plane: extraction, normalization, policy processing, classification, deduplication, scoring, lineage, and admission decisions.
+- **TROVE** is the governed data estate: acquired source objects, shards, corpus versions, and mixture-ready releases.
+- **CURATA** is the curation control plane: extraction, normalization, policy processing, classification, deduplication, scoring, lineage, qualification, and admission decisions.
 
-The work package reconciles this programme with existing GCL mechanisms so that data engineering does not create a parallel governance, provenance, or certification vocabulary.
+This work package reconciles TROVE-CURATA with existing GCL mechanisms so the programme does not create a parallel governance, provenance, review, or certification vocabulary.
 
-## Authority boundary
+## Containment boundary
 
-1. `teraflop-ai/llm-data` is the collaborator-owned implementation repository.
-2. GCL has no authority over that repository's branches, merges, releases, or claims unless its maintainers explicitly adopt a GCL contract.
-3. INTELLECT governs GCL-side work packages and review obligations only.
-4. GitHub remains the present operational record. AETHER is a future semantic projection and must not be required for initial execution.
-5. Daft, Trafilatura, Presidio, OCR systems, embedding models, vector-search systems, and classifiers are replaceable providers. None has policy authority.
-6. Successful execution is not equivalent to data quality, privacy, legality, safety, factuality, fitness for training, or downstream benefit.
+1. TROVE-CURATA is a GCL-owned and GCL-governed project.
+2. `grandchallenge/INTELLECT` is the bootstrap authority and implementation location for WP00 contracts, validators, fixtures, and review records.
+3. No external project repository is an implementation, schema, artifact, release, or governance dependency.
+4. External projects and papers may be cited as references or prior inspiration only. Their branches, releases, schemas, and availability cannot determine TROVE-CURATA state.
+5. Open-source libraries such as Daft, Trafilatura, Presidio, OCR systems, embedding models, and vector-search systems may be used as replaceable execution providers. Every provider must be version-pinned and has no policy authority.
+6. GitHub remains the present operational record. AETHER is a future nonblocking semantic projection and is not required for execution.
+7. Successful pipeline execution is not equivalent to data quality, privacy, legality, safety, factuality, fitness for training, or downstream benefit.
 
-## Crossover architecture
+A later dedicated GCL repository may be created when implementation scale warrants separation. WP00 does not depend on that repository existing.
+
+## GCL capability architecture
 
 | Existing capability | Reuse in TROVE-CURATA | Decision |
 |---|---|---|
-| INTELLECT event-sourced work packages and office review | Govern material GCL-side curation changes and release decisions | Generalize |
+| INTELLECT event-sourced work packages and office review | Govern material curation changes and GCL release decisions | Generalize |
 | AETHER provenance and replay model | Future projection of source, transformation, review, and release events | Defer |
 | GCL-GHOS repository controls | Baseline branch protection, immutable actions, CI, and review controls | Reuse directly |
 | MATHFORGE source locks and provider manifests | Source/corpus provider manifests and deterministic acquisition records | Generalize |
@@ -63,7 +66,7 @@ Required concepts:
 - input identity;
 - stage contract and implementation identity;
 - configuration and environment identity;
-- model/tokenizer/prompt identities where applicable;
+- model, tokenizer, prompt, or classifier identities where applicable;
 - output identity;
 - metrics, warnings, and failure state;
 - statement of whether the stage may alter content;
@@ -87,7 +90,7 @@ At scale, passports should be shard-level by default, with document-level except
 
 ### TROVE Release Manifest
 
-Defines a content-addressed corpus release.
+Defines a content-addressed GCL corpus release.
 
 Required concepts:
 
@@ -110,7 +113,26 @@ Every material qualification must distinguish:
 3. qualification-tooling identity;
 4. execution identity.
 
-Model-assisted stages must additionally bind model weights, tokenizer, prompt or classifier contract, decoding/scoring parameters, and runtime versions. A fixed corpus processed by changed tooling is a distinct qualified object.
+Model-assisted stages must additionally bind model weights, tokenizer, prompt or classifier contract, decoding or scoring parameters, and runtime versions. A fixed corpus processed by changed tooling is a distinct qualified object.
+
+## Dependency policy
+
+TROVE-CURATA permits pinned software providers but rejects external project-state dependencies.
+
+Allowed:
+
+- pinned packages and model artifacts;
+- independently acquired public source data;
+- published algorithms and papers;
+- optional provider adapters behind GCL-owned contracts.
+
+Prohibited:
+
+- requiring an external project repository to exist or remain available;
+- importing external governance, release, or admission state as GCL authority;
+- treating a third-party branch, issue, PR, schema, or artifact as the canonical TROVE-CURATA record;
+- making external implementation progress a gate for GCL work;
+- allowing a provider to self-certify its outputs.
 
 ## Review tiers
 
@@ -134,9 +156,9 @@ Required: adversarial fixtures, calibration or error analysis, subgroup accounti
 
 ### T3 — corpus admission or high-impact policy
 
-Examples: release admission, source-family exclusion, licensing interpretation, destructive deletion, major mixture decision.
+Examples: GCL release admission, source-family exclusion, licensing interpretation, destructive deletion, or major mixture decision.
 
-Required: complete provider and qualification records, claim ledger, independent Adversary and Referee review, and Human Steward disposition for GCL-controlled releases.
+Required: complete provider and qualification records, claim ledger, independent Adversary and Referee review, and Human Steward disposition.
 
 ## First fixture
 
@@ -145,8 +167,8 @@ Required: complete provider and qualification records, claim ledger, independent
 Pipeline:
 
 ```text
-raw HTML
-→ Trafilatura extraction
+GCL-controlled fixture HTML
+→ pinned Trafilatura extraction
 → language identification
 → deterministic normalization
 → TROVE Source Record
@@ -155,17 +177,19 @@ raw HTML
 → fixture report
 ```
 
+Daft is the initial execution provider, not an authority and not an irreplaceable project dependency.
+
 Fixture classes:
 
 - ordinary long-form article;
 - navigation and boilerplate-heavy page;
-- MathML/LaTeX/MathJax page;
+- MathML, LaTeX, or MathJax page;
 - code-heavy page;
 - multilingual page;
 - malformed markup and encoding;
 - explicit PII examples;
 - duplicate and near-duplicate pair;
-- content requiring a keep/remove decision.
+- content requiring a keep or remove decision.
 
 Minimum acceptance criteria:
 
@@ -176,7 +200,8 @@ Minimum acceptance criteria:
 - explicit measurement of boilerplate residue;
 - explicit math and code preservation report;
 - explicit failures rather than silent admission;
-- reproducible output under the pinned environment.
+- reproducible output under the pinned environment;
+- no network or external repository dependency for fixture replay.
 
 ## Scientific evaluation boundary
 
@@ -192,16 +217,14 @@ Material interventions require matched comparisons where feasible, including rar
 - stripped versus markup-preserving wiki representations;
 - PII redaction versus document removal.
 
-## Handoff conditions
+## First executable sequence
 
-A collaborator implementation may claim conformance to this package only when it:
-
-- explicitly opts in;
-- publishes compatible record identities or a documented mapping;
-- binds provider and execution versions;
-- exposes fixture results and known failures;
-- does not imply GCL certification from CI success;
-- preserves collaborator authority over its repository and releases.
+1. Admit this GCL-contained authority and dependency contract.
+2. Define the four record schemas independently within GCL.
+3. Implement `TC-FIXTURE-001` using locally retained fixture bytes.
+4. Add provider-version locks, deterministic output digests, and mutation tests.
+5. Run T1 review and exact-head CI.
+6. Open T2 work only after the deterministic extraction baseline is admitted.
 
 ## Non-claims
 
