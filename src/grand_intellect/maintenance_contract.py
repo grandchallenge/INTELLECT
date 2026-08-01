@@ -11,6 +11,11 @@ PROGRAMME_PULL_REQUEST = 184
 INTELLECT_ISSUE = 21
 ACCELERATION_FACTOR = 0.1
 
+PROGRAMME_MERGE_COMMIT = "f3bea6f632a6fc653262c6c6ca0b667d0219d3e6"
+MAINTENANCE_CONTROL_BLOB = "b13e34f74367cc16f6c7251505c2a6bb3830c6d7"
+DECISION_RECORD_BLOB = "a1172c78a8622640a29605ec99f366c2b1acf6b2"
+MIRROR_POLICY_BLOB = "e404c8187becc6a51f43c621e779a7fc1d7f10b9"
+
 EXPECTED_DURATIONS = {
     "pilot_duration": "P9D",
     "structural_sweep": "PT16H48M",
@@ -29,6 +34,13 @@ REQUIRED_PROTECTED_ARTIFACTS = {
     "governance/administrative_maintenance_control.json",
     "governance/administrative_maintenance_council_decision.json",
     "governance/issue_mirror_enforcement_policy.json",
+}
+
+EXPECTED_PHASE_B_IDENTITIES = {
+    "exact_programme_merge_commit": PROGRAMME_MERGE_COMMIT,
+    "maintenance_control_blob": MAINTENANCE_CONTROL_BLOB,
+    "decision_record_blob": DECISION_RECORD_BLOB,
+    "mirror_policy_blob": MIRROR_POLICY_BLOB,
 }
 
 PHASE_A = "PHASE_A_COMMITTED_PENDING_PROTECTED_PIN"
@@ -109,12 +121,7 @@ def maintenance_adoption_errors(
             errors.append("Phase A maintenance adoption cannot be effective")
         if record.get("authority_status") != "CANDIDATE_COMMITMENT_NOT_PROTECTED_AUTHORITY":
             errors.append("Phase A maintenance adoption cannot claim protected authority")
-        for field in (
-            "exact_programme_merge_commit",
-            "maintenance_control_blob",
-            "decision_record_blob",
-            "mirror_policy_blob",
-        ):
+        for field in EXPECTED_PHASE_B_IDENTITIES:
             if phase_b.get(field) is not None:
                 errors.append(f"Phase A maintenance adoption must not fabricate {field}")
     elif phase == PHASE_B:
@@ -122,14 +129,12 @@ def maintenance_adoption_errors(
             errors.append("Phase B maintenance adoption must be effective")
         if record.get("authority_status") != "PROTECTED_CONTENT_ADDRESSED_AUTHORITY":
             errors.append("Phase B maintenance adoption requires protected content-addressed authority")
-        for field in (
-            "exact_programme_merge_commit",
-            "maintenance_control_blob",
-            "decision_record_blob",
-            "mirror_policy_blob",
-        ):
-            if not _is_sha(phase_b.get(field)):
+        for field, expected in EXPECTED_PHASE_B_IDENTITIES.items():
+            actual = phase_b.get(field)
+            if not _is_sha(actual):
                 errors.append(f"Phase B maintenance adoption requires exact {field}")
+            elif actual != expected:
+                errors.append(f"Phase B maintenance adoption stale identity: {field}")
     else:
         errors.append("maintenance adoption phase is invalid")
 
@@ -146,12 +151,17 @@ def maintenance_adoption_errors(
 __all__ = [
     "ACCELERATION_FACTOR",
     "ADOPTION_ID",
+    "DECISION_RECORD_BLOB",
     "EXPECTED_DURATIONS",
+    "EXPECTED_PHASE_B_IDENTITIES",
     "INTELLECT_ISSUE",
+    "MAINTENANCE_CONTROL_BLOB",
+    "MIRROR_POLICY_BLOB",
     "PHASE_A",
     "PHASE_B",
     "PROGRAMME_CONTROL_ID",
     "PROGRAMME_DECISION_ID",
+    "PROGRAMME_MERGE_COMMIT",
     "PROGRAMME_MIRROR_POLICY_ID",
     "PROGRAMME_PULL_REQUEST",
     "PROGRAMME_REPOSITORY",
