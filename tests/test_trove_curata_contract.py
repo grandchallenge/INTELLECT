@@ -27,32 +27,65 @@ class TroveCurataContractTests(unittest.TestCase):
         with self.assertRaises(TroveCurataContractError):
             validate_trove_curata_contract(candidate)
 
-    def test_schema_is_closed_and_authority_bound(self) -> None:
+    def test_schema_is_closed_and_gcl_contained(self) -> None:
         schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
         self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
         self.assertFalse(schema["additionalProperties"])
+        authority = schema["properties"]["authority"]["properties"]
+        self.assertEqual(authority["project_owner"]["const"], "grandchallenge")
+        self.assertEqual(authority["project_scope"]["const"], "gcl_contained")
+        self.assertFalse(authority["external_project_dependency"]["const"])
         self.assertEqual(
-            schema["properties"]["authority"]["properties"]
-            ["collaborator_repository_authority"]["const"],
-            "collaborator_owned",
+            authority["external_repositories_role"]["const"],
+            "reference_only_non_authoritative",
         )
-        self.assertEqual(
-            schema["properties"]["authority"]["properties"]["aether_role"]["const"],
-            "future_projection_nonblocking",
-        )
-        self.assertFalse(
-            schema["properties"]["fixture"]["properties"]
-            ["synthetic_content_allowed"]["const"]
-        )
+        self.assertEqual(authority["aether_role"]["const"], "future_projection_nonblocking")
+        dependency = schema["properties"]["dependency_policy"]["properties"]
+        self.assertFalse(dependency["external_project_repository_dependencies_allowed"]["const"])
+        self.assertFalse(dependency["fixture_replay_requires_network"]["const"])
 
     def test_canonical_contract_is_valid(self) -> None:
         validated = load_and_validate_trove_curata_contract(CONTRACT_PATH)
         self.assertEqual(validated["work_package_id"], "TROVE-CURATA-XREF-WP00")
+        self.assertEqual(validated["authority"]["project_scope"], "gcl_contained")
 
-    def test_gcl_cannot_claim_collaborator_repository(self) -> None:
+    def test_external_project_dependency_cannot_be_enabled(self) -> None:
+        self.assert_rejected(
+            lambda record: record["authority"].__setitem__("external_project_dependency", True)
+        )
+
+    def test_external_repository_cannot_gain_authority(self) -> None:
         self.assert_rejected(
             lambda record: record["authority"].__setitem__(
-                "collaborator_repository_authority", "gcl_controlled"
+                "external_repositories_role", "implementation_authority"
+            )
+        )
+
+    def test_external_repository_dependency_cannot_be_enabled(self) -> None:
+        self.assert_rejected(
+            lambda record: record["dependency_policy"].__setitem__(
+                "external_project_repository_dependencies_allowed", True
+            )
+        )
+
+    def test_pinned_open_source_providers_remain_allowed(self) -> None:
+        self.assert_rejected(
+            lambda record: record["dependency_policy"].__setitem__(
+                "pinned_open_source_providers_allowed", False
+            )
+        )
+
+    def test_provider_cannot_gain_policy_authority(self) -> None:
+        self.assert_rejected(
+            lambda record: record["dependency_policy"].__setitem__(
+                "providers_have_policy_authority", True
+            )
+        )
+
+    def test_future_repository_cannot_become_wp00_dependency(self) -> None:
+        self.assert_rejected(
+            lambda record: record["dependency_policy"].__setitem__(
+                "future_dedicated_repository_required_for_wp00", True
             )
         )
 
@@ -69,6 +102,18 @@ class TroveCurataContractTests(unittest.TestCase):
             lambda record: record["review_tiers"].__setitem__(
                 "T3", "ordinary_maintainer_review"
             )
+        )
+
+    def test_fixture_bytes_must_be_gcl_retained(self) -> None:
+        self.assert_rejected(
+            lambda record: record["fixture"].__setitem__(
+                "fixture_bytes_authority", "external_repository"
+            )
+        )
+
+    def test_fixture_replay_must_remain_offline(self) -> None:
+        self.assert_rejected(
+            lambda record: record["fixture"].__setitem__("network_required_for_replay", True)
         )
 
     def test_synthetic_content_cannot_be_enabled(self) -> None:
@@ -107,6 +152,13 @@ class TroveCurataContractTests(unittest.TestCase):
         self.assert_rejected(
             lambda record: record["provider_decisions"].append(
                 copy.deepcopy(record["provider_decisions"][0])
+            )
+        )
+
+    def test_external_project_identity_cannot_leak_into_contract(self) -> None:
+        self.assert_rejected(
+            lambda record: record["authority"].__setitem__(
+                "reference_note", "teraflop-ai/llm-data"
             )
         )
 
