@@ -4,6 +4,21 @@ from .agents import AgentCouncil, AgentRegistry, OfficeAgent
 from .constitution import Constitution, GateReport
 from .engine import GrandIntellect
 from .fabric import InMemoryFabric
+from .maintenance_contract import (
+    ACCELERATION_FACTOR,
+    ADOPTION_ID,
+    EXPECTED_DURATIONS,
+    INTELLECT_ISSUE,
+    PHASE_A,
+    PHASE_B,
+    PROGRAMME_CONTROL_ID as MAINTENANCE_PROGRAMME_CONTROL_ID,
+    PROGRAMME_DECISION_ID as MAINTENANCE_PROGRAMME_DECISION_ID,
+    PROGRAMME_MIRROR_POLICY_ID as MAINTENANCE_PROGRAMME_MIRROR_POLICY_ID,
+    PROGRAMME_PULL_REQUEST as MAINTENANCE_PROGRAMME_PULL_REQUEST,
+    PROGRAMME_REPOSITORY as MAINTENANCE_PROGRAMME_REPOSITORY,
+    REQUIRED_PROTECTED_ARTIFACTS as MAINTENANCE_REQUIRED_PROTECTED_ARTIFACTS,
+    maintenance_adoption_errors,
+)
 from .mathsolve import (
     ADJUDICATED_HANDOFF_STATES,
     ALL_HANDOFF_STATES,
@@ -34,16 +49,26 @@ from .model import Office, Phase, ReviewStatus
 from .workspace import WorkPackageWorkspace
 
 __all__ = [
+    "ACCELERATION_FACTOR",
     "ADJUDICATED_HANDOFF_STATES",
+    "ADOPTION_ID",
     "ALL_HANDOFF_STATES",
     "AgentCouncil",
     "AgentRegistry",
     "Constitution",
+    "EXPECTED_DURATIONS",
     "GateReport",
     "GitHubArtifactRef",
     "GrandIntellect",
     "INTAKE_HANDOFF_STATES",
+    "INTELLECT_ISSUE",
     "InMemoryFabric",
+    "MAINTENANCE_PROGRAMME_CONTROL_ID",
+    "MAINTENANCE_PROGRAMME_DECISION_ID",
+    "MAINTENANCE_PROGRAMME_MIRROR_POLICY_ID",
+    "MAINTENANCE_PROGRAMME_PULL_REQUEST",
+    "MAINTENANCE_PROGRAMME_REPOSITORY",
+    "MAINTENANCE_REQUIRED_PROTECTED_ARTIFACTS",
     "MATHCERT_PROVIDER_COMMIT",
     "MATHCERT_ROUTE_REGISTRY_DIGEST",
     "MATHCERT_ROUTE_REGISTRY_PATH",
@@ -55,6 +80,8 @@ __all__ = [
     "MathSolveProvider",
     "Office",
     "OfficeAgent",
+    "PHASE_A",
+    "PHASE_B",
     "PROGRAMME_CANDIDATE_ADMISSION_DIGEST",
     "PROGRAMME_CANDIDATE_ADMISSION_PATH",
     "PROGRAMME_POLICY_COMMIT",
@@ -70,6 +97,7 @@ __all__ = [
     "WorkPackageMetrics",
     "WorkPackageWorkspace",
     "calculate_metrics",
+    "maintenance_adoption_errors",
 ]
 
 __version__ = "0.2.2"
