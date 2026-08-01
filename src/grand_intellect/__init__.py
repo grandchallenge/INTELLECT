@@ -46,6 +46,13 @@ from .mathsolve import (
 )
 from .metrics import WorkPackageMetrics, calculate_metrics
 from .model import Office, Phase, ReviewStatus
+from .trove_curata_contract import (
+    EXPECTED_RECORD_CONTRACTS as TROVE_CURATA_RECORD_CONTRACTS,
+    EXPECTED_REVIEW_TIERS as TROVE_CURATA_REVIEW_TIERS,
+    TroveCurataContractError,
+    load_and_validate_trove_curata_contract,
+    validate_trove_curata_contract,
+)
 from .workspace import WorkPackageWorkspace
 
 __all__ = [
@@ -94,10 +101,15 @@ __all__ = [
     "PROMOTING_HANDOFF_STATES",
     "Phase",
     "ReviewStatus",
+    "TROVE_CURATA_RECORD_CONTRACTS",
+    "TROVE_CURATA_REVIEW_TIERS",
+    "TroveCurataContractError",
     "WorkPackageMetrics",
     "WorkPackageWorkspace",
     "calculate_metrics",
+    "load_and_validate_trove_curata_contract",
     "maintenance_adoption_errors",
+    "validate_trove_curata_contract",
 ]
 
 __version__ = "0.2.2"
