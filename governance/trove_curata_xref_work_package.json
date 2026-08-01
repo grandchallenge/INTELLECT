@@ -1,13 +1,23 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_package_id": "TROVE-CURATA-XREF-WP00",
   "status": "implemented",
   "authority": {
-    "gcl_repository": "grandchallenge/INTELLECT",
-    "collaborator_repository": "teraflop-ai/llm-data",
-    "collaborator_repository_authority": "collaborator_owned",
+    "project_owner": "grandchallenge",
+    "governance_repository": "grandchallenge/INTELLECT",
+    "bootstrap_implementation_repository": "grandchallenge/INTELLECT",
+    "project_scope": "gcl_contained",
+    "external_project_dependency": false,
+    "external_repositories_role": "reference_only_non_authoritative",
     "current_operational_authority": "github",
     "aether_role": "future_projection_nonblocking"
+  },
+  "dependency_policy": {
+    "external_project_repository_dependencies_allowed": false,
+    "pinned_open_source_providers_allowed": true,
+    "providers_have_policy_authority": false,
+    "fixture_replay_requires_network": false,
+    "future_dedicated_repository_required_for_wp00": false
   },
   "record_contracts": [
     "trove_source_record",
@@ -76,9 +86,11 @@
   "fixture": {
     "fixture_id": "TC-FIXTURE-001",
     "source_family": "html",
+    "fixture_bytes_authority": "gcl_retained",
     "execution_provider": "daft",
     "extractor": "trafilatura",
-    "synthetic_content_allowed": false
+    "synthetic_content_allowed": false,
+    "network_required_for_replay": false
   },
   "claim_boundary": {
     "dataset_quality_proved": false,
@@ -87,6 +99,7 @@
     "safety_proved": false,
     "fitness_for_training_proved": false,
     "downstream_improvement_proved": false,
+    "external_project_conformance_claimed": false,
     "commercial_claim_authorized": false
   }
 }
