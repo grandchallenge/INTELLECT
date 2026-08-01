@@ -14,6 +14,7 @@ from grand_intellect.trove_curata_contract import (
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTRACT_PATH = ROOT / "governance" / "trove_curata_xref_work_package.json"
+SCHEMA_PATH = ROOT / "schemas" / "trove_curata_xref_work_package.schema.json"
 
 
 class TroveCurataContractTests(unittest.TestCase):
@@ -25,6 +26,24 @@ class TroveCurataContractTests(unittest.TestCase):
         mutate(candidate)
         with self.assertRaises(TroveCurataContractError):
             validate_trove_curata_contract(candidate)
+
+    def test_schema_is_closed_and_authority_bound(self) -> None:
+        schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        self.assertFalse(schema["additionalProperties"])
+        self.assertEqual(
+            schema["properties"]["authority"]["properties"]
+            ["collaborator_repository_authority"]["const"],
+            "collaborator_owned",
+        )
+        self.assertEqual(
+            schema["properties"]["authority"]["properties"]["aether_role"]["const"],
+            "future_projection_nonblocking",
+        )
+        self.assertFalse(
+            schema["properties"]["fixture"]["properties"]
+            ["synthetic_content_allowed"]["const"]
+        )
 
     def test_canonical_contract_is_valid(self) -> None:
         validated = load_and_validate_trove_curata_contract(CONTRACT_PATH)
