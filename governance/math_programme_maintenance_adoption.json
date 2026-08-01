@@ -5,9 +5,9 @@
   "programme_decision_id": "MP-ADMIN-DECISION-001",
   "programme_mirror_policy_id": "MP-ADMIN-MIRROR-001",
   "intellect_issue": 21,
-  "phase": "PHASE_A_COMMITTED_PENDING_PROTECTED_PIN",
-  "effective": false,
-  "authority_status": "CANDIDATE_COMMITMENT_NOT_PROTECTED_AUTHORITY",
+  "phase": "PHASE_B_PROTECTED_ADOPTION_COMPLETE",
+  "effective": true,
+  "authority_status": "PROTECTED_CONTENT_ADDRESSED_AUTHORITY",
   "programme_candidate": {
     "repository": "grandchallenge/MATH-PROGRAMME",
     "pull_request": 184,
@@ -52,10 +52,10 @@
     "reason": "The maintenance contract is an additional Programme administrative provider contract. Existing routing, runtime, candidate admission, Solve route-state, and Cert registry blobs are unchanged."
   },
   "phase_b_requirements": {
-    "exact_programme_merge_commit": null,
-    "maintenance_control_blob": null,
-    "decision_record_blob": null,
-    "mirror_policy_blob": null,
+    "exact_programme_merge_commit": "f3bea6f632a6fc653262c6c6ca0b667d0219d3e6",
+    "maintenance_control_blob": "b13e34f74367cc16f6c7251505c2a6bb3830c6d7",
+    "decision_record_blob": "a1172c78a8622640a29605ec99f366c2b1acf6b2",
+    "mirror_policy_blob": "e404c8187becc6a51f43c621e779a7fc1d7f10b9",
     "exact_head_ci_required": true,
     "gcl_conformance_required": true,
     "protected_merge_required": true
