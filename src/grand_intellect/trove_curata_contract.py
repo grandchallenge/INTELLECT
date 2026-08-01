@@ -1,4 +1,4 @@
-"""Fail-closed validation for the TROVE-CURATA crossover contract."""
+"""Fail-closed validation for the GCL-contained TROVE-CURATA contract."""
 
 from __future__ import annotations
 
@@ -28,6 +28,7 @@ FALSE_CLAIMS = {
     "safety_proved",
     "fitness_for_training_proved",
     "downstream_improvement_proved",
+    "external_project_conformance_claimed",
     "commercial_claim_authorized",
 }
 
@@ -58,7 +59,7 @@ def _require(condition: bool, message: str) -> None:
 def validate_trove_curata_contract(record: dict[str, Any]) -> dict[str, Any]:
     """Validate semantic invariants not safely delegated to JSON Schema alone."""
 
-    _require(record.get("schema_version") == "0.1.0", "unsupported schema version")
+    _require(record.get("schema_version") == "0.2.0", "unsupported schema version")
     _require(
         record.get("work_package_id") == "TROVE-CURATA-XREF-WP00",
         "unexpected work-package identity",
@@ -70,17 +71,20 @@ def validate_trove_curata_contract(record: dict[str, Any]) -> dict[str, Any]:
 
     authority = record.get("authority")
     _require(isinstance(authority, dict), "authority must be an object")
+    _require(authority.get("project_owner") == "grandchallenge", "project owner drift")
     _require(
-        authority.get("gcl_repository") == "grandchallenge/INTELLECT",
-        "GCL-side authority must remain in INTELLECT",
+        authority.get("governance_repository") == "grandchallenge/INTELLECT",
+        "governance authority must remain in INTELLECT",
     )
     _require(
-        authority.get("collaborator_repository") == "teraflop-ai/llm-data",
-        "collaborator repository identity drift",
+        authority.get("bootstrap_implementation_repository") == "grandchallenge/INTELLECT",
+        "WP00 implementation must remain GCL-controlled",
     )
+    _require(authority.get("project_scope") == "gcl_contained", "project scope must remain GCL-contained")
+    _require(authority.get("external_project_dependency") is False, "external project dependency prohibited")
     _require(
-        authority.get("collaborator_repository_authority") == "collaborator_owned",
-        "GCL may not claim collaborator-repository authority",
+        authority.get("external_repositories_role") == "reference_only_non_authoritative",
+        "external repositories may be references only",
     )
     _require(
         authority.get("current_operational_authority") == "github",
@@ -89,6 +93,29 @@ def validate_trove_curata_contract(record: dict[str, Any]) -> dict[str, Any]:
     _require(
         authority.get("aether_role") == "future_projection_nonblocking",
         "AETHER must not become a runtime prerequisite",
+    )
+
+    dependency_policy = record.get("dependency_policy")
+    _require(isinstance(dependency_policy, dict), "dependency_policy must be an object")
+    _require(
+        dependency_policy.get("external_project_repository_dependencies_allowed") is False,
+        "external project repositories cannot be dependencies",
+    )
+    _require(
+        dependency_policy.get("pinned_open_source_providers_allowed") is True,
+        "pinned open-source providers must remain permitted",
+    )
+    _require(
+        dependency_policy.get("providers_have_policy_authority") is False,
+        "execution providers cannot have policy authority",
+    )
+    _require(
+        dependency_policy.get("fixture_replay_requires_network") is False,
+        "fixture replay must not require network access",
+    )
+    _require(
+        dependency_policy.get("future_dedicated_repository_required_for_wp00") is False,
+        "WP00 cannot depend on a future repository",
     )
 
     contracts = record.get("record_contracts")
@@ -108,10 +135,7 @@ def validate_trove_curata_contract(record: dict[str, Any]) -> dict[str, Any]:
         _require(capability not in capabilities, "duplicate provider capability")
         capabilities.add(capability)
         _require(decision.get("decision") in ALLOWED_DECISIONS, "invalid provider decision")
-        _require(
-            decision.get("authority_effect") in ALLOWED_AUTHORITY_EFFECTS,
-            "invalid authority effect",
-        )
+        _require(decision.get("authority_effect") in ALLOWED_AUTHORITY_EFFECTS, "invalid authority effect")
         if capability == "aether_provenance_projection":
             _require(decision.get("decision") == "defer", "AETHER must remain deferred")
             _require(
@@ -126,15 +150,20 @@ def validate_trove_curata_contract(record: dict[str, Any]) -> dict[str, Any]:
     _require(isinstance(fixture, dict), "fixture must be an object")
     _require(fixture.get("fixture_id") == "TC-FIXTURE-001", "fixture identity drift")
     _require(fixture.get("source_family") == "html", "first fixture must remain HTML")
+    _require(fixture.get("fixture_bytes_authority") == "gcl_retained", "fixture bytes must be GCL-retained")
     _require(fixture.get("execution_provider") == "daft", "execution provider drift")
     _require(fixture.get("extractor") == "trafilatura", "extractor drift")
     _require(fixture.get("synthetic_content_allowed") is False, "synthetic content must remain prohibited")
+    _require(fixture.get("network_required_for_replay") is False, "fixture replay must remain offline")
 
     claim_boundary = record.get("claim_boundary")
     _require(isinstance(claim_boundary, dict), "claim boundary must be an object")
     _require(set(claim_boundary) == FALSE_CLAIMS, "claim boundary field set drift")
     for claim in FALSE_CLAIMS:
         _require(claim_boundary.get(claim) is False, f"claim inflation: {claim}")
+
+    serialized = json.dumps(record, sort_keys=True)
+    _require("teraflop-ai/llm-data" not in serialized, "external project repository dependency leaked into contract")
 
     return record
 
