@@ -11,8 +11,14 @@ from grand_intellect import (
     MAINTENANCE_PROGRAMME_CONTROL_ID,
     MAINTENANCE_PROGRAMME_DECISION_ID,
     MAINTENANCE_PROGRAMME_MIRROR_POLICY_ID,
-    PHASE_A,
+    PHASE_B,
     maintenance_adoption_errors,
+)
+from grand_intellect.maintenance_contract import (
+    DECISION_RECORD_BLOB,
+    MAINTENANCE_CONTROL_BLOB,
+    MIRROR_POLICY_BLOB,
+    PROGRAMME_MERGE_COMMIT,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -40,23 +46,34 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
         )
         self.assertEqual(len(schema["allOf"]), 2)
 
-    def test_phase_a_adoption_is_valid_commitment(self) -> None:
+    def test_phase_b_adoption_is_effective_and_valid(self) -> None:
         record = self.load_adoption()
         self.assertEqual(maintenance_adoption_errors(record), [])
-        self.assertEqual(record["phase"], PHASE_A)
-        self.assertFalse(record["effective"])
-
-    def test_phase_a_fails_closed_when_effective_adoption_is_required(self) -> None:
-        errors = maintenance_adoption_errors(
-            self.load_adoption(), require_effective_protected_adoption=True
+        self.assertEqual(
+            maintenance_adoption_errors(
+                record, require_effective_protected_adoption=True
+            ),
+            [],
         )
-        self.assertIn("protected Programme maintenance adoption is not complete", errors)
+        self.assertEqual(record["phase"], PHASE_B)
+        self.assertTrue(record["effective"])
+        self.assertEqual(
+            record["authority_status"], "PROTECTED_CONTENT_ADDRESSED_AUTHORITY"
+        )
 
     def test_exported_identifiers_are_exact(self) -> None:
         self.assertEqual(ADOPTION_ID, "GI-ADMIN-MAINT-001")
         self.assertEqual(MAINTENANCE_PROGRAMME_CONTROL_ID, "MP-ADMIN-MAINT-001")
         self.assertEqual(MAINTENANCE_PROGRAMME_DECISION_ID, "MP-ADMIN-DECISION-001")
         self.assertEqual(MAINTENANCE_PROGRAMME_MIRROR_POLICY_ID, "MP-ADMIN-MIRROR-001")
+
+    def test_protected_programme_identities_are_exact(self) -> None:
+        record = self.load_adoption()
+        phase_b = record["phase_b_requirements"]
+        self.assertEqual(phase_b["exact_programme_merge_commit"], PROGRAMME_MERGE_COMMIT)
+        self.assertEqual(phase_b["maintenance_control_blob"], MAINTENANCE_CONTROL_BLOB)
+        self.assertEqual(phase_b["decision_record_blob"], DECISION_RECORD_BLOB)
+        self.assertEqual(phase_b["mirror_policy_blob"], MIRROR_POLICY_BLOB)
 
     def test_acceleration_and_all_durations_are_exact(self) -> None:
         record = self.load_adoption()
@@ -108,11 +125,27 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
             maintenance_adoption_errors(record),
         )
 
-    def test_mutation_rejects_fabricated_phase_b_identity_in_phase_a(self) -> None:
+    def test_mutation_rejects_stale_programme_merge(self) -> None:
         record = self.load_adoption()
         record["phase_b_requirements"]["exact_programme_merge_commit"] = "0" * 40
         self.assertIn(
-            "Phase A maintenance adoption must not fabricate exact_programme_merge_commit",
+            "Phase B maintenance adoption stale identity: exact_programme_merge_commit",
+            maintenance_adoption_errors(record),
+        )
+
+    def test_mutation_rejects_stale_control_blob(self) -> None:
+        record = self.load_adoption()
+        record["phase_b_requirements"]["maintenance_control_blob"] = "0" * 40
+        self.assertIn(
+            "Phase B maintenance adoption stale identity: maintenance_control_blob",
+            maintenance_adoption_errors(record),
+        )
+
+    def test_mutation_rejects_missing_phase_b_identity(self) -> None:
+        record = self.load_adoption()
+        record["phase_b_requirements"]["decision_record_blob"] = None
+        self.assertIn(
+            "Phase B maintenance adoption requires exact decision_record_blob",
             maintenance_adoption_errors(record),
         )
 
