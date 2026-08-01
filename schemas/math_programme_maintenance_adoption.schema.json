@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.ai/intellect/schemas/math_programme_maintenance_adoption.schema.json",
+  "title": "INTELLECT Programme Maintenance Adoption",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "adoption_id",
+    "programme_control_id",
+    "programme_decision_id",
+    "programme_mirror_policy_id",
+    "intellect_issue",
+    "phase",
+    "effective",
+    "authority_status",
+    "programme_candidate",
+    "required_protected_artifacts",
+    "accepted_semantics",
+    "fail_closed_requirements",
+    "provider_identity_disposition",
+    "phase_b_requirements",
+    "claim_boundaries"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "adoption_id": {"const": "GI-ADMIN-MAINT-001"},
+    "programme_control_id": {"const": "MP-ADMIN-MAINT-001"},
+    "programme_decision_id": {"const": "MP-ADMIN-DECISION-001"},
+    "programme_mirror_policy_id": {"const": "MP-ADMIN-MIRROR-001"},
+    "intellect_issue": {"const": 21},
+    "phase": {"enum": ["PHASE_A_COMMITTED_PENDING_PROTECTED_PIN", "PHASE_B_PROTECTED_ADOPTION_COMPLETE"]},
+    "effective": {"type": "boolean"},
+    "authority_status": {"enum": ["CANDIDATE_COMMITMENT_NOT_PROTECTED_AUTHORITY", "PROTECTED_CONTENT_ADDRESSED_AUTHORITY"]},
+    "programme_candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "pull_request", "branch", "candidate_can_create_authority"],
+      "properties": {
+        "repository": {"const": "grandchallenge/MATH-PROGRAMME"},
+        "pull_request": {"const": 184},
+        "branch": {"const": "agent/mp-admin-maintenance-core-clarity"},
+        "candidate_can_create_authority": {"const": false}
+      }
+    },
+    "required_protected_artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "accepted_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "protected_records_are_state_authority",
+        "issues_are_navigation_only",
+        "repository_head_is_distinct_from_material_artifact_identity",
+        "unchanged_consumed_blobs_do_not_require_repin",
+        "event_triggered_material_synchronization_is_immediate",
+        "acceleration_factor",
+        "pilot_duration",
+        "structural_sweep",
+        "administrative_review",
+        "deep_conformance_review",
+        "constitutional_review",
+        "tracker_refresh",
+        "ordinary_local_waiver_limit",
+        "emergency_override_limit",
+        "emergency_steward_review",
+        "emergency_retrospective",
+        "unresolved_p1_limit"
+      ],
+      "properties": {
+        "protected_records_are_state_authority": {"const": true},
+        "issues_are_navigation_only": {"const": true},
+        "repository_head_is_distinct_from_material_artifact_identity": {"const": true},
+        "unchanged_consumed_blobs_do_not_require_repin": {"const": true},
+        "event_triggered_material_synchronization_is_immediate": {"const": true},
+        "acceleration_factor": {"const": 0.1},
+        "pilot_duration": {"const": "P9D"},
+        "structural_sweep": {"const": "PT16H48M"},
+        "administrative_review": {"const": "P3D"},
+        "deep_conformance_review": {"const": "P9D"},
+        "constitutional_review": {"const": "P36DT12H"},
+        "tracker_refresh": {"const": "PT7H12M"},
+        "ordinary_local_waiver_limit": {"const": "P3D"},
+        "emergency_override_limit": {"const": "PT7H12M"},
+        "emergency_steward_review": {"const": "PT2H24M"},
+        "emergency_retrospective": {"const": "PT16H48M"},
+        "unresolved_p1_limit": {"const": "PT16H48M"}
+      }
+    },
+    "fail_closed_requirements": {
+      "type": "object",
+      "minProperties": 7,
+      "additionalProperties": {"const": true}
+    },
+    "provider_identity_disposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["existing_mathematical_provider_identities_changed", "reason"],
+      "properties": {
+        "existing_mathematical_provider_identities_changed": {"const": false},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "phase_b_requirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exact_programme_merge_commit", "maintenance_control_blob", "decision_record_blob", "mirror_policy_blob", "exact_head_ci_required", "gcl_conformance_required", "protected_merge_required"],
+      "properties": {
+        "exact_programme_merge_commit": {"$ref": "#/$defs/nullableSha"},
+        "maintenance_control_blob": {"$ref": "#/$defs/nullableSha"},
+        "decision_record_blob": {"$ref": "#/$defs/nullableSha"},
+        "mirror_policy_blob": {"$ref": "#/$defs/nullableSha"},
+        "exact_head_ci_required": {"const": true},
+        "gcl_conformance_required": {"const": true},
+        "protected_merge_required": {"const": true}
+      }
+    },
+    "claim_boundaries": {
+      "type": "object",
+      "minProperties": 10,
+      "additionalProperties": {"const": false}
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "PHASE_A_COMMITTED_PENDING_PROTECTED_PIN"}}},
+      "then": {
+        "properties": {
+          "effective": {"const": false},
+          "authority_status": {"const": "CANDIDATE_COMMITMENT_NOT_PROTECTED_AUTHORITY"},
+          "phase_b_requirements": {
+            "properties": {
+              "exact_programme_merge_commit": {"type": "null"},
+              "maintenance_control_blob": {"type": "null"},
+              "decision_record_blob": {"type": "null"},
+              "mirror_policy_blob": {"type": "null"}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"phase": {"const": "PHASE_B_PROTECTED_ADOPTION_COMPLETE"}}},
+      "then": {
+        "properties": {
+          "effective": {"const": true},
+          "authority_status": {"const": "PROTECTED_CONTENT_ADDRESSED_AUTHORITY"},
+          "phase_b_requirements": {
+            "properties": {
+              "exact_programme_merge_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+              "maintenance_control_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+              "decision_record_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+              "mirror_policy_blob": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "nullableSha": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      ]
+    }
+  }
+}
