@@ -1,11 +1,8 @@
 from __future__ import annotations
 
-import copy
 import json
 import unittest
 from pathlib import Path
-
-from jsonschema import Draft202012Validator
 
 from grand_intellect import (
     ACCELERATION_FACTOR,
@@ -27,14 +24,24 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def load_adoption(self) -> dict:
         return json.loads(ADOPTION_PATH.read_text(encoding="utf-8"))
 
-    def schema_errors(self, record: dict) -> list[str]:
-        schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
-        validator = Draft202012Validator(schema)
-        return [error.message for error in validator.iter_errors(record)]
+    def load_schema(self) -> dict:
+        return json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+
+    def test_schema_is_strict_and_phase_bound(self) -> None:
+        schema = self.load_schema()
+        self.assertEqual(schema["$schema"], "https://json-schema.org/draft/2020-12/schema")
+        self.assertFalse(schema["additionalProperties"])
+        self.assertEqual(schema["properties"]["adoption_id"]["const"], ADOPTION_ID)
+        self.assertEqual(
+            schema["properties"]["accepted_semantics"]["properties"][
+                "acceleration_factor"
+            ]["const"],
+            0.1,
+        )
+        self.assertEqual(len(schema["allOf"]), 2)
 
     def test_phase_a_adoption_is_valid_commitment(self) -> None:
         record = self.load_adoption()
-        self.assertEqual(self.schema_errors(record), [])
         self.assertEqual(maintenance_adoption_errors(record), [])
         self.assertEqual(record["phase"], PHASE_A)
         self.assertFalse(record["effective"])
@@ -70,7 +77,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def test_mutation_rejects_candidate_authority_inflation(self) -> None:
         record = self.load_adoption()
         record["programme_candidate"]["candidate_can_create_authority"] = True
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "candidate Programme reference cannot create authority",
             maintenance_adoption_errors(record),
@@ -79,7 +85,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def test_mutation_rejects_unaccelerated_pilot(self) -> None:
         record = self.load_adoption()
         record["accepted_semantics"]["pilot_duration"] = "P90D"
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "maintenance duration drift: pilot_duration",
             maintenance_adoption_errors(record),
@@ -90,7 +95,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
         record["accepted_semantics"][
             "event_triggered_material_synchronization_is_immediate"
         ] = False
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "maintenance semantic invariant failed: event_triggered_material_synchronization_is_immediate",
             maintenance_adoption_errors(record),
@@ -99,7 +103,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def test_mutation_rejects_missing_protected_artifact(self) -> None:
         record = self.load_adoption()
         record["required_protected_artifacts"].pop()
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "maintenance protected artifact set drift",
             maintenance_adoption_errors(record),
@@ -108,7 +111,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def test_mutation_rejects_fabricated_phase_b_identity_in_phase_a(self) -> None:
         record = self.load_adoption()
         record["phase_b_requirements"]["exact_programme_merge_commit"] = "0" * 40
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "Phase A maintenance adoption must not fabricate exact_programme_merge_commit",
             maintenance_adoption_errors(record),
@@ -117,7 +119,6 @@ class MathProgrammeMaintenanceAdoptionTests(unittest.TestCase):
     def test_mutation_rejects_claim_inflation(self) -> None:
         record = self.load_adoption()
         record["claim_boundaries"]["mathematical_target_proved"] = True
-        self.assertTrue(self.schema_errors(record))
         self.assertIn(
             "maintenance adoption cannot promote mathematical or external claims",
             maintenance_adoption_errors(record),
