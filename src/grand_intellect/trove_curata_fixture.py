@@ -130,7 +130,7 @@ def provider_versions() -> dict[str, str]:
 
 
 def extract_with_daft(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
-    """Execute Trafilatura extraction as a Daft UDF over repository-retained bytes."""
+    """Execute Trafilatura extraction as a Daft function over repository-retained bytes."""
 
     try:
         import daft
@@ -138,13 +138,10 @@ def extract_with_daft(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
     except ImportError as exc:  # pragma: no cover - dedicated provider workflow
         raise TroveCurataFixtureError(f"fixture provider import failed: {exc}") from exc
 
-    @daft.udf(return_dtype=daft.DataType.string())
-    def extract_text(html_values: daft.Series) -> list[str]:
-        outputs: list[str] = []
-        for raw_html in html_values:
-            extracted = extract(raw_html, **EXTRACTION_CONFIG)
-            outputs.append(extracted or "")
-        return outputs
+    @daft.func
+    def extract_text(raw_html: str) -> str:
+        extracted = extract(raw_html, **EXTRACTION_CONFIG)
+        return extracted or ""
 
     dataframe = daft.from_pylist(rows)
     materialized = dataframe.with_column("extracted_text", extract_text(dataframe["html"])).collect()
@@ -393,7 +390,27 @@ def build_report(
         "passed": all(case["passed"] for case in case_reports)
         and all(check["normalized_digest_equal"] for check in duplicate_checks),
     }
-    _require(report["passed"], "fixture acceptance checks failed")
+    if not report["passed"]:
+        failures = [
+            {
+                "case_id": case["case_id"],
+                "checks": case["checks"],
+                "missing_required_tokens": case["missing_required_tokens"],
+                "novel_lexical_tokens": case["novel_lexical_tokens"],
+                "normalized_text": case["normalized_text"],
+            }
+            for case in case_reports
+            if not case["passed"]
+        ]
+        duplicate_failures = [check for check in duplicate_checks if not check["normalized_digest_equal"]]
+        raise TroveCurataFixtureError(
+            "fixture acceptance checks failed: "
+            + json.dumps(
+                {"case_failures": failures, "duplicate_failures": duplicate_failures},
+                ensure_ascii=False,
+                sort_keys=True,
+            )
+        )
     return report
 
 
