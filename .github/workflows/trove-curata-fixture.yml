@@ -56,6 +56,22 @@ jobs:
         run: python -m unittest discover -s tests -p "test_trove_curata_fixture.py" -v
       - name: Execute first replay
         run: python -m grand_intellect.trove_curata_fixture --manifest "$FIXTURE_MANIFEST" --output /tmp/tc-fixture-first.json
+      - name: Print bounded extraction diagnostics
+        if: failure()
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from grand_intellect.trove_curata_fixture import extract_with_daft, load_manifest
+          manifest_path = Path("fixtures/trove_curata/TC-FIXTURE-001/manifest.json")
+          manifest = load_manifest(manifest_path)
+          rows = [
+              {"case_id": case["case_id"], "html": (manifest_path.parent / case["path"]).read_text(encoding="utf-8")}
+              for case in manifest["cases"]
+          ]
+          for row in sorted(extract_with_daft(rows), key=lambda item: item["case_id"]):
+              print(f"--- {row['case_id']} ---")
+              print(row["extracted_text"])
+          PY
       - name: Execute independent second replay
         run: python -m grand_intellect.trove_curata_fixture --manifest "$FIXTURE_MANIFEST" --output /tmp/tc-fixture-second.json
       - name: Verify deterministic report and claim boundary
