@@ -50,7 +50,7 @@ _AGENT_STAFFED_OFFICES = {
 def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
-    if schedule.get("schema_version") != "1.1.0":
+    if schedule.get("schema_version") != "1.2.0":
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
@@ -162,11 +162,12 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
             "MATH-PROGRAMME must remain the mathematics programme authority"
         )
 
+    amendment = _mapping(schedule, "amendment")
     activation = _mapping(schedule, "activation")
     if schedule["status"] == "active":
-        if operating_standard.get("status") != "accepted":
+        if amendment.get("status") != "effective":
             raise ConstitutionalAuthorityError(
-                "an active schedule requires an accepted operating standard"
+                "an active schedule requires the amendment to be effective"
             )
         authors = set(_list(activation, "proposal_author_ids"))
         if not authors:
@@ -203,6 +204,7 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
             raise ConstitutionalAuthorityError(
                 "Adversary and Referee require distinct agent sessions"
             )
+        _complete_receipt_record(activation, "review_receipt")
         for key in ("intellect_commit", "standards_commit"):
             value = activation.get(key)
             if not isinstance(value, str) or not _COMMIT_PATTERN.fullmatch(value):
@@ -329,6 +331,21 @@ def _approved_review_record(
         or not record.get("record_ref")
         or record.get("reviewer_kind") != reviewer_kind
         or not record.get("reviewer_id")
+    ):
+        raise ConstitutionalAuthorityError(f"active schedule requires {key}")
+    return record
+
+
+def _complete_receipt_record(
+    activation: Mapping[str, Any], key: str
+) -> Mapping[str, Any]:
+    record = _mapping(activation, key)
+    digest = record.get("packet_sha256")
+    if (
+        record.get("status") != "complete"
+        or not record.get("record_ref")
+        or not isinstance(digest, str)
+        or not re.fullmatch(r"[0-9a-f]{64}", digest)
     ):
         raise ConstitutionalAuthorityError(f"active schedule requires {key}")
     return record
