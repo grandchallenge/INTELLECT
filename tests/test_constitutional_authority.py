@@ -51,7 +51,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             "review_receipt": {
                 "campaign_id": "GI-AMEND-0001",
                 "status": "complete",
-                "record_ref": "governance/reviews/GI-AMEND-0001.json",
+                "record_ref": "governance/reviews/GI-AMEND-0001-aaaaaaaaaaaa.json",
                 "packet_sha256": "a" * 64,
             },
             "intellect_commit": "b" * 40,
@@ -233,6 +233,42 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         ):
             validate_authority_schedule(broken, review_receipt=self.review_receipt())
 
+    def test_activation_rejects_fixed_receipt_filename(self) -> None:
+    broken = self.active_schedule()
+    broken["activation"]["review_receipt"]["record_ref"] = (
+        "governance/reviews/GI-AMEND-0001.json"
+    )
+    with self.assertRaisesRegex(
+        ConstitutionalAuthorityError, "requires review_receipt"
+    ):
+        validate_authority_schedule(
+        broken, review_receipt=self.review_receipt()
+        )
+
+    def test_activation_rejects_receipt_path_digest_drift(self) -> None:
+    broken = self.active_schedule()
+    broken["activation"]["review_receipt"]["record_ref"] = (
+        "governance/reviews/GI-AMEND-0001-bbbbbbbbbbbb.json"
+    )
+    with self.assertRaisesRegex(
+        ConstitutionalAuthorityError, "packet digest prefix"
+    ):
+        validate_authority_schedule(
+        broken, review_receipt=self.review_receipt()
+        )
+
+    def test_activation_rejects_malformed_receipt_suffix(self) -> None:
+    broken = self.active_schedule()
+    broken["activation"]["review_receipt"]["record_ref"] = (
+        "governance/reviews/GI-AMEND-0001-AAAAAAAAAAAA.json"
+    )
+    with self.assertRaisesRegex(
+        ConstitutionalAuthorityError, "requires review_receipt"
+    ):
+        validate_authority_schedule(
+        broken, review_receipt=self.review_receipt()
+        )
+
     def test_review_receipt_binds_exact_campaign_subjects_and_signoffs(self) -> None:
         validate_review_receipt(self.review_receipt())
 
@@ -274,7 +310,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             reviews.mkdir(parents=True)
             schedule_path = governance / "constitutional_authority_schedule.json"
             schedule_path.write_text(json.dumps(active), encoding="utf-8")
-            (reviews / "GI-AMEND-0001.json").write_text(
+            (reviews / "GI-AMEND-0001-aaaaaaaaaaaa.json").write_text(
                 json.dumps(receipt), encoding="utf-8"
             )
             loaded = load_and_validate(schedule_path)

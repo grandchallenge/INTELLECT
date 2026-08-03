@@ -13,7 +13,9 @@ class ConstitutionalAuthorityError(ValueError):
 
 _COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
 _DIGEST_PATTERN = re.compile(r"^[0-9a-f]{64}$")
-_RECEIPT_RECORD_REF = "governance/reviews/GI-AMEND-0001.json"
+_RECEIPT_RECORD_REF_PATTERN = re.compile(
+    r"^governance/reviews/GI-AMEND-0001-([0-9a-f]{12})\.json$"
+)
 _EXPECTED_CAMPAIGN_ID = "GI-AMEND-0001"
 _EXPECTED_REVIEW_SUBJECTS = {
     "grandchallenge/INTELLECT": 32,
@@ -461,19 +463,29 @@ def _complete_receipt_record(
 ) -> Mapping[str, Any]:
     record = _mapping(activation, key)
     digest = record.get("packet_sha256")
+    record_ref = record.get("record_ref")
+    match = (
+        _RECEIPT_RECORD_REF_PATTERN.fullmatch(record_ref)
+        if isinstance(record_ref, str)
+        else None
+    )
     if (
         record.get("campaign_id") != _EXPECTED_CAMPAIGN_ID
         or record.get("status") != "complete"
-        or record.get("record_ref") != _RECEIPT_RECORD_REF
+        or match is None
         or not isinstance(digest, str)
         or not _DIGEST_PATTERN.fullmatch(digest)
     ):
         raise ConstitutionalAuthorityError(f"active schedule requires {key}")
+    if match.group(1) != digest[:12]:
+        raise ConstitutionalAuthorityError(
+            "review receipt path does not match the packet digest prefix"
+        )
     return record
 
 
 def _resolve_receipt_path(schedule_path: Path, record_ref: str) -> Path:
-    if record_ref != _RECEIPT_RECORD_REF:
+    if _RECEIPT_RECORD_REF_PATTERN.fullmatch(record_ref) is None:
         raise ConstitutionalAuthorityError("unsafe or unexpected review receipt path")
     repository_root = schedule_path.resolve().parent.parent
     receipt_path = (repository_root / record_ref).resolve()
