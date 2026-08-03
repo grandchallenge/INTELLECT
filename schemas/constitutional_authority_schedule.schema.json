@@ -19,7 +19,7 @@
   ],
   "properties": {
     "$schema": {"type": "string"},
-    "schema_version": {"const": "1.1.0"},
+    "schema_version": {"const": "1.3.0"},
     "status": {"enum": ["proposed", "active", "superseded"]},
     "staffing": {
       "type": "object",
@@ -40,9 +40,7 @@
           "required": ["identifier", "path", "status", "issued_at"],
           "properties": {
             "identifier": {"const": "GI-STEWARD-0001"},
-            "path": {
-              "const": "governance/steward_directives/GI-STEWARD-0001.md"
-            },
+            "path": {"const": "governance/steward_directives/GI-STEWARD-0001.md"},
             "status": {"const": "effective"},
             "issued_at": {"type": "string", "format": "date"}
           }
@@ -113,14 +111,7 @@
     "operating_standard": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "identifier",
-        "registry_repository",
-        "path",
-        "version",
-        "status",
-        "registry_role"
-      ],
+      "required": ["identifier", "registry_repository", "path", "version", "status", "registry_role"],
       "properties": {
         "identifier": {"const": "GCL-GHOS-00"},
         "registry_repository": {"const": "grandchallenge/gcl-standards"},
@@ -159,6 +150,7 @@
         "human_steward_approval",
         "independent_adversary_review",
         "independent_referee_review",
+        "review_receipt",
         "intellect_commit",
         "standards_commit",
         "effective_at"
@@ -172,6 +164,17 @@
         "human_steward_approval": {"type": ["object", "null"]},
         "independent_adversary_review": {"type": ["object", "null"]},
         "independent_referee_review": {"type": ["object", "null"]},
+        "review_receipt": {
+          "type": ["object", "null"],
+          "properties": {
+            "campaign_id": {"const": "GI-AMEND-0001"},
+            "status": {"const": "complete"},
+            "record_ref": {"type": "string", "pattern": "^governance/reviews/GI-AMEND-0001-[0-9a-f]{12}\\.json$"},
+            "packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+          },
+          "required": ["campaign_id", "status", "record_ref", "packet_sha256"],
+          "additionalProperties": false
+        },
         "intellect_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
         "standards_commit": {"type": ["string", "null"], "pattern": "^[0-9a-f]{40}$"},
         "effective_at": {"type": ["string", "null"], "format": "date-time"}
