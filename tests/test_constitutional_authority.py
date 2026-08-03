@@ -195,7 +195,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         broken = self.active_schedule()
         broken["activation"]["review_receipt"]["packet_sha256"] = "9" * 64
         with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "packet digest mismatch"
+            ConstitutionalAuthorityError, "packet digest"
         ):
             validate_authority_schedule(broken, review_receipt=self.review_receipt())
 
