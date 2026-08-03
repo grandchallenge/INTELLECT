@@ -150,15 +150,21 @@ automation, or publication.
    independent reviewers, reuse of one agent identity, invocation, or session
    as both Adversary and Referee, incomplete findings, incomplete checks,
    circular activation dependencies, and non-steward authorization.
-6. Automation may transcribe accepted agent findings and the authenticated
+6. Activation validation shall load the exact receipt named by the schedule and
+   cross-bind its campaign identity, packet digest, proposal authors, reviewed
+   subject heads, agent identities and sessions, and attestation references to
+   the activation record. A syntactically valid but unrelated receipt does not
+   satisfy this gate.
+7. Automation may transcribe accepted agent findings and the authenticated
    Human Steward attestation into a review receipt and propose an activation
    record. It may not impersonate the Steward, approve or merge its own work,
    activate the amendment, accept ADR-0001, admit GCL-GHOS, or adopt a standard
    for a programme.
-7. The executable validator and negative tests must reject authority inversion,
-   incomplete activation, premature standard admission, premature programme
-   adoption, and reuse of stale findings.
-8. Merge, CI success, release, publication, assignment, or presence does not
+8. The executable validator and negative tests must reject authority inversion,
+   incomplete activation, receipt substitution, subject or reviewer drift,
+   premature standard admission, premature programme adoption, and reuse of
+   stale findings.
+9. Merge, CI success, release, publication, assignment, or presence does not
    satisfy an unrecorded approval.
 
 ## Article 9: Effect
