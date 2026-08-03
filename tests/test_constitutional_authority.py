@@ -234,40 +234,40 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             validate_authority_schedule(broken, review_receipt=self.review_receipt())
 
     def test_activation_rejects_fixed_receipt_filename(self) -> None:
-    broken = self.active_schedule()
-    broken["activation"]["review_receipt"]["record_ref"] = (
-        "governance/reviews/GI-AMEND-0001.json"
-    )
-    with self.assertRaisesRegex(
-        ConstitutionalAuthorityError, "requires review_receipt"
-    ):
-        validate_authority_schedule(
-        broken, review_receipt=self.review_receipt()
+        broken = self.active_schedule()
+        broken["activation"]["review_receipt"]["record_ref"] = (
+            "governance/reviews/GI-AMEND-0001.json"
         )
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "requires review_receipt"
+        ):
+            validate_authority_schedule(
+                broken, review_receipt=self.review_receipt()
+            )
 
     def test_activation_rejects_receipt_path_digest_drift(self) -> None:
-    broken = self.active_schedule()
-    broken["activation"]["review_receipt"]["record_ref"] = (
-        "governance/reviews/GI-AMEND-0001-bbbbbbbbbbbb.json"
-    )
-    with self.assertRaisesRegex(
-        ConstitutionalAuthorityError, "packet digest prefix"
-    ):
-        validate_authority_schedule(
-        broken, review_receipt=self.review_receipt()
+        broken = self.active_schedule()
+        broken["activation"]["review_receipt"]["record_ref"] = (
+            "governance/reviews/GI-AMEND-0001-bbbbbbbbbbbb.json"
         )
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "packet digest prefix"
+        ):
+            validate_authority_schedule(
+                broken, review_receipt=self.review_receipt()
+            )
 
     def test_activation_rejects_malformed_receipt_suffix(self) -> None:
-    broken = self.active_schedule()
-    broken["activation"]["review_receipt"]["record_ref"] = (
-        "governance/reviews/GI-AMEND-0001-AAAAAAAAAAAA.json"
-    )
-    with self.assertRaisesRegex(
-        ConstitutionalAuthorityError, "requires review_receipt"
-    ):
-        validate_authority_schedule(
-        broken, review_receipt=self.review_receipt()
+        broken = self.active_schedule()
+        broken["activation"]["review_receipt"]["record_ref"] = (
+            "governance/reviews/GI-AMEND-0001-AAAAAAAAAAAA.json"
         )
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "requires review_receipt"
+        ):
+            validate_authority_schedule(
+                broken, review_receipt=self.review_receipt()
+            )
 
     def test_review_receipt_binds_exact_campaign_subjects_and_signoffs(self) -> None:
         validate_review_receipt(self.review_receipt())
