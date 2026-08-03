@@ -12,6 +12,13 @@ class ConstitutionalAuthorityError(ValueError):
 
 
 _COMMIT_PATTERN = re.compile(r"^[0-9a-f]{40}$")
+_DIGEST_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+_RECEIPT_RECORD_REF = "governance/reviews/GI-AMEND-0001.json"
+_EXPECTED_CAMPAIGN_ID = "GI-AMEND-0001"
+_EXPECTED_REVIEW_SUBJECTS = {
+    "grandchallenge/INTELLECT": 32,
+    "grandchallenge/gcl-standards": 18,
+}
 _REQUIRED_AETHER_POWERS = {
     "append_order",
     "semantic_cuts",
@@ -47,10 +54,14 @@ _AGENT_STAFFED_OFFICES = {
 }
 
 
-def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
+def validate_authority_schedule(
+    schedule: Mapping[str, Any],
+    *,
+    review_receipt: Mapping[str, Any] | None = None,
+) -> None:
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
-    if schedule.get("schema_version") != "1.2.0":
+    if schedule.get("schema_version") != "1.3.0":
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
@@ -204,7 +215,7 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
             raise ConstitutionalAuthorityError(
                 "Adversary and Referee require distinct agent sessions"
             )
-        _complete_receipt_record(activation, "review_receipt")
+        receipt_reference = _complete_receipt_record(activation, "review_receipt")
         for key in ("intellect_commit", "standards_commit"):
             value = activation.get(key)
             if not isinstance(value, str) or not _COMMIT_PATTERN.fullmatch(value):
@@ -215,46 +226,93 @@ def validate_authority_schedule(schedule: Mapping[str, Any]) -> None:
             raise ConstitutionalAuthorityError(
                 "active schedule requires an effective timestamp"
             )
+        if review_receipt is None:
+            raise ConstitutionalAuthorityError(
+                "active schedule requires the loaded constitutional review receipt"
+            )
+        validate_review_receipt(review_receipt)
+        _validate_activation_receipt_binding(
+            activation=activation,
+            receipt_reference=receipt_reference,
+            receipt=review_receipt,
+            proposal_authors=authors,
+            human_steward=human_steward,
+            steward_record=steward_record,
+            adversary_record=adversary,
+            referee_record=referee,
+        )
 
 
 def load_and_validate(path: Path) -> dict[str, Any]:
     schedule = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(schedule, dict):
         raise ConstitutionalAuthorityError("authority schedule must be an object")
-    validate_authority_schedule(schedule)
+    receipt = None
+    if schedule.get("status") == "active":
+        activation = _mapping(schedule, "activation")
+        reference = _complete_receipt_record(activation, "review_receipt")
+        receipt_path = _resolve_receipt_path(path, str(reference["record_ref"]))
+        receipt = json.loads(receipt_path.read_text(encoding="utf-8"))
+        if not isinstance(receipt, dict):
+            raise ConstitutionalAuthorityError("review receipt must be an object")
+    validate_authority_schedule(schedule, review_receipt=receipt)
     return schedule
 
 
 def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
-    """Validate separated agent findings and Human Steward authorization."""
+    """Validate the exact GI-AMEND-0001 receipt and separated signoffs."""
 
     if receipt.get("schema_version") != "1.1.0":
         raise ConstitutionalAuthorityError("unsupported review receipt version")
+    if receipt.get("campaign_id") != _EXPECTED_CAMPAIGN_ID:
+        raise ConstitutionalAuthorityError("review receipt has the wrong campaign")
     if receipt.get("staffing_mode") != "steward_supervised_agents":
         raise ConstitutionalAuthorityError(
             "review receipt requires Steward-supervised agent staffing"
         )
     digest = receipt.get("packet_sha256")
-    if not isinstance(digest, str) or not re.fullmatch(r"[0-9a-f]{64}", digest):
+    if not isinstance(digest, str) or not _DIGEST_PATTERN.fullmatch(digest):
         raise ConstitutionalAuthorityError("review receipt requires packet digest")
     if receipt.get("status") != "complete":
         raise ConstitutionalAuthorityError("review receipt is not complete")
 
     subjects = receipt.get("subjects")
-    if not isinstance(subjects, list) or not subjects:
+    if not isinstance(subjects, list):
         raise ConstitutionalAuthorityError("review receipt requires subjects")
+    subject_map: dict[str, Mapping[str, Any]] = {}
     for subject in subjects:
         if not isinstance(subject, Mapping):
             raise ConstitutionalAuthorityError("review subject must be an object")
+        repository = subject.get("repository")
+        pull_request = subject.get("pull_request")
+        if (
+            not isinstance(repository, str)
+            or repository in subject_map
+            or repository not in _EXPECTED_REVIEW_SUBJECTS
+            or pull_request != _EXPECTED_REVIEW_SUBJECTS[repository]
+        ):
+            raise ConstitutionalAuthorityError(
+                "review receipt has an unexpected or duplicate subject"
+            )
         if not _COMMIT_PATTERN.fullmatch(str(subject.get("head_sha", ""))):
             raise ConstitutionalAuthorityError(
                 "every review subject requires an exact head commit"
             )
+        subject_map[repository] = subject
+    if set(subject_map) != set(_EXPECTED_REVIEW_SUBJECTS):
+        raise ConstitutionalAuthorityError(
+            "review receipt requires the exact INTELLECT and gcl-standards subjects"
+        )
 
     proposal_authors = receipt.get("proposal_authors")
-    if not isinstance(proposal_authors, list) or not proposal_authors:
-        raise ConstitutionalAuthorityError("receipt requires proposal authors")
-    author_ids = {str(item) for item in proposal_authors}
+    if (
+        not isinstance(proposal_authors, list)
+        or not proposal_authors
+        or not all(isinstance(item, str) and item for item in proposal_authors)
+        or len(set(proposal_authors)) != len(proposal_authors)
+    ):
+        raise ConstitutionalAuthorityError("receipt requires unique proposal authors")
+    author_ids = set(proposal_authors)
 
     signoffs = receipt.get("signoffs")
     if not isinstance(signoffs, list):
@@ -276,8 +334,8 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
                 f"{office} signoff requires attestation reference"
             )
         attestation_digest = signoff.get("attestation_sha256")
-        if not isinstance(attestation_digest, str) or not re.fullmatch(
-            r"[0-9a-f]{64}", attestation_digest
+        if not isinstance(attestation_digest, str) or not _DIGEST_PATTERN.fullmatch(
+            attestation_digest
         ):
             raise ConstitutionalAuthorityError(
                 f"{office} signoff requires attestation digest"
@@ -290,9 +348,7 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
     for office in ("adversary", "referee"):
         signoff = by_office[office]
         if signoff.get("reviewer_kind") != "agent":
-            raise ConstitutionalAuthorityError(
-                f"{office} must be staffed by an agent"
-            )
+            raise ConstitutionalAuthorityError(f"{office} must be staffed by an agent")
         if signoff["reviewer"] in author_ids:
             raise ConstitutionalAuthorityError(
                 f"{office} reviewer must not be a proposal author"
@@ -319,6 +375,70 @@ def validate_review_receipt(receipt: Mapping[str, Any]) -> None:
         )
 
 
+def _validate_activation_receipt_binding(
+    *,
+    activation: Mapping[str, Any],
+    receipt_reference: Mapping[str, Any],
+    receipt: Mapping[str, Any],
+    proposal_authors: set[Any],
+    human_steward: str,
+    steward_record: Mapping[str, Any],
+    adversary_record: Mapping[str, Any],
+    referee_record: Mapping[str, Any],
+) -> None:
+    if receipt_reference.get("campaign_id") != receipt.get("campaign_id"):
+        raise ConstitutionalAuthorityError("activation receipt campaign mismatch")
+    if receipt_reference.get("packet_sha256") != receipt.get("packet_sha256"):
+        raise ConstitutionalAuthorityError("activation receipt packet digest mismatch")
+    if proposal_authors != set(receipt.get("proposal_authors", [])):
+        raise ConstitutionalAuthorityError("activation proposal authors drift from receipt")
+    if receipt.get("human_steward") != human_steward:
+        raise ConstitutionalAuthorityError("activation Human Steward drifts from receipt")
+
+    subjects = {
+        str(item["repository"]): item
+        for item in receipt["subjects"]
+        if isinstance(item, Mapping)
+    }
+    expected_commits = {
+        "intellect_commit": subjects["grandchallenge/INTELLECT"]["head_sha"],
+        "standards_commit": subjects["grandchallenge/gcl-standards"]["head_sha"],
+    }
+    for key, expected in expected_commits.items():
+        if activation.get(key) != expected:
+            raise ConstitutionalAuthorityError(
+                f"activation {key} does not match the reviewed receipt subject"
+            )
+
+    signoffs = {
+        str(item["office"]): item
+        for item in receipt["signoffs"]
+        if isinstance(item, Mapping)
+    }
+    for office, record in (
+        ("adversary", adversary_record),
+        ("referee", referee_record),
+    ):
+        signoff = signoffs[office]
+        if (
+            record.get("reviewer_id") != signoff.get("reviewer")
+            or record.get("session_id") != signoff.get("session_id")
+            or record.get("record_ref") != signoff.get("attestation_record")
+        ):
+            raise ConstitutionalAuthorityError(
+                f"activation {office} record does not match the receipt signoff"
+            )
+    steward_signoff = signoffs["human_steward"]
+    if (
+        steward_record.get("reviewer_id") != steward_signoff.get("reviewer")
+        or steward_record.get("record_ref")
+        != steward_signoff.get("attestation_record")
+    ):
+        raise ConstitutionalAuthorityError(
+            "activation Human Steward record does not match the receipt signoff"
+        )
+
+
 def _approved_review_record(
     activation: Mapping[str, Any],
     key: str,
@@ -342,13 +462,28 @@ def _complete_receipt_record(
     record = _mapping(activation, key)
     digest = record.get("packet_sha256")
     if (
-        record.get("status") != "complete"
-        or not record.get("record_ref")
+        record.get("campaign_id") != _EXPECTED_CAMPAIGN_ID
+        or record.get("status") != "complete"
+        or record.get("record_ref") != _RECEIPT_RECORD_REF
         or not isinstance(digest, str)
-        or not re.fullmatch(r"[0-9a-f]{64}", digest)
+        or not _DIGEST_PATTERN.fullmatch(digest)
     ):
         raise ConstitutionalAuthorityError(f"active schedule requires {key}")
     return record
+
+
+def _resolve_receipt_path(schedule_path: Path, record_ref: str) -> Path:
+    if record_ref != _RECEIPT_RECORD_REF:
+        raise ConstitutionalAuthorityError("unsafe or unexpected review receipt path")
+    repository_root = schedule_path.resolve().parent.parent
+    receipt_path = (repository_root / record_ref).resolve()
+    try:
+        receipt_path.relative_to(repository_root)
+    except ValueError as exc:
+        raise ConstitutionalAuthorityError("review receipt escapes repository root") from exc
+    if not receipt_path.is_file():
+        raise ConstitutionalAuthorityError("referenced review receipt is missing")
+    return receipt_path
 
 
 def _mapping(parent: Mapping[str, Any], key: str) -> Mapping[str, Any]:
