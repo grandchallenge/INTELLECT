@@ -1,11 +1,17 @@
 # GI-AMEND-0001: Constitutional Commentary and GCL-GHOS
 
-**Status:** Proposed; not in force
-**Proposed constitutional version:** 1.1.0
-**Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`
-**Human Steward approval:** Pending
-**Agent Adversary review:** Pending under `GI-STEWARD-0001`
-**Agent Referee review:** Pending under `GI-STEWARD-0001`
+**Status:** Effective
+**Effective constitutional version:** 1.1.0
+**Activation record:** `governance/constitutional_authority_schedule.json`
+**Activation merge:** `grandchallenge/INTELLECT#42` at `8d47ed8930d33253ae476c64dfec7c748185a535`
+**Effective at:** `2026-08-03T10:04:57Z`
+**Review packet:** `22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5`
+**Review receipt:** `governance/reviews/GI-AMEND-0001-22dbfa0ea0e6.json`
+**Human Steward approval:** `fyremael`; attestation comment `5164721769`; authenticated reaction `391939851`
+**Agent Adversary review:** `openai-gpt-5.6-thinking-final-head-adversary`; comment `5164348042`
+**Agent Referee review:** `openai-gpt-5.6-thinking-final-head-referee`; comment `5164535200`
+**Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted
+**GCL-GHOS status:** Candidate; not yet admitted
 
 ## Recitals
 
