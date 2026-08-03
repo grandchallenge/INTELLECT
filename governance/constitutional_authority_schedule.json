@@ -1,6 +1,6 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.2.0",
+  "schema_version": "1.3.0",
   "status": "proposed",
   "staffing": {
     "mode": "steward_supervised_agents",
