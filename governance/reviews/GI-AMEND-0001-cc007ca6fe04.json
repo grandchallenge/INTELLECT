@@ -1,0 +1,57 @@
+{
+  "authority_boundary": "This receipt records separated agent findings and Human Steward authorization. It does not merge or activate the proposal; admission remains a separate reviewed pull request.",
+  "campaign_id": "GI-AMEND-0001",
+  "human_steward": "fyremael",
+  "packet_sha256": "cc007ca6fe0437d5906d84beada789852ab048e398bfb15924e3516e4c0c9d79",
+  "proposal_authors": [
+    "fyremael"
+  ],
+  "recorded_at": "2026-08-03T07:36:14Z",
+  "schema_version": "1.1.0",
+  "signoffs": [
+    {
+      "attestation_record": "https://github.com/grandchallenge/gcl-standards/issues/3#issuecomment-5163133964",
+      "attestation_sha256": "8c90a1059e4392ea15453256e02dd9883922f8d88d6610d10442865418d2b2bc",
+      "authenticated_at": "2026-08-03T06:38:50Z",
+      "authentication_id": "gpt-5.6-thinking-adversary-20260803T063850Z-4140d276",
+      "office": "adversary",
+      "reviewer": "openai-gpt-5.6-thinking-adversary",
+      "reviewer_kind": "agent",
+      "session_id": "gpt-5.6-thinking-adversary-20260803T063850Z-4140d276"
+    },
+    {
+      "attestation_record": "https://github.com/grandchallenge/gcl-standards/issues/3#issuecomment-5163304824",
+      "attestation_sha256": "6460765a79d5768929776f8f436fd4f280bdecbadc49b1d7ff500ea63e1ab841",
+      "authenticated_at": "2026-08-03T07:02:57Z",
+      "authentication_id": "gpt-5.6-thinking-referee-20260803T070257Z-4140d276",
+      "office": "referee",
+      "reviewer": "openai-gpt-5.6-thinking-referee",
+      "reviewer_kind": "agent",
+      "session_id": "gpt-5.6-thinking-referee-20260803T070257Z-4140d276"
+    },
+    {
+      "attestation_record": "https://github.com/grandchallenge/INTELLECT/pull/32#issuecomment-5163571455",
+      "attestation_sha256": "0dc5c527dc7b6c7230c7e5cca7dbd5e70d2015527ed780bf3a1512d447d3cef0",
+      "authenticated_at": "2026-08-03T07:36:14Z",
+      "authentication_id": "391888540",
+      "office": "human_steward",
+      "reviewer": "fyremael",
+      "reviewer_kind": "human",
+      "session_id": null
+    }
+  ],
+  "staffing_mode": "steward_supervised_agents",
+  "status": "complete",
+  "subjects": [
+    {
+      "head_sha": "e0bca408b1a846f73daed2bb8164e7f085d2fbe1",
+      "pull_request": 32,
+      "repository": "grandchallenge/INTELLECT"
+    },
+    {
+      "head_sha": "fa90ffc2bd23a6b0c8e184c7da2dd6ef1174a4ee",
+      "pull_request": 18,
+      "repository": "grandchallenge/gcl-standards"
+    }
+  ]
+}
