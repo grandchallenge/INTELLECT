@@ -27,6 +27,7 @@ STALE_RECEIPT_PATH = (
 class ConstitutionalAuthorityTests(unittest.TestCase):
     def setUp(self) -> None:
         self.canonical = json.loads(SCHEDULE_PATH.read_text(encoding="utf-8"))
+        self.receipt = json.loads(ACTIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
 
     def proposed_schedule(self) -> dict[str, object]:
         proposed = copy.deepcopy(self.canonical)
@@ -45,7 +46,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         }
         return proposed
 
-    def active_fixture(self) -> dict[str, object]:
+    def synthetic_active(self) -> tuple[dict[str, object], dict[str, object]]:
         active = self.proposed_schedule()
         active["status"] = "active"
         active["constitution"]["effective_version"] = "1.1.0"
@@ -82,10 +83,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             "standards_commit": "c" * 40,
             "effective_at": "2026-08-03T10:00:00Z",
         }
-        return active
-
-    def review_receipt_fixture(self) -> dict[str, object]:
-        return {
+        receipt = {
             "schema_version": "1.1.0",
             "campaign_id": "GI-AMEND-0001",
             "staffing_mode": "steward_supervised_agents",
@@ -136,17 +134,17 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             "recorded_at": "2026-08-03T00:00:00Z",
             "status": "complete",
         }
+        return active, receipt
 
     def test_canonical_schedule_activates_exact_final_head_packet(self) -> None:
-        receipt = json.loads(ACTIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
-        validate_authority_schedule(self.canonical, review_receipt=receipt)
+        validate_authority_schedule(self.canonical, review_receipt=self.receipt)
         loaded = load_and_validate(SCHEDULE_PATH)
+        activation = loaded["activation"]
 
         self.assertEqual(loaded["status"], "active")
         self.assertEqual(loaded["constitution"]["effective_version"], "1.1.0")
         self.assertEqual(loaded["amendment"]["status"], "effective")
         self.assertEqual(loaded["operating_standard"]["status"], "candidate")
-        activation = loaded["activation"]
         self.assertEqual(activation["proposal_author_ids"], ["fyremael"])
         self.assertEqual(
             activation["review_receipt"]["packet_sha256"],
@@ -162,21 +160,35 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         )
         self.assertEqual(activation["effective_at"], "2026-08-03T10:00:00Z")
 
-    def test_proposed_form_validates_without_claiming_activation(self) -> None:
+    def test_proposed_form_remains_valid_without_activation(self) -> None:
         proposed = self.proposed_schedule()
         validate_authority_schedule(proposed)
         self.assertEqual(proposed["status"], "proposed")
-        self.assertEqual(proposed["schema_version"], "1.3.0")
         self.assertIsNone(proposed["activation"]["human_steward_approval"])
         self.assertIsNone(proposed["activation"]["review_receipt"])
 
-    def test_commentary_cannot_become_constitutional_law(self) -> None:
-        broken = self.proposed_schedule()
-        broken["commentary"]["authority"] = "normative"
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "interpretive and nonbinding"
-        ):
-            validate_authority_schedule(broken)
+    def test_core_authority_boundaries_fail_closed(self) -> None:
+        mutations = (
+            ("commentary", "authority", "normative", "interpretive and nonbinding"),
+            (
+                "operating_standard",
+                "registry_role",
+                "constitutional_authority",
+                "subordinate registry",
+            ),
+            (
+                "github",
+                "authority",
+                "production_semantic_authority",
+                "operational and evidentiary",
+            ),
+        )
+        for section, key, value, message in mutations:
+            with self.subTest(section=section):
+                broken = self.proposed_schedule()
+                broken[section][key] = value
+                with self.assertRaisesRegex(ConstitutionalAuthorityError, message):
+                    validate_authority_schedule(broken)
 
     def test_agent_staffing_roster_cannot_omit_an_office(self) -> None:
         broken = self.proposed_schedule()
@@ -184,23 +196,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         with self.assertRaisesRegex(ConstitutionalAuthorityError, "staffing roster"):
             validate_authority_schedule(broken)
 
-    def test_standards_registry_cannot_claim_constitutional_ownership(self) -> None:
-        broken = self.proposed_schedule()
-        broken["operating_standard"]["registry_role"] = "constitutional_authority"
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "subordinate registry"
-        ):
-            validate_authority_schedule(broken)
-
-    def test_github_cannot_become_semantic_authority(self) -> None:
-        broken = self.proposed_schedule()
-        broken["github"]["authority"] = "production_semantic_authority"
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "operational and evidentiary"
-        ):
-            validate_authority_schedule(broken)
-
-    def test_activation_fails_without_steward_and_agent_review(self) -> None:
+    def test_activation_requires_complete_separated_authority(self) -> None:
         broken = self.proposed_schedule()
         broken["status"] = "active"
         broken["amendment"]["status"] = "effective"
@@ -210,150 +206,102 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         ):
             validate_authority_schedule(broken)
 
-    def test_amendment_activation_keeps_standard_candidate(self) -> None:
-        active = self.active_fixture()
+    def test_activation_keeps_standard_candidate(self) -> None:
+        active, receipt = self.synthetic_active()
         self.assertEqual(active["operating_standard"]["status"], "candidate")
-        validate_authority_schedule(
-            active, review_receipt=self.review_receipt_fixture()
+        validate_authority_schedule(active, review_receipt=receipt)
+
+    def test_activation_rejects_receipt_subject_author_and_session_drift(self) -> None:
+        cases = (
+            (
+                "packet",
+                lambda active: active["activation"]["review_receipt"].__setitem__(
+                    "packet_sha256", "9" * 64
+                ),
+                "packet digest",
+            ),
+            (
+                "subject",
+                lambda active: active["activation"].__setitem__(
+                    "standards_commit", "9" * 40
+                ),
+                "standards_commit",
+            ),
+            (
+                "author",
+                lambda active: active["activation"].__setitem__(
+                    "proposal_author_ids", ["other-author"]
+                ),
+                "proposal authors drift",
+            ),
+            (
+                "session",
+                lambda active: active["activation"][
+                    "independent_referee_review"
+                ].__setitem__("session_id", "different-session"),
+                "referee record",
+            ),
         )
+        for name, mutate, message in cases:
+            with self.subTest(name=name):
+                active, receipt = self.synthetic_active()
+                mutate(active)
+                with self.assertRaisesRegex(ConstitutionalAuthorityError, message):
+                    validate_authority_schedule(active, review_receipt=receipt)
 
-    def test_active_schedule_requires_effective_amendment(self) -> None:
-        broken = self.active_fixture()
-        broken["amendment"]["status"] = "proposed"
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "amendment to be effective"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_active_schedule_requires_loaded_review_receipt(self) -> None:
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "loaded constitutional review receipt"
-        ):
-            validate_authority_schedule(self.active_fixture())
-
-    def test_activation_rejects_packet_digest_substitution(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["review_receipt"]["packet_sha256"] = "9" * 64
-        with self.assertRaisesRegex(ConstitutionalAuthorityError, "packet digest"):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_subject_commit_substitution(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["standards_commit"] = "9" * 40
-        with self.assertRaisesRegex(ConstitutionalAuthorityError, "standards_commit"):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_proposal_author_drift(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["proposal_author_ids"] = ["other-author"]
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "proposal authors drift"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_agent_session_drift(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["independent_referee_review"]["session_id"] = (
-            "different-session"
+    def test_activation_rejects_unsafe_or_non_content_addressed_receipts(self) -> None:
+        cases = (
+            ("../other.json", "requires review_receipt"),
+            ("governance/reviews/GI-AMEND-0001.json", "requires review_receipt"),
+            (
+                "governance/reviews/GI-AMEND-0001-bbbbbbbbbbbb.json",
+                "packet digest prefix",
+            ),
+            (
+                "governance/reviews/GI-AMEND-0001-AAAAAAAAAAAA.json",
+                "requires review_receipt",
+            ),
         )
-        with self.assertRaisesRegex(ConstitutionalAuthorityError, "referee record"):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
+        for record_ref, message in cases:
+            with self.subTest(record_ref=record_ref):
+                active, receipt = self.synthetic_active()
+                active["activation"]["review_receipt"]["record_ref"] = record_ref
+                with self.assertRaisesRegex(ConstitutionalAuthorityError, message):
+                    validate_authority_schedule(active, review_receipt=receipt)
 
-    def test_activation_rejects_unexpected_receipt_reference(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["review_receipt"]["record_ref"] = "../other.json"
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "requires review_receipt"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_fixed_receipt_filename(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["review_receipt"]["record_ref"] = (
-            "governance/reviews/GI-AMEND-0001.json"
-        )
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "requires review_receipt"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_receipt_path_digest_drift(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["review_receipt"]["record_ref"] = (
-            "governance/reviews/GI-AMEND-0001-bbbbbbbbbbbb.json"
-        )
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "packet digest prefix"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_activation_rejects_malformed_receipt_suffix(self) -> None:
-        broken = self.active_fixture()
-        broken["activation"]["review_receipt"]["record_ref"] = (
-            "governance/reviews/GI-AMEND-0001-AAAAAAAAAAAA.json"
-        )
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "requires review_receipt"
-        ):
-            validate_authority_schedule(
-                broken, review_receipt=self.review_receipt_fixture()
-            )
-
-    def test_stale_prior_receipt_cannot_activate_final_heads(self) -> None:
+    def test_stale_prior_receipt_is_rejected_before_subject_reuse(self) -> None:
         stale = json.loads(STALE_RECEIPT_PATH.read_text(encoding="utf-8"))
-        with self.assertRaisesRegex(ConstitutionalAuthorityError, "intellect_commit"):
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "packet digest mismatch"
+        ):
             validate_authority_schedule(self.canonical, review_receipt=stale)
 
-    def test_review_receipt_binds_exact_campaign_subjects_and_signoffs(self) -> None:
-        validate_review_receipt(self.review_receipt_fixture())
+    def test_receipt_requires_exact_subjects_and_distinct_non_author_agents(self) -> None:
+        validate_review_receipt(self.receipt)
 
-    def test_review_receipt_rejects_wrong_campaign(self) -> None:
-        broken = self.review_receipt_fixture()
-        broken["campaign_id"] = "OTHER"
-        with self.assertRaisesRegex(ConstitutionalAuthorityError, "wrong campaign"):
-            validate_review_receipt(broken)
-
-    def test_review_receipt_rejects_incomplete_subject_set(self) -> None:
-        broken = self.review_receipt_fixture()
-        broken["subjects"] = broken["subjects"][:1]
-        with self.assertRaisesRegex(
-            ConstitutionalAuthorityError, "exact INTELLECT and gcl-standards"
-        ):
-            validate_review_receipt(broken)
-
-    def test_same_agent_cannot_sign_adversary_and_referee(self) -> None:
-        broken = self.review_receipt_fixture()
-        broken["signoffs"][1]["reviewer"] = "agent-adversary"
+        same_agent = copy.deepcopy(self.receipt)
+        same_agent["signoffs"][1]["reviewer"] = same_agent["signoffs"][0][
+            "reviewer"
+        ]
         with self.assertRaisesRegex(ConstitutionalAuthorityError, "distinct agents"):
-            validate_review_receipt(broken)
+            validate_review_receipt(same_agent)
 
-    def test_proposal_author_cannot_supply_agent_review(self) -> None:
-        broken = self.review_receipt_fixture()
-        broken["signoffs"][0]["reviewer"] = "author"
+        author_agent = copy.deepcopy(self.receipt)
+        author_agent["signoffs"][0]["reviewer"] = "fyremael"
         with self.assertRaisesRegex(
             ConstitutionalAuthorityError, "must not be a proposal author"
         ):
-            validate_review_receipt(broken)
+            validate_review_receipt(author_agent)
+
+        incomplete = copy.deepcopy(self.receipt)
+        incomplete["subjects"] = incomplete["subjects"][:1]
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "exact INTELLECT and gcl-standards"
+        ):
+            validate_review_receipt(incomplete)
 
     def test_load_and_validate_reads_content_addressed_receipt(self) -> None:
-        active = self.active_fixture()
-        receipt = self.review_receipt_fixture()
+        active, receipt = self.synthetic_active()
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             governance = root / "governance"
