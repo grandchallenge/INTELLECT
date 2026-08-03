@@ -43,7 +43,7 @@ class StewardRosterSecondOrderClosureTests(unittest.TestCase):
 
     def test_failed_conditions_are_not_concealed(self) -> None:
         self.assertIn("disposition was stale", self.text)
-        self.assertIn("approval was also non-qualifying", self.text)
+        self.assertIn("also non-qualifying because", self.text)
         self.assertIn("does not rewrite history", self.text)
 
     def test_operating_model_and_campaign_boundary_are_preserved(self) -> None:
