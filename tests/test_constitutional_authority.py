@@ -20,9 +20,47 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
     def setUp(self) -> None:
         self.schedule = json.loads(SCHEDULE_PATH.read_text(encoding="utf-8"))
 
+    def active_schedule(self) -> dict[str, object]:
+        active = copy.deepcopy(self.schedule)
+        active["status"] = "active"
+        active["amendment"]["status"] = "effective"
+        active["activation"] = {
+            "proposal_author_ids": ["author"],
+            "human_steward_approval": {
+                "status": "approved",
+                "record_ref": "https://example.test/steward",
+                "reviewer_kind": "human",
+                "reviewer_id": "fyremael",
+            },
+            "independent_adversary_review": {
+                "status": "approved",
+                "record_ref": "https://example.test/adversary",
+                "reviewer_kind": "agent",
+                "reviewer_id": "agent-adversary",
+                "session_id": "session-adversary",
+            },
+            "independent_referee_review": {
+                "status": "approved",
+                "record_ref": "https://example.test/referee",
+                "reviewer_kind": "agent",
+                "reviewer_id": "agent-referee",
+                "session_id": "session-referee",
+            },
+            "review_receipt": {
+                "status": "complete",
+                "record_ref": "governance/reviews/GI-AMEND-0001.json",
+                "packet_sha256": "a" * 64,
+            },
+            "intellect_commit": "b" * 40,
+            "standards_commit": "c" * 40,
+            "effective_at": "2026-08-03T00:00:00Z",
+        }
+        return active
+
     def test_proposed_schedule_validates_without_claiming_activation(self) -> None:
         validate_authority_schedule(self.schedule)
         self.assertEqual(self.schedule["status"], "proposed")
+        self.assertEqual(self.schedule["schema_version"], "1.2.0")
         self.assertEqual(
             self.schedule["staffing"]["mode"], "steward_supervised_agents"
         )
@@ -36,6 +74,7 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             "executor", self.schedule["staffing"]["agent_staffed_offices"]
         )
         self.assertIsNone(self.schedule["activation"]["human_steward_approval"])
+        self.assertIsNone(self.schedule["activation"]["review_receipt"])
 
     def test_commentary_cannot_become_constitutional_law(self) -> None:
         broken = copy.deepcopy(self.schedule)
@@ -72,10 +111,31 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
     def test_activation_fails_without_steward_and_agent_review(self) -> None:
         broken = copy.deepcopy(self.schedule)
         broken["status"] = "active"
-        broken["operating_standard"]["status"] = "accepted"
+        broken["amendment"]["status"] = "effective"
         broken["activation"]["proposal_author_ids"] = ["author"]
         with self.assertRaisesRegex(
             ConstitutionalAuthorityError, "human_steward_approval"
+        ):
+            validate_authority_schedule(broken)
+
+    def test_amendment_activation_allows_reviewed_candidate_standard(self) -> None:
+        active = self.active_schedule()
+        self.assertEqual(active["operating_standard"]["status"], "candidate")
+        validate_authority_schedule(active)
+
+    def test_active_schedule_requires_effective_amendment(self) -> None:
+        broken = self.active_schedule()
+        broken["amendment"]["status"] = "proposed"
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "amendment to be effective"
+        ):
+            validate_authority_schedule(broken)
+
+    def test_active_schedule_requires_complete_review_receipt(self) -> None:
+        broken = self.active_schedule()
+        broken["activation"]["review_receipt"] = None
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "review_receipt"
         ):
             validate_authority_schedule(broken)
 
