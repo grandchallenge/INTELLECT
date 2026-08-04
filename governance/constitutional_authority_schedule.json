@@ -1,7 +1,7 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.1.0",
-  "status": "proposed",
+  "schema_version": "1.3.0",
+  "status": "active",
   "staffing": {
     "mode": "steward_supervised_agents",
     "directive": {
@@ -42,13 +42,13 @@
     "repository": "grandchallenge/INTELLECT",
     "path": "CONSTITUTION.md",
     "authority": "supreme_constitutional_law",
-    "effective_version": "1.0.0",
+    "effective_version": "1.1.0",
     "content_sha256": "6eeaeea60f760f6d5b42ae63f849b3cce56e0695339490be0681faa0ec7afe3e"
   },
   "amendment": {
     "identifier": "GI-AMEND-0001",
     "path": "AMENDMENTS/0001-commentary-and-gcl-ghos.md",
-    "status": "proposed",
+    "status": "effective",
     "proposed_effective_version": "1.1.0"
   },
   "commentary": {
@@ -103,12 +103,37 @@
     }
   },
   "activation": {
-    "proposal_author_ids": [],
-    "human_steward_approval": null,
-    "independent_adversary_review": null,
-    "independent_referee_review": null,
-    "intellect_commit": null,
-    "standards_commit": null,
-    "effective_at": null
+    "proposal_author_ids": [
+      "fyremael"
+    ],
+    "human_steward_approval": {
+      "status": "approved",
+      "record_ref": "https://github.com/grandchallenge/INTELLECT/pull/32#issuecomment-5164721769",
+      "reviewer_kind": "human",
+      "reviewer_id": "fyremael"
+    },
+    "independent_adversary_review": {
+      "status": "approved",
+      "record_ref": "https://github.com/grandchallenge/gcl-standards/issues/3#issuecomment-5164348042",
+      "reviewer_kind": "agent",
+      "reviewer_id": "openai-gpt-5.6-thinking-final-head-adversary",
+      "session_id": "gpt-5.6-thinking-final-head-adversary-20260803T090100Z-71afd1db"
+    },
+    "independent_referee_review": {
+      "status": "approved",
+      "record_ref": "https://github.com/grandchallenge/gcl-standards/issues/3#issuecomment-5164535200",
+      "reviewer_kind": "agent",
+      "reviewer_id": "openai-gpt-5.6-thinking-final-head-referee",
+      "session_id": "gpt-5.6-thinking-final-head-referee-20260803T092100Z-71afd1db"
+    },
+    "review_receipt": {
+      "campaign_id": "GI-AMEND-0001",
+      "status": "complete",
+      "record_ref": "governance/reviews/GI-AMEND-0001-22dbfa0ea0e6.json",
+      "packet_sha256": "22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5"
+    },
+    "intellect_commit": "f1f5c4459def29139240c67ca858126021d1f12f",
+    "standards_commit": "fa90ffc2bd23a6b0c8e184c7da2dd6ef1174a4ee",
+    "effective_at": "2026-08-03T10:00:00Z"
   }
 }

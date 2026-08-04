@@ -1,11 +1,17 @@
 # GI-AMEND-0001: Constitutional Commentary and GCL-GHOS
 
-**Status:** Proposed; not in force
-**Proposed constitutional version:** 1.1.0
-**Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`
-**Human Steward approval:** Pending
-**Agent Adversary review:** Pending under `GI-STEWARD-0001`
-**Agent Referee review:** Pending under `GI-STEWARD-0001`
+**Status:** Effective
+**Effective constitutional version:** 1.1.0
+**Activation record:** `governance/constitutional_authority_schedule.json`
+**Activation merge:** `grandchallenge/INTELLECT#42` at `8d47ed8930d33253ae476c64dfec7c748185a535`
+**Effective at:** `2026-08-03T10:04:57Z`
+**Review packet:** `22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5`
+**Review receipt:** `governance/reviews/GI-AMEND-0001-22dbfa0ea0e6.json`
+**Human Steward approval:** `fyremael`; attestation comment `5164721769`; authenticated reaction `391939851`
+**Agent Adversary review:** `openai-gpt-5.6-thinking-final-head-adversary`; comment `5164348042`
+**Agent Referee review:** `openai-gpt-5.6-thinking-final-head-referee`; comment `5164535200`
+**Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted
+**GCL-GHOS status:** Candidate; not yet admitted
 
 ## Recitals
 
@@ -109,14 +115,20 @@ automation, or publication.
 
 ## Article 7: Adoption of GCL-GHOS
 
-1. `GCL-GHOS-00` may be adopted as the umbrella's subordinate GitHub operating
-   standard only by exact version and 40-character commit.
-2. Adoption requires this amendment to be effective, the candidate standard
-   to pass its declared acceptance conditions, and each adopting programme to
-   record its decision and unresolved deviations.
-3. `gcl-standards` is the versioned registry and publication repository for
-   the adopted standard. Custody of the text is not constitutional ownership.
-4. A conflict is resolved in this order: Constitution, effective amendments,
+1. `GCL-GHOS-00` may be admitted as the umbrella's subordinate GitHub operating
+   standard only by exact version and 40-character commit after this amendment
+   is effective.
+2. Constitutional review may bind an exact candidate standard commit as a
+   subject of the amendment packet. Candidate review does not accept the ADR,
+   admit the standard, or create programme adoption.
+3. After this amendment becomes effective, the Council may accept ADR-0001 and
+   admit the reviewed GCL-GHOS revision through a protected `gcl-standards`
+   integration record.
+4. Each programme may then adopt the admitted standard by recording its exact
+   version, commit, decision, review receipt, and unresolved deviations.
+5. `gcl-standards` is the versioned registry and publication repository for an
+   admitted standard. Custody of the text is not constitutional ownership.
+6. A conflict is resolved in this order: Constitution, effective amendments,
    INTELLECT constitutional schedules, accepted cross-programme standards,
    programme adoption records, repository profiles, then GitHub projections.
 
@@ -128,33 +140,45 @@ automation, or publication.
    - substantive Human Steward approval;
    - a non-author agent Adversary review;
    - a different non-author agent Referee review of the exact revision;
-   - the exact INTELLECT commit;
-   - the exact `gcl-standards` commit;
-   - acceptance of the referenced GCL-GHOS revision; and
+   - a complete constitutional review receipt;
+   - the exact reviewed INTELLECT commit;
+   - the exact reviewed candidate `gcl-standards` commit; and
    - an effective timestamp.
-3. While `GI-STEWARD-0001` is effective, the Council Clerk may assemble one
+3. Amendment activation does not require prior acceptance of ADR-0001,
+   admission of GCL-GHOS, or MATH-PROGRAMME adoption. Those are subordinate
+   post-activation decisions governed by Article 7.
+4. While `GI-STEWARD-0001` is effective, the Council Clerk may assemble one
    immutable, digest-addressed packet for all coordinated repositories, admit
    separate structured agent Adversary and Referee findings, and publish a
    Human Steward attestation. The named Human Steward signs only by an
    authenticated action on the current packet after substantive inspection.
-4. Automation shall reject stale packets, proposal authors acting as
+5. Automation shall reject stale packets, proposal authors acting as
    independent reviewers, reuse of one agent identity, invocation, or session
-   as both Adversary and Referee, incomplete findings, incomplete checks, and
-   non-steward authorization.
-5. Automation may transcribe accepted agent findings and the authenticated
+   as both Adversary and Referee, incomplete findings, incomplete checks,
+   circular activation dependencies, and non-steward authorization.
+6. Activation validation shall load the exact receipt named by the schedule and
+   cross-bind its campaign identity, packet digest, proposal authors, reviewed
+   subject heads, agent identities and sessions, and attestation references to
+   the activation record. A syntactically valid but unrelated receipt does not
+   satisfy this gate.
+7. Automation may transcribe accepted agent findings and the authenticated
    Human Steward attestation into a review receipt and propose an activation
    record. It may not impersonate the Steward, approve or merge its own work,
-   or activate the amendment.
-6. The executable validator and negative tests must reject authority inversion
-   and incomplete activation.
-7. Merge, CI success, release, publication, assignment, or presence does not
-   satisfy an unrecorded
-   approval.
+   activate the amendment, accept ADR-0001, admit GCL-GHOS, or adopt a standard
+   for a programme.
+8. The executable validator and negative tests must reject authority inversion,
+   incomplete activation, receipt substitution, subject or reviewer drift,
+   premature standard admission, premature programme adoption, and reuse of
+   stale findings.
+9. Merge, CI success, release, publication, assignment, or presence does not
+   satisfy an unrecorded approval.
 
 ## Article 9: Effect
 
 Upon satisfaction of Article 8 and recorded Human Steward promulgation, this
 amendment becomes effective as Constitution version 1.1.0. `GI-STEWARD-0001`
 changes who may staff the review offices during bootstrap; it does not make
-this amendment self-ratifying. Until activation is recorded, this amendment is
-a reviewable proposal and creates no binding authority.
+this amendment self-ratifying. ADR-0001 acceptance, GCL-GHOS admission, and
+programme adoption remain later subordinate decisions. Until activation is
+recorded, this amendment is a reviewable proposal and creates no binding
+authority.
