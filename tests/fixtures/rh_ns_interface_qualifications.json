@@ -1,17 +1,17 @@
 {
-  "schema_version": "1.4.0",
-  "fixture_id": "GI-UMBRELLA-SIXTH-PASS-001-RH-NS",
+  "schema_version": "1.5.0",
+  "fixture_id": "GI-UMBRELLA-VGSE-ACTIVATION-001",
   "programme_contract": {
     "repository": "grandchallenge/MATH-PROGRAMME",
-    "commit_sha": "d56edc23152f3ccde4c7db272b7af37f6cf698b9",
-    "routing_path": "governance/mathsolve_routing_audit.json",
-    "routing_digest": "4a27ec8aaaa60f919ba51028807b83dc522bfcff",
-    "runtime_path": "governance/umbrella_runtime_contract_v4.json",
-    "runtime_digest": "02cdfabb04f5d273fcb7531c515a73baab2bc52d",
+    "commit_sha": "54816c1525f0370cfbb0bfaa4ba8617cbb05fcb9",
+    "routing_path": "governance/mathsolve_routing_audit_vgse.json",
+    "routing_digest": "6fb8dce8f1b4f11f8994798840e72b09ad862575",
+    "runtime_path": "governance/umbrella_runtime_contract_v5.json",
+    "runtime_digest": "2f304cbf07f934e97cdd2fbac7a6ccece2ac4a5a",
     "campaign_registry_path": "governance/governed_campaign_registry.json",
-    "campaign_registry_digest": "b1f1e4682d0f3ff0108d020e466fa2ecb0809b57",
+    "campaign_registry_digest": "4cabbd820097029d01430f9f8a0c02653321e5af",
     "candidate_admission_path": "governance/campaign_admission_registry.json",
-    "candidate_admission_digest": "a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24"
+    "candidate_admission_digest": "c724d1174c2e1caa8a74297a21a46aa9d1910962"
   },
   "solve_current_cert_contract": {
     "repository": "grandchallenge/MATHSOLVE",
@@ -22,19 +22,57 @@
     "route_state_is_current_adjudication": true,
     "judgment_gate_uses": "route_state"
   },
+  "vgse_activation_contract": {
+    "programme_issue": 170,
+    "programme_pull_request": 218,
+    "programme_merge_commit": "54816c1525f0370cfbb0bfaa4ba8617cbb05fcb9",
+    "solve_manifest": {
+      "repository": "grandchallenge/MATHSOLVE",
+      "merge_commit": "1ebc9ace360e453fbc3707f6b23032b1c3c561eb",
+      "path": "campaign_manifests/VGSE-001.json",
+      "digest_algorithm": "git_blob_sha1",
+      "digest": "3bb6b18052f5754e9ae9aa4f813d9b43dcd4e3b4"
+    },
+    "pending_cert_handoff": {
+      "repository": "grandchallenge/MATHSOLVE",
+      "path": "cert_handoffs/VGSE-001.json",
+      "digest_algorithm": "git_blob_sha1",
+      "digest": "42cfa84978fd63c75f074b388afd8b1fcbd56091",
+      "state": "pending"
+    },
+    "cert_route": {
+      "repository": "grandchallenge/MATHCERT",
+      "merge_commit": "92e3e56fda50267a241e120eb337dbbc520e900f",
+      "path": "governance/certification_route_overlays/VGSE-001.json",
+      "digest_algorithm": "git_blob_sha1",
+      "digest": "de56bfb0544b27b6237a68ac87044d3f0ba2e445",
+      "route_state": "registered_pending_evidence",
+      "may_adjudicate": false,
+      "cert_output": null
+    },
+    "runtime_consumer_obligation": {
+      "intellect_repin_required": true,
+      "completion_authority": "separate_protected_INTELLECT_merge"
+    }
+  },
   "candidate_portfolio": {
     "pre_admission": [
-      "VGSE-001"
+      "NSOF-001"
     ],
     "reviewed_candidate_work_packages": [
       "VGSE-001"
     ],
-    "candidate_execution_state": "merged_candidate_work_package",
-    "active_portfolio_effect": "none",
-    "source_provenance_state": "unverified_candidate",
-    "certification_state": "pre_route_candidate",
-    "candidate_campaign_admitted": false,
-    "candidate_work_can_self_admit": false
+    "admitted_active": [
+      "VGSE-001"
+    ],
+    "candidate_execution_state": "admitted_active_bounded",
+    "active_portfolio_effect": "VGSE-001_bounded_active_pending_cert_evidence",
+    "source_provenance_state": "provider_verified",
+    "certification_state": "registered_pending_evidence",
+    "candidate_campaign_admitted": true,
+    "candidate_work_can_self_admit": false,
+    "may_adjudicate": false,
+    "certificate_output": null
   },
   "cert_contract": {
     "repository": "grandchallenge/MATHCERT",
@@ -46,7 +84,9 @@
     "state_authority": "protected_branch_repository_records",
     "github_issue_role": "mutable_navigational_mirror",
     "issue_mutation_can_change_state": false,
-    "candidate_registry_is_separate_from_active_registry": true
+    "candidate_registry_is_separate_from_active_registry": true,
+    "runtime_overlay_transitively_binds_vgse_upstream_artifacts": true,
+    "unchanged_consumed_blobs_do_not_require_repin": true
   },
   "qualifications": [
     {
@@ -80,5 +120,5 @@
       ]
     }
   ],
-  "claim_boundary": "The fixture establishes current protected Programme, Solve route-state, reviewed-candidate, runtime, and Cert identities. Producer handoff status is preserved separately from current Cert adjudication. VGSE-001 remains pre-admission with unverified source provenance and no Cert route. RH and NS remain interface-only qualifications. No mathematical target is proved."
+  "claim_boundary": "The fixture repins INTELLECT to the protected Programme runtime v5 and its bounded VGSE-001 activation overlay. The runtime transitively binds the exact Solve manifest, pending Cert handoff, and non-adjudicating MATHCERT route. Existing Solve current-route and global MATHCERT registry blobs remain unchanged. No certificate output, five-root theorem, t-embedding equivalence, rigid foldability, collision freedom, finite-thickness, manufacturing, novelty, priority, patentability, product, or commercial claim is authorized."
 }
