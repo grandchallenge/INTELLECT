@@ -18,13 +18,13 @@ from .mathsolve_cert_reviewed import (
 )
 from .model import Phase, WorkPackageState
 
-PROGRAMME_POLICY_COMMIT = "d56edc23152f3ccde4c7db272b7af37f6cf698b9"
-PROGRAMME_POLICY_PATH = "governance/mathsolve_routing_audit.json"
-PROGRAMME_POLICY_DIGEST = "4a27ec8aaaa60f919ba51028807b83dc522bfcff"
-PROGRAMME_RUNTIME_CONTRACT_PATH = "governance/umbrella_runtime_contract_v4.json"
-PROGRAMME_RUNTIME_CONTRACT_DIGEST = "02cdfabb04f5d273fcb7531c515a73baab2bc52d"
+PROGRAMME_POLICY_COMMIT = "54816c1525f0370cfbb0bfaa4ba8617cbb05fcb9"
+PROGRAMME_POLICY_PATH = "governance/mathsolve_routing_audit_vgse.json"
+PROGRAMME_POLICY_DIGEST = "6fb8dce8f1b4f11f8994798840e72b09ad862575"
+PROGRAMME_RUNTIME_CONTRACT_PATH = "governance/umbrella_runtime_contract_v5.json"
+PROGRAMME_RUNTIME_CONTRACT_DIGEST = "2f304cbf07f934e97cdd2fbac7a6ccece2ac4a5a"
 PROGRAMME_CANDIDATE_ADMISSION_PATH = "governance/campaign_admission_registry.json"
-PROGRAMME_CANDIDATE_ADMISSION_DIGEST = "a6bffaa197aa3921e3eb9d4f8a02b5dc2bbded24"
+PROGRAMME_CANDIDATE_ADMISSION_DIGEST = "c724d1174c2e1caa8a74297a21a46aa9d1910962"
 # Backward-compatible names for callers that imported the previous constants.
 PROGRAMME_UMBRELLA_STATE_PATH = PROGRAMME_RUNTIME_CONTRACT_PATH
 PROGRAMME_UMBRELLA_STATE_DIGEST = PROGRAMME_RUNTIME_CONTRACT_DIGEST
@@ -55,8 +55,8 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_POLICY_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_POLICY_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/170",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/218",
         ).to_dict()
 
     def _programme_runtime_contract(self) -> dict[str, Any]:
@@ -66,8 +66,8 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_RUNTIME_CONTRACT_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_RUNTIME_CONTRACT_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/170",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/218",
         ).to_dict()
 
     def _programme_candidate_admission(self) -> dict[str, Any]:
@@ -77,8 +77,8 @@ class MathSolveProvider(_HistoricalMathSolveProvider):
             artifact_path=PROGRAMME_CANDIDATE_ADMISSION_PATH,
             digest_algorithm="git_blob_sha1",
             digest=PROGRAMME_CANDIDATE_ADMISSION_DIGEST,
-            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/178",
-            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/176",
+            issue="https://github.com/grandchallenge/MATH-PROGRAMME/issues/170",
+            pull_request="https://github.com/grandchallenge/MATH-PROGRAMME/pull/218",
         ).to_dict()
 
     def _mathsolve_current_cert_routes(self) -> dict[str, Any]:
@@ -148,7 +148,7 @@ class MathematicalConstitution(_HistoricalMathematicalConstitution):
                 missing.extend(contract_errors)
                 if not contract_errors:
                     satisfied.append(
-                        "Programme routing, reviewed candidate admission, runtime, current Solve route-state, and MATHCERT registry identities are current"
+                        "Programme routing, admitted-candidate history, runtime v5, current Solve route-state, and MATHCERT registry identities are current"
                     )
 
         return GateReport(
