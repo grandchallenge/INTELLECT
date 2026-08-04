@@ -31,6 +31,7 @@ concurrency:
 
 env:
   FIXTURE_MANIFEST: fixtures/trove_curata/TC-FIXTURE-003/manifest.json
+  PREDECESSOR_PII_MANIFEST: fixtures/trove_curata/TC-FIXTURE-002/manifest.json
 
 jobs:
   replay:
@@ -51,10 +52,36 @@ jobs:
         run: python -m pip install -r requirements-ci.txt -r requirements-trove-curata-transform.txt
       - name: Install package without build isolation
         run: python -m pip install --no-build-isolation --no-deps -e .
-      - name: Compile fixture
-        run: python -m compileall -q src/grand_intellect/trove_curata_transform_*.py tests/test_trove_curata_transform_fixture.py
-      - name: Run dependency-light mutation tests
+      - name: Compile successor and predecessor fixtures
+        run: |
+          python -m compileall -q \
+            src/grand_intellect/trove_curata_transform_*.py \
+            src/grand_intellect/trove_curata_pii_*.py \
+            tests/test_trove_curata_transform_fixture.py \
+            tests/test_trove_curata_pii_fixture.py
+      - name: Run successor mutation tests
         run: python -m unittest discover -s tests -p "test_trove_curata_transform_fixture.py" -v
+      - name: Run predecessor PII mutation tests
+        run: python -m unittest discover -s tests -p "test_trove_curata_pii_fixture.py" -v
+      - name: Execute predecessor PII replay twice
+        run: |
+          python -m grand_intellect.trove_curata_pii_fixture --manifest "$PREDECESSOR_PII_MANIFEST" --output /tmp/tc-pii-first.json
+          python -m grand_intellect.trove_curata_pii_fixture --manifest "$PREDECESSOR_PII_MANIFEST" --output /tmp/tc-pii-second.json
+          cmp /tmp/tc-pii-first.json /tmp/tc-pii-second.json
+      - name: Verify predecessor PII authority boundary
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/tc-pii-first.json').read_text(encoding='utf-8'))
+          assert report['fixture_id'] == 'TC-FIXTURE-002'
+          assert report['case_count'] == 11
+          assert report['passed'] is True
+          assert all(value is False for value in report['claims'].values())
+          assert all(case['analysis_receipt']['provider_may_authorize_route'] is False for case in report['cases'])
+          assert all(case['routing_record']['admission_state'] == 'not_admitted' for case in report['cases'])
+          assert report['duplicate_checks'][0]['observation_digest_equal'] is True
+          PY
       - name: Execute first provider replay
         run: python -m grand_intellect.trove_curata_transform_fixture --manifest "$FIXTURE_MANIFEST" --output /tmp/tc-transform-first.json
       - name: Execute independent second provider replay
@@ -65,9 +92,9 @@ jobs:
           python - <<'PY'
           import json
           from pathlib import Path
-          report=json.loads(Path('/tmp/tc-transform-first.json').read_text())
-          assert report['fixture_id']=='TC-FIXTURE-003'
-          assert report['case_count']==13
+          report = json.loads(Path('/tmp/tc-transform-first.json').read_text(encoding='utf-8'))
+          assert report['fixture_id'] == 'TC-FIXTURE-003'
+          assert report['case_count'] == 13
           assert report['passed'] is True
           assert all(value is False for value in report['claims'].values())
           assert all(item['source_digest_equal'] and item['plan_digest_equal'] and item['output_digest_equal'] and item['receipt_digest_equal'] for item in report['duplicate_checks'])
