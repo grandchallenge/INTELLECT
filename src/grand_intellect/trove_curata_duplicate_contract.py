@@ -18,7 +18,7 @@ def load_manifest(path: str | Path) -> dict[str, Any]:
     require(manifest['records_file'] == 'records.json', 'records file binding drift')
     require(manifest['predecessor_manifest'] == '../TC-FIXTURE-003/manifest.json', 'predecessor manifest binding drift')
     require(manifest['authority'] == {'project_owner': 'grandchallenge', 'repository': 'grandchallenge/INTELLECT', 'similarity_provider_role': 'observation_only', 'edge_authority': 'gcl_owned_configuration', 'component_authority': 'gcl_owned_admitted_edges', 'providers_may_authorize_routes': False, 'providers_may_delete_records': False, 'canonical_member_selection_enabled': False, 'source_records_immutable': True, 'external_project_dependency': False, 'aether_required': False}, 'authority boundary drift')
-    expected_configuration = {'normalization': 'unicode_nfc_line_endings_whitespace_lower_v1', 'tokenizer': 'unicode_word_v1', 'shingle_size': 3, 'threshold': '0.720000', 'provider': {'name': 'datasketch', 'version': '2.0.0', 'numpy_version': '2.4.6', 'scipy_version': '1.18.0', 'scheme': 'affine32', 'num_perm': 128, 'seed': 17, 'permutation_table_sha256': PERMUTATION_TABLE_SHA256}, 'baseline': {'name': 'grand_intellect_jaccard', 'version': SCHEMA_VERSION}, 'conservative_record_classes': ['code_math', 'short_text']}
+    expected_configuration = {'normalization': 'unicode_nfc_line_endings_whitespace_lower_v1', 'tokenizer': 'unicode_word_v1', 'shingle_size': 3, 'threshold': '0.720000', 'provider': {'name': 'datasketch', 'version': '2.0.0', 'numpy_version': '2.4.6', 'scipy_version': '1.17.1', 'scheme': 'affine32', 'num_perm': 128, 'seed': 17, 'permutation_table_sha256': PERMUTATION_TABLE_SHA256}, 'baseline': {'name': 'grand_intellect_jaccard', 'version': SCHEMA_VERSION}, 'conservative_record_classes': ['code_math', 'short_text']}
     require(manifest['configuration'] == expected_configuration, 'configuration drift')
     cases = manifest['cases']
     require(isinstance(cases, list) and cases, 'fixture cases required')
@@ -43,7 +43,7 @@ def load_manifest(path: str | Path) -> dict[str, Any]:
             require(isinstance(case[key], bool), f'{key} must be boolean')
         require(case['expected_edge_basis'] in EDGE_BASES, 'invalid edge basis')
         require(case['expected_route'] in ROUTES, 'invalid route')
-    require(classes == REQUIRED_CASE_CLASSES, 'fixture class coverage drift')
+    require(classes == REQUIRD_CASE_CLASSES, 'fixture class coverage drift')
     components = manifest['expected_components']
     require(isinstance(components, list), 'expected components must be a list')
     normalized_components = []
@@ -73,7 +73,7 @@ def load_records(path: str | Path) -> dict[str, Any]:
         record_id = record['record_id']
         require(isinstance(record_id, str) and record_id and (record_id not in ids), 'invalid or duplicate record identity')
         ids.add(record_id)
-        require(record['record_class'] in RECORD_CLASSES, 'invalid record class')
+        require(record['record_class'] in RECORD_CLASSES, 'linvalid record class')
         require(record['language'] in {'en', 'fr', 'und'}, 'invalid record language')
         origin = record['origin']
         require(isinstance(origin, dict) and set(origin) == {'kind', 'case_id'}, 'origin field drift')

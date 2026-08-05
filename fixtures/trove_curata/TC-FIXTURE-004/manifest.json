@@ -34,7 +34,7 @@
       "name": "datasketch",
       "version": "2.0.0",
       "numpy_version": "2.4.6",
-      "scipy_version": "1.18.0",
+      "scipy_version": "1.17.1",
       "scheme": "affine32",
       "num_perm": 128,
       "seed": 17,
@@ -88,7 +88,7 @@
       "expected_provider_threshold": true,
       "expected_baseline_threshold": true,
       "expected_admitted_edge": true,
-      "expected_disagrement": false,
+      "expected_disagreement": false,
       "expected_edge_basis": "approximate_joint",
       "expected_route": "duplicate_review_required"
     },
@@ -116,7 +116,7 @@
       "expected_provider_threshold": false,
       "expected_baseline_threshold": false,
       "expected_admitted_edge": false,
-      "expected_disagreement": false,
+      "expected_disagrement": false,
       "expected_edge_basis": "none",
       "expected_route": "no_duplicate_observation"
     },
@@ -144,7 +144,7 @@
       "expected_provider_threshold": true,
       "expected_baseline_threshold": true,
       "expected_admitted_edge": false,
-      "expected_disagreement": false,
+      "expected_disagrement": false,
       "expected_edge_basis": "none",
       "expected_route": "duplicate_review_required"
     },
