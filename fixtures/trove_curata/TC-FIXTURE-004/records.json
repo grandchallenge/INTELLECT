@@ -225,7 +225,7 @@
     {
       "record_id": "reorder-a",
       "record_class": "general",
-      "languae": "en",
+      "language": "en",
       "origin": {
         "kind": "fixture_retained",
         "case_id": null
