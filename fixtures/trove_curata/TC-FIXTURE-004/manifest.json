@@ -33,7 +33,7 @@
     "provider": {
       "name": "datasketch",
       "version": "2.0.0",
-      "numpy_version": "2.5.1",
+      "numpy_version": "2.4.6",
       "scipy_version": "1.18.0",
       "scheme": "affine32",
       "num_perm": 128,
@@ -88,7 +88,7 @@
       "expected_provider_threshold": true,
       "expected_baseline_threshold": true,
       "expected_admitted_edge": true,
-      "expected_disagreement": false,
+      "expected_disagrement": false,
       "expected_edge_basis": "approximate_joint",
       "expected_route": "duplicate_review_required"
     },

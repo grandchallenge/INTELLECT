@@ -7,7 +7,7 @@ from typing import Any
 FIXTURE_ID = 'TC-FIXTURE-004'
 SCHEMA_VERSION = '0.1.0'
 PREDECESSOR = {'fixture_id': 'TC-FIXTURE-003', 'subject_pull_request': 44, 'exact_merged_implementation_head': 'af5a568a2f49db949ff5c355f33ab29231cabac4', 'protected_implementation_merge': '0096eb21ca62c5ef7f6e458f358edcb1cd963a20', 'review_remedy_pull_request': 46, 'exact_remedy_head': '09ebdf7e1f01abc1dd75450725b4e8b0d93f3a65', 'protected_remedy_merge': '5c5f6a1cbb6327c559884a79abc119cf706153af'}
-PROVIDER_LOCK = {'datasketch': '2.0.0', 'numpy': '2.5.1', 'scipy': '1.18.0'}
+PROVIDER_LOCK = {'datasketch': '2.0.0', 'numpy': '2.4.6', 'scipy': '1.18.0'}
 PERMUTATION_TABLE_SHA256 = '12bdcc189bfc2ff57ac116af1f714d22effe7a4253104dfa1be3c2d2f4239138'
 ROUTES = {'no_duplicate_observation', 'duplicate_review_required'}
 EDGE_BASES = {'exact_byte', 'normalized_text', 'approximate_joint', 'none'}
