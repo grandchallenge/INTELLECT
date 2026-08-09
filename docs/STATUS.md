@@ -4,10 +4,12 @@
 
 `0.2.2` is an executable constitutional foundation.
 
-`GI-AMEND-0001` is proposed, not effective. The compact Constitution remains
-unchanged. `GI-STEWARD-0001` establishes temporary Steward-supervised agent
-staffing. Human Steward approval and distinct non-author agent Adversary and
-Referee findings have not yet been recorded for the amendment.
+`GI-AMEND-0001` is effective as constitutional version `1.1.0`. The compact
+Constitution remains unchanged. Its activation schedule binds the exact Human
+Steward authorization, distinct non-author agent Adversary and Referee
+findings, review receipt, subject commits, and effective timestamp.
+`GI-STEWARD-0001` continues to establish temporary Steward-supervised agent
+staffing.
 
 ## Implemented
 
@@ -25,7 +27,8 @@ Referee findings have not yet been recorded for the amendment.
 
 ## Verified locally
 
-- 18 unit tests pass from source and from a clean editable installation;
+- 247 unit tests pass under both supported Python versions from a clean source
+  checkout;
 - complete lifecycle from Charter to Complete;
 - denial of incomplete transitions;
 - exact obligation enforcement and review revocation;
@@ -45,12 +48,11 @@ Referee findings have not yet been recorded for the amendment.
 
 ## Constitutional acceptance frontier
 
-Obtain substantive Human Steward authorization plus non-author agent Adversary
-and distinct agent Referee findings at exact INTELLECT and `gcl-standards`
-commits. Then record GCL-GHOS acceptance, exact commit identities, and the
-effective timestamp before changing the amendment schedule from `proposed` to
-`active`. Additional human reviewers are not an activation prerequisite while
-`GI-STEWARD-0001` is effective.
+The constitutional activation frontier is closed. Current GCL-GHOS admission
+and MATH-PROGRAMME adoption are separate subordinate records selected by the
+`gcl-standards` current-status projection; INTELLECT does not infer or create
+those statuses. Additional human reviewers were not an activation prerequisite
+while `GI-STEWARD-0001` was effective.
 
 ## Technical acceptance frontier
 

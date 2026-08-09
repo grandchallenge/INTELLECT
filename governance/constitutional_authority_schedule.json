@@ -1,6 +1,6 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.3.0",
+  "schema_version": "1.4.0",
   "status": "active",
   "staffing": {
     "mode": "steward_supervised_agents",
@@ -72,7 +72,12 @@
     "registry_repository": "grandchallenge/gcl-standards",
     "path": "standards/GCL-GHOS-00.md",
     "version": "0.1.0",
-    "status": "candidate",
+    "status_at_activation": "candidate",
+    "current_status_source": {
+      "repository": "grandchallenge/gcl-standards",
+      "path": "status/GCL-GHOS-00-current.json",
+      "authority": "subordinate_admission_and_adoption_projection"
+    },
     "registry_role": "subordinate_registry_and_publication"
   },
   "github": {

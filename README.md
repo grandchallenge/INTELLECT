@@ -121,13 +121,15 @@ See [`CONSTITUTION.md`](CONSTITUTION.md) and [`docs/WORK_PACKAGE_LIFECYCLE.md`](
 3. [`The Grand Intellect: Constitutional Commentary and Operating Doctrine`](docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md)
    explains the law but cannot change it.
 4. [`governance/constitutional_authority_schedule.json`](governance/constitutional_authority_schedule.json)
-   records the proposed authority binding and fails closed until Human,
-   Adversary, and Referee approvals and exact commits are present.
+   records the effective authority binding and its exact Human Steward,
+   Adversary, Referee, receipt, commit, and timestamp evidence.
 
-The current GCL-GHOS reconciliation is a proposal. It preserves AETHER's
-production semantic authority, reserves mathematical certification to
-MATHCERT, and treats `gcl-standards` as a subordinate registry and publication
-repository.
+`GI-AMEND-0001` is effective. Its schedule records that GCL-GHOS was a
+candidate at amendment activation and delegates current standards admission
+and programme-adoption status to the subordinate `gcl-standards`
+current-status projection. This preserves AETHER's production semantic
+authority, reserves mathematical certification to MATHCERT, and treats
+`gcl-standards` as a subordinate registry and publication repository.
 
 ## Quick start
 

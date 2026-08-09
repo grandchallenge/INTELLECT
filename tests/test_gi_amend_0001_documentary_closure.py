@@ -42,7 +42,7 @@ def validate_metadata(fields: dict[str, str]) -> None:
             "`grandchallenge/INTELLECT#42` at "
             "`8d47ed8930d33253ae476c64dfec7c748185a535`"
         ),
-        "Effective at": "`2026-08-03T10:04:57Z`",
+        "Effective at": "`2026-08-03T10:00:00Z`",
         "Review packet": (
             "`22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5`"
         ),
@@ -65,7 +65,7 @@ def validate_metadata(fields: dict[str, str]) -> None:
             "`docs/adr/0004-commentary-and-gcl-ghos-authority.md`; "
             "not yet accepted"
         ),
-        "GCL-GHOS status": "Candidate; not yet admitted",
+        "GCL-GHOS status at activation": "Candidate; not yet admitted",
     }
     for key, value in expected.items():
         if fields.get(key) != value:
@@ -102,7 +102,9 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
         self.assertEqual(self.schedule["status"], "active")
         self.assertEqual(self.schedule["amendment"]["status"], "effective")
         self.assertEqual(self.schedule["constitution"]["effective_version"], "1.1.0")
-        self.assertEqual(self.schedule["operating_standard"]["status"], "candidate")
+        self.assertEqual(
+            self.schedule["operating_standard"]["status_at_activation"], "candidate"
+        )
         self.assertEqual(
             self.schedule["activation"]["review_receipt"]["packet_sha256"],
             self.receipt["packet_sha256"],
@@ -115,6 +117,10 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
             self.fields["Review packet"].strip("`"),
             self.receipt["packet_sha256"],
         )
+        self.assertEqual(
+            self.fields["Effective at"].strip("`"),
+            self.schedule["activation"]["effective_at"],
+        )
 
     def test_documentary_effect_does_not_promote_subordinate_decisions(self) -> None:
         self.assertEqual(
@@ -122,25 +128,30 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
             "`docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted",
         )
         self.assertEqual(
-            self.fields["GCL-GHOS status"],
+            self.fields["GCL-GHOS status at activation"],
             "Candidate; not yet admitted",
         )
         self.assertNotIn("MATH-PROGRAMME adoption", "\n".join(self.fields.values()))
 
     def test_mutation_rejects_premature_standard_admission(self) -> None:
         mutated = dict(self.fields)
-        mutated["GCL-GHOS status"] = "Accepted and admitted"
+        mutated["GCL-GHOS status at activation"] = "Accepted and admitted"
         with self.assertRaisesRegex(
             DocumentaryClosureError,
-            "incorrect documentary field: GCL-GHOS status",
+            "incorrect documentary field: GCL-GHOS status at activation",
         ):
             validate_metadata(mutated)
 
     def test_substantive_articles_remain_present(self) -> None:
         for article in range(1, 10):
             self.assertIn(f"## Article {article}:", self.text)
+        self.assertIn("The activation record satisfied Article 8", self.text)
         self.assertIn(
-            "Until activation is\nrecorded, this amendment is a reviewable proposal",
+            "Before activation was recorded, this amendment was a\nreviewable proposal",
+            self.text,
+        )
+        self.assertNotIn(
+            "Upon satisfaction of Article 8 and recorded Human Steward promulgation",
             self.text,
         )
 

@@ -4,14 +4,14 @@
 **Effective constitutional version:** 1.1.0
 **Activation record:** `governance/constitutional_authority_schedule.json`
 **Activation merge:** `grandchallenge/INTELLECT#42` at `8d47ed8930d33253ae476c64dfec7c748185a535`
-**Effective at:** `2026-08-03T10:04:57Z`
+**Effective at:** `2026-08-03T10:00:00Z`
 **Review packet:** `22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5`
 **Review receipt:** `governance/reviews/GI-AMEND-0001-22dbfa0ea0e6.json`
 **Human Steward approval:** `fyremael`; attestation comment `5164721769`; authenticated reaction `391939851`
 **Agent Adversary review:** `openai-gpt-5.6-thinking-final-head-adversary`; comment `5164348042`
 **Agent Referee review:** `openai-gpt-5.6-thinking-final-head-referee`; comment `5164535200`
 **Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted
-**GCL-GHOS status:** Candidate; not yet admitted
+**GCL-GHOS status at activation:** Candidate; not yet admitted
 
 ## Recitals
 
@@ -175,10 +175,10 @@ automation, or publication.
 
 ## Article 9: Effect
 
-Upon satisfaction of Article 8 and recorded Human Steward promulgation, this
-amendment becomes effective as Constitution version 1.1.0. `GI-STEWARD-0001`
-changes who may staff the review offices during bootstrap; it does not make
-this amendment self-ratifying. ADR-0001 acceptance, GCL-GHOS admission, and
-programme adoption remain later subordinate decisions. Until activation is
-recorded, this amendment is a reviewable proposal and creates no binding
-authority.
+The activation record satisfied Article 8 and recorded Human Steward
+promulgation, making this amendment effective as Constitution version 1.1.0.
+`GI-STEWARD-0001` changed who could staff the review offices during bootstrap;
+it did not make this amendment self-ratifying. At activation, ADR-0001
+acceptance, GCL-GHOS admission, and programme adoption remained later
+subordinate decisions. Before activation was recorded, this amendment was a
+reviewable proposal and created no binding authority.
