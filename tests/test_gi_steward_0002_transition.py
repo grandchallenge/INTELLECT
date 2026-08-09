@@ -26,6 +26,11 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
             "one non-author agent Adversary finding",
             "one different non-author agent Referee finding from a distinct session",
             "Automation may\nassemble, validate, route, and replay the packet. It may not manufacture the\nSteward authorization",
+            "standing, exact authorization granted by `fyremael`",
+            "single-use continuity\n  authorizer",
+            "replacement must be an authenticated human other than\n  `jimsteeg`",
+            "Restoration may not change roles or permissions",
+            "routes to\n  the Steward-replacement protocol instead of assuming unavailable credentials",
             "Custody, review, a green check, or merge of this\nfile does not activate it.",
             "Rollback requires a later exact Human Steward directive",
         ):
@@ -62,6 +67,56 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
                 "recovery_owner_self_promotion_allowed"
             ]
         )
+        replacement = staffing["recovery_protocols"]["const"][
+            "steward_replacement"
+        ]
+        self.assertEqual(
+            replacement["authorization_source"],
+            "standing_exact_directive_authorization_by_fyremael",
+        )
+        self.assertFalse(replacement["incumbent_authorization_required_at_trigger"])
+        self.assertTrue(
+            replacement["replacement_candidate_must_differ_from_recovery_owner"]
+        )
+        account = staffing["recovery_protocols"]["const"]["account_recovery"]
+        self.assertTrue(account["bounded_access_restoration_precedes_authorization"])
+        self.assertFalse(
+            account["role_or_permission_change_allowed_during_restoration"]
+        )
+        self.assertEqual(account["unrecoverable_route"], "steward_replacement")
+
+    def test_recovery_protocols_fail_closed_against_circular_or_unilateral_routes(self) -> None:
+        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        recovery_schema = schema["properties"]["staffing"]["properties"][
+            "recovery_protocols"
+        ]
+        expected = recovery_schema["const"]
+        jsonschema.validate(expected, recovery_schema)
+
+        for mutate in (
+            lambda value: value["steward_replacement"].__setitem__(
+                "incumbent_authorization_required_at_trigger", True
+            ),
+            lambda value: value["steward_replacement"].__setitem__(
+                "recovery_owner_self_promotion_allowed", True
+            ),
+            lambda value: value["steward_replacement"].__setitem__(
+                "replacement_candidate_must_differ_from_recovery_owner", False
+            ),
+            lambda value: value["account_recovery"].__setitem__(
+                "role_or_permission_change_allowed_during_restoration", True
+            ),
+            lambda value: value["account_recovery"].__setitem__(
+                "unrecoverable_route", "recovery_owner_discretion"
+            ),
+            lambda value: value["organization_deletion"]["initiators"].append(
+                "jimsteeg"
+            ),
+        ):
+            candidate = json.loads(json.dumps(expected))
+            mutate(candidate)
+            with self.assertRaises(jsonschema.ValidationError):
+                jsonschema.validate(candidate, recovery_schema)
 
     def test_schedule_versions_are_mutually_exclusive(self) -> None:
         schema = json.loads(SCHEMA.read_text(encoding="utf-8"))

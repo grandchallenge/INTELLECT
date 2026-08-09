@@ -57,19 +57,25 @@
         "recovery_protocols": {
           "const": {
             "steward_replacement": {
-              "trigger": "verified_incapacity_or_loss_of_ordinary_steward_access",
-              "initiators": ["fyremael", "jimsteeg"],
+              "trigger": "verified_permanent_incapacity_or_exhausted_account_recovery",
+              "initiators": ["jimsteeg"],
               "exact_packet_required": true,
-              "human_steward_authorization_required": true,
+              "authorization_source": "standing_exact_directive_authorization_by_fyremael",
+              "incumbent_authorization_required_at_trigger": false,
+              "trigger_evidence": "two_independent_records_one_external_identity_platform_or_legal",
+              "recovery_owner_role": "single_use_continuity_authorizer",
               "recovery_owner_self_promotion_allowed": false,
+              "replacement_candidate_must_differ_from_recovery_owner": true,
               "compensating_control": "separately_protected_roster_transition",
-              "restoration": "name_one_authenticated_ordinary_steward"
+              "restoration": "name_one_authenticated_ordinary_steward_other_than_recovery_owner"
             },
             "account_recovery": {
               "trigger": "verified_account_access_loss",
               "initiators": ["fyremael", "jimsteeg"],
-              "exact_packet_required": true,
-              "human_steward_authorization_required": true,
+              "bounded_access_restoration_precedes_authorization": true,
+              "role_or_permission_change_allowed_during_restoration": false,
+              "incumbent_authorization_required_for_later_role_or_permission_change": true,
+              "unrecoverable_route": "steward_replacement",
               "recovery_owner_self_promotion_allowed": false,
               "compensating_control": "revoke_sessions_and_read_back_access",
               "restoration": "restore_prior_bounded_role_and_rotate_credentials"

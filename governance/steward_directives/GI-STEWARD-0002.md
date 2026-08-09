@@ -45,14 +45,22 @@ Recovery activity does not silently become an ordinary decision or
 ordinary-review requirement. The protected schedule carries four distinct,
 fail-closed protocols:
 
-- **Steward replacement:** incapacity or verified loss of ordinary-Steward
-  access may trigger a fresh exact packet. The recovery owner may initiate and
-  provide evidence but may not self-promote; an authenticated Human Steward
-  authorization and a separately protected roster transition are required.
+- **Steward replacement:** verified permanent incapacity or exhausted account
+  recovery activates a standing, exact authorization granted by `fyremael` in
+  this directive. `jimsteeg` may then act only as a single-use continuity
+  authorizer for one protected roster transition. The trigger requires two
+  independent records, including one external identity, platform-support, or
+  legal record; the exact packet still requires distinct agent Adversary and
+  Referee findings. The replacement must be an authenticated human other than
+  `jimsteeg`. The recovery owner may neither appoint themself nor exercise any
+  ordinary Steward power before or after that transition.
 - **Account recovery:** verified account-access loss may trigger bounded
-  restoration. The recovery owner may assist, but permission changes require a
-  fresh exact packet, authenticated Human Steward authorization, session
-  revocation, access readback, and restoration to the prior bounded role.
+  restoration of the incumbent's existing access without a fresh incumbent
+  authorization. Restoration may not change roles or permissions; it requires
+  credential rotation, session revocation, and exact access readback. Any later
+  role or permission change requires an authenticated ordinary-Steward exact
+  packet. If all account-recovery routes are exhausted, the matter routes to
+  the Steward-replacement protocol instead of assuming unavailable credentials.
 - **Organization deletion:** only an explicit destructive intent by the
   ordinary Human Steward may trigger review. A fresh exact packet and
   contemporaneous Human Steward authorization are required; the recovery owner
