@@ -65,7 +65,7 @@ def validate_metadata(fields: dict[str, str]) -> None:
             "`docs/adr/0004-commentary-and-gcl-ghos-authority.md`; "
             "not yet accepted"
         ),
-        "GCL-GHOS status": "Candidate; not yet admitted",
+        "GCL-GHOS status at activation": "Candidate; not yet admitted",
     }
     for key, value in expected.items():
         if fields.get(key) != value:
@@ -102,7 +102,9 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
         self.assertEqual(self.schedule["status"], "active")
         self.assertEqual(self.schedule["amendment"]["status"], "effective")
         self.assertEqual(self.schedule["constitution"]["effective_version"], "1.1.0")
-        self.assertEqual(self.schedule["operating_standard"]["status"], "candidate")
+        self.assertEqual(
+            self.schedule["operating_standard"]["status_at_activation"], "candidate"
+        )
         self.assertEqual(
             self.schedule["activation"]["review_receipt"]["packet_sha256"],
             self.receipt["packet_sha256"],
@@ -122,17 +124,17 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
             "`docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted",
         )
         self.assertEqual(
-            self.fields["GCL-GHOS status"],
+            self.fields["GCL-GHOS status at activation"],
             "Candidate; not yet admitted",
         )
         self.assertNotIn("MATH-PROGRAMME adoption", "\n".join(self.fields.values()))
 
     def test_mutation_rejects_premature_standard_admission(self) -> None:
         mutated = dict(self.fields)
-        mutated["GCL-GHOS status"] = "Accepted and admitted"
+        mutated["GCL-GHOS status at activation"] = "Accepted and admitted"
         with self.assertRaisesRegex(
             DocumentaryClosureError,
-            "incorrect documentary field: GCL-GHOS status",
+            "incorrect documentary field: GCL-GHOS status at activation",
         ):
             validate_metadata(mutated)
 

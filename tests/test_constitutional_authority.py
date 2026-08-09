@@ -144,7 +144,13 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         self.assertEqual(loaded["status"], "active")
         self.assertEqual(loaded["constitution"]["effective_version"], "1.1.0")
         self.assertEqual(loaded["amendment"]["status"], "effective")
-        self.assertEqual(loaded["operating_standard"]["status"], "candidate")
+        self.assertEqual(
+            loaded["operating_standard"]["status_at_activation"], "candidate"
+        )
+        self.assertEqual(
+            loaded["operating_standard"]["current_status_source"]["repository"],
+            "grandchallenge/gcl-standards",
+        )
         self.assertEqual(activation["proposal_author_ids"], ["fyremael"])
         self.assertEqual(
             activation["review_receipt"]["packet_sha256"],
@@ -206,10 +212,30 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         ):
             validate_authority_schedule(broken)
 
-    def test_activation_keeps_standard_candidate(self) -> None:
+    def test_activation_records_standard_as_candidate_at_activation(self) -> None:
         active, receipt = self.synthetic_active()
-        self.assertEqual(active["operating_standard"]["status"], "candidate")
+        self.assertEqual(
+            active["operating_standard"]["status_at_activation"], "candidate"
+        )
         validate_authority_schedule(active, review_receipt=receipt)
+
+    def test_current_standard_status_cannot_be_asserted_by_intellect(self) -> None:
+        broken = self.proposed_schedule()
+        broken["operating_standard"]["status"] = "candidate"
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "current status must come from"
+        ):
+            validate_authority_schedule(broken)
+
+    def test_current_status_source_cannot_move_authority_into_intellect(self) -> None:
+        broken = self.proposed_schedule()
+        broken["operating_standard"]["current_status_source"]["repository"] = (
+            "grandchallenge/INTELLECT"
+        )
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "subordinate gcl-standards projection"
+        ):
+            validate_authority_schedule(broken)
 
     def test_activation_rejects_receipt_subject_author_and_session_drift(self) -> None:
         cases = (

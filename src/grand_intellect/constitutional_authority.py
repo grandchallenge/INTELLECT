@@ -63,7 +63,7 @@ def validate_authority_schedule(
 ) -> None:
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
-    if schedule.get("schema_version") != "1.3.0":
+    if schedule.get("schema_version") != "1.4.0":
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
@@ -148,8 +148,23 @@ def validate_authority_schedule(
         raise ConstitutionalAuthorityError(
             "gcl-standards must remain a subordinate registry and publication surface"
         )
-    if operating_standard.get("status") not in {"candidate", "accepted", "superseded"}:
-        raise ConstitutionalAuthorityError("invalid operating-standard status")
+    if "status" in operating_standard:
+        raise ConstitutionalAuthorityError(
+            "operating-standard current status must come from the subordinate projection"
+        )
+    if operating_standard.get("status_at_activation") != "candidate":
+        raise ConstitutionalAuthorityError(
+            "GCL-GHOS must remain candidate at amendment activation"
+        )
+    current_status_source = _mapping(operating_standard, "current_status_source")
+    if current_status_source != {
+        "repository": "grandchallenge/gcl-standards",
+        "path": "status/GCL-GHOS-00-current.json",
+        "authority": "subordinate_admission_and_adoption_projection",
+    }:
+        raise ConstitutionalAuthorityError(
+            "current operating-standard status requires the subordinate gcl-standards projection"
+        )
 
     github = _mapping(schedule, "github")
     if github.get("authority") != "operational_and_evidentiary_projection":

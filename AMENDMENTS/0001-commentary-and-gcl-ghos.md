@@ -11,7 +11,7 @@
 **Agent Adversary review:** `openai-gpt-5.6-thinking-final-head-adversary`; comment `5164348042`
 **Agent Referee review:** `openai-gpt-5.6-thinking-final-head-referee`; comment `5164535200`
 **Related ADR:** `docs/adr/0004-commentary-and-gcl-ghos-authority.md`; not yet accepted
-**GCL-GHOS status:** Candidate; not yet admitted
+**GCL-GHOS status at activation:** Candidate; not yet admitted
 
 ## Recitals
 
