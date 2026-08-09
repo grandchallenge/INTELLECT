@@ -1,16 +1,89 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.4.0",
+  "schema_version": "1.5.0",
   "status": "active",
   "staffing": {
-    "mode": "steward_supervised_agents",
+    "mode": "minimum_steady_state_human_authorization",
     "directive": {
-      "identifier": "GI-STEWARD-0001",
-      "path": "governance/steward_directives/GI-STEWARD-0001.md",
+      "identifier": "GI-STEWARD-0002",
+      "path": "governance/steward_directives/GI-STEWARD-0002.md",
       "status": "effective",
-      "issued_at": "2026-07-29"
+      "issued_at": "2026-08-09"
     },
     "human_steward": "fyremael",
+    "ordinary_human_steward": "fyremael",
+    "recovery_owner": "jimsteeg",
+    "mandatory_routine_reviewers": [],
+    "human_actions_per_governed_decision_target": 1,
+    "authorization_action": "authenticated_role_bound_exact_packet_authorization",
+    "recovery_protocols": {
+      "steward_replacement": {
+        "trigger": "verified_permanent_incapacity_or_exhausted_account_recovery",
+        "initiators": [
+          "jimsteeg"
+        ],
+        "exact_packet_required": true,
+        "authorization_source": "standing_exact_directive_authorization_by_fyremael",
+        "incumbent_authorization_required_at_trigger": false,
+        "trigger_evidence": "two_independent_records_one_external_identity_platform_or_legal",
+        "recovery_owner_role": "single_use_continuity_authorizer",
+        "recovery_owner_self_promotion_allowed": false,
+        "replacement_candidate_must_differ_from_recovery_owner": true,
+        "compensating_control": "separately_protected_roster_transition",
+        "restoration": "name_one_authenticated_ordinary_steward_other_than_recovery_owner"
+      },
+      "account_recovery": {
+        "trigger": "verified_account_access_loss",
+        "initiators": [
+          "fyremael",
+          "jimsteeg"
+        ],
+        "bounded_access_restoration_precedes_authorization": true,
+        "role_or_permission_change_allowed_during_restoration": false,
+        "incumbent_authorization_required_for_later_role_or_permission_change": true,
+        "unrecoverable_route": "steward_replacement",
+        "recovery_owner_self_promotion_allowed": false,
+        "compensating_control": "revoke_sessions_and_read_back_access",
+        "restoration": "restore_prior_bounded_role_and_rotate_credentials"
+      },
+      "organization_deletion": {
+        "trigger": "explicit_destructive_intent_by_ordinary_human_steward",
+        "initiators": [
+          "fyremael"
+        ],
+        "exact_packet_required": true,
+        "human_steward_authorization_required": true,
+        "recovery_owner_self_promotion_allowed": false,
+        "compensating_control": "verified_export_and_cooling_off_period",
+        "restoration": "not_applicable_irreversible_operation"
+      },
+      "equivalent_irreversible_change": {
+        "trigger": "documented_equivalence_to_organization_deletion",
+        "initiators": [
+          "fyremael"
+        ],
+        "exact_packet_required": true,
+        "human_steward_authorization_required": true,
+        "recovery_owner_self_promotion_allowed": false,
+        "compensating_control": "apply_organization_deletion_safeguards",
+        "restoration": "operation_specific_plan_required_before_authorization"
+      }
+    },
+    "supersession": {
+      "operation_id": "GI-HUMAN-GOVERNANCE-TRANSITION-001",
+      "predecessor": "GI-STEWARD-0001",
+      "review_packet_sha256": "47b0d9e0e61a50b302c3470da9c27ef0b1f0a17453a955d15bd5fe81e0f13171",
+      "review_receipt": "governance/reviews/GI-HUMAN-GOVERNANCE-TRANSITION-001-47b0d9e0e61a.json",
+      "reviewed_source_head": "4948714275da49bc3c2933f460dedaea4d0ef3a5",
+      "effective_at": "2026-08-09T06:27:00Z",
+      "rollback": "later_exact_human_steward_directive_required",
+      "grandfathering": "completed_decisions_retain_recorded_rules_inflight_packets_finish_or_restart",
+      "organization_2fa": {
+        "evidence_path": "governance/evidence/GCL-ORG-2FA-001.json",
+        "evidence_sha256": "dcf18dabdafe717045188cfed7d3a0ccbc59c44707296045d69d5736c9b55611",
+        "evidence_url": "https://github.com/grandchallenge/.github/issues/47#issuecomment-5229847460"
+      }
+    },
     "external_human_review_required": false,
     "agent_staffed_offices": [
       "possibility_minder",

@@ -130,14 +130,22 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
             cls=jsonschema.Draft202012Validator,
             format_checker=jsonschema.FormatChecker(),
         )
+        self.assertEqual(current["schema_version"], "1.5.0")
+        self.assertEqual(
+            current["staffing"]["directive"]["identifier"], "GI-STEWARD-0002"
+        )
+        self.assertEqual(
+            current["staffing"]["supersession"]["review_packet_sha256"],
+            "47b0d9e0e61a50b302c3470da9c27ef0b1f0a17453a955d15bd5fe81e0f13171",
+        )
 
-        mixed = json.loads(json.dumps(current))
-        mixed["schema_version"] = "1.5.0"
+        downgraded = json.loads(json.dumps(current))
+        downgraded["schema_version"] = "1.4.0"
         with self.assertRaises(jsonschema.ValidationError):
-            jsonschema.validate(mixed, schema)
+            jsonschema.validate(downgraded, schema)
 
         smuggled = json.loads(json.dumps(current))
-        smuggled["staffing"]["recovery_owner"] = "jimsteeg"
+        smuggled["staffing"]["recovery_owner"] = "fyremael"
         with self.assertRaises(jsonschema.ValidationError):
             jsonschema.validate(smuggled, schema)
 

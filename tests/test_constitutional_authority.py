@@ -22,6 +22,12 @@ SCHEDULE_PATH = ROOT / "governance" / "constitutional_authority_schedule.json"
 ACTIVE_RECEIPT_PATH = (
     ROOT / "governance" / "reviews" / "GI-AMEND-0001-22dbfa0ea0e6.json"
 )
+TRANSITION_RECEIPT_PATH = (
+    ROOT
+    / "governance"
+    / "reviews"
+    / "GI-HUMAN-GOVERNANCE-TRANSITION-001-47b0d9e0e61a.json"
+)
 STALE_RECEIPT_PATH = (
     ROOT / "governance" / "reviews" / "GI-AMEND-0001-cc007ca6fe04.json"
 )
@@ -34,10 +40,53 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
     def setUp(self) -> None:
         self.canonical = json.loads(SCHEDULE_PATH.read_text(encoding="utf-8"))
         self.receipt = json.loads(ACTIVE_RECEIPT_PATH.read_text(encoding="utf-8"))
+        self.transition_receipt = json.loads(
+            TRANSITION_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
+        self.two_factor_evidence = json.loads(
+            TWO_FACTOR_EVIDENCE_PATH.read_text(encoding="utf-8")
+        )
 
     def proposed_schedule(self) -> dict[str, object]:
         proposed = copy.deepcopy(self.canonical)
+        proposed["schema_version"] = "1.4.0"
         proposed["status"] = "proposed"
+        proposed["staffing"] = {
+            "mode": "steward_supervised_agents",
+            "directive": {
+                "identifier": "GI-STEWARD-0001",
+                "path": "governance/steward_directives/GI-STEWARD-0001.md",
+                "status": "effective",
+                "issued_at": "2026-07-29",
+            },
+            "human_steward": "fyremael",
+            "external_human_review_required": False,
+            "agent_staffed_offices": [
+                "possibility_minder",
+                "reality_minder",
+                "purpose_minder",
+                "continuity_minder",
+                "capacity_minder",
+                "axiomatist",
+                "cartographer",
+                "verifier",
+                "adversary",
+                "formalist",
+                "steward",
+                "grammarian",
+                "composer",
+                "amanuensis",
+                "referee",
+                "executor",
+            ],
+            "separation_controls": [
+                "non_author_adversary",
+                "distinct_agent_referee",
+                "distinct_agent_sessions",
+                "exact_revision_findings",
+                "human_steward_reserved_authority",
+            ],
+        }
         proposed["constitution"]["effective_version"] = "1.0.0"
         proposed["amendment"]["status"] = "proposed"
         proposed["activation"] = {
@@ -191,11 +240,18 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         }
 
     def test_canonical_schedule_activates_exact_final_head_packet(self) -> None:
-        validate_authority_schedule(self.canonical, review_receipt=self.receipt)
+        validate_authority_schedule(
+            self.canonical,
+            review_receipt=self.receipt,
+            staffing_transition_receipt=self.transition_receipt,
+            organization_2fa_evidence=self.two_factor_evidence,
+        )
         loaded = load_and_validate(SCHEDULE_PATH)
         activation = loaded["activation"]
+        staffing = loaded["staffing"]
 
         self.assertEqual(loaded["status"], "active")
+        self.assertEqual(loaded["schema_version"], "1.5.0")
         self.assertEqual(loaded["constitution"]["effective_version"], "1.1.0")
         self.assertEqual(loaded["amendment"]["status"], "effective")
         self.assertEqual(
@@ -219,6 +275,30 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
             "fa90ffc2bd23a6b0c8e184c7da2dd6ef1174a4ee",
         )
         self.assertEqual(activation["effective_at"], "2026-08-03T10:00:00Z")
+        self.assertEqual(
+            staffing["mode"], "minimum_steady_state_human_authorization"
+        )
+        self.assertEqual(staffing["directive"]["identifier"], "GI-STEWARD-0002")
+        self.assertEqual(staffing["ordinary_human_steward"], "fyremael")
+        self.assertEqual(staffing["recovery_owner"], "jimsteeg")
+        self.assertEqual(staffing["mandatory_routine_reviewers"], [])
+        self.assertEqual(staffing["human_actions_per_governed_decision_target"], 1)
+        self.assertEqual(
+            staffing["supersession"]["review_packet_sha256"],
+            "47b0d9e0e61a50b302c3470da9c27ef0b1f0a17453a955d15bd5fe81e0f13171",
+        )
+        self.assertEqual(
+            staffing["supersession"]["review_receipt"],
+            "governance/reviews/"
+            "GI-HUMAN-GOVERNANCE-TRANSITION-001-47b0d9e0e61a.json",
+        )
+        self.assertEqual(
+            staffing["supersession"]["reviewed_source_head"],
+            "4948714275da49bc3c2933f460dedaea4d0ef3a5",
+        )
+        self.assertEqual(
+            staffing["supersession"]["effective_at"], "2026-08-09T06:27:00Z"
+        )
 
     def test_proposed_form_remains_valid_without_activation(self) -> None:
         proposed = self.proposed_schedule()
@@ -349,12 +429,12 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         validate_organization_2fa_evidence(two_factor_evidence)
 
     def test_bootstrap_schedule_cannot_smuggle_steady_state_fields(self) -> None:
-        broken = copy.deepcopy(self.canonical)
+        broken = self.proposed_schedule()
         broken["staffing"]["recovery_owner"] = "jimsteeg"
         with self.assertRaisesRegex(
             ConstitutionalAuthorityError, "exact bootstrap staffing sequence"
         ):
-            validate_authority_schedule(broken, review_receipt=self.receipt)
+            validate_authority_schedule(broken)
 
     def test_activation_requires_complete_separated_authority(self) -> None:
         broken = self.proposed_schedule()
@@ -454,7 +534,12 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         with self.assertRaisesRegex(
             ConstitutionalAuthorityError, "packet digest mismatch"
         ):
-            validate_authority_schedule(self.canonical, review_receipt=stale)
+            validate_authority_schedule(
+                self.canonical,
+                review_receipt=stale,
+                staffing_transition_receipt=self.transition_receipt,
+                organization_2fa_evidence=self.two_factor_evidence,
+            )
 
     def test_receipt_requires_exact_subjects_and_distinct_non_author_agents(self) -> None:
         validate_review_receipt(self.receipt)
