@@ -70,7 +70,9 @@ fail-closed protocols:
   route an operation to the organization-deletion safeguards. Ambiguity fails
   closed; it never permits unilateral recovery-owner action.
 
-This directive does not pre-authorize any recovery or destructive operation.
+This directive authorizes no recovery or destructive operation unless every
+exact trigger, evidence, packet, and role restriction above is satisfied.
+Satisfying any condition in isolation grants no authority.
 
 ## Activation, rollback, and grandfathering
 

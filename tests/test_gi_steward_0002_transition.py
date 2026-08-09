@@ -31,6 +31,8 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
             "replacement must be an authenticated human other than\n  `jimsteeg`",
             "Restoration may not change roles or permissions",
             "routes to\n  the Steward-replacement protocol instead of assuming unavailable credentials",
+            "authorizes no recovery or destructive operation unless every\nexact trigger, evidence, packet, and role restriction above is satisfied",
+            "Satisfying any condition in isolation grants no authority",
             "Custody, review, a green check, or merge of this\nfile does not activate it.",
             "Rollback requires a later exact Human Steward directive",
         ):
