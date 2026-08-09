@@ -42,7 +42,7 @@ def validate_metadata(fields: dict[str, str]) -> None:
             "`grandchallenge/INTELLECT#42` at "
             "`8d47ed8930d33253ae476c64dfec7c748185a535`"
         ),
-        "Effective at": "`2026-08-03T10:04:57Z`",
+        "Effective at": "`2026-08-03T10:00:00Z`",
         "Review packet": (
             "`22dbfa0ea0e652161126dd4647477036b89e6c13ecbd9101cda60ce00e9f95c5`"
         ),
@@ -117,6 +117,10 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
             self.fields["Review packet"].strip("`"),
             self.receipt["packet_sha256"],
         )
+        self.assertEqual(
+            self.fields["Effective at"].strip("`"),
+            self.schedule["activation"]["effective_at"],
+        )
 
     def test_documentary_effect_does_not_promote_subordinate_decisions(self) -> None:
         self.assertEqual(
@@ -141,8 +145,13 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
     def test_substantive_articles_remain_present(self) -> None:
         for article in range(1, 10):
             self.assertIn(f"## Article {article}:", self.text)
+        self.assertIn("The activation record satisfied Article 8", self.text)
         self.assertIn(
-            "Until activation is\nrecorded, this amendment is a reviewable proposal",
+            "Before activation was recorded, this amendment was a\nreviewable proposal",
+            self.text,
+        )
+        self.assertNotIn(
+            "Upon satisfaction of Article 8 and recorded Human Steward promulgation",
             self.text,
         )
 

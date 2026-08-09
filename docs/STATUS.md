@@ -27,7 +27,8 @@ staffing.
 
 ## Verified locally
 
-- 18 unit tests pass from source and from a clean editable installation;
+- 247 unit tests pass under both supported Python versions from a clean source
+  checkout;
 - complete lifecycle from Charter to Complete;
 - denial of incomplete transitions;
 - exact obligation enforcement and review revocation;
