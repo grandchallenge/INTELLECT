@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0.0",
+  "operation_id": "GCL-ORG-2FA-001",
+  "status": "observed",
+  "organization": "grandchallenge",
+  "observed_at": "2026-08-09T04:56:42Z",
+  "organization_wide_2fa_required": true,
+  "secure_2fa_methods_only": true,
+  "member_count": 2,
+  "members": [
+    "fyremael",
+    "jimsteeg"
+  ],
+  "disabled_members": [],
+  "insecure_method_members": [],
+  "owner_eviction": false,
+  "evidence_url": "https://github.com/grandchallenge/.github/issues/47#issuecomment-5229847460",
+  "claim_boundaries": {
+    "organization_wide_conformance_authorized": false,
+    "constitutional_claim_authorized": false,
+    "production_claim_authorized": false,
+    "mathematical_claim_authorized": false,
+    "certification_claim_authorized": false,
+    "deployment_claim_authorized": false,
+    "commercial_claim_authorized": false
+  }
+}

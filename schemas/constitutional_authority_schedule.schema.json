@@ -19,7 +19,7 @@
   ],
   "properties": {
     "$schema": {"type": "string"},
-    "schema_version": {"const": "1.4.0"},
+    "schema_version": {"enum": ["1.4.0", "1.5.0"]},
     "status": {"enum": ["proposed", "active", "superseded"]},
     "staffing": {
       "type": "object",
@@ -33,19 +33,89 @@
         "separation_controls"
       ],
       "properties": {
-        "mode": {"const": "steward_supervised_agents"},
+        "mode": {"enum": ["steward_supervised_agents", "minimum_steady_state_human_authorization"]},
         "directive": {
           "type": "object",
           "additionalProperties": false,
           "required": ["identifier", "path", "status", "issued_at"],
           "properties": {
-            "identifier": {"const": "GI-STEWARD-0001"},
-            "path": {"const": "governance/steward_directives/GI-STEWARD-0001.md"},
+            "identifier": {"enum": ["GI-STEWARD-0001", "GI-STEWARD-0002"]},
+            "path": {"enum": ["governance/steward_directives/GI-STEWARD-0001.md", "governance/steward_directives/GI-STEWARD-0002.md"]},
             "status": {"const": "effective"},
             "issued_at": {"type": "string", "format": "date"}
           }
         },
         "human_steward": {"type": "string", "minLength": 1},
+        "ordinary_human_steward": {"const": "fyremael"},
+        "recovery_owner": {"const": "jimsteeg"},
+        "mandatory_routine_reviewers": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "human_actions_per_governed_decision_target": {"const": 1},
+        "authorization_action": {"const": "authenticated_role_bound_exact_packet_authorization"},
+        "recovery_protocols": {
+          "const": {
+            "steward_replacement": {
+              "trigger": "verified_incapacity_or_loss_of_ordinary_steward_access",
+              "initiators": ["fyremael", "jimsteeg"],
+              "exact_packet_required": true,
+              "human_steward_authorization_required": true,
+              "recovery_owner_self_promotion_allowed": false,
+              "compensating_control": "separately_protected_roster_transition",
+              "restoration": "name_one_authenticated_ordinary_steward"
+            },
+            "account_recovery": {
+              "trigger": "verified_account_access_loss",
+              "initiators": ["fyremael", "jimsteeg"],
+              "exact_packet_required": true,
+              "human_steward_authorization_required": true,
+              "recovery_owner_self_promotion_allowed": false,
+              "compensating_control": "revoke_sessions_and_read_back_access",
+              "restoration": "restore_prior_bounded_role_and_rotate_credentials"
+            },
+            "organization_deletion": {
+              "trigger": "explicit_destructive_intent_by_ordinary_human_steward",
+              "initiators": ["fyremael"],
+              "exact_packet_required": true,
+              "human_steward_authorization_required": true,
+              "recovery_owner_self_promotion_allowed": false,
+              "compensating_control": "verified_export_and_cooling_off_period",
+              "restoration": "not_applicable_irreversible_operation"
+            },
+            "equivalent_irreversible_change": {
+              "trigger": "documented_equivalence_to_organization_deletion",
+              "initiators": ["fyremael"],
+              "exact_packet_required": true,
+              "human_steward_authorization_required": true,
+              "recovery_owner_self_promotion_allowed": false,
+              "compensating_control": "apply_organization_deletion_safeguards",
+              "restoration": "operation_specific_plan_required_before_authorization"
+            }
+          }
+        },
+        "supersession": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["operation_id", "predecessor", "review_packet_sha256", "review_receipt", "reviewed_source_head", "effective_at", "rollback", "grandfathering", "organization_2fa"],
+          "properties": {
+            "operation_id": {"const": "GI-HUMAN-GOVERNANCE-TRANSITION-001"},
+            "predecessor": {"const": "GI-STEWARD-0001"},
+            "review_packet_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+            "review_receipt": {"type": "string", "pattern": "^governance/reviews/GI-HUMAN-GOVERNANCE-TRANSITION-001-[0-9a-f]{12}\\.json$"},
+            "reviewed_source_head": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+            "effective_at": {"type": "string", "format": "date-time"},
+            "rollback": {"const": "later_exact_human_steward_directive_required"},
+            "grandfathering": {"const": "completed_decisions_retain_recorded_rules_inflight_packets_finish_or_restart"},
+            "organization_2fa": {
+              "const": {
+                "evidence_path": "governance/evidence/GCL-ORG-2FA-001.json",
+                "evidence_sha256": "dcf18dabdafe717045188cfed7d3a0ccbc59c44707296045d69d5736c9b55611",
+                "evidence_url": "https://github.com/grandchallenge/.github/issues/47#issuecomment-5229847460"
+              }
+            }
+          }
+        },
         "external_human_review_required": {"const": false},
         "agent_staffed_offices": {
           "type": "array",
@@ -190,5 +260,56 @@
         "effective_at": {"type": ["string", "null"], "format": "date-time"}
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"schema_version": {"const": "1.4.0"}}},
+      "then": {
+        "properties": {
+          "staffing": {
+            "properties": {
+              "mode": {"const": "steward_supervised_agents"},
+              "directive": {
+                "properties": {
+                  "identifier": {"const": "GI-STEWARD-0001"},
+                  "path": {"const": "governance/steward_directives/GI-STEWARD-0001.md"}
+                }
+              }
+            },
+            "not": {
+              "anyOf": [
+                {"required": ["ordinary_human_steward"]},
+                {"required": ["recovery_owner"]},
+                {"required": ["mandatory_routine_reviewers"]},
+                {"required": ["human_actions_per_governed_decision_target"]},
+                {"required": ["authorization_action"]},
+                {"required": ["recovery_protocols"]},
+                {"required": ["supersession"]}
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"schema_version": {"const": "1.5.0"}}},
+      "then": {
+        "properties": {
+          "staffing": {
+            "required": ["ordinary_human_steward", "recovery_owner", "mandatory_routine_reviewers", "human_actions_per_governed_decision_target", "authorization_action", "recovery_protocols", "supersession"],
+            "properties": {
+              "mode": {"const": "minimum_steady_state_human_authorization"},
+              "human_steward": {"const": "fyremael"},
+              "directive": {
+                "properties": {
+                  "identifier": {"const": "GI-STEWARD-0002"},
+                  "path": {"const": "governance/steward_directives/GI-STEWARD-0002.md"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
 }

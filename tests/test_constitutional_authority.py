@@ -8,9 +8,12 @@ from pathlib import Path
 
 from grand_intellect.constitutional_authority import (
     ConstitutionalAuthorityError,
+    _RECOVERY_PROTOCOLS,
     load_and_validate,
     validate_authority_schedule,
+    validate_organization_2fa_evidence,
     validate_review_receipt,
+    validate_staffing_transition_receipt,
 )
 
 
@@ -21,6 +24,9 @@ ACTIVE_RECEIPT_PATH = (
 )
 STALE_RECEIPT_PATH = (
     ROOT / "governance" / "reviews" / "GI-AMEND-0001-cc007ca6fe04.json"
+)
+TWO_FACTOR_EVIDENCE_PATH = (
+    ROOT / "governance" / "evidence" / "GCL-ORG-2FA-001.json"
 )
 
 
@@ -136,6 +142,54 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         }
         return active, receipt
 
+    def synthetic_transition_receipt(self) -> dict[str, object]:
+        return {
+            "schema_version": "1.1.0",
+            "campaign_id": "GI-HUMAN-GOVERNANCE-TRANSITION-001",
+            "staffing_mode": "steward_supervised_agents",
+            "human_steward": "fyremael",
+            "proposal_authors": ["fyremael"],
+            "packet_sha256": "a" * 64,
+            "subjects": [
+                {
+                    "repository": "grandchallenge/INTELLECT",
+                    "pull_request": 54,
+                    "head_sha": "b" * 40,
+                }
+            ],
+            "signoffs": [
+                {
+                    "office": "adversary",
+                    "reviewer": "agent-adversary-phase2",
+                    "reviewer_kind": "agent",
+                    "session_id": "phase2-adversary-session",
+                    "authentication_id": "phase2-adversary-auth",
+                    "attestation_record": "https://example.test/phase2-adversary",
+                    "attestation_sha256": "c" * 64,
+                },
+                {
+                    "office": "referee",
+                    "reviewer": "agent-referee-phase2",
+                    "reviewer_kind": "agent",
+                    "session_id": "phase2-referee-session",
+                    "authentication_id": "phase2-referee-auth",
+                    "attestation_record": "https://example.test/phase2-referee",
+                    "attestation_sha256": "d" * 64,
+                },
+                {
+                    "office": "human_steward",
+                    "reviewer": "fyremael",
+                    "reviewer_kind": "human",
+                    "session_id": None,
+                    "authentication_id": "github-reaction-phase2",
+                    "attestation_record": "https://example.test/phase2-steward",
+                    "attestation_sha256": "e" * 64,
+                },
+            ],
+            "recorded_at": "2026-08-09T06:00:00Z",
+            "status": "complete",
+        }
+
     def test_canonical_schedule_activates_exact_final_head_packet(self) -> None:
         validate_authority_schedule(self.canonical, review_receipt=self.receipt)
         loaded = load_and_validate(SCHEDULE_PATH)
@@ -201,6 +255,106 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         broken["staffing"]["agent_staffed_offices"].remove("adversary")
         with self.assertRaisesRegex(ConstitutionalAuthorityError, "staffing roster"):
             validate_authority_schedule(broken)
+
+    def test_minimum_steady_state_staffing_accepts_only_exact_supersession(self) -> None:
+        steady = copy.deepcopy(self.canonical)
+        steady["schema_version"] = "1.5.0"
+        steady["staffing"].update(
+            {
+                "mode": "minimum_steady_state_human_authorization",
+                "directive": {
+                    "identifier": "GI-STEWARD-0002",
+                    "path": "governance/steward_directives/GI-STEWARD-0002.md",
+                    "status": "effective",
+                    "issued_at": "2026-08-09",
+                },
+                "ordinary_human_steward": "fyremael",
+                "recovery_owner": "jimsteeg",
+                "mandatory_routine_reviewers": [],
+                "human_actions_per_governed_decision_target": 1,
+                "authorization_action": "authenticated_role_bound_exact_packet_authorization",
+                "recovery_protocols": copy.deepcopy(_RECOVERY_PROTOCOLS),
+                "supersession": {
+                    "operation_id": "GI-HUMAN-GOVERNANCE-TRANSITION-001",
+                    "predecessor": "GI-STEWARD-0001",
+                    "review_packet_sha256": "a" * 64,
+                    "review_receipt": "governance/reviews/GI-HUMAN-GOVERNANCE-TRANSITION-001-aaaaaaaaaaaa.json",
+                    "reviewed_source_head": "b" * 40,
+                    "effective_at": "2026-08-09T06:00:00Z",
+                    "rollback": "later_exact_human_steward_directive_required",
+                    "grandfathering": "completed_decisions_retain_recorded_rules_inflight_packets_finish_or_restart",
+                    "organization_2fa": {
+                        "evidence_path": "governance/evidence/GCL-ORG-2FA-001.json",
+                        "evidence_sha256": "dcf18dabdafe717045188cfed7d3a0ccbc59c44707296045d69d5736c9b55611",
+                        "evidence_url": "https://github.com/grandchallenge/.github/issues/47#issuecomment-5229847460"
+                    },
+                },
+            }
+        )
+        transition_receipt = self.synthetic_transition_receipt()
+        two_factor_evidence = json.loads(
+            TWO_FACTOR_EVIDENCE_PATH.read_text(encoding="utf-8")
+        )
+        validate_authority_schedule(
+            steady,
+            review_receipt=self.receipt,
+            staffing_transition_receipt=transition_receipt,
+            organization_2fa_evidence=two_factor_evidence,
+        )
+
+        mutations = (
+            ("recovery_owner", "fyremael"),
+            ("mandatory_routine_reviewers", ["jimsteeg"]),
+            ("human_actions_per_governed_decision_target", 2),
+        )
+        for field, value in mutations:
+            with self.subTest(field=field):
+                broken = copy.deepcopy(steady)
+                broken["staffing"][field] = value
+                with self.assertRaisesRegex(
+                    ConstitutionalAuthorityError, "exact supersession sequence"
+                ):
+                    validate_authority_schedule(
+                        broken,
+                        review_receipt=self.receipt,
+                        staffing_transition_receipt=transition_receipt,
+                        organization_2fa_evidence=two_factor_evidence,
+                    )
+
+        broken_receipt = copy.deepcopy(transition_receipt)
+        broken_receipt["packet_sha256"] = "f" * 64
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "transition receipt binding drift"
+        ):
+            validate_authority_schedule(
+                steady,
+                review_receipt=self.receipt,
+                staffing_transition_receipt=broken_receipt,
+                organization_2fa_evidence=two_factor_evidence,
+            )
+
+        broken_evidence = copy.deepcopy(two_factor_evidence)
+        broken_evidence["disabled_members"] = ["jimsteeg"]
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "2FA evidence digest drift"
+        ):
+            validate_authority_schedule(
+                steady,
+                review_receipt=self.receipt,
+                staffing_transition_receipt=transition_receipt,
+                organization_2fa_evidence=broken_evidence,
+            )
+
+        validate_staffing_transition_receipt(transition_receipt)
+        validate_organization_2fa_evidence(two_factor_evidence)
+
+    def test_bootstrap_schedule_cannot_smuggle_steady_state_fields(self) -> None:
+        broken = copy.deepcopy(self.canonical)
+        broken["staffing"]["recovery_owner"] = "jimsteeg"
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "exact bootstrap staffing sequence"
+        ):
+            validate_authority_schedule(broken, review_receipt=self.receipt)
 
     def test_activation_requires_complete_separated_authority(self) -> None:
         broken = self.proposed_schedule()
