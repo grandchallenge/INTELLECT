@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-postmerge-primitives-20260811-a",
+  "decision": "approve_with_conditions",
+  "deliberation": "One substantive Human Steward decision may authorize a finite set of deterministic administrative consequences only when every consequence is completely determined and execution contains no residual policy choice. The proposal is viable as a design direction, not as present merge or activation authority. Path allowlisting alone cannot make content administrative; governed-payload identity must include the authority-relevant dependency closure. Authorization identity and exact execution identity must remain separate but explicitly bound. Stage 1 may proceed within current routing powers, while any validity-rule or autonomous-merge change requires the effective amendment route and separate Human Steward action.",
+  "discharged_obligations": [
+    "Exposed the primitive entities, assumptions, invariants, and authority boundaries.",
+    "Separated recommendation, deterministic execution, institutional effectiveness, production truth, and mathematical certification.",
+    "Identified the existing authority conflict that prevents immediate automated projection merging."
+  ],
+  "findings": [
+    "Administrative projection needs a versioned semantic definition; path classification is insufficient.",
+    "Governed payload lacks normative canonicalization and dependency-closure rules.",
+    "Transition edges lack preconditions, postconditions, idempotency, ordering, expiry, and failure semantics.",
+    "Current authority prohibits automation from activating or exercising reserved human power.",
+    "Payload identity must not replace exact-base, generated-head, checks, and readback identity."
+  ],
+  "conditions": [
+    "Define projections as byte-reproducible schema-constrained functions of immutable inputs.",
+    "Define a versioned governed-payload manifest whose unclassified changes fail closed.",
+    "Bind authorization to the matter, packet, payload, graph, exact edges, Human Steward, and supersession rule.",
+    "Complete Article XI requirements before autonomous merge authority is enabled.",
+    "Run shadow mode with zero tolerance for scope expansion, replay, bypassed holds, false activation, or evidence loss."
+  ],
+  "residual_uncertainty": [
+    "No projection schema, generator, transition machine, threat model, or shadow evidence exists yet.",
+    "Cross-repository and merge-queue behavior may introduce unresolved races."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:33-53",
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-189",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "adversary",
+  "reviewer_id": "agent-adversary-postmerge-attack-surface-20260811-b",
+  "decision": "changes_requested",
+  "deliberation": "The proposal is exposed to authority laundering, semantic smuggling through allowed paths, packet replay, duplicate delivery, hold-versus-merge races, stale bases, spoofed check names, generator and dependency drift, confused-deputy credentials, and cross-repository partial execution. Calling a protected authority-schedule mutation an administrative projection cannot make it non-activating. Stage 1 and hostile shadow testing may proceed, but Stage 2 must remain disabled until these counterexamples become fail-closed executable controls and effective authority changes.",
+  "discharged_obligations": [
+    "Attacked substitution, replay, concurrency, stale identity, path semantics, check identity, credentials, and partial failure.",
+    "Tested authority laundering across advice, authorization, merge, activation, production truth, and certification.",
+    "Tested whether append-only receipts prove correctness rather than merely record execution."
+  ],
+  "findings": [
+    "An allowlisted projection can still change effective authority-bearing values.",
+    "At-least-once events can replay or concurrently consume one authorization.",
+    "Hold and check validation are vulnerable to time-of-check/time-of-use races.",
+    "Generators, actions, dependencies, runtime, and configuration are not packet-bound.",
+    "Check names alone can be spoofed and broad credentials create a confused deputy.",
+    "Cross-repository execution can leave a mixed state that consumers misread as complete."
+  ],
+  "conditions": [
+    "Bind generator source, immutable actions, dependencies, runtime, configuration, packet, and expected output digest.",
+    "Prohibit automated mutations of authority schedules, office powers, protected workflows, credentials, AETHER authority, and MATHCERT dispositions absent a later exact grant.",
+    "Use atomic per-edge consumption and merge-time revalidation against holds, reviews, authority, rulesets, exact base, and head.",
+    "Use narrowly scoped short-lived repository and branch credentials inaccessible to pull-request code.",
+    "Treat cross-repository execution as a fail-closed saga with incomplete states visible and compensation separately authorized.",
+    "Add adversarial tests for every enumerated attack before enablement."
+  ],
+  "residual_uncertainty": [
+    "No implementation or adversarial suite exists yet.",
+    "Downstream consumers of intermediate authority records have not been inventoried."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-189",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md"
+  ]
+}

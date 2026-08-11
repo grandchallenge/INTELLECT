@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "formalist",
+  "reviewer_id": "intellect-council-formalist-gi-council-postmerge-001-01",
+  "decision": "approve_with_conditions",
+  "deliberation": "The direction is contractible, but its principal nouns and predicates are not defined precisely enough to grant merge capability. Required objects include AuthorizationPacket, GovernedPayloadManifest, CampaignContract, TransitionGraph and Edge, Hold, CheckEvidence, Projection, ExecutionReceipt, ReadbackReceipt, and CompensationProposal. Campaign and edge state machines must make authentication, integrity, path closure, checks, holds, replay consumption, predecessor readback, completion, and non-escalation decidable. Approval covers contract development and shadow evaluation only.",
+  "discharged_obligations": [
+    "Converted the actors and artifacts into explicit contract objects.",
+    "Specified the required matter, campaign, and edge state transitions.",
+    "Identified preconditions, postconditions, and proof obligations for safe projection."
+  ],
+  "findings": [
+    "Central terms such as exact packet, substantive path, projection, hold, readback, and terminal state are undefined.",
+    "No campaign or per-edge state machine is supplied.",
+    "The unchanged-payload predicate is undecidable without canonicalization and closed manifests.",
+    "Allowed-path, required-check, hold, receipt, and readback semantics are incomplete.",
+    "Reserved authority constraints are prose rather than executable invariants."
+  ],
+  "conditions": [
+    "Adopt versioned schemas and validators for every contract object.",
+    "Give every transition explicit guards, postconditions, evidence outputs, and failure behavior.",
+    "Atomically revalidate checks, holds, review state, replay keys, and predecessor readbacks before execution.",
+    "Encode activation and certification prohibitions as denied capabilities and negative tests.",
+    "Any ambiguity or unknown identity must produce a blocked state."
+  ],
+  "residual_uncertainty": [
+    "Authentication, holds, canonical bytes, semantic classification, and append-only evidence authority are unspecified.",
+    "The narrow authority amendment is not yet available for compatibility proof."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:43",
+    "CONSTITUTION.md:180-189",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md"
+  ]
+}

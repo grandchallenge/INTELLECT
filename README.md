@@ -221,6 +221,11 @@ docs/                     architecture, pedagogy, threats, roadmap, templates
 
 ## Development contract
 
+Full-ten-office advisory proceedings use the fail-closed Council matter
+contract documented in [`docs/COUNCIL_MATTERS.md`](docs/COUNCIL_MATTERS.md).
+Council compilation validates deliberative evidence; it cannot exercise Human
+Steward authority or advance a governed transition.
+
 Before proposing a change:
 
 ```bash

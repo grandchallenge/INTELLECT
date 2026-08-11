@@ -1,0 +1,37 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "steward",
+  "reviewer_id": "openai-gpt-5.6-council-steward-gi-council-postmerge-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "The remedy is proportionate: repeated repository operations after one substantive authorization spend scarce volunteer attention on mechanics rather than judgment. Stage 1 is reversible, shadow mode constrains risk, and governed-payload identity addresses churn. Approval is conditional because baseline burden, durable ownership, initial scope, service expectations, promotion thresholds, kill-switch operation, and maintenance-value review are not yet specified. Council Steward advice is not reserved Human Steward disposition.",
+  "discharged_obligations": [
+    "Compared alternatives for volunteer effort, delay, risk, and institutional purpose.",
+    "Assessed proportionality, maintainability, reversibility, resource commitment, and scope control.",
+    "Distinguished Council Steward advice from Human Steward authority."
+  ],
+  "findings": [
+    "Bounded deterministic projection is a better use of volunteer attention than repeated mechanical merges.",
+    "The staged rollout is proportionate and substantially reversible.",
+    "The burden claim lacks a recorded baseline and target.",
+    "Long-term ownership and operating cost are unspecified.",
+    "The initial allowlist and expansion rule must remain narrow."
+  ],
+  "conditions": [
+    "Record baseline human actions, elapsed time, PR count, polling, retries, and operator minutes.",
+    "Require one or fewer Steward actions, zero manual SHA transcription, and at least 70 percent median post-authorization time reduction.",
+    "Name the initial repositories, transitions, and paths; separately review any expansion.",
+    "Assign a maintainer, backup, incident route, dependency policy, cost ceiling, and quarterly review.",
+    "Provide a one-action kill switch and reassess maintenance value after two clean campaigns and after 90 days."
+  ],
+  "residual_uncertainty": [
+    "Campaign telemetry, CI cost, maintenance cost, and initial scope are unknown.",
+    "The availability and burden of maintainers are unknown."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:45",
+    "CONSTITUTION.md:174-189",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md"
+  ]
+}

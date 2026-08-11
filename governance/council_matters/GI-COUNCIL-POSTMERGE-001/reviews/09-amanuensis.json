@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "amanuensis",
+  "reviewer_id": "openai-gpt-5.6-council-amanuensis-gi-council-postmerge-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Packet-declared transitions and append-only decision, execution, and readback evidence improve inheritance, especially because compensation does not erase history. Approval is conditional because custody, schemas, immutable identifiers, lineage, supersession, retention, reconciliation, and recovery are not defined well enough for a future custodian to reconstruct the chain without chat or operator memory. Automated merging must await a durable record contract.",
+  "discharged_obligations": [
+    "Assessed durable reconstruction from matter through authorization, execution, readback, and compensation.",
+    "Assessed provenance, supersession, custody, retention, and personnel-independent inheritance.",
+    "Preserved distinctions among advice, reserved action, execution, activation, production truth, and certification."
+  ],
+  "findings": [
+    "Proposal identity is digest-bound and compensation preserves history.",
+    "Durable schemas for reviews, disposition, authorization, receipts, holds, supersession, and terminal records are incomplete.",
+    "The lineage graph and canonical custody boundary are not formally inscribed.",
+    "Supersession, retention, retrieval, migration, and recovery semantics are incomplete.",
+    "Missing or divergent records need a fail-closed reconciliation state."
+  ],
+  "conditions": [
+    "Give every durable record a versioned schema, immutable identity, actor, time, source digests, exact revision, authority class, dependencies, and outcome.",
+    "Name the canonical governance store and the authoritative production execution-evidence substrate.",
+    "Formalize immutable supersession, invalidation, abandonment, and compensation links.",
+    "Require the Referee disposition to bind all ten review IDs and digests.",
+    "Keep Human Steward disposition as a separate authenticated provenance-bearing act.",
+    "Adopt retention, retrieval, migration, reconciliation, and periodic recovery controls."
+  ],
+  "residual_uncertainty": [
+    "No custody map, retention policy, migration plan, or recovery drill exists.",
+    "The Git-governance and AETHER production-evidence boundary is not specified."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:51",
+    "CONSTITUTION.md:148-172",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/matter.json"
+  ]
+}

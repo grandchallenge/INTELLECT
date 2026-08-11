@@ -1,0 +1,46 @@
+{
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify.",
+  "conditions": [
+    "Reorder the rollout: baseline and Stage 1 simplification; glossary and schemas; governed-payload identity; hostile shadow mode; Article XI amendment and Human Steward disposition; then bounded enablement.",
+    "Namespace decision vocabularies and reserve activation and effective for institutional effect.",
+    "Publish versioned validators for authorization, payload, campaign, graph, edge, holds, checks, projections, execution, readback, compensation, supersession, and terminal records.",
+    "Specify deterministic closed identity for repositories, revisions, dependencies, generators, expected outputs, campaign, graph, signature, expiry, and nonce.",
+    "Use one idempotent lifecycle with atomic replay consumption and merge-time validation of checks, holds, reviews, exact base, exact head, and predecessor readback.",
+    "Deny automated activation, ratification, certification, disputed judgment, substantive policy, permission escalation, authority schedules, office powers, protected workflows, credentials, AETHER authority, and MATHCERT dispositions.",
+    "Use narrow short-lived credentials and fail-closed cross-repository saga semantics.",
+    "Define canonical custody, immutable lineage, supersession, retention, retrieval, reconciliation, migration, and recovery.",
+    "Predeclare zero-tolerance shadow safety gates, one or fewer Human Steward actions, zero manual SHA transfer or dispatch, and at least 70 percent median elapsed-time reduction.",
+    "Assign maintainers, incident route, cost ceiling, one-action kill switch, and maintenance-value reviews.",
+    "Complete the Article XI package and exact-candidate validation before any merge capability."
+  ],
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office_decisions": {
+    "adversary": "changes_requested",
+    "amanuensis": "approve_with_conditions",
+    "axiomatist": "approve_with_conditions",
+    "cartographer": "approve_with_conditions",
+    "composer": "changes_requested",
+    "formalist": "approve_with_conditions",
+    "grammarian": "changes_requested",
+    "referee": "changes_requested",
+    "steward": "approve_with_conditions",
+    "verifier": "changes_requested"
+  },
+  "procedural_disposition": "returned_for_revision",
+  "ready_for_human_disposition": false,
+  "review_count": 10,
+  "review_sha256": {
+    "adversary": "a6d4fc3524a2fe5acd7bafe64d6af8a84be03fe8a1dc6a2b272a3127a0a7f79e",
+    "amanuensis": "fef7ada06281be7dc0a07d06e897c8a907255cbe702b9c78e29cbb60fe6bd372",
+    "axiomatist": "e5e19af1d6655448bf1d8b0214a69eea4bb2c253a2055b0b3df08eaf75b00ff5",
+    "cartographer": "c3638d31ce8884e67425b52c7174088831b389ed729b52d5cb90fc9d7996e66f",
+    "composer": "a7b784c3eeedf1a1b3f67fc518d4910471c26a7296c82a76f2f379c6d086593d",
+    "formalist": "3cc9781f8b381a7c5a99c5a0f6bdf6b3c25be889660068187bd03a358eeecc1a",
+    "grammarian": "42f1faac379b4153b44e02583ff2873217098f952d5eca33911acfb02a170538",
+    "referee": "9d071c1001ac1122bf478c055faa9cada34b771d9ee209ad18f7f3be722f2580",
+    "steward": "48778492a6cafe849e02f1dc30ee18d323a77dbfc397ae20d207db673b3178a3",
+    "verifier": "dc6dd034e3da4c3cc2244fae1f24d6c6f950d364a50b8a59c7e32362403e12ae"
+  },
+  "schema_version": "1.0"
+}

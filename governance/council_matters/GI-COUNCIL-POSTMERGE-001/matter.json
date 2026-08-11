@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "title": "Reduce post-merge governance burden without collapsing authority",
+  "status": "before_council",
+  "decision_class": "operating_policy_and_automation_design",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+  "proposal_sha256": "60046abb97ad4f41817612e11e220e19facfdb7d77fb0a68b7892ae570e3b67a",
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward",
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject",
+    "abstain"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-POSTMERGE-001/disposition.json"
+}
