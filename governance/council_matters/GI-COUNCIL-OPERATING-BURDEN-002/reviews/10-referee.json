@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "referee",
+  "reviewer_id": "agent-referee-operating-burden-002-20260812-j",
+  "decision": "approve_with_conditions",
+  "deliberation": "The successor is procedurally ready with conditions. It enforces rather than amends GI-STEWARD-0002, which makes jimsteeg non-mandatory for routine decisions. It replaces unscoped burden with closed classification while retaining required pre-merge checks, exact-SHA readback, expensive post-merge checks for relevant changes, and recovery for lost events or failures. Council does not authorize a proxy, approve or merge a pull request, alter protected settings, activate policy, ratify an amendment, certify mathematics, or exercise AETHER or MATHCERT authority.",
+  "discharged_obligations": [
+    "Reconciled staffing, workflow burden, classification, recovery, and authority boundaries.",
+    "Confirmed routine jimsteeg removal follows current authority.",
+    "Preserved exact-SHA evidence and relevant post-merge checks.",
+    "Kept Council advice separate from Human Steward disposition and integration."
+  ],
+  "findings": [
+    "The staffing correction is already required by effective authority.",
+    "Required pre-merge checks remain unchanged and cannot be bypassed by classification.",
+    "Every merge retains exact-SHA protected-target readback; only additional expensive suites are impact-gated.",
+    "Unknown, mixed, authority-sensitive, security-sensitive, protected-workflow, credential, AETHER-boundary, and MATHCERT-disposition changes require conservative treatment.",
+    "Routine jimsteeg requests must cease while optional and recovery roles remain bounded.",
+    "No Council record created here supplies proxy, merge, activation, ratification, certification, or escalation authority."
+  ],
+  "conditions": [
+    "Enforce GI-STEWARD-0002 exactly: mandatory routine reviewers remain empty; jimsteeg is contacted only for exact recovery or separately named optional review.",
+    "Freeze and validate a closed classifier before runtime change; unknown, mixed, generator-affecting, dependency-widening, or invalid states select conservative fanout.",
+    "Retain all current required pre-merge checks and emit exact-SHA protected-target readback for every protected merge.",
+    "Replace generic fixed-delay work with event-driven readback plus scheduled recovery and manual escalation; retain a timer only for an enumerated risk contract.",
+    "Publish append-only classification, execution, readback, recovery, incident, and supersession evidence without treating not-applicable as passed.",
+    "Validate hostile stale-head, mixed-path, generator, lost-event, duplicate-event, replay, hold, ruleset-drift, and unauthorized-reviewer cases.",
+    "Require separate authenticated Human Steward disposition wherever effective authority reserves it; automation may prepare and validate but not approve, merge its own work, activate, ratify, certify, impersonate, or expand permissions.",
+    "Measure routine jimsteeg requests, human actions, fixed-delay jobs, false-lightweight classifications, incidents, and handling time; preserve rollback."
+  ],
+  "residual_uncertainty": [
+    "The wider inventory may reveal a narrow exact policy requiring migration.",
+    "Shadow evidence is still required to measure false negatives.",
+    "Scheduled recovery cadence should follow event-loss data."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/disposition.json",
+    "governance/committees/GI-PROXY-DELEGATION-COMMITTEE-001.md",
+    "CONSTITUTION.md",
+    "docs/COUNCIL_MATTERS.md"
+  ]
+}

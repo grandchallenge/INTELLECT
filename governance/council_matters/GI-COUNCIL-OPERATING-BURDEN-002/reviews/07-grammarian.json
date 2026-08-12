@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "grammarian",
+  "reviewer_id": "agent-grammarian-operating-burden-002-20260812-g",
+  "decision": "approve_with_conditions",
+  "deliberation": "The proposal is sound only if it distinguishes authenticated Human Steward authorization, a GitHub review signal, optional bounded review, recovery-owner action, and mechanical merge. A routine request to jimsteeg is invalid routing, not a waived approval. Post-merge language must also distinguish required pre-merge checks, exact-SHA readback, path-gated expensive validation, and recovery. The word skip is unsafe: a merge should receive an explicit classifier disposition with version and reasons.",
+  "discharged_obligations": [
+    "Separated authorization, platform review, optional review, recovery, and integration terms.",
+    "Defined language that removes generic checks without implying bypass.",
+    "Preserved reserved terms and advisory Council status."
+  ],
+  "findings": [
+    "Routine jimsteeg request is invalid routing, not an unmet gate.",
+    "Exact-SHA readback is immediate observation, not a substantive review.",
+    "Unknown, mixed, or classifier-drifted changes must fail closed.",
+    "Scheduled and manual recovery are exception routes, not routine approvals."
+  ],
+  "conditions": [
+    "Publish one vocabulary shared by proposal, classifier, receipts, workflows, UI, and documentation.",
+    "Do not use approved or passed where the record means advisory, mechanically merged, not applicable, or observed.",
+    "Every non-expensive disposition must carry classifier identity, changed-path digest, dependency result, and reason."
+  ],
+  "residual_uncertainty": [
+    "The cross-repository vocabulary and inventory remain to be frozen.",
+    "Path labels may be insufficient for generated or transitive effects."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "CONSTITUTION.md"
+  ]
+}

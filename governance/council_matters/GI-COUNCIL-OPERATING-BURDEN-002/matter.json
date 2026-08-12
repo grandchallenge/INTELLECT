@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "title": "Enforce minimum routine approval and post-merge burden",
+  "status": "before_council",
+  "decision_class": "effective-policy enforcement and workflow impact gating",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md",
+  "proposal_sha256": "0e17ce37028b10e179c9b5961ba4e170222e8098501abbd7a2da8eb44530bf82",
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward",
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject",
+    "abstain"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/disposition.json"
+}

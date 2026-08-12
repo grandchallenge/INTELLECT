@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "verifier",
+  "reviewer_id": "agent-verifier-operating-burden-002-20260812-c",
+  "decision": "approve_with_conditions",
+  "deliberation": "The proposal is independently verifiable without an authority change because it preserves required pre-merge checks and reserved human action while narrowing redundant execution. Verification requires a machine-checkable selector, adversarial path corpus, and receipts showing which suites were selected for the merged SHA and why. Selection must be deterministic and conservative under unknown or transitive effects.",
+  "discharged_obligations": [
+    "Assessed reproducibility of routing, suite selection, exact-SHA readback, recovery, and escalation.",
+    "Checked preservation of current pre-merge checks.",
+    "Specified positive, negative, replay, and drift tests for reconstruction."
+  ],
+  "findings": [
+    "The current MATH-PROGRAMME standalone CMDG family uses path-gated pull requests but unconditional main pushes.",
+    "The live rulesets require zero approving reviews, so routine jimsteeg review is not branch qualification.",
+    "The prior Council allowed operating simplification while keeping merge-capable projection disabled.",
+    "Skipped suites require an explicit not-applicable selection receipt, not an inferred success."
+  ],
+  "conditions": [
+    "Publish and validate a versioned selector manifest.",
+    "Seed direct, renamed, deleted, generated, shared-library, mixed, and unknown path tests.",
+    "Keep required PR checks present and unchanged.",
+    "Emit bounded readback and hold downstream effect on failed or unknown state.",
+    "Prove an ordinary successful merge creates no jimsteeg request and no Council campaign."
+  ],
+  "residual_uncertainty": [
+    "The organization-wide selector inventory remains incomplete.",
+    "Cross-repository consumers of readback remain to be enumerated."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/03-verifier.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/10-referee.json",
+    "https://github.com/grandchallenge/INTELLECT/rules/19964077",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/rules/17137629",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

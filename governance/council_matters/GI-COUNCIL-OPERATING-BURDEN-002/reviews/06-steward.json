@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "steward",
+  "reviewer_id": "agent-steward-operating-burden-002-20260812-f",
+  "decision": "approve_with_conditions",
+  "deliberation": "The remedy is proportionate and directly implements minimum-human-action policy. Repeated routine requests to jimsteeg consume recovery capacity without adding an authorized decision and contradict GI-STEWARD-0002. Replaying unrelated expensive suites after every merge similarly spends runner time without improving evidence for that change. Retaining required checks, relevant post-merge suites, recovery dispatch, and exact-SHA readback preserves accountable integration while reducing volunteer and compute burden. Council Steward advice does not supply Human Steward authorization.",
+  "discharged_obligations": [
+    "Assessed human burden, runner cost, proportionality, maintainability, reversibility, and institutional purpose.",
+    "Compared unconditional replay with relevant-suite execution and lightweight readback.",
+    "Distinguished routine authorization, optional review, recovery ownership, and Council advice."
+  ],
+  "findings": [
+    "Routine jimsteeg requests are inconsistent with the effective directive.",
+    "The sampled MATH-PROGRAMME merge launched twelve unrelated standalone CMDG push workflows and a 15 minute 56 second policy run.",
+    "Known-path classification and main-push path gating are reversible operating changes.",
+    "The proposal creates no proxy, merge, activation, ratification, certification, or promotion authority."
+  ],
+  "conditions": [
+    "Measure workflow count, runner minutes, elapsed time, human requests, and false-full-fanout events before and after remediation.",
+    "Target zero routine jimsteeg requests, at most one Human Steward action, and at least 70 percent median reduction for unrelated merges.",
+    "Retain a one-change rollback to conservative fanout on false negative.",
+    "Review after thirty days or twenty protected merges, whichever comes first."
+  ],
+  "residual_uncertainty": [
+    "Long-run classifier false-negative rate is not yet measured.",
+    "Path-registry maintenance cost remains prospective."
+  ],
+  "evidence_refs": [
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31596587540",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31596985613",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}
