@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "composer",
+  "reviewer_id": "intellect-council-composer-gi-council-postmerge-001-01",
+  "decision": "changes_requested",
+  "deliberation": "The right components do not yet compose into a contradiction-free lifecycle. Payload identity must precede merge enablement. The proposal's motivating chain includes activation while the matter forbids automated activation. Authorization intent, execution, and readback receipts occur at different times and must be separate. Event dispatch and recovery must converge on one reconciler. The defects are remediable, so rejection is unwarranted, but approval is premature.",
+  "discharged_obligations": [
+    "Integrated dispatch, validation, execution, receipts, readback, and terminal state into one lifecycle.",
+    "Checked consistency among Council advice, Human Steward authority, and Clerk capabilities.",
+    "Identified stage-order, activation, evidence-order, and terminology contradictions."
+  ],
+  "findings": [
+    "The rollout is dependency-inverted because Stage 2 relies on identity defined in Stage 3.",
+    "Automated activation language contradicts automation_may_activate=false.",
+    "The authority amendment and per-decision authorization packet are insufficiently separated.",
+    "Pre-execution authorization, execution receipt, and post-execution readback are conflated.",
+    "Event and recovery triggers are not guaranteed to share one idempotent lifecycle.",
+    "Exact-head and governed-payload identities lack complementary roles."
+  ],
+  "conditions": [
+    "Reorder the rollout: operational simplification, payload identity, shadow mode, authority amendment, bounded merging.",
+    "Exclude reserved activation, ratification, certification, disputed judgment, substantive policy, and permission escalation from projection classes.",
+    "Separate capability-class authority from one-decision packet authorization.",
+    "Use linked authorization, execution, and independent readback records.",
+    "Use one idempotent reconciler and one lifecycle for event and recovery paths.",
+    "State that payload identity binds substantive review while exact-head identity binds each generated projection."
+  ],
+  "residual_uncertainty": [
+    "Projection taxonomy, lifecycle, event guarantees, and readback independence are unspecified.",
+    "The proposed authority amendment is unavailable."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:49",
+    "CONSTITUTION.md:164-189",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/matter.json"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "grammarian",
+  "reviewer_id": "agent-grammarian-postmerge-semantic-contract-20260811-c",
+  "decision": "changes_requested",
+  "deliberation": "The intent is intelligible but the vocabulary is unsafe across policy, schema, workflow, and UI. Activation cannot name both institutional effect and a non-authoritative publication while automation_may_activate is false. Review packet and authenticated Human Steward authorization are distinct objects. Approve is overloaded across Council, GitHub, and reserved authority. Automatic rollback actually means circuit break plus compensating proposal. Complete, terminal, receipt, readback, hold, governed payload, and administrative projection need normative definitions.",
+  "discharged_obligations": [
+    "Compared terminology across proposal, matter metadata, authority, workflow, and operator interfaces.",
+    "Identified overloaded authority and status language.",
+    "Assessed temporal accuracy, actor clarity, reversibility, and evidence-versus-effect distinctions."
+  ],
+  "findings": [
+    "Activation must not denote both institutional effect and non-authoritative publication.",
+    "Review packet and authenticated Human Steward authorization record are conflated.",
+    "Council, GitHub, and Human Steward decision vocabularies are not namespaced.",
+    "Administrative projection and governed payload lack normative semantic definitions.",
+    "Automatic rollback is a misleading label for disablement and compensation.",
+    "Terminal and complete have multiple incompatible referents."
+  ],
+  "conditions": [
+    "Adopt a normative glossary and machine-readable vocabulary mapping shared by prose, schemas, workflows, UI, and receipts.",
+    "Reserve activation and effective for transitions that confer institutional effect.",
+    "Separate exact-revision review packets from authenticated Human Steward authorization records.",
+    "Use namespaced office_decision, proposal_option, github_review_state, and human_steward_disposition vocabularies.",
+    "Rename automatic rollback as execution disablement and compensating-change proposal.",
+    "Define lifecycle states and receipt terms by their exact evidentiary strength."
+  ],
+  "residual_uncertainty": [
+    "No workflow, UI, or complete state machine exists for consistency testing.",
+    "Consumers of active, effective, admitted, adopted, complete, and activated have not been inventoried."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:47",
+    "CONSTITUTION.md:164-189",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/matter.json"
+  ]
+}

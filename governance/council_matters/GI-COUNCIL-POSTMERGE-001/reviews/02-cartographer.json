@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "cartographer",
+  "reviewer_id": "intellect-council-cartographer-gi-council-postmerge-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "The topology is viable, but governed-payload identity is a prerequisite for automated projection merging rather than a later enhancement. The safe graph is Council records, Referee advice, reserved Human Steward action and any required amendment, payload and graph identity, shadow mode, event or recovery ingestion, exact validation, ordered per-edge execution, append-only receipt, independent readback, and terminal closure. Repository, path, evidence-authority, concurrency, supersession, and partial-failure terrain remain unresolved.",
+  "discharged_obligations": [
+    "Mapped the authority and execution dependency graphs.",
+    "Identified the ordering inversion between payload identity and projection merging.",
+    "Assessed repository, path, replay, concurrency, evidence, and partial-failure terrain."
+  ],
+  "findings": [
+    "Governed-payload identity and graph specification must precede merge enablement.",
+    "The proposal supplies no concrete repository inventory, refs, closed allowed-path registry, or terminal node set.",
+    "Every descendant edge must depend on successful independent readback of predecessors.",
+    "Event delivery and the recovery sweep require one idempotency and ordering model.",
+    "The authoritative location of execution and readback evidence is undefined."
+  ],
+  "conditions": [
+    "Publish a versioned transition-graph schema with repositories, refs, paths, dependencies, checks, holds, readbacks, compensation, and terminal conditions.",
+    "Assign immutable campaign, packet, payload, contract, and edge identities with explicit supersession.",
+    "Halt an edge and all descendants on failure, hold, or failed readback while preserving admitted history.",
+    "Define the INTELLECT and AETHER evidence boundary before implementation."
+  ],
+  "residual_uncertainty": [
+    "Participating repositories and branch-protection regimes are not enumerated.",
+    "No empirical shadow result establishes event reliability or cross-repository completion time."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:33-53",
+    "CONSTITUTION.md:164-189",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "verifier",
+  "reviewer_id": "openai-gpt-5.6-verifier-proxy-delegation-001-20260811-a",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "The direction preserves current law and non-impersonation, but no reproducible classifier, delegation model, proxy attribution contract, authenticated reviewer/session provenance, credential profile, adversarial suite, or shadow evidence exists. Current motion automation verifies record structure and asserted identity uniqueness only. Committee work is the only affirmative option proportionate to the evidence.",
+  "discharged_obligations": ["Verified digest binding, compiler behavior, six procedural tests, classification testability, authentication, attribution, independence, and measurable acceptance."],
+  "findings": ["Distinct reviewer strings do not prove authenticated independent invocations.", "No executable semantic classifier or closed dependency rule exists.", "No delegation or proxy-act schema proves scope and attribution.", "Replay, revocation, holds, and execution-time validation lack atomic semantics.", "Shadow mode lacks a fixed corpus and promotion thresholds."],
+  "amendments": ["Define versioned classification, delegation, proxy identity, proxy act, revocation, hold, incident, integration, and readback schemas.", "Require zero false-routine classification and complete seeded-negative detection.", "Bind authenticated principals, proxies, reviewers, sessions, policies, tasks, credentials, expiry, nonce, and evidence.", "Make machine_actor=true and human_contemporaneous_act=false invariant.", "Expand compiler and adversarial coverage before renewed review."],
+  "residual_uncertainty": ["Platform identity and credential enforcement are unproven.", "No task inventory, corpus, migration, or AETHER evidence-boundary design exists."],
+  "evidence_refs": ["src/grand_intellect/council_motion.py", "tests/test_council_motion.py", "CONSTITUTION.md:61-72", "CONSTITUTION.md:164-189", "governance/steward_directives/GI-STEWARD-0002.md"]
+}

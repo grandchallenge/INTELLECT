@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "adversary",
+  "reviewer_id": "agent-adversary-proxy-delegation-threat-model-20260811-e",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "The regime is vulnerable to social impersonation, standing-policy authority laundering, confused-deputy inputs, sybil review, replay, revocation races, indirect control-plane effects, task decomposition, transitive workflows, excess credentials, and incomplete audit. The direction is not rejected because a closed low-risk execution class may be defensible, but only committee-built capabilities, schemas, hostile tests, and shadow evidence can make that claim reviewable.",
+  "discharged_obligations": ["Attacked impersonation, authority laundering, credentials, independence, replay, revocation, classification, composition, and audit completeness."],
+  "findings": ["Standing classes can launder instance-level reserved approval.", "Control-plane effects can occur indirectly through dependencies and triggered systems.", "Revocation and hold checks race queued or credentialed execution.", "Distinct identities may share one controller and provide no separation.", "Short-lived tokens may retain excess transitive capability.", "Composition of small tasks can create prohibited aggregate effects."],
+  "amendments": ["Use single-task capabilities and atomic authorization consumption where possible.", "Bind semantic dependency closure, generator, policy, base, output, credential, and exact target.", "Protect classifiers and denied-capability policy from the proxy system.", "Require unmistakable machine attribution and independent append-only audit.", "Test confused deputy, replay, revocation, composition, symlink/submodule indirection, spoofed checks, and collusion."],
+  "residual_uncertainty": ["No implementation, permission matrix, identity model, or downstream consumer inventory exists."],
+  "evidence_refs": ["CONSTITUTION.md:61-72", "CONSTITUTION.md:164-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

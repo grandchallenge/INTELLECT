@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "referee",
+  "reviewer_id": "openai-gpt-5.6-council-referee-gi-council-postmerge-001",
+  "decision": "changes_requested",
+  "deliberation": "The docket is procedurally bound: all nine non-Referee offices are present once, reviewer identities are distinct, decisions use the declared vocabulary, and every review matches the current canonical matter digest. The merits contain five conditional approvals and four changes requests. The Council converges that operational simplification and shadow work are warranted, but governed-payload identity must precede merge capability and the missing schemas, state machines, threat controls, vocabulary, custody, measurements, and Article XI authority are material. Under the fail-closed Council contract, any changes_requested decision returns the matter for revision. Rejection is unwarranted because the defects are remediable. Merge-capable automated projection remains disabled, and no Council record supplies Human Steward authority.",
+  "discharged_obligations": [
+    "Verified all nine prior office records, canonical binding, office coverage, reviewer separation, and decision vocabulary.",
+    "Reconciled five conditional approvals and four changes requests without treating plurality as dispositive.",
+    "Applied the fail-closed procedural rule and preserved reserved Human Steward authority.",
+    "Consolidated repeated conditions into an ordered remediation gate and recorded residual uncertainty."
+  ],
+  "findings": [
+    "The Council supports reducing repeated mechanical volunteer work and permits Stage 1 measurement, preparation, terminal-state design, documentation reconciliation, and shadow work within current authority.",
+    "The rollout is dependency-inverted; governed-payload identity and contracts must precede merge capability.",
+    "Authorization and execution contracts, canonical identity, graph semantics, state machines, receipts, readback, and lineage are incomplete.",
+    "Replay, duplicate delivery, hold races, stale bases, spoofed checks, generator drift, credential confusion, semantic smuggling, and partial execution remain unresolved.",
+    "Authority and lifecycle vocabulary remains ambiguous across policy and interfaces.",
+    "Operational value, ownership, custody, retention, recovery, and maintenance cost are unmeasured.",
+    "Council advice cannot enable merge-capable automation or supply activation, production truth, or mathematical certification."
+  ],
+  "conditions": [
+    "Reorder the rollout: baseline and Stage 1 simplification; glossary and schemas; governed-payload identity; hostile shadow mode; Article XI amendment and Human Steward disposition; then bounded enablement.",
+    "Namespace decision vocabularies and reserve activation and effective for institutional effect.",
+    "Publish versioned validators for authorization, payload, campaign, graph, edge, holds, checks, projections, execution, readback, compensation, supersession, and terminal records.",
+    "Specify deterministic closed identity for repositories, revisions, dependencies, generators, expected outputs, campaign, graph, signature, expiry, and nonce.",
+    "Use one idempotent lifecycle with atomic replay consumption and merge-time validation of checks, holds, reviews, exact base, exact head, and predecessor readback.",
+    "Deny automated activation, ratification, certification, disputed judgment, substantive policy, permission escalation, authority schedules, office powers, protected workflows, credentials, AETHER authority, and MATHCERT dispositions.",
+    "Use narrow short-lived credentials and fail-closed cross-repository saga semantics.",
+    "Define canonical custody, immutable lineage, supersession, retention, retrieval, reconciliation, migration, and recovery.",
+    "Predeclare zero-tolerance shadow safety gates, one or fewer Human Steward actions, zero manual SHA transfer or dispatch, and at least 70 percent median elapsed-time reduction.",
+    "Assign maintainers, incident route, cost ceiling, one-action kill switch, and maintenance-value reviews.",
+    "Complete the Article XI package and exact-candidate validation before any merge capability."
+  ],
+  "residual_uncertainty": [
+    "No baseline telemetry, schemas, Clerk implementation, threat-test suite, or shadow result exists.",
+    "Repositories, protections, record consumers, projection classes, and the Git/AETHER evidence boundary are not enumerated.",
+    "The required authority amendment is unavailable."
+  ],
+  "evidence_refs": [
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/01-axiomatist.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/02-cartographer.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/03-verifier.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/04-adversary.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/05-formalist.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/06-steward.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/07-grammarian.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/08-composer.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/09-amanuensis.json"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "amanuensis",
+  "reviewer_id": "openai-gpt-5.6-council-amanuensis-proxy-delegation-001-20260811-c",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "The motion's dual-attribution and non-erasure principles are sound, but no durable record system can yet reconstruct whether a delegation, policy, credential, office review, hold, revocation, proxy act, integration, and readback were valid at the relevant time. Committee work must create schemas, lineage, custody, supersession, retention, migration, reconciliation, recovery, and its own documentary charter before direct disposition.",
+  "discharged_obligations": ["Assessed attribution, provenance, lineage, temporal validity, revocation, supersession, custody, retention, migration, reconstruction, and committee inheritance."],
+  "findings": ["No versioned Delegation or ProxyAct record exists.", "Temporal ordering and supersession are not reconstructable.", "Canonical INTELLECT versus AETHER custody is unresolved.", "Missing and divergent records lack reconciliation states.", "Existing automations and approvals lack migration classification.", "The committee itself needs an immutable charter and terminal report."],
+  "amendments": ["Define immutable versioned governance and execution records with complete lineage.", "Render machine actor and human delegation principal separately in every interface.", "Represent revocation, expiry, widening, renewal, and replacement as linked records.", "Name canonical governance and production-evidence stores.", "Adopt retention, retrieval, recovery drills, and migration inventory.", "Give the committee a charter, member records, work manifest, issue log, and terminal report."],
+  "residual_uncertainty": ["No record implementation, custody decision, retention duration, migration inventory, or committee procedure exists."],
+  "evidence_refs": ["CONSTITUTION.md:148-172", "CONSTITUTION.md:174-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

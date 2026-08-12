@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.dev/intellect/schemas/council_disposition.schema.json",
+  "title": "Grand Intellect compiled Council disposition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "matter_id", "matter_sha256", "review_count",
+    "office_decisions", "review_sha256", "procedural_disposition",
+    "ready_for_human_disposition", "conditions", "authority_boundary"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "matter_id": {"type": "string", "minLength": 1},
+    "matter_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "review_count": {"const": 10},
+    "office_decisions": {
+      "type": "object",
+      "minProperties": 10,
+      "maxProperties": 10,
+      "additionalProperties": {"enum": ["approve", "approve_with_conditions", "changes_requested", "reject", "abstain"]}
+    },
+    "review_sha256": {
+      "type": "object",
+      "minProperties": 10,
+      "maxProperties": 10,
+      "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    },
+    "procedural_disposition": {"enum": ["ready", "ready_with_conditions", "returned_for_revision", "returned_rejected", "incomplete"]},
+    "ready_for_human_disposition": {"type": "boolean"},
+    "conditions": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "authority_boundary": {"type": "string", "minLength": 1}
+  }
+}

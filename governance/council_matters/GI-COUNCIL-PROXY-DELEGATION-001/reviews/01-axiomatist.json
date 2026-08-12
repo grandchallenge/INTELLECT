@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-proxy-delegation-primitives-20260811-d",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "Attribution is not identity: a proxy act remains a machine act even under a human-created delegation. It cannot satisfy a rule requiring direct substantive authenticated human action. Motion A may support already-authorized nondiscretionary execution, but Motion B changes current staffing, office-power, and autonomous-permission rules and conflicts with GI-STEWARD-0002 until Article XI action. The operative primitives and authority equation remain underdefined, so committee rework is required before Human Steward disposition.",
+  "discharged_obligations": ["Exposed the primitive identities, acts, authority sources, assumptions, and constitutional invariants.", "Separated task-class authority, exact-task authorization, proxy execution, and human action."],
+  "findings": ["A proxy act cannot manufacture human review, approval, presence, signature, or judgment.", "Delegable authority must originate in effective policy and may only narrow the principal's authority.", "Routine and control-plane require normative closed classification and dependency closure.", "Reversible and compensable are distinct authority and risk classes.", "Motion B requires a complete Article XI package."],
+  "amendments": ["Define qualifying human acts and attributed proxy acts positively and separately.", "Use an intersection-based non-amplification authority rule.", "Define explicit delegator roles, closed task classes, exact instance scope, expiry, revocation, holds, and evidence.", "Keep identity, credentials, proxy-policy activation, and permission changes control-plane.", "Return a complete committee package for renewed unanimous Council review and separate Human Steward disposition."],
+  "residual_uncertainty": ["No task inventory, classifier, delegation schema, credential design, or migration rule exists.", "Agent-office infrastructure and session independence are unresolved."],
+  "evidence_refs": ["CONSTITUTION.md:61-72", "CONSTITUTION.md:164-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

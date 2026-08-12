@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "steward",
+  "reviewer_id": "openai-gpt-5.6-council-steward-proxy-delegation-001-20260811-b",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "Human attention should be spent on judgment, exceptions, control-plane decisions, and consequential commitments rather than repetitive execution approvals. Direct tabling is premature because candidate tasks, burden, savings, operating cost, incidents, ownership, scope, expiry, and pilot evidence are unknown. A temporary time-boxed committee can establish whether a small scope produces positive maintenance-adjusted value without creating present proxy authority.",
+  "discharged_obligations": ["Assessed volunteer burden, proportionality, scope, maintainability, ownership, cost, reversibility, incident handling, and committee value."],
+  "findings": ["The allocation problem is legitimate.", "The delegation subsystem may cost more than it saves.", "No baseline, task inventory, owner, cost ceiling, allowlist, kill switch, or expiry rule exists.", "Committee referral is reversible because current rules remain effective."],
+  "amendments": ["Time-box the committee to 30 days and one exact decision packet.", "Pilot no more than three task classes across two repositories.", "Require at least 70 percent handling-time reduction and positive maintenance-adjusted savings.", "Name owner, backup, incident route, cost ceiling, kill switch, and decommission plan.", "Expire task classes after 90 days and suspend on incidents, drift, or excessive intervention."],
+  "residual_uncertainty": ["Current burden, task volume, costs, maintainer availability, and platform revocation capability are unknown."],
+  "evidence_refs": ["CONSTITUTION.md:45", "CONSTITUTION.md:174-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

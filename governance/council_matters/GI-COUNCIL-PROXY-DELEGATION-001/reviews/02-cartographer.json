@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "cartographer",
+  "reviewer_id": "intellect-council-cartographer-gi-council-proxy-delegation-001-01",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "Motion B changes the current per-decision Human Steward topology. The proposed topology additionally needs a classifier, delegation registry, credential issuer, execution-time lease, repository and path allowlists, evidence routes, revocation semantics, failure routing, migration, and renewed authority chain. Direct tabling is premature; a committee must map and validate these dependencies while current rules remain effective.",
+  "discharged_obligations": ["Mapped current and proposed authority topologies, repositories, evidence flows, failure routes, and the committee path.", "Separated execution-plane eligibility from control-plane authority."],
+  "findings": ["No normative task/control-plane classifier exists.", "Delegation, credential, revocation, evidence, and recovery authorities are unmapped.", "Policy supersession and programme adoption must invalidate eligibility predictably.", "Partial integration and failed readback require fail-closed routes.", "Cartographer and Composer are required committee members."],
+  "amendments": ["Map each initial task class to exact repositories, refs, paths, operations, limits, credentials, evidence, readback, and compensation.", "Define delegation custody, credential issuance, atomic revocation, concurrency, and recovery.", "Prove no permitted edge reaches a denied capability transitively.", "Add Cartographer and Composer to the committee.", "Preserve GI-STEWARD-0002 until the complete Article XI chain and readback finish."],
+  "residual_uncertainty": ["No initial task-class or repository inventory exists.", "Platform attribution, branch controls, and cross-programme drift remain unmapped."],
+  "evidence_refs": ["CONSTITUTION.md:164-189", "governance/constitutional_authority_schedule.json", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

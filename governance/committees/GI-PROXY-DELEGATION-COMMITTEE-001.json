@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "committee_id": "GI-PROXY-DELEGATION-COMMITTEE-001",
+  "name": "Governance Proxy Delegation Committee",
+  "status": "active_drafting",
+  "constituted_at": "2026-08-11",
+  "deadline": "2026-09-10T23:59:59Z",
+  "proposed_schedule_amendment": {
+    "id": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001",
+    "duration": "PT72H",
+    "status": "ratified_scheduled",
+    "effective_at": "2026-08-12T09:00:00Z",
+    "deadline": "2026-08-15T09:00:00Z",
+    "receipt": "governance/committees/GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001-RECEIPT.json",
+    "original_deadline_controls_before_effective_at": true
+  },
+  "source": {
+    "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+    "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+    "disposition_sha256": "e13ae5122d977cef3f7e936533d9817a554e738a36a5c6790faf31bd71d6f00d",
+    "full_quorum": true,
+    "unanimous": true
+  },
+  "members": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "workstreams": [
+    {"id": "baseline_inventory", "status": "pending"},
+    {"id": "vocabulary_authority_model", "status": "pending"},
+    {"id": "contracts_schemas", "status": "pending"},
+    {"id": "classifier_denied_capabilities", "status": "pending"},
+    {"id": "identity_credentials_independence", "status": "pending"},
+    {"id": "custody_migration", "status": "pending"},
+    {"id": "threat_model_tests", "status": "pending"},
+    {"id": "bounded_shadow_pilot", "status": "pending"},
+    {"id": "article_xi_package", "status": "pending"},
+    {"id": "terminal_exact_packet", "status": "pending"}
+  ],
+  "authority": {
+    "effect": "drafting_testing_and_shadow_evaluation_only",
+    "current_rules_remain_effective": true,
+    "may_create_live_proxy_authority": false,
+    "may_replace_human_review": false,
+    "may_approve_or_merge": false,
+    "may_activate_or_ratify": false,
+    "may_certify_mathematics": false
+  },
+  "terminal_outcomes": [
+    "complete_packet_returned_for_renewed_full_council_review",
+    "incomplete_at_deadline_current_rules_preserved",
+    "committee_abandoned_with_reasons_and_current_rules_preserved"
+  ],
+  "proposed_terminal_gate_amendment": {
+    "matter_id": "GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
+    "required_offices": 15,
+    "passage_rule": "fifteen_office_full_quorum_unanimous_consent",
+    "status": "effective",
+    "effective_at": "2026-08-12T09:06:47Z",
+    "ratification_receipt": "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001/HUMAN-STEWARD-RATIFICATION-RECEIPT.json"
+  },
+  "renewed_passage_rule": "fifteen_office_full_quorum_unanimous_consent"
+}

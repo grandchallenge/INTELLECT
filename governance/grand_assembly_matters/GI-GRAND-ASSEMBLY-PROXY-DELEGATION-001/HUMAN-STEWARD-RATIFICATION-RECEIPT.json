@@ -1,0 +1,16 @@
+{
+  "schema_version":"1.0",
+  "receipt_id":"GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001-HUMAN-STEWARD-RATIFICATION",
+  "matter_id":"GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
+  "status":"effective",
+  "subject":{"repository":"grandchallenge/INTELLECT","pull_request":57,"head_sha":"d0b70056bd47e39b0132787b0e268f5082cb1523"},
+  "packet":{"motion_sha256":"fa616b1736f34c485d7eb84bde5e59b5807cfd7438b46e552693311fdd2614a5","disposition_sha256":"cec5cc9acf9a4a61d43588ac6bc945b3dbf109506c930c3948459322b8499e17","required_office_count":15,"passage_rule":"fifteen_office_full_quorum_unanimous_consent"},
+  "human_steward":{"login":"fyremael","github_account_id":17925951,"reviewer_kind":"human","disposition":"ratify_fifteen_office_terminal_gate"},
+  "authentication_events":[
+    {"kind":"ratification_with_incorrect_head","comment_id":5264587452,"node_id":"IC_kwDOTcUbys8AAAABOcs6vA","url":"https://github.com/grandchallenge/INTELLECT/pull/57#issuecomment-5264587452","created_at":"2026-08-12T08:58:44Z","updated_at":"2026-08-12T08:58:44Z","body_sha256":"f14b16620d77521df58b6936600cb7eb968363b329ff0e863cd17a3739fdb901","edited":false},
+    {"kind":"exact_head_correction","comment_id":5264667638,"node_id":"IC_kwDOTcUbys8AAAABOcxz9g","url":"https://github.com/grandchallenge/INTELLECT/pull/57#issuecomment-5264667638","created_at":"2026-08-12T09:06:47Z","updated_at":"2026-08-12T09:06:47Z","body_sha256":"2377b033c91d5777aab5f147980b280c2f8de6752bd6df1477e1dce2c95e386e","edited":false}
+  ],
+  "effective_at":"2026-08-12T09:06:47Z",
+  "authority":{"terminal_gate_only":true,"underlying_proxy_proposal_ratified":false,"proxy_authority_created":false,"human_review_replaced":false,"prior_ten_office_records_remain_valid":true,"current_rules_remain_effective":true},
+  "recorded_at":"2026-08-12T09:07:27Z"
+}

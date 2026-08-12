@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grandchallenge.dev/intellect/schemas/grand_assembly_disposition.schema.json",
+  "title":"Grand Intellect fifteen-office motion disposition",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","matter_id","motion_sha256","required_office_count","full_quorum","unanimous","office_dispositions","review_sha256","procedural_disposition","current_rules_remain_effective","authority_boundary"],
+  "properties":{
+    "schema_version":{"const":"1.0"},"matter_id":{"type":"string","minLength":1},"motion_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"required_office_count":{"const":15},"full_quorum":{"const":true},"unanimous":{"type":"boolean"},
+    "office_dispositions":{"type":"object","minProperties":15,"maxProperties":15,"additionalProperties":{"enum":["adopt_fifteen_office_terminal_gate","reject","abstain"]}},
+    "review_sha256":{"type":"object","minProperties":15,"maxProperties":15,"additionalProperties":{"type":"string","pattern":"^[0-9a-f]{64}$"}},
+    "procedural_disposition":{"enum":["adopt_fifteen_office_terminal_gate","no_unanimous_disposition"]},"current_rules_remain_effective":{"const":true},"authority_boundary":{"type":"string","minLength":1}
+  }
+}

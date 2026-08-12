@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-POSTMERGE-001",
+  "matter_sha256": "e9c5492e97ac76ac0c0caaecad429dbb72158941ef7bf37f73eea63a9c82c102",
+  "office": "verifier",
+  "reviewer_id": "openai-gpt-5.6-verifier-gi-council-postmerge-001",
+  "decision": "changes_requested",
+  "deliberation": "The direction and authority boundary are plausible, but stages 2 and 3 are not yet reproducible specifications. Independent implementations cannot compute the same governed identity or prove that execution stayed within authorization because packet, graph, canonicalization, trust roots, replay, hold, receipt, readback, failure, and acceptance contracts are missing. Operational simplification and measurement may proceed; merge-capable projection must remain disabled.",
+  "discharged_obligations": [
+    "Checked correctness, reproducibility, testability, exact identity, and authority separation.",
+    "Assessed independent reconstruction of authorization, execution, receipt, and readback.",
+    "Identified measurable acceptance requirements for shadow mode."
+  ],
+  "findings": [
+    "Governed-payload canonicalization and dependency closure are under-specified.",
+    "Authorization packet and transition graph lack executable schemas and exact bindings.",
+    "Replay, hold, and time-of-check/time-of-use behavior are undefined.",
+    "Shadow-mode acceptance has no fixed corpus, thresholds, or error ceiling.",
+    "Execution and readback receipts cannot yet support independent reconstruction.",
+    "The required authority amendment package is absent."
+  ],
+  "conditions": [
+    "Publish schemas for packets, graphs, holds, execution receipts, readback receipts, and terminal state.",
+    "Specify a cross-platform digest algorithm and conformance corpus.",
+    "Bind every authorization to immutable identities, digests, policy revision, Steward identity, signature, time, expiry, and nonce.",
+    "Atomically claim replay state and revalidate exact head, checks, expiry, holds, and reviews before merge.",
+    "Require zero unauthorized transitions and complete detection of seeded negative cases in shadow mode.",
+    "Complete the Article XI package and keep merging disabled until exact-candidate gates pass."
+  ],
+  "residual_uncertainty": [
+    "No workflow telemetry was included to quantify the bottleneck.",
+    "No Clerk implementation, trust model, or shadow output was available.",
+    "The authoritative append substrate remains unresolved."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:39",
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-189",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/matter.json"
+  ]
+}

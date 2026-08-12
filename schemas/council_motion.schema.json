@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.dev/intellect/schemas/council_motion.schema.json",
+  "title": "Grand Intellect full-quorum unanimous-consent motion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "matter_id", "title", "status", "proposal_path", "proposal_sha256", "passage_rule", "required_offices", "affirmative_dispositions", "allowed_dispositions", "authority", "review_directory", "disposition_path"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "matter_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "status": {"enum": ["before_council", "committee_convened", "recommended_for_human_steward", "no_unanimous_disposition", "superseded"]},
+    "proposal_path": {"type": "string", "minLength": 1},
+    "proposal_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "passage_rule": {"const": "full_quorum_unanimous_consent"},
+    "required_offices": {"const": ["axiomatist", "cartographer", "verifier", "adversary", "formalist", "steward", "grammarian", "composer", "amanuensis", "referee"]},
+    "affirmative_dispositions": {"type": "array", "minItems": 2, "maxItems": 2, "uniqueItems": true, "items": {"enum": ["table_for_human_steward_disposition", "convene_governance_rework_committee"]}},
+    "allowed_dispositions": {"type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true, "items": {"enum": ["table_for_human_steward_disposition", "convene_governance_rework_committee", "reject", "abstain"]}},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["effect", "current_rules_remain_effective", "human_steward_action_required", "article_xi_process_required", "automation_may_impersonate_human", "automation_may_activate", "automation_may_certify_mathematics"],
+      "properties": {
+        "effect": {"const": "advisory"},
+        "current_rules_remain_effective": {"const": true},
+        "human_steward_action_required": {"const": true},
+        "article_xi_process_required": {"const": true},
+        "automation_may_impersonate_human": {"const": false},
+        "automation_may_activate": {"const": false},
+        "automation_may_certify_mathematics": {"const": false}
+      }
+    },
+    "review_directory": {"type": "string", "minLength": 1},
+    "disposition_path": {"type": "string", "minLength": 1}
+  }
+}

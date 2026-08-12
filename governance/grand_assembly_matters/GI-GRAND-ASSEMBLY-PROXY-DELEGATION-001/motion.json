@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
+  "title": "Fifteen-office terminal gate for proxy-delegation governance",
+  "status": "before_grand_assembly",
+  "proposal_path": "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001/proposal.md",
+  "proposal_sha256": "fd7f739fa81aebf7736f968026b54e68e7c98603ea8ea52437ef9774c40ff785",
+  "passage_rule": "fifteen_office_full_quorum_unanimous_consent",
+  "required_offices": ["possibility_minder", "reality_minder", "purpose_minder", "continuity_minder", "capacity_minder", "axiomatist", "cartographer", "verifier", "adversary", "formalist", "steward", "grammarian", "composer", "amanuensis", "referee"],
+  "affirmative_disposition": "adopt_fifteen_office_terminal_gate",
+  "allowed_dispositions": ["adopt_fifteen_office_terminal_gate", "reject", "abstain"],
+  "authority": {
+    "effect": "prospective_terminal_review_gate_only",
+    "prior_ten_office_records_remain_valid": true,
+    "current_rules_remain_effective": true,
+    "human_steward_action_required": true,
+    "automation_may_activate": false
+  },
+  "review_directory": "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001/reviews",
+  "disposition_path": "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001/disposition.json"
+}

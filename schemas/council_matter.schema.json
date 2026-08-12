@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.dev/intellect/schemas/council_matter.schema.json",
+  "title": "Grand Intellect Council matter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "matter_id", "title", "status", "decision_class",
+    "proposal_path", "proposal_sha256", "authority", "required_offices", "allowed_decisions",
+    "review_directory", "disposition_path"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "matter_id": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "before_council", "returned_for_revision", "ready_for_human_disposition", "disposed", "superseded"]},
+    "decision_class": {"type": "string", "minLength": 1},
+    "proposal_path": {"type": "string", "minLength": 1},
+    "proposal_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["council_effect", "reserved_disposition", "automation_may_activate", "automation_may_certify_mathematics"],
+      "properties": {
+        "council_effect": {"const": "advisory"},
+        "reserved_disposition": {"const": "human_steward"},
+        "automation_may_activate": {"const": false},
+        "automation_may_certify_mathematics": {"const": false}
+      }
+    },
+    "required_offices": {
+      "const": ["axiomatist", "cartographer", "verifier", "adversary", "formalist", "steward", "grammarian", "composer", "amanuensis", "referee"]
+    },
+    "allowed_decisions": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "uniqueItems": true,
+      "items": {"enum": ["approve", "approve_with_conditions", "changes_requested", "reject", "abstain"]}
+    },
+    "review_directory": {"type": "string", "minLength": 1},
+    "disposition_path": {"type": "string", "minLength": 1}
+  }
+}

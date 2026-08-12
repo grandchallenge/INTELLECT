@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "composer",
+  "reviewer_id": "intellect-council-composer-gi-council-proxy-delegation-001-01",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "The proposal has a coherent safety spine but not yet a coherent operating lifecycle. Credential lease issuance must be separated from credential-policy control; operational integration must be separated from integration carrying institutional effect; Motion A infrastructure and shadow evidence should precede Motion B's human-review exception; identity separation and category-specific escalation are incomplete. Committee integration is necessary.",
+  "discharged_obligations": ["Integrated policy, delegation, classification, review, credentials, execution, integration, evidence, readback, exception routing, committee, and Article XI dependencies."],
+  "findings": ["Motion B does not integrate with current Human Steward rules.", "Credential issuance and credential governance are conflated.", "Operational and constitutive integration are not distinguished.", "Generator, reviewer, executor, issuer, integrator, and observer separation is unspecified.", "Renewed Council review must retain unanimity."],
+  "amendments": ["Stage Motion A infrastructure and shadowing before Motion B enablement.", "Define task-bound ephemeral leases under protected credential policy.", "Deny proxy integration carrying institutional effect.", "Adopt incompatible-role and category-specific escalation matrices.", "Add Cartographer and Composer to the committee.", "Require renewed full quorum and unanimity."],
+  "residual_uncertainty": ["Initial task classes, intended integrations, identity services, evidence custody, and shadow thresholds are unknown."],
+  "evidence_refs": ["governance/steward_directives/GI-STEWARD-0002.md", "AMENDMENTS/0001-commentary-and-gcl-ghos.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

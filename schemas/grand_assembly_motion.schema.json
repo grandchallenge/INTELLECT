@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grandchallenge.dev/intellect/schemas/grand_assembly_motion.schema.json",
+  "title":"Grand Intellect fifteen-office unanimous motion",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","matter_id","title","status","proposal_path","proposal_sha256","passage_rule","required_offices","affirmative_disposition","allowed_dispositions","authority","review_directory","disposition_path"],
+  "properties":{
+    "schema_version":{"const":"1.0"},"matter_id":{"type":"string","minLength":1},"title":{"type":"string","minLength":1},"status":{"const":"before_grand_assembly"},"proposal_path":{"type":"string","minLength":1},"proposal_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "passage_rule":{"const":"fifteen_office_full_quorum_unanimous_consent"},
+    "required_offices":{"const":["possibility_minder","reality_minder","purpose_minder","continuity_minder","capacity_minder","axiomatist","cartographer","verifier","adversary","formalist","steward","grammarian","composer","amanuensis","referee"]},
+    "affirmative_disposition":{"const":"adopt_fifteen_office_terminal_gate"},
+    "allowed_dispositions":{"type":"array","minItems":3,"maxItems":3,"uniqueItems":true,"items":{"enum":["adopt_fifteen_office_terminal_gate","reject","abstain"]}},
+    "authority":{"type":"object","additionalProperties":false,"required":["effect","prior_ten_office_records_remain_valid","current_rules_remain_effective","human_steward_action_required","automation_may_activate"],"properties":{"effect":{"const":"prospective_terminal_review_gate_only"},"prior_ten_office_records_remain_valid":{"const":true},"current_rules_remain_effective":{"const":true},"human_steward_action_required":{"const":true},"automation_may_activate":{"const":false}}},
+    "review_directory":{"type":"string","minLength":1},"disposition_path":{"type":"string","minLength":1}
+  }
+}
