@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-operating-burden-002-20260812-a",
+  "decision": "approve_with_conditions",
+  "deliberation": "The successor correctly separates substantive Human Steward authorization, routine review routing, pre-merge qualification, and post-merge observation. GI-STEWARD-0002 already fixes the human primitive at one authenticated exact-packet authorization by the ordinary Human Steward and assigns jimsteeg only a recovery role; a routine request for jimsteeg is invalid routing, not an additional safety gate. Expensive replay is evidence generation and may be selected by a closed dependency classifier without changing office powers, provided unknown or mixed effects fail closed.",
+  "discharged_obligations": [
+    "Separated authorization, platform routing, qualification, readback, and recovery into non-interchangeable primitives.",
+    "Checked that removal of routine jimsteeg routing enforces current authority rather than creating a delegation.",
+    "Defined the minimum authority boundary for impact-gated evidence execution."
+  ],
+  "findings": [
+    "GI-STEWARD-0002 makes fyremael the ordinary Human Steward and jimsteeg the recovery owner, with no mandatory routine reviewer.",
+    "A GitHub review request or approval state is not constitutional authorization.",
+    "Post-merge suites generate evidence but cannot create institutional effect.",
+    "A lightweight exact-SHA readback is distinct from a new Council campaign."
+  ],
+  "conditions": [
+    "Define routine request, recovery operation, known dependency class, unknown or mixed state, expensive suite, and exact-SHA readback normatively.",
+    "Unknown, mixed, renamed, generated, or transitively affected paths must select conservative fanout.",
+    "Readback success may record integration facts only and cannot approve, activate, ratify, certify, or promote."
+  ],
+  "residual_uncertainty": [
+    "The complete cross-repository dependency map is not yet enumerated.",
+    "The exact boundary between lightweight readback and suite replay requires executable contracts."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "docs/CONSTITUTIONAL_COMMENTARY_AND_OPERATING_DOCTRINE.md",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

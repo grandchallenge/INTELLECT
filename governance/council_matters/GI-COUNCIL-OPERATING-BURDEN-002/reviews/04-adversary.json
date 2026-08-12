@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "adversary",
+  "reviewer_id": "agent-adversary-operating-burden-002-20260812-d",
+  "decision": "approve_with_conditions",
+  "deliberation": "The proposal removes authority drift and denial-of-service fanout, but path gating creates a semantic-smuggling surface. Consequential behavior can hide in cheap paths, shared dependencies, renamed or generated files, or composed changes. Routing and selection must remain non-authoritative, classifier policy must be protected, unknown and mixed inputs must fan out, and every skipped suite must be explained by an immutable policy digest. Recovery must not become a back door for routine jimsteeg authority.",
+  "discharged_obligations": [
+    "Sought authority laundering through identities, path labels, generated outputs, dependency composition, and recovery invocation.",
+    "Tested stale selectors, duplicate events, suppressed checks, and evidence overclaim.",
+    "Identified compensating controls without restoring unconditional fanout."
+  ],
+  "findings": [
+    "Routine jimsteeg requests risk converting recovery capacity into an informal office.",
+    "Path-only classification is vulnerable to workflow, dependency, generator, and configuration effects.",
+    "Removing all post-merge signal would conceal merge-SHA or settings drift.",
+    "Post-merge success cannot be interpreted as activation, certification, production truth, or correctness."
+  ],
+  "conditions": [
+    "Require an exact recovery operation and trigger evidence before accepting recovery-owner action.",
+    "Protect selector manifests, workflows, required-check policy, credentials, authority schedules, and generators as high-risk inputs.",
+    "Full-fanout on unknown, mixed, stale-policy, parser-error, rename ambiguity, dependency-cycle, or classifier disagreement.",
+    "Bind readback to exact merge SHA and selector digest; mismatch places a downstream hold.",
+    "Forbid readers and recovery sweeps from approving, merging, activating, ratifying, certifying, or promoting."
+  ],
+  "residual_uncertainty": [
+    "The reusable-workflow and transitive-consumer inventory is incomplete.",
+    "No measured classifier false-negative rate yet exists."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/committees/GI-PROXY-DELEGATION-COMMITTEE-001.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/04-adversary.json",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

@@ -34,6 +34,12 @@ or mathematical certification.
 Where reserved authority applies, the Human Steward action remains a separate,
 authenticated, provenance-bearing record after Council disposition.
 
+`GI-COUNCIL-OPERATING-BURDEN-002` is the narrow Stage 1 successor to the
+returned `GI-COUNCIL-POSTMERGE-001` proposal. It recommends enforcement of the
+effective no-mandatory-routine-reviewer staffing rule and impact-gated expensive
+post-merge replay. It does not grant machine proxy, merge, activation,
+ratification, certification, or promotion authority.
+
 ## Unanimous motions
 
 Matters whose impact requires full quorum and unanimity use the Council motion

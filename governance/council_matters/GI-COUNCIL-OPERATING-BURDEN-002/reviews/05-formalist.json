@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "formalist",
+  "reviewer_id": "agent-formalist-operating-burden-002-20260812-e",
+  "decision": "approve_with_conditions",
+  "deliberation": "The successor can be expressed as a closed operating contract. A reviewer request is routine-invalid when the requested identity is jimsteeg and no valid GI-STEWARD-0002 recovery instance is bound. Premerge-required remains the active ruleset predicate. Postmerge-select returns the union of suites attached to direct and transitive changed classes, while unknown or drift returns full fanout. Readback terminates as observed pass, downstream hold, or recovery pending and never as approval or activation.",
+  "discharged_obligations": [
+    "Converted reviewer rejection, suite selection, readback, recovery, and escalation into closed predicates.",
+    "Checked that no predicate grants proxy, merge, activation, ratification, certification, or claim authority.",
+    "Specified invariants preventing reduction in pre-merge protection."
+  ],
+  "findings": [
+    "The authority schedule fixes mandatory routine reviewers at an empty list and the human-action target at one.",
+    "The desired change is policy enforcement and trigger refinement, not a power change.",
+    "A selector complement needs an explicit conservative result.",
+    "A successful ordinary readback needs a terminal no-further-governance-action state."
+  ],
+  "conditions": [
+    "Version executable contracts for reviewer routing, selection, readback, hold, and terminal status.",
+    "Bind selection receipts to repository, base and merge SHAs, changed paths, dependency closure, policy digest, selected suites, and skipped-suite reasons.",
+    "Require unknown-or-mixed to imply full fanout.",
+    "Require reserved effect to imply valid fyremael exact-packet authorization.",
+    "State that ordinary observed pass opens no Council, proxy, amendment, activation, or certification process."
+  ],
+  "residual_uncertainty": [
+    "Record custody and retention remain to be selected.",
+    "Scheduled-recovery disagreement reconciliation remains to be specified."
+  ],
+  "evidence_refs": [
+    "governance/constitutional_authority_schedule.json",
+    "schemas/constitutional_authority_schedule.schema.json",
+    "src/grand_intellect/constitutional_authority.py",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/05-formalist.json",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "amanuensis",
+  "reviewer_id": "agent-amanuensis-operating-burden-002-20260812-i",
+  "decision": "approve_with_conditions",
+  "deliberation": "The proposal reduces burden without erasing evidence if classification and readback are durable records rather than workflow folklore. The effective schedule remains canonical for reviewer routing, so no record should imply jimsteeg supplied, withheld, or waived an ordinary approval. The path gate must be immutable and versioned. Each merge receipt must preserve exact SHA, protected-target readback, changed-path digest, classifier identity, selected suite, checks, recovery disposition, and supersession or incident lineage.",
+  "discharged_obligations": [
+    "Specified durable custody and lineage for routing, classification, readback, recovery, and exceptions.",
+    "Classified authority-sensitive paths while preserving a fail-closed unknown state.",
+    "Preserved GI-COUNCIL-POSTMERGE-001 as an immutable predecessor."
+  ],
+  "findings": [
+    "The effective schedule already records an empty mandatory routine reviewer list.",
+    "A versioned classifier is required for later reconstruction.",
+    "Authority schedules, Steward directives, governance schemas, protected workflows, credentials, office powers, and AETHER or MATHCERT boundaries are high-risk classes.",
+    "A check not applicable must not be represented as passed."
+  ],
+  "conditions": [
+    "Create a canonical classifier with patterns, dependency rules, revision, digest, owner, supersession, and rollback.",
+    "Emit one append-only merge/readback receipt with classification and recovery state.",
+    "Preserve failed, superseded, recovered, and reclassified records.",
+    "Mark an unattributed jimsteeg request as routing drift, never a governance requirement.",
+    "Bind live observations into timestamped exact evidence."
+  ],
+  "residual_uncertainty": [
+    "The complete inventory beyond INTELLECT and MATH-PROGRAMME remains open.",
+    "Cross-repository receipt custody must respect AETHER's boundary."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/disposition.json",
+    "CONSTITUTION.md"
+  ]
+}

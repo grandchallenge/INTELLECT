@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "composer",
+  "reviewer_id": "agent-composer-operating-burden-002-20260812-h",
+  "decision": "approve_with_conditions",
+  "deliberation": "The successor composes into a contradiction-free lifecycle: one directive-compliant Human Steward authorization where reserved; complete required checks; protected merge; path-relevant post-merge validation; exact-SHA readback; and a terminal record. Scheduled or manual recovery re-enters that lifecycle without inventing a second decision. Known paths may classify narrowly while unknown paths remain fail closed. No machine act is attributed to jimsteeg and no authority is granted.",
+  "discharged_obligations": [
+    "Composed staffing, validation, trigger, recovery, readback, and terminal requirements.",
+    "Checked consistency between GI-STEWARD-0002 and routine-review removal.",
+    "Reconciled pre-merge completeness, post-merge proportionality, and exact-SHA evidence."
+  ],
+  "findings": [
+    "Routine jimsteeg review is directive drift rather than a prerequisite to automate.",
+    "Pre-merge validation and post-merge readback serve distinct purposes.",
+    "Path-gated suites and readback are complementary.",
+    "Event and recovery triggers must share one idempotent reconciler."
+  ],
+  "conditions": [
+    "Use one terminal identity keyed by repository, protected ref, merge SHA, workflow contract, and readback digest.",
+    "Make event, schedule, and manual recovery idempotent against that identity.",
+    "Record authorization, checks, merge, relevant post-merge results, and readback separately.",
+    "Record an irrelevant suite as path-inapplicable with classifier evidence, not success."
+  ],
+  "residual_uncertainty": [
+    "The exact terminal schema and deduplication key remain prospective.",
+    "Delayed recovery must be shown unable to reopen a terminal merge."
+  ],
+  "evidence_refs": [
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/council_matters/GI-COUNCIL-POSTMERGE-001/reviews/08-composer.json",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31596587540",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

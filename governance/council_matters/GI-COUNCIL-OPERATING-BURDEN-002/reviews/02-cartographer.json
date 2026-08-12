@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office": "cartographer",
+  "reviewer_id": "agent-cartographer-operating-burden-002-20260812-b",
+  "decision": "approve_with_conditions",
+  "deliberation": "The proposed operating graph is narrower and topologically sound. Routine work routes through the ordinary Human Steward named by GI-STEWARD-0002; jimsteeg remains recovery capacity rather than a standing second-review node. Expensive validation remains before merge, while protected-main execution is reduced to path-relevant suites plus exact-SHA readback. Scheduled and manual recovery remain available without creating a second ordinary approval path.",
+  "discharged_obligations": [
+    "Mapped authorization, pre-merge validation, protected merge, post-merge validation, recovery, and readback.",
+    "Separated routine Human Steward authorization from optional review and recovery-owner activity.",
+    "Assessed path routing, duplicate triggers, recovery ingress, and terminal evidence."
+  ],
+  "findings": [
+    "Routine jimsteeg routing is an invalid extra edge rather than a required safeguard.",
+    "Unconditional standalone CMDG push execution duplicates path-gated validation for unrelated changes.",
+    "Known visual-pedagogy tool paths can be deterministically classified.",
+    "Event, schedule, and manual routes must converge on one idempotent terminal state."
+  ],
+  "conditions": [
+    "Bind the classifier and each expensive suite to a versioned closed path registry with positive and negative tests.",
+    "Retain full fanout for genuinely unknown paths.",
+    "Require readback to bind current protected main and fail if expected identity is absent.",
+    "Preserve jimsteeg routing only for optional review or an exact recovery protocol."
+  ],
+  "residual_uncertainty": [
+    "The final cross-repository registry is not yet complete.",
+    "Observed savings remain to be measured."
+  ],
+  "evidence_refs": [
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31596587540",
+    "governance/council_matters/GI-COUNCIL-OPERATING-BURDEN-002/proposal.md"
+  ]
+}

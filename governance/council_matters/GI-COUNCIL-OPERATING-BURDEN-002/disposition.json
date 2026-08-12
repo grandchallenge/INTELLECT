@@ -1,0 +1,43 @@
+{
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify.",
+  "conditions": [
+    "Enforce GI-STEWARD-0002 exactly: mandatory routine reviewers remain empty; jimsteeg is contacted only for exact recovery or separately named optional review.",
+    "Freeze and validate a closed classifier before runtime change; unknown, mixed, generator-affecting, dependency-widening, or invalid states select conservative fanout.",
+    "Retain all current required pre-merge checks and emit exact-SHA protected-target readback for every protected merge.",
+    "Replace generic fixed-delay work with event-driven readback plus scheduled recovery and manual escalation; retain a timer only for an enumerated risk contract.",
+    "Publish append-only classification, execution, readback, recovery, incident, and supersession evidence without treating not-applicable as passed.",
+    "Validate hostile stale-head, mixed-path, generator, lost-event, duplicate-event, replay, hold, ruleset-drift, and unauthorized-reviewer cases.",
+    "Require separate authenticated Human Steward disposition wherever effective authority reserves it; automation may prepare and validate but not approve, merge its own work, activate, ratify, certify, impersonate, or expand permissions.",
+    "Measure routine jimsteeg requests, human actions, fixed-delay jobs, false-lightweight classifications, incidents, and handling time; preserve rollback."
+  ],
+  "matter_id": "GI-COUNCIL-OPERATING-BURDEN-002",
+  "matter_sha256": "6502beb33bb8e631d33f1368b81361ccb6a425347ecf34b30f2618f3e4b2b44e",
+  "office_decisions": {
+    "adversary": "approve_with_conditions",
+    "amanuensis": "approve_with_conditions",
+    "axiomatist": "approve_with_conditions",
+    "cartographer": "approve_with_conditions",
+    "composer": "approve_with_conditions",
+    "formalist": "approve_with_conditions",
+    "grammarian": "approve_with_conditions",
+    "referee": "approve_with_conditions",
+    "steward": "approve_with_conditions",
+    "verifier": "approve_with_conditions"
+  },
+  "procedural_disposition": "ready_with_conditions",
+  "ready_for_human_disposition": true,
+  "review_count": 10,
+  "review_sha256": {
+    "adversary": "a422cc055c13f4e1f6d0b2e827174bd23ba0a1d8069a84eb411171745419cdbc",
+    "amanuensis": "44962cf1382552c1e50afd41af4f1729b1d8713f20839ae3055ccb99a2797ed2",
+    "axiomatist": "65ee75b4ef476ec6addf8f3c940290034bb33bfe17a8c6d4721114eccf80cb6b",
+    "cartographer": "530e9707e19396b5bce712a24e71bbfc4e187f6d17d86eab05d06058af670e41",
+    "composer": "c86d3be05deea9124c8d0ff151918e7c9c2866a9ec57912f60b2f0a2f3c57157",
+    "formalist": "1bc70088a3844b5e9e72763b3fbed7177ba64dd6bd79e562854f702ee332eed7",
+    "grammarian": "5a0755dbb38a3c2321e97b7a80612e7428937d089ed962a0b29d6ba5b23ded43",
+    "referee": "4700fcf77793c6b877d547a6023483584dd68ab277b9aaa390d0be5f5a039e37",
+    "steward": "e025b90b21886db27d9cfbaddfaa180c99bdaf62ac7c5cecb1d28a38415a56be",
+    "verifier": "b83c34ad7a2632d3c3fcc23ea7cca302772eca3e58fae8561dc551b29035cbf7"
+  },
+  "schema_version": "1.0"
+}
