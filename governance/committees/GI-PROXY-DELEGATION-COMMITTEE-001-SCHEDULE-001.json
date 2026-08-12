@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "schedule_amendment_id": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001",
+  "committee_id": "GI-PROXY-DELEGATION-COMMITTEE-001",
+  "status": "submitted_for_human_steward_ratification",
+  "requested_duration": "PT72H",
+  "effective_at": null,
+  "deadline": null,
+  "scope": {"task_classes": 1, "repositories": 1, "live_proxy_acts": 0, "protected_integrations": 0, "human_review_replacements": 0},
+  "full_committee_quorum": true,
+  "unanimous_committee_concurrence": true,
+  "current_deadline_remains_controlling_until_ratified": "2026-09-10T23:59:59Z",
+  "authority": {
+    "schedule_only": true,
+    "current_rules_remain_effective": true,
+    "may_create_live_proxy_authority": false,
+    "may_replace_human_review": false,
+    "may_approve_or_merge": false,
+    "may_activate_or_ratify_underlying_proposal": false
+  },
+  "gates": ["design_freeze_T_plus_24", "pre_pilot_T_plus_48", "artifact_freeze_T_plus_60", "shadow_acceptance_T_plus_66", "terminal_completeness_T_plus_72"],
+  "successful_terminal_route": "complete_packet_returned_for_renewed_full_council_review",
+  "failure_terminal_route": "incomplete_at_deadline_current_rules_preserved",
+  "ratification_required": "separate_authenticated_human_steward_disposition"
+}

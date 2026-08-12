@@ -10,6 +10,12 @@
 
 **Deadline:** 2026-09-10T23:59:59Z
 
+**Accelerated schedule submission:**
+`GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001` requests a `PT72H` mandate.
+It has unanimous committee concurrence and is tabled for a separate Human
+Steward disposition. Until ratified and opened with exact UTC endpoints, the
+deadline above remains controlling.
+
 ## Membership and quorum
 
 The committee contains all ten Council offices:

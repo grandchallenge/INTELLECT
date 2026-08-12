@@ -52,3 +52,8 @@ python -m grand_intellect.council_motion \
 A unanimous committee referral constitutes only the bounded drafting and
 testing committee described by the exact motion. It creates no proxy authority
 and does not amend, approve, merge, activate, ratify, or certify.
+
+A committee schedule amendment uses a new exact motion and ten separately bound
+office records. Unanimous Council tabling submits only that schedule for the
+required Human Steward disposition; it does not amend the underlying policy or
+start a time window until an exact ratification/opening record says so.

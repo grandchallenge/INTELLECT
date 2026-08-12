@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-SCHEDULE-001",
+  "title": "Accelerated proxy-delegation committee schedule",
+  "status": "before_council",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-SCHEDULE-001/proposal.md",
+  "proposal_sha256": "3c009db94b26b005705e22670b429e9f7cc27a7dd69b8325179205813ff401e0",
+  "passage_rule": "full_quorum_unanimous_consent",
+  "required_offices": ["axiomatist", "cartographer", "verifier", "adversary", "formalist", "steward", "grammarian", "composer", "amanuensis", "referee"],
+  "affirmative_dispositions": ["table_for_human_steward_disposition", "convene_governance_rework_committee"],
+  "allowed_dispositions": ["table_for_human_steward_disposition", "convene_governance_rework_committee", "reject", "abstain"],
+  "authority": {
+    "effect": "advisory",
+    "current_rules_remain_effective": true,
+    "human_steward_action_required": true,
+    "article_xi_process_required": true,
+    "automation_may_impersonate_human": false,
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "review_directory": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-SCHEDULE-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-SCHEDULE-001/disposition.json"
+}
