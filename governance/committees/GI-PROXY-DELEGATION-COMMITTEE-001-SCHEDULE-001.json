@@ -21,7 +21,7 @@
     "may_activate_or_ratify_underlying_proposal": false
   },
   "gates": ["design_freeze_T_plus_24", "pre_pilot_T_plus_48", "artifact_freeze_T_plus_60", "shadow_acceptance_T_plus_66", "terminal_completeness_T_plus_72"],
-  "successful_terminal_route": "complete_packet_returned_for_renewed_full_council_review",
+  "successful_terminal_route": "complete_packet_returned_for_fifteen_office_grand_assembly_review",
   "failure_terminal_route": "incomplete_at_deadline_current_rules_preserved",
   "ratification": "authenticated_human_steward_schedule_only_disposition_recorded"
 }

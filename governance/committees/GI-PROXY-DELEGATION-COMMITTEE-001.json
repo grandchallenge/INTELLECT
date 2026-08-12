@@ -63,7 +63,9 @@
     "matter_id": "GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
     "required_offices": 15,
     "passage_rule": "fifteen_office_full_quorum_unanimous_consent",
-    "status": "unanimously_adopted_by_grand_assembly_pending_authenticated_human_steward_ratification"
+    "status": "effective",
+    "effective_at": "2026-08-12T09:06:47Z",
+    "ratification_receipt": "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001/HUMAN-STEWARD-RATIFICATION-RECEIPT.json"
   },
-  "renewed_passage_rule": "fifteen_office_full_quorum_unanimous_consent_pending_ratification"
+  "renewed_passage_rule": "fifteen_office_full_quorum_unanimous_consent"
 }

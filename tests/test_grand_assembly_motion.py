@@ -5,12 +5,16 @@ import unittest
 from copy import deepcopy
 from pathlib import Path
 
+import jsonschema
+
 from grand_intellect.council_review import GRAND_ASSEMBLY_OFFICES, canonical_sha256
 from grand_intellect.grand_assembly_motion import assess_motion, compile_motion
 
 
 ROOT = Path(__file__).resolve().parents[1]
 MATTER = ROOT / "governance/grand_assembly_matters/GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001"
+RATIFICATION = MATTER / "HUMAN-STEWARD-RATIFICATION-RECEIPT.json"
+RATIFICATION_SCHEMA = ROOT / "schemas/human_steward_grand_assembly_gate_receipt.schema.json"
 
 
 def _motion() -> dict[str, object]:
@@ -58,6 +62,16 @@ class GrandAssemblyMotionTests(unittest.TestCase):
         required[0], required[1] = required[1], required[0]
         with self.assertRaisesRegex(ValueError, "all five Minders"):
             assess_motion(motion, _reviews())
+
+    def test_human_steward_ratification_receipt_is_exact_and_narrow(self) -> None:
+        receipt = json.loads(RATIFICATION.read_text(encoding="utf-8"))
+        schema = json.loads(RATIFICATION_SCHEMA.read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        jsonschema.validate(receipt, schema, cls=jsonschema.Draft202012Validator, format_checker=jsonschema.FormatChecker())
+        self.assertEqual(receipt["subject"]["head_sha"], "d0b70056bd47e39b0132787b0e268f5082cb1523")
+        self.assertEqual(receipt["effective_at"], "2026-08-12T09:06:47Z")
+        self.assertFalse(receipt["authority"]["underlying_proxy_proposal_ratified"])
+        self.assertFalse(receipt["authority"]["proxy_authority_created"])
 
 
 if __name__ == "__main__":

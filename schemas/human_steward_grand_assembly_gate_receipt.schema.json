@@ -1,0 +1,17 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/grandchallenge/INTELLECT/schemas/human_steward_grand_assembly_gate_receipt.schema.json",
+  "title":"Human Steward fifteen-office terminal-gate ratification receipt",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","receipt_id","matter_id","status","subject","packet","human_steward","authentication_events","effective_at","authority","recorded_at"],
+  "properties":{
+    "schema_version":{"const":"1.0"},"receipt_id":{"type":"string","minLength":1},"matter_id":{"const":"GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001"},"status":{"const":"effective"},
+    "subject":{"type":"object","additionalProperties":false,"required":["repository","pull_request","head_sha"],"properties":{"repository":{"const":"grandchallenge/INTELLECT"},"pull_request":{"const":57},"head_sha":{"type":"string","pattern":"^[0-9a-f]{40}$"}}},
+    "packet":{"type":"object","additionalProperties":false,"required":["motion_sha256","disposition_sha256","required_office_count","passage_rule"],"properties":{"motion_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"disposition_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"required_office_count":{"const":15},"passage_rule":{"const":"fifteen_office_full_quorum_unanimous_consent"}}},
+    "human_steward":{"type":"object","additionalProperties":false,"required":["login","github_account_id","reviewer_kind","disposition"],"properties":{"login":{"const":"fyremael"},"github_account_id":{"const":17925951},"reviewer_kind":{"const":"human"},"disposition":{"const":"ratify_fifteen_office_terminal_gate"}}},
+    "authentication_events":{"type":"array","minItems":2,"maxItems":2,"items":{"type":"object","additionalProperties":false,"required":["kind","comment_id","node_id","url","created_at","updated_at","body_sha256","edited"],"properties":{"kind":{"enum":["ratification_with_incorrect_head","exact_head_correction"]},"comment_id":{"type":"integer","minimum":1},"node_id":{"type":"string","minLength":1},"url":{"type":"string","format":"uri"},"created_at":{"type":"string","format":"date-time"},"updated_at":{"type":"string","format":"date-time"},"body_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},"edited":{"const":false}}}},
+    "effective_at":{"type":"string","format":"date-time"},
+    "authority":{"type":"object","additionalProperties":false,"required":["terminal_gate_only","underlying_proxy_proposal_ratified","proxy_authority_created","human_review_replaced","prior_ten_office_records_remain_valid","current_rules_remain_effective"],"properties":{"terminal_gate_only":{"const":true},"underlying_proxy_proposal_ratified":{"const":false},"proxy_authority_created":{"const":false},"human_review_replaced":{"const":false},"prior_ten_office_records_remain_valid":{"const":true},"current_rules_remain_effective":{"const":true}}},
+    "recorded_at":{"type":"string","format":"date-time"}
+  }
+}
