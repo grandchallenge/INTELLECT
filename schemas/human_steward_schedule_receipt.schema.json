@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/grandchallenge/INTELLECT/schemas/human_steward_schedule_receipt.schema.json",
+  "title": "Human Steward committee schedule ratification and opening receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "receipt_id", "schedule_amendment_id", "status", "subject", "packet", "human_steward", "authentication_events", "schedule", "authority", "recorded_at"],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "receipt_id": {"type": "string", "minLength": 1},
+    "schedule_amendment_id": {"const": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001"},
+    "status": {"enum": ["ratified_scheduled", "active", "expired"]},
+    "subject": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository", "pull_request", "head_sha"],
+      "properties": {
+        "repository": {"const": "grandchallenge/INTELLECT"},
+        "pull_request": {"const": 57},
+        "head_sha": {"type": "string", "pattern": "^[0-9a-f]{40}$"}
+      }
+    },
+    "packet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["proposal_sha256", "motion_sha256", "council_disposition_sha256", "schedule_predecessor_sha256"],
+      "properties": {
+        "proposal_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "motion_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "council_disposition_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "schedule_predecessor_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "human_steward": {
+      "type": "object", "additionalProperties": false,
+      "required": ["login", "github_account_id", "reviewer_kind", "disposition"],
+      "properties": {
+        "login": {"const": "fyremael"},
+        "github_account_id": {"const": 17925951},
+        "reviewer_kind": {"const": "human"},
+        "disposition": {"const": "ratify_schedule_only"}
+      }
+    },
+    "authentication_events": {
+      "type": "array", "minItems": 2, "maxItems": 2,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["kind", "comment_id", "node_id", "url", "created_at", "updated_at", "body_sha256", "edited"],
+        "properties": {
+          "kind": {"enum": ["ratification", "opening"]},
+          "comment_id": {"type": "integer", "minimum": 1},
+          "node_id": {"type": "string", "minLength": 1},
+          "url": {"type": "string", "format": "uri"},
+          "created_at": {"type": "string", "format": "date-time"},
+          "updated_at": {"type": "string", "format": "date-time"},
+          "body_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "edited": {"const": false}
+        }
+      }
+    },
+    "schedule": {
+      "type": "object", "additionalProperties": false,
+      "required": ["duration", "effective_at", "deadline", "deadline_rule"],
+      "properties": {
+        "duration": {"const": "PT72H"},
+        "effective_at": {"type": "string", "format": "date-time"},
+        "deadline": {"type": "string", "format": "date-time"},
+        "deadline_rule": {"const": "deadline_equals_effective_at_plus_PT72H"}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schedule_only", "current_rules_remain_effective", "underlying_proxy_proposal_ratified", "live_proxy_authority_created", "human_review_replaced"],
+      "properties": {
+        "schedule_only": {"const": true},
+        "current_rules_remain_effective": {"const": true},
+        "underlying_proxy_proposal_ratified": {"const": false},
+        "live_proxy_authority_created": {"const": false},
+        "human_review_replaced": {"const": false}
+      }
+    },
+    "recorded_at": {"type": "string", "format": "date-time"}
+  }
+}

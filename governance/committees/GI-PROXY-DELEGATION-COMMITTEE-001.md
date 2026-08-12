@@ -10,11 +10,12 @@
 
 **Deadline:** 2026-09-10T23:59:59Z
 
-**Accelerated schedule submission:**
-`GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001` requests a `PT72H` mandate.
-It has unanimous committee concurrence and is tabled for a separate Human
-Steward disposition. Until ratified and opened with exact UTC endpoints, the
-deadline above remains controlling.
+**Ratified accelerated schedule:**
+`GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001` opens at
+`2026-08-12T09:00:00Z` and closes at `2026-08-15T09:00:00Z`, an exact `PT72H`.
+The authenticated schedule-only receipt is recorded separately. Until the
+effective time, the original deadline above remains controlling. At the
+effective time, the accelerated deadline supersedes it.
 
 ## Membership and quorum
 

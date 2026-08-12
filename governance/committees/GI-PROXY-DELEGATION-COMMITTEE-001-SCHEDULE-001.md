@@ -1,10 +1,12 @@
 # GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001
 
-**Status:** Submitted for Human Steward ratification; not effective
+**Status:** Ratified; scheduled to open at `2026-08-12T09:00:00Z`
 
 **Duration requested:** `PT72H`
 
-**Supersedes upon ratification:** the deadline in `GI-PROXY-DELEGATION-COMMITTEE-001`
+**Deadline:** `2026-08-15T09:00:00Z`
+
+**Receipt:** `GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001-RECEIPT.json`
 
 The full committee deliberated under the accelerated ten-times operating
 cadence and unanimously recommends the exact schedule amendment in
@@ -21,7 +23,7 @@ The committee further found that the underlying proxy proposal is not presently
 eligible for ratification because its ten workstreams remain pending. This
 submission therefore requests ratification of the accelerated schedule only.
 
-Upon exact Human Steward ratification, the opening record must state UTC
+The authenticated Human Steward ratification and opening records bind UTC
 `effective_at` and `deadline` values separated by exactly `PT72H`. If the packet
 is complete, the terminal route is renewed full-Council review. If incomplete,
 current rules are preserved. No committee record creates proxy authority,

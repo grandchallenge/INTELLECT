@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "receipt_id": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001-RECEIPT",
+  "schedule_amendment_id": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001",
+  "status": "ratified_scheduled",
+  "subject": {
+    "repository": "grandchallenge/INTELLECT",
+    "pull_request": 57,
+    "head_sha": "e21d38e0cbd202d5ddd6f8a5964c9f54d74fcf42"
+  },
+  "packet": {
+    "proposal_sha256": "3c009db94b26b005705e22670b429e9f7cc27a7dd69b8325179205813ff401e0",
+    "motion_sha256": "50c33099246c7780547c1d3d81b817e338c4680fbbd6f4bd770459baeecd917e",
+    "council_disposition_sha256": "e606a9ef5a2e80a82a18e695fc2414f4a83711639730ae215524ee1ac68479ee",
+    "schedule_predecessor_sha256": "d10ad160e986dbaa2025cd34db30bdad6a1489a54d5c16998ff037b86ba7e95d"
+  },
+  "human_steward": {
+    "login": "fyremael",
+    "github_account_id": 17925951,
+    "reviewer_kind": "human",
+    "disposition": "ratify_schedule_only"
+  },
+  "authentication_events": [
+    {
+      "kind": "ratification",
+      "comment_id": 5264089624,
+      "node_id": "IC_kwDOTcUbys8AAAABOcOiGA",
+      "url": "https://github.com/grandchallenge/INTELLECT/pull/57#issuecomment-5264089624",
+      "created_at": "2026-08-12T08:10:42Z",
+      "updated_at": "2026-08-12T08:10:42Z",
+      "body_sha256": "2e49736d23e6296dbc79d4ceb39338eb988d0d1f9d3c3b75a30ff367dec6ca93",
+      "edited": false
+    },
+    {
+      "kind": "opening",
+      "comment_id": 5264108022,
+      "node_id": "IC_kwDOTcUbys8AAAABOcPp9g",
+      "url": "https://github.com/grandchallenge/INTELLECT/pull/57#issuecomment-5264108022",
+      "created_at": "2026-08-12T08:12:25Z",
+      "updated_at": "2026-08-12T08:12:25Z",
+      "body_sha256": "ff1b2f707931c48a5859e7da6c4482958478cd4d2b927eeec7a525ad48d17d15",
+      "edited": false
+    }
+  ],
+  "schedule": {
+    "duration": "PT72H",
+    "effective_at": "2026-08-12T09:00:00Z",
+    "deadline": "2026-08-15T09:00:00Z",
+    "deadline_rule": "deadline_equals_effective_at_plus_PT72H"
+  },
+  "authority": {
+    "schedule_only": true,
+    "current_rules_remain_effective": true,
+    "underlying_proxy_proposal_ratified": false,
+    "live_proxy_authority_created": false,
+    "human_review_replaced": false
+  },
+  "recorded_at": "2026-08-12T08:14:50Z"
+}

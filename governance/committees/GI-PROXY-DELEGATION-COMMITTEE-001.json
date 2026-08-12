@@ -8,8 +8,11 @@
   "proposed_schedule_amendment": {
     "id": "GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001",
     "duration": "PT72H",
-    "status": "submitted_for_human_steward_ratification",
-    "current_deadline_remains_controlling_until_ratified": true
+    "status": "ratified_scheduled",
+    "effective_at": "2026-08-12T09:00:00Z",
+    "deadline": "2026-08-15T09:00:00Z",
+    "receipt": "governance/committees/GI-PROXY-DELEGATION-COMMITTEE-001-SCHEDULE-001-RECEIPT.json",
+    "original_deadline_controls_before_effective_at": true
   },
   "source": {
     "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
