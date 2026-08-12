@@ -115,7 +115,10 @@ The committee terminates with exactly one of:
 - `incomplete_at_deadline_current_rules_preserved`; or
 - `committee_abandoned_with_reasons_and_current_rules_preserved`.
 
-Any complete packet requires renewed participation by all ten Council offices
-and unanimous affirmative disposition. Only after that review may a separate,
-substantive Human Steward disposition be requested. No committee or Council
-record alone effectuates Motions A or B.
+The fifteen-office Grand assembly has unanimously adopted a prospective
+terminal-gate amendment, pending a separately authenticated Human Steward
+ratification. When effective, any complete packet requires fresh review by all
+five Minder and ten Council offices, bound to one exact packet, and unanimous
+15/15 affirmative disposition. Only after that review may a separate,
+substantive Human Steward policy disposition be requested. No committee or
+assembly record alone effectuates Motions A or B.

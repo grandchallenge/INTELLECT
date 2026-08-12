@@ -57,3 +57,23 @@ A committee schedule amendment uses a new exact motion and ten separately bound
 office records. Unanimous Council tabling submits only that schedule for the
 required Human Steward disposition; it does not amend the underlying policy or
 start a time window until an exact ratification/opening record says so.
+
+## Fifteen-office Grand assembly
+
+The Constitution's five Minder offices and ten Council offices may form a
+fifteen-office Grand assembly for cross-order terminal policy review. This is
+broader than the formally named ten-office Council. Executor and Human Steward
+remain operational offices outside its advisory quorum.
+
+Grand assembly passage requires one exact-motion-bound record from every Minder
+and Council office, fifteen distinct reviewer identities, fifteen distinct
+session identities, and one unanimous affirmative disposition. Its compiler is
+separate so historical ten-office Council contracts retain their exact meaning.
+
+```console
+python -m grand_intellect.grand_assembly_motion \
+  governance/grand_assembly_matters/<matter-id>/motion.json \
+  governance/grand_assembly_matters/<matter-id>/reviews
+```
+
+Grand assembly concurrence is not Human Steward authorization or effectiveness.

@@ -59,5 +59,11 @@
     "incomplete_at_deadline_current_rules_preserved",
     "committee_abandoned_with_reasons_and_current_rules_preserved"
   ],
-  "renewed_passage_rule": "full_quorum_unanimous_consent"
+  "proposed_terminal_gate_amendment": {
+    "matter_id": "GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
+    "required_offices": 15,
+    "passage_rule": "fifteen_office_full_quorum_unanimous_consent",
+    "status": "unanimously_adopted_by_grand_assembly_pending_authenticated_human_steward_ratification"
+  },
+  "renewed_passage_rule": "fifteen_office_full_quorum_unanimous_consent_pending_ratification"
 }

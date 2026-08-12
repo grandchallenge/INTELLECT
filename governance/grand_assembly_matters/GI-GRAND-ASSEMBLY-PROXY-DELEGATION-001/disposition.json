@@ -1,0 +1,13 @@
+{
+  "authority_boundary": "This compilation records fifteen-office Grand assembly procedure. It does not create Human Steward authorization, proxy authority, merge authority, activation, ratification, or certification.",
+  "current_rules_remain_effective": true,
+  "full_quorum": true,
+  "matter_id": "GI-GRAND-ASSEMBLY-PROXY-DELEGATION-001",
+  "motion_sha256": "fa616b1736f34c485d7eb84bde5e59b5807cfd7438b46e552693311fdd2614a5",
+  "office_dispositions": {"adversary":"adopt_fifteen_office_terminal_gate","amanuensis":"adopt_fifteen_office_terminal_gate","axiomatist":"adopt_fifteen_office_terminal_gate","capacity_minder":"adopt_fifteen_office_terminal_gate","cartographer":"adopt_fifteen_office_terminal_gate","composer":"adopt_fifteen_office_terminal_gate","continuity_minder":"adopt_fifteen_office_terminal_gate","formalist":"adopt_fifteen_office_terminal_gate","grammarian":"adopt_fifteen_office_terminal_gate","possibility_minder":"adopt_fifteen_office_terminal_gate","purpose_minder":"adopt_fifteen_office_terminal_gate","reality_minder":"adopt_fifteen_office_terminal_gate","referee":"adopt_fifteen_office_terminal_gate","steward":"adopt_fifteen_office_terminal_gate","verifier":"adopt_fifteen_office_terminal_gate"},
+  "procedural_disposition": "adopt_fifteen_office_terminal_gate",
+  "required_office_count": 15,
+  "review_sha256": {"adversary":"4377bec0bd36ec76e4fad64cde896d587f75bb74721f014dbf993b574f633016","amanuensis":"07beedd2db00e78d39f6ead4aabcd4390f1680cf98a431fc811fc7c2baad0dca","axiomatist":"57d76783bb7c033bed063d51120879b699ebd35c173c6759495841711c12e109","capacity_minder":"16d85a655b0031dd34aed4086d4f1af318387a53d77230615baba0f865250854","cartographer":"f9d27700d063a85b1be11b14d35ddd847ed5fb7563af4629a1414962aa0aff49","composer":"d8752f38030b303c7eb72814972b5f1317aff1f1bb5fa7664b3c824e0bcbf85d","continuity_minder":"c2a3e812e90d68b016b6ded56494c45deb8b2d8e713b98ec4e342127ad3b7977","formalist":"d87197041be5b57e42fed9507f8c06c490335add335157e431a519d4bd4a49dd","grammarian":"fe23b56648eb07beefd680fb062be1485be62b0b271741145a83f1ba1d23efae","possibility_minder":"2dc0b3b0e192cbfd0a57114ec5fca595a8220f1abaaa80f470c4af52bb6f5a9f","purpose_minder":"d75a39ed93f9d5b680bf2de5ae346b49780d365b2e52b5640350ac8aeb9a45a4","reality_minder":"eb38b866427a140083f21a263c4480bf51b8387052feff1a698407715572a6c6","referee":"59246f7c47670a7b0a2bc9cb844cf65d228498b605f8065d235526b5e94531ef","steward":"8dfc951687270e30152930048b51ab4e0ec1b4132a612d93d22b9c10025b0bd5","verifier":"f284c1cb4fe0883590012190d7bbaeec3e86cca2e90f9def4cf098c886f2f34c"},
+  "schema_version": "1.0",
+  "unanimous": true
+}

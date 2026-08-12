@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://grandchallenge.dev/intellect/schemas/grand_assembly_review.schema.json",
+  "title":"Grand Intellect fifteen-office motion review",
+  "type":"object","additionalProperties":false,
+  "required":["schema_version","matter_id","motion_sha256","office","reviewer_id","session_id","disposition","deliberation","discharged_obligations","findings","amendments","residual_uncertainty","evidence_refs"],
+  "properties":{
+    "schema_version":{"const":"1.0"},"matter_id":{"type":"string","minLength":1},"motion_sha256":{"type":"string","pattern":"^[0-9a-f]{64}$"},
+    "office":{"enum":["possibility_minder","reality_minder","purpose_minder","continuity_minder","capacity_minder","axiomatist","cartographer","verifier","adversary","formalist","steward","grammarian","composer","amanuensis","referee"]},
+    "reviewer_id":{"type":"string","minLength":1},"session_id":{"type":"string","minLength":1},"disposition":{"enum":["adopt_fifteen_office_terminal_gate","reject","abstain"]},"deliberation":{"type":"string","minLength":1},
+    "discharged_obligations":{"type":"array","minItems":1,"items":{"type":"string","minLength":1}},"findings":{"type":"array","items":{"type":"string","minLength":1}},"amendments":{"type":"array","items":{"type":"string","minLength":1}},"residual_uncertainty":{"type":"array","items":{"type":"string","minLength":1}},"evidence_refs":{"type":"array","items":{"type":"string","minLength":1}}
+  }
+}

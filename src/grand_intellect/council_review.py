@@ -24,6 +24,16 @@ COUNCIL_OFFICES: tuple[Office, ...] = (
     Office.REFEREE,
 )
 
+MINDER_OFFICES: tuple[Office, ...] = (
+    Office.POSSIBILITY_MINDER,
+    Office.REALITY_MINDER,
+    Office.PURPOSE_MINDER,
+    Office.CONTINUITY_MINDER,
+    Office.CAPACITY_MINDER,
+)
+
+GRAND_ASSEMBLY_OFFICES: tuple[Office, ...] = MINDER_OFFICES + COUNCIL_OFFICES
+
 ALLOWED_DECISIONS = frozenset(
     {
         "approve",
