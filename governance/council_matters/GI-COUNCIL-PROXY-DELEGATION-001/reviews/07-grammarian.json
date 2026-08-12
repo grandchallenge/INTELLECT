@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "grammarian",
+  "reviewer_id": "agent-grammarian-proxy-delegation-language-contract-20260811-f",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "Authority-bearing terms do not yet preserve one meaning across policy, schemas, workflow permissions, UI, and audit. On behalf of can imply human authorship or assent; approval conflates Human Steward authorization, office disposition, platform state, policy eligibility, and execution permission; proxy, delegation, routine, control plane, table, quorum, consent, effect, attribution, revocation, and readback remain ambiguous. Committee vocabulary work is required before policy endorsement.",
+  "discharged_obligations": ["Assessed terminology and mappings across constitutional policy, motion metadata, workflow, UI, and audit evidence."],
+  "findings": ["On behalf of conflicts with non-impersonation intent.", "Approval and human act lack namespaced definitions.", "Routine and control plane are undefined semantic classes.", "Table conventionally means postpone, not forward.", "Unanimous consent may be mistaken for human consent.", "Proxy must be execution-only, not an approver."],
+  "amendments": ["Use under a delegation issued by and explicit machine/principal labels.", "Define qualifying human act positively.", "Namespace Human Steward, office, platform, policy, execution, and integration decisions.", "Rename tabling as recommend_for_human_steward_and_article_xi_process in future versions.", "Define full required-office participation and unanimous affirmative office disposition.", "Publish one controlled vocabulary across all interfaces."],
+  "residual_uncertainty": ["No schemas, UI examples, audit events, or platform rendering evidence exists."],
+  "evidence_refs": ["CONSTITUTION.md:47", "CONSTITUTION.md:174-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

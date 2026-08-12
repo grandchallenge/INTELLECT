@@ -33,3 +33,22 @@ or mathematical certification.
 
 Where reserved authority applies, the Human Steward action remains a separate,
 authenticated, provenance-bearing record after Council disposition.
+
+## Unanimous motions
+
+Matters whose impact requires full quorum and unanimity use the Council motion
+contract. Every office must submit one exact-motion-bound disposition under a
+distinct reviewer identity. An affirmative result exists only when all ten
+offices choose the same affirmative disposition. A split vote, rejection,
+abstention, missing office, stale record, or duplicate reviewer fails closed
+without changing current rules.
+
+```console
+python -m grand_intellect.council_motion \
+  governance/council_matters/<matter-id>/motion.json \
+  governance/council_matters/<matter-id>/reviews
+```
+
+A unanimous committee referral constitutes only the bounded drafting and
+testing committee described by the exact motion. It creates no proxy authority
+and does not amend, approve, merge, activate, ratify, or certify.

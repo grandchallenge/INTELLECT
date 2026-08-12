@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office": "formalist",
+  "reviewer_id": "intellect-council-formalist-gi-council-proxy-delegation-001-01",
+  "disposition": "convene_governance_rework_committee",
+  "deliberation": "The motions state defensible invariants but are not executable law. Effective proxy authority must be the intersection of pre-existing task authority, valid delegation scope, and valid credential capability; proxy execution adds zero authority. MayExecute must be false for any unknown, mixed, stale, disputed, held, exceptional, or control-plane-affecting task. The required contracts and Article XI replacement gate do not yet exist.",
+  "discharged_obligations": ["Defined required contract objects, authority equation, routine/control predicates, state machines, passage contract, committee completion, and proof obligations."],
+  "findings": ["Motion B conflicts with current per-decision Human Steward rules absent an amendment or category exclusion.", "Core terms and delegator authority lack normative definitions.", "Required office matrices and independence predicates are missing.", "Semantic-effect classification, revocation ordering, and compensation contracts are absent.", "Proxy execution must be incapable of creating human action or authority."],
+  "amendments": ["Define TaskClass, ControlPlaneCapability, Delegation, ProxyIdentity, CredentialLease, TaskInstance, OfficeDecision, Hold, ProxyAct, Readback, and Incident records.", "Adopt the non-amplifying authority equation and unknown-is-control-plane predicate.", "Specify delegation, task-class, task-instance, and credential state machines.", "Bind each task class to exact required offices and proof obligations.", "Require renewed unanimous Council and Human Steward action before effectiveness."],
+  "residual_uncertainty": ["No schemas, validator, classifier, credential protocol, initial allowlist, or authoritative stores exist."],
+  "evidence_refs": ["CONSTITUTION.md:90-140", "CONSTITUTION.md:164-189", "governance/steward_directives/GI-STEWARD-0002.md", "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md"]
+}

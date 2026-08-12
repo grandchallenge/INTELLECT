@@ -1,0 +1,34 @@
+{
+  "authority_boundary": "This compilation records Council procedure. It does not create human authorization, amend, merge, activate, ratify, or certify.",
+  "current_rules_remain_effective": true,
+  "full_quorum": true,
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "motion_sha256": "c2b6fea79163c6c4b78f02e76b4e3971b4b970bec655c8d243833e5d6e175482",
+  "office_dispositions": {
+    "adversary": "convene_governance_rework_committee",
+    "amanuensis": "convene_governance_rework_committee",
+    "axiomatist": "convene_governance_rework_committee",
+    "cartographer": "convene_governance_rework_committee",
+    "composer": "convene_governance_rework_committee",
+    "formalist": "convene_governance_rework_committee",
+    "grammarian": "convene_governance_rework_committee",
+    "referee": "convene_governance_rework_committee",
+    "steward": "convene_governance_rework_committee",
+    "verifier": "convene_governance_rework_committee"
+  },
+  "procedural_disposition": "convene_governance_rework_committee",
+  "review_sha256": {
+    "adversary": "a60888e9bd2e27b4e8f04eaac9f9baa931a3313757e420bc0b9dd85c24ed0b0e",
+    "amanuensis": "09c372769a0b1633d7a16a681c8d45ae162ed4c91ad2c8489feaaef586ab629a",
+    "axiomatist": "29dce62002f7191547a4a6607159257244b7b64eec6599239b94ff00dcda178d",
+    "cartographer": "8992d4cc30ed3bf428533b77b18be53bde7780fc2c2f89d6e4088ce28f3b7e51",
+    "composer": "f0aadbc30a714a00192bcb9969cbfb1b75b4096bd71fd02f8e4f6d2af74330f8",
+    "formalist": "a7121746c7bebdb7a437d76d8662b7540a37a100db105d02d07c73ea8fddcfee",
+    "grammarian": "72c6db70efb8112d208fcbc9740697fd254aece1ad5e8cce364612bfe02003a7",
+    "referee": "70b700b9561c9a61a9b3b908ddb8e346bb4be1c11a9016f058d762589302b4b5",
+    "steward": "347b450ac4fc309268e800cfd3d667c37402975c9f5130c51f4e6d43c69dcf0a",
+    "verifier": "fc83195a51f1c6ffe5c1739bbf2c380adf40fabd2dfb6558a258619b69a618b3"
+  },
+  "schema_version": "1.0",
+  "unanimous": true
+}

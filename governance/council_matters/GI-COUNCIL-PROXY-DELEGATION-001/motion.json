@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-PROXY-DELEGATION-001",
+  "title": "Bounded machine proxy delegation and routine approval reform",
+  "status": "before_council",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/proposal.md",
+  "proposal_sha256": "833a6885dfee2c1b5f9764d3bac6d0b94a816d520fd06aad1c8390a5f828a7ca",
+  "passage_rule": "full_quorum_unanimous_consent",
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "affirmative_dispositions": [
+    "table_for_human_steward_disposition",
+    "convene_governance_rework_committee"
+  ],
+  "allowed_dispositions": [
+    "table_for_human_steward_disposition",
+    "convene_governance_rework_committee",
+    "reject",
+    "abstain"
+  ],
+  "authority": {
+    "effect": "advisory",
+    "current_rules_remain_effective": true,
+    "human_steward_action_required": true,
+    "article_xi_process_required": true,
+    "automation_may_impersonate_human": false,
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "review_directory": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-PROXY-DELEGATION-001/disposition.json"
+}
