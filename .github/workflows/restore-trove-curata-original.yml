@@ -1,0 +1,72 @@
+name: Restore exact TROVE-CURATA PNG
+
+on:
+  push:
+    branches:
+      - agent/restore-exact-trove-curata-png
+    paths:
+      - .github/workflows/restore-trove-curata-original.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout exact branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/restore-exact-trove-curata-png
+          fetch-depth: 0
+
+      - name: Fetch authoritative raster and verify exact identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs/assets
+          curl --fail --location --retry 3 \
+            'https://cdn.shopify.com/s/files/1/0836/0103/1421/files/trove-curata-progress.png?v=1786657414' \
+            --output docs/assets/trove-curata-progress.png
+          observed="$(sha256sum docs/assets/trove-curata-progress.png | awk '{print $1}')"
+          expected='c2d5324d32da55ab10361c5791e271ed6b1b629ef3131a1b60386e214bad2651'
+          test "$observed" = "$expected"
+          test "$(stat -c '%s' docs/assets/trove-curata-progress.png)" = '2179694'
+          python - <<'PY'
+          from pathlib import Path
+          import struct
+          b = Path('docs/assets/trove-curata-progress.png').read_bytes()
+          assert b[:8] == b'\x89PNG\r\n\x1a\n'
+          width, height = struct.unpack('>II', b[16:24])
+          assert (width, height) == (1024, 1536), (width, height)
+          PY
+
+      - name: Restore README reference and remove derivative asset
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('README.md')
+          text = p.read_text(encoding='utf-8')
+          old = 'docs/assets/trove-curata-progress.jpg'
+          new = 'docs/assets/trove-curata-progress.png'
+          if old not in text:
+              raise SystemExit(f'expected README reference not found: {old}')
+          p.write_text(text.replace(old, new), encoding='utf-8')
+          PY
+          rm -f docs/assets/trove-curata-progress.jpg
+          rm -f .github/workflows/restore-trove-curata-original.yml
+
+      - name: Commit clean restoration diff
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md docs/assets/trove-curata-progress.png docs/assets/trove-curata-progress.jpg .github/workflows/restore-trove-curata-original.yml
+          echo 'Final staged diff:'
+          git status --short
+          test "$(git diff --cached --name-only | sort | tr '\n' ' ')" = '.github/workflows/restore-trove-curata-original.yml README.md docs/assets/trove-curata-progress.jpg docs/assets/trove-curata-progress.png '
+          git commit -m 'Restore exact TROVE-CURATA PNG'
+          git push origin HEAD:agent/restore-exact-trove-curata-png
