@@ -22,13 +22,13 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - name: Fetch authoritative raster and verify exact identity
+      - name: Fetch authoritative original raster and verify exact identity
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p docs/assets
           curl --fail --location --retry 3 \
-            'https://cdn.shopify.com/s/files/1/0836/0103/1421/files/trove-curata-progress.png?v=1786657414' \
+            'https://shopify-shop-assets.storage.googleapis.com/s/files/1/d/ce9c/0836/0103/1421/files/trove-curata-progress.png?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=merchant-assets%40shopify-tiers.iam.gserviceaccount.com%2F20260813%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20260813T215033Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=a1318b7b864c60fe5c199d69ce5cfde76e3cdc41f78bc8da878282df36f962866482450b223ee6572cbb3a412d74995a874473c13091fe79d8de2e5b8d9941b1ba263c9f0306100cd95af29bcfbb571789d71cf6893e560025181cbfd46e0e88b9c65940d4bdaffd811ed6ed2962895c2cd3081dc58aa5b6534bb502ecd1975ac0d815514141e320af5c89ae59b736fb0aa7623c84f2ed5da17cec0972383739503c54b78f25f688a250776a97462f7d4b12cdbeea4faed3ff33cb7032d552ba1ecc361d722e17a75c11bcb927750dfa8476accccedcf8459222c4c8b2c07cf07b7e7cc1622f0cc9e6d4c3f4ba834c28c020de3e2fdb83e3011426a6e55267a9' \
             --output docs/assets/trove-curata-progress.png
           observed="$(sha256sum docs/assets/trove-curata-progress.png | awk '{print $1}')"
           expected='c2d5324d32da55ab10361c5791e271ed6b1b629ef3131a1b60386e214bad2651'
