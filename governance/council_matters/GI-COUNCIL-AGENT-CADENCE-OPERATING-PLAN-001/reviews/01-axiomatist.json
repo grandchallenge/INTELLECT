@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-agent-cadence-r3-20260812-c",
+  "decision": "changes_requested",
+  "deliberation": "The exact candidate now discharges the source-schedule, duration, dependency, terminal-order, and terminology defects previously identified by this office. The frozen predecessor is honestly described as reconstructed rather than given a fictitious original identity; its commit, path, blob, and SHA-256 reproduce; each declared source duration is parsed and corresponds to that source; and the exact factor-0.1 targets remain strictly ordered through P9D. OPS-A is explicitly present as a hard predecessor, the terminal sequence is ordered after the observation cutoff, and the external sponsor may be an authorized agent. Time therefore remains a scheduling primitive rather than evidence, truth, or authority, and the zero-routine-human model does not displace the one reserved exact Human Steward disposition or any later reserved decision. The candidate is nevertheless not ready for approval because its activation primitive is not closed. The new JSON Schema requires names for the candidate, plan, transform, Council, Human Steward, merge, protected-main, readback, and T0 values, but—with the exception of plan_id and the authority sentence—it constrains them only by shape. A schema-valid receipt can bind a different candidate and Council matter, carry mutually different top-level and Human Steward bindings, substitute unrelated protected bytes, and set T0 before readback. The transform validator checks only that these field names are required; it never validates a receipt or their equality, provenance, ancestry, or temporal relations. Thus conformance does not prove the single exact activation event on which every deadline and reserved-authority claim depends. Because repairing this requires governed byte changes and fresh exact-candidate review, interpretive conditions cannot safely cure this head.",
+  "discharged_obligations": [
+    "Separated the frozen predecessor schedule, exact deadline transform, activation event, evidence, office review, Human Steward disposition, protected integration, mathematical truth, and terminal disposition as distinct primitives.",
+    "Recomputed the active Council matter and proposal digests and reproduced the exact candidate plan, transform, and predecessor source identities named in the packet.",
+    "Checked every source and target phase, milestone, and cadence duration for exact factor-0.1 arithmetic and checked strict phase and terminal ordering.",
+    "Reassessed each prior Axiomatist blocker against the exact final candidate, including source provenance, parsed durations, OPS-A precedence, stale terminology, external sponsorship, human-action accounting, adverse outputs, and authority nonclaims.",
+    "Constructed an adversarial schema-valid activation receipt to test whether the declared activation contract rejects identity substitution, unbound Human Steward evidence, and retrospective T0."
+  ],
+  "findings": [
+    "The canonical digest of the active Council matter is 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504, and the active proposal bytes match matter.json proposal_sha256 f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620.",
+    "MATH-PROGRAMME candidate 4abe7653e74a3a1fd16e8b9e72e5c61646718241 contains plan blob 8d1f06567acc40f196a0952bdbce0ee4cbc84c21 with SHA-256 e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843 and transform blob 012b3ef62d14b51b3d4f08c5c565024a0356e674 with SHA-256 24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086.",
+    "The bound predecessor at da753cfd7f0128fb78948a240de336c58db9a50d is blob a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42 with SHA-256 0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc; its text explicitly says that it is a reconstructed and frozen source schedule and does not misrepresent the earlier uncommitted prose as Git history.",
+    "All four phase durations, five milestone offsets, and four cadence offsets are exact one-tenth transforms of the bound source values. Their declared ISO-8601 labels agree with seconds, cumulative phase deadlines are coherent, and the observation cutoff, ADM-B, ADM-03, and P9D terminal packet are strictly ordered.",
+    "The canonical validator and all seven focused unit tests pass, and the final plan retains none of the stale '90-day result', 'weekly review', or 'named human sponsor' terminology.",
+    "The plan preserves the critical primitive distinctions: activation is not merge, time is not evidence, a deadline disposition is not mathematical success, an agent exercise is not external adoption, and Council compilation is advisory rather than Human Steward, production, publication, commercial, or MATHCERT authority.",
+    "The activation schema does not bind its static fields to this reviewed candidate: plan_candidate_head, plan_file_sha256, transform_file_sha256, and council_matter_sha256 accept any correctly shaped digest instead of the exact values above.",
+    "The activation schema does not require human_steward_evidence.bound_plan_head or bound_council_matter_sha256 to equal the corresponding top-level values, identify the scheduled Human Steward, or establish authentication; source_url and actor are merely non-empty strings.",
+    "The activation schema records protected_merge_sha, protected_main_plan_blob, protected-main digests, and readback_run but contains no repository, protected branch, readback head, merge ancestry, exact-head required-check result, or independently reviewed-head identity and supplies no verifier to establish those relations.",
+    "The activation schema permits t0_utc to differ arbitrarily from readback_completed_at_utc. An adversarial receipt containing unrelated candidate, Council, Steward, merge, and protected-byte identities and a T0 eleven days before readback produced zero Draft 2020-12 schema errors.",
+    "The transform validator labels the activation contract closed when the schema has additionalProperties false and a set of field names is required; it does not inspect the fields' exact constraints or validate any receipt. Passing it therefore does not establish non-retrospective exact activation.",
+    "Required checks, Council completion, Human Steward disposition, protected merge, protected-main readback, and T0 remain future gates; neither this review nor a structurally conforming receipt supplies those powers or facts."
+  ],
+  "conditions": [
+    "Bind every static activation identity to this exact packet: candidate head 4abe7653e74a3a1fd16e8b9e72e5c61646718241, plan blob and SHA-256, transform blob and SHA-256, and Council matter digest 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504. A receipt for any other revision must fail closed and require a new Council packet.",
+    "Provide an executable activation-receipt verifier, with adversarial tests, that checks the compiled disposition digest and readiness, authenticated scheduled Human Steward evidence, equality of nested and top-level bindings, successful exact-head required checks and required independent review, ordinary protected-merge ancestry, protected repository/branch/head readback, and equality of protected plan and transform bytes to the reviewed artifacts.",
+    "Make T0 exactly the canonical successful protected-main readback completion instant, or define and verify an equally non-retrospective atomic relation; reject any receipt in which T0 precedes or is otherwise detached from successful durable readback.",
+    "Add mutation tests proving rejection of a substituted candidate, plan, transform, Council matter, Human Steward binding, merge, protected-main identity, readback, and retrospective T0; the canonical validator must exercise the receipt contract rather than checking field-name presence alone.",
+    "Retable the repaired exact candidate and regenerated Council matter digest for fresh independent office review; no approval, activation, merge authority, or clock start carries forward from this record."
+  ],
+  "residual_uncertainty": [
+    "The reconstructed predecessor schedule is now exactly identifiable and honestly scoped, but it remains a frozen reconstruction rather than immutable proof of the precise wording of the earlier uncommitted draft.",
+    "The eventual T0, cadence-anchor intersection, number of due maintenance occurrences, exact protected heads, and feasibility of completing an external exercise inside P9D are future facts; lawful outcomes include blockers, negative results, and owned continuations.",
+    "Even after the activation contract is closed, deadline compression cannot establish operational reliability, CM4, T3, certification, publication, adoption, deployment, revenue, or commercial readiness without their separately required evidence and authority."
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CONSTITUTION.md",
+    "governance/constitutional_authority_schedule.json",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json#canonical-sha256=90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md#sha256=f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/01-axiomatist.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-2/reviews/01-axiomatist.json",
+    "grandchallenge/MATH-PROGRAMME@da753cfd7f0128fb78948a240de336c58db9a50d:governance/agent_cadence_operating_plan_predecessor_90d.json#blob=a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42&sha256=0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md#blob=8d1f06567acc40f196a0952bdbce0ee4cbc84c21&sha256=e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:governance/agent_cadence_operating_plan_transform.json#blob=012b3ef62d14b51b3d4f08c5c565024a0356e674&sha256=24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:ci/validate_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:tests/test_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:schemas/agent_cadence_operating_plan_activation.schema.json"
+  ]
+}

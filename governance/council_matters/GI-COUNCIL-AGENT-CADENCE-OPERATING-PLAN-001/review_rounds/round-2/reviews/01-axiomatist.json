@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-agent-cadence-r2-20260812-b",
+  "decision": "changes_requested",
+  "deliberation": "The revision discharges most of the first-round primitive failures. It makes T0 the successful, non-retrospective protected-main activation-readback timestamp; makes OPS-A a hard predecessor; bounds the primary due-occurrence interval while reserving terminal-processing time; supplies explicit cutoff states; allows a distinct agent to conduct the external exercise; and separates reserved, routine, merge-executor, external-participant, and terminal human-action counters. The exact 0.1 arithmetic represented by the manifest is internally coherent, strictly ordered, and accepted by the supplied validator. Authority and evidence remain uncompressed: time does not create review, truth, protection, certification, production, publication, commercial, or Human Steward power. The candidate is not yet suitable for approval, however, because its defining source primitive remains unbound. The manifest names a source plan ID and self-reports source seconds but supplies no repository, commit, path, blob, or SHA-256 for the 90-day predecessor; the validator consequently proves only consistency among values asserted inside the new manifest, not that those values were extracted from an immutable predecessor. It also does not parse the declared ISO-8601 duration strings or compare the manifest against the plan text. Two smaller primitive contradictions remain in the plan: the workstream table still calls every outcome a '90-day result', and EXT assigns a 'named human sponsor' while the controlling text allows an authorized agent and targets zero external-human actions. Because correcting these defects changes the exact candidate bytes and the central exact-transform premise, they require another exact revision rather than interpretive conditions on this head.",
+  "discharged_obligations": [
+    "Separated time, evidence, authority, activation, review, mathematical truth, and terminal disposition as distinct primitives under the Constitution.",
+    "Rechecked every represented phase, milestone, cadence, review, retirement, and initial-action source/target seconds pair for exact factor-0.1 arithmetic and strict cumulative ordering.",
+    "Tested T0, OPS-A precedence, cutoff semantics, independent external exercise, human-action counters, and adverse-result retention against the first-round Axiomatist conditions.",
+    "Inspected the exact candidate head, plan blob and digest, transform-manifest blob and digest, validator, adversarial unit tests, Council matter digest, and proposal digest.",
+    "Tested whether the candidate grants agents new approval, merge, activation, production, publication, commercial, constitutional, or mathematical-certification power and found no such grant."
+  ],
+  "findings": [
+    "The active matter canonical digest is 6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55, and its proposal bytes match the proposal_sha256 recorded in matter.json.",
+    "MATH-PROGRAMME head be3690286eaaa7dd6ffce6407856f28777327fdf resolves to the tabled plan blob fa11a2756faf238cffff3a071a3a349dcdea4784 and transform-manifest blob 821cdd937146602687edb925bd9195fdab2d4e82; their SHA-256 digests match the active proposal.",
+    "The represented deadlines are internally coherent: each target-seconds value is exactly one tenth of its source-seconds value, phase totals equal P9D, and cumulative milestones remain strictly ordered.",
+    "T0 is now one non-retrospective event written only after successful protected-main activation readback; failed or absent readback leaves the candidate inactive and no deadline accrues before that event.",
+    "The candidate now distinguishes the one reserved activation disposition from routine human operating action, any observed human merge execution, external human participation, and any later reserved terminal action; it also makes an independent agent sufficient for EXT-B absent a separately reserved external commitment.",
+    "The source plan is not immutably identified. source_plan_id and source_seconds are declarations inside the new manifest, so neither the manifest nor validator demonstrates that the declared 90-day schedule came from one fixed predecessor artifact.",
+    "The validator checks integer seconds but not the paired duration strings or correspondence between manifest values and plan prose; a false duration label with unchanged seconds would still validate.",
+    "The workstream register retains the header '90-day result', contradicting the exact nine-day schedule and leaving the first-round terminology condition undischarged.",
+    "EXT still assigns the accountable role 'named human sponsor', contradicting the later rule that the sponsor may be an authorized agent and the target of zero external human participant actions.",
+    "Deadline pressure remains fail-closed: blockers, unknowns, negative results, parked lanes, and owned continuations remain lawful outputs and do not promote CM4, T3, or any wider claim."
+  ],
+  "conditions": [
+    "Bind the 90-day predecessor in the transform manifest by repository, commit, path, Git blob, and SHA-256, and have the validator fail when the identified immutable source bytes or extracted source schedule do not match the manifest.",
+    "Extend validation so every declared duration string is parsed and checked against its seconds value and every transformed phase, milestone, cadence, review, retirement, and initial-action value is checked against the exact plan text or another equivalently immutable generated contract.",
+    "Rename the workstream outcome column to 'nine-day result'.",
+    "Replace 'named human sponsor' with a role compatible with the controlling agent-or-human rule, or explicitly require and count that human dependency; keep reserved authority separate from operational sponsorship.",
+    "Table the repaired exact candidate under a fresh head and matter digest for fresh office review; no interpretation of this record may authorize mutation after review."
+  ],
+  "residual_uncertainty": [
+    "The positive arithmetic result is conditional on self-reported source seconds because no immutable 90-day source artifact is bound.",
+    "A nine-day window may contain too few authoritative maintenance occurrences or no successfully completed external exercise; the plan correctly permits explicit adverse and continuation dispositions rather than asserting success.",
+    "Required-check completion, Human Steward disposition, ordinary protected merge, protected-main readback, and T0 are future gates and are not established by this Council review."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json#canonical-sha256=6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md#sha256=e557f56812e1b37db6b28589a6adf0ee41679f4df92b0d2b9621c97736d3fffa",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/01-axiomatist.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/ROUND-1-RESULT.md",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md#blob=fa11a2756faf238cffff3a071a3a349dcdea4784&sha256=4731ab25b1e9eb8426b0602c89d14f1b0b55e655cb35f9477719818d73badcdf",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:governance/agent_cadence_operating_plan_transform.json#blob=821cdd937146602687edb925bd9195fdab2d4e82&sha256=040206e3e24e5ced5606fb80ab13e0d2baaf91b8299cbd8efed026c21824186e",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:ci/validate_agent_cadence_operating_plan.py#sha256=10a84b805d2abfb99285732af53211c129bcc4e4f6c3102d938c79b7950b06e4",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:tests/test_agent_cadence_operating_plan.py#sha256=a214101e094cc5ed1d76b0b7426c21619065f77c51c460681fc81706586ae448",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py"
+  ]
+}

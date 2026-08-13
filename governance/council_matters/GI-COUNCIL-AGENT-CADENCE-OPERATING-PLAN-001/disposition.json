@@ -1,0 +1,44 @@
+{
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify.",
+  "conditions": [
+    "1. Close the root activation and review transition. Publish a versioned executable verifier and hostile tests that content-bind one immutable candidate instance, exact plan and transform bytes, this Council matter and all ten review artifacts, proposal-author identities, stable reviewer kinds and distinct sessions including non-author Adversary and distinct non-author Referee, compiled readiness, the complete active exact-head required-check and independent-review set, an authenticated approving disposition by the scheduled Human Steward, ordinary protected-merge repository, branch, commit, timestamp and ancestry, protected-main readback head and bytes, and one replay-safe activation identity. Require T0 to equal the canonical successful durable readback-completion event and reject substitution, unequal nested bindings, conflict, replay, or retrospective activation.",
+    "2. Make source and target identity correspondence bijective and semantic. Give every plan candidate an immutable instance ID and append-only predecessor, successor, status, supersession-reason, and no-carry-forward links across the frozen source, rounds one and two, and this candidate. Validate the expected source repository and exact complete, unique, ordered phase, milestone, and cadence sets in both directions; parse all durations; prove exact transform arithmetic, strict milestone order, phase-cumulative equality, and agreement with the normative plan tables; reject missing, extra, duplicate, reordered, or divergent values.",
+    "3. Publish one versioned normative lexicon and closed operating-state contract. Namespace activation, integration, readback, Council advice, Human Steward authorization, mathematical disposition, visual switch, gate disposition, evidence state, workstream result, and terminal plan disposition; distinguish operating_schedule_compression_factor from maintenance_acceleration_factor; define initial, allowed, terminal, retryable, blocked, unknown, reopened, and superseded transitions with guards and exact evidence. Resolve COMPLETE, PASS, PENDING, FAILED, blocker, protected, review, retirement, and disposition; define HWM ordered ancestry, classifier and receipt identity, retry and replay guards, and atomic processed_through_sha advancement.",
+    "4. Replace the partial dependency table with the complete content-bound execution DAG. Include OPS-A, OPS-B, every lane gate, integrated Gates A through E, observation_cutoff, ADM-B, ADM-03, all eight exact final receipts, and terminal_packet; bind unique known nodes to phases, deadlines, gate expressions, required evidence, and deterministic blocker propagation. Enforce acyclicity, reachability from OPS-A, predecessor-deadline monotonicity, durable predecessor receipts, identical Phase and integrated Gate B and C predicates, and selection-time EXT edges to the exact chosen upstream artifact, review, nonclaims, and fallback.",
+    "5. Close runtime observation and terminal semantics. Define canonical occurrence keys, causal timestamps, endpoint rules, an atomic half-open cutoff snapshot, immutable PENDING_AT_CUTOFF and FAILED_AT_CUTOFF states, append-only late-evidence supplements, ADM-B consuming the exact snapshot, ADM-03 consuming exact ADM-B, and a terminal join consuming each workstream's exact final receipt or immutable blocker. Resolve whether T0 plus P9D is an inclusive deadline or a named out-of-window closure act, define closed plan-level dispositions and continuation effects, and prohibit any later transition when required predecessor evidence is absent.",
+    "6. Bind execution identity, baseline, externality, and WIP. Validate OPS-00 tuples for each named repository as repository, protected branch, commit, observed-at time, canonical readback evidence, and active-contract blob or digest. Publish role attestations and compare-and-set WIP leases binding candidate, authors, accountable actor, independent actor, reviewer and session, acquisition, release, and status. Label an internal non-author agent exercise only as bounded reproducibility or usability; require authenticated external-person or external-organization evidence before external-use, adoption, demand, market, or commitment labels and authority.",
+    "7. Bound resources and failure behavior for P9D. Establish a measured capacity baseline and aggregate machine-readable ceilings for active work units, agent concurrency, independent-review slots, CI or workflow dispatch, runner consumption, retries, branches or trackers, storage and artifacts, reporting, and terminal compilation; reserve EXT and terminal-verification capacity. Define deterministic priority and shedding order, delta and deduplicated reporting with retention and administrative-budget limits, and tested suspension or stop triggers for P0 or P1 integrity defects, authority ambiguity, unproved protected state, exhausted capacity or retries, repeated routine-human routing, unowned blockers, and loss of reserved closure capacity.",
+    "8. Make expiry, retirement, custody, and recovery fail closed. At the terminal boundary stop plan-specific schedules and new dispatch, park unfinished work at its last proven state, preserve adverse evidence, and revert to the previously effective rules absent a separately authorized continuation. Routine retirement may only create a recoverable archival or supersession record with exact target, provenance, custodian, retention class, digest, retrieval test, recovery path, and protected-rule exclusion. Define canonical custody, immutable IDs and links, retention, integrity checks, migration preserving old bytes, mirrors or backups, divergent-record reconciliation, and restoration tests; deletion, protected-workflow mutation, credential action, authority-record removal, and irreversible disposal remain separately reserved.",
+    "9. Retable every repair as a new exact MATH-PROGRAMME candidate and newly digested Council matter. Preserve this packet and both prior rounds as immutable adverse predecessors, rerun hostile validators, and obtain fresh independent office reviews of the changed bytes. No present review, check observation, mergeability state, disposition, authorization, activation, or deadline start carries forward."
+  ],
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office_decisions": {
+    "adversary": "changes_requested",
+    "amanuensis": "changes_requested",
+    "axiomatist": "changes_requested",
+    "cartographer": "changes_requested",
+    "composer": "changes_requested",
+    "formalist": "changes_requested",
+    "grammarian": "changes_requested",
+    "referee": "changes_requested",
+    "steward": "changes_requested",
+    "verifier": "changes_requested"
+  },
+  "procedural_disposition": "returned_for_revision",
+  "ready_for_human_disposition": false,
+  "review_count": 10,
+  "review_sha256": {
+    "adversary": "0595df4a85a89e3dcf26ce93e83ff0f79f64e9f5623f1f177369e4f739b2be45",
+    "amanuensis": "a7d4ef25064740698e3fc6e3b3686c9890d1d8a1b4c9f6365ff598d38319b081",
+    "axiomatist": "e719a3ae1eb4a9f04d84f6ed1d52dd2f9ce48c88f68a1423accff9b4b570fcfb",
+    "cartographer": "f63a50bd988696301d340740270cae6e0b61143b01b176228f9df2bf27292499",
+    "composer": "648e210c0367f0df96cbb7b87a41d42500b38fa5cd26bd0a9afd38432b84e19f",
+    "formalist": "c9ab6af4a10bc9bdb6a37565ac8cb5a2dc3c420f61625f4951787078ed8d9ae1",
+    "grammarian": "18bb05bad8309275930891e77a26f06824c06bfa622f15ca541949b3274b5e40",
+    "referee": "4608523b3206f0d8887d8d71d2a2b2cd68bb55e30a2bba2119ddd4618e34848e",
+    "steward": "73ea7ca06d27ab8baa8ac3450b1f5617c0148d1396dbc29b2199f680ee6ca14c",
+    "verifier": "591ef3074df50a250a8bd1b0f9d5c5f873b81c6bede631bc60f8d4e8894827ac"
+  },
+  "schema_version": "1.0"
+}

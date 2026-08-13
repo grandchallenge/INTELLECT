@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55",
+  "office": "cartographer",
+  "reviewer_id": "agent-cartographer-agent-cadence-r2-20260812-b",
+  "decision": "changes_requested",
+  "deliberation": "The revised candidate resolves several round-one topology defects: every phase now names declared gates, T0 is the non-retrospective successful protected-main activation-readback timestamp, OPS-A is stated as a hard predecessor, and the primary observation interval ends at T0 plus P8DT4H48M with PT19H12M reserved before P9D. The declared MATH-PROGRAMME commit, plan blob and SHA-256, and transform-manifest blob and SHA-256 reproduce exactly, and the three candidate transform tests pass. The dependency repair is not yet executable, however. The validator reads only the transform manifest; it does not read the plan, enumerate workstream gates, encode predecessors, or reject an unknown phase-exit gate, a missing terminal node, a cycle, or a predecessor whose deadline is later than its dependent. Thus it cannot enforce either the repaired phase map or the OPS-A barrier and does not satisfy the round-one machine-check condition. The terminal path also remains ambiguous: ADM-03 says to issue a reliability disposition at the end of the observation window, ADM-B permits terminal receipts and readbacks through P9D, and the Phase 3 exit omits ADM-03. A late-but-valid closeout inside the reserved buffer can therefore occur after the stated disposition point, with no declared cutoff-snapshot to ADM-B to ADM-03 to consolidated-packet order. T0 itself is now temporally sound, but no activation-receipt contract binds and distinguishes candidate commit, protected merge commit, protected-main readback repository/branch/head, ancestry result, plan identities, Council compilation, Human Steward disposition, and readback timestamp. Likewise, OPS-00 names five protected heads but does not require each baseline identity to be a repository/branch/SHA/observed-at/readback-evidence tuple. These omissions matter precisely because merge identity and later protected heads need not equal the reviewed candidate and because all five repositories may move independently. The exact nine-day schedule is therefore reviewable in prose but not yet a fail-closed executable dependency map.",
+  "discharged_obligations": [
+    "Reconstructed the activation, protected merge, protected-main readback, T0, OPS baseline, downstream workstream, observation-cutoff, terminalization, disposition, and consolidated-review dependency paths.",
+    "Checked every phase-exit gate reference against the workstream register and compared its declared deadline with the integrated milestone schedule.",
+    "Reassessed each round-one Cartographer condition against the exact revised MATH-PROGRAMME candidate rather than treating the correction summary as evidence of discharge.",
+    "Verified the exact candidate commit, plan blob and file digest, transform-manifest blob and file digest, and successful candidate transform tests.",
+    "Assessed identity drift across reviewed candidate, protected merge commit, protected-main readback head, and the five-repository OPS-00 baseline."
+  ],
+  "findings": [
+    "The phase table now references only declared canonical workstream gates, and the PT4H48M, P2DT12H, P5DT9H36M, P8DT4H48M, and P9D offsets are arithmetically coherent.",
+    "T0 is now defined after successful protected-main activation readback, so merge-to-readback latency no longer consumes the active nine-day window retrospectively.",
+    "The plan states OPS-A as a hard predecessor and permits only OPS-00 construction and verification evidence before it, materially correcting the prior unbound downstream-start risk.",
+    "The transform validator validates internal duration arithmetic and the presence of eight noncompressed-requirement labels, but it does not consume the plan or any machine-readable gate/dependency graph; it therefore cannot reject unknown gate references, deadline inversions, cycles, missing predecessors, or violation of the OPS-A barrier.",
+    "The observation cutoff now precedes P9D by PT19H12M, but ADM-03 is placed at the end of the observation window while ADM-B allows terminalization through P9D, and ADM-03 is absent from the Phase 3 exit condition; the closeout order is not deterministic.",
+    "The candidate does not define a durable activation-receipt schema or artifact that distinguishes candidate head, protected merge commit, protected-main readback head, ancestry result, and readback time while binding the plan, Council compilation, and Human Steward disposition identities.",
+    "OPS-00 requires protected heads and active contracts for five repositories, but cross-repository baseline identity is not specified as repository plus protected branch plus commit plus observation timestamp plus canonical readback evidence; a bare head value is insufficient to reconstruct a moving multi-repository cut.",
+    "The manifest names a source plan ID and copies source durations but binds no exact predecessor repository, commit, path, blob, or SHA-256, so successful validation proves arithmetic over self-declared source seconds rather than an exact transform of an independently identified predecessor artifact."
+  ],
+  "conditions": [
+    "Add a machine-readable gate and dependency schedule, and make validation reject unknown or duplicate gate IDs, missing phase-exit nodes, cycles, predecessor deadlines later than dependent deadlines, and any downstream workstream node reachable before successful OPS-A; validation must bind that schedule to the exact plan candidate.",
+    "Define and validate the terminal chain as observation cutoff, durable cutoff snapshot, per-occurrence terminal receipt/readback or preserved cutoff state, ADM-B, ADM-03 reliability disposition, and consolidated terminal packet, with explicit deadlines inside the PT19H12M reserve and retention of events completed after cutoff.",
+    "Define a fail-closed activation-receipt contract that binds the Council matter digest, compiled disposition digest, authenticated Human Steward disposition identity, candidate commit, protected merge commit, plan blob and SHA-256, protected-main repository and branch, protected-main readback head, ancestry result, merge timestamp, and readback timestamp; T0 must be created only by durable successful validation of that receipt.",
+    "Define each OPS-00 protected baseline entry as an exact repository, protected branch, commit, observed-at timestamp, and canonical readback-evidence tuple, bind active contract paths to blobs or content digests, and block only affected downstream lanes when any tuple cannot be reproduced.",
+    "Bind the transform manifest to the exact predecessor plan artifact by repository, commit, path, blob, and SHA-256, and validate the source phase, milestone, and cadence values against that bound artifact or a separately content-addressed source schedule rather than accepting self-declared source seconds alone.",
+    "Retable the resulting exact candidate and Council matter because these dependency, receipt, and provenance repairs change governed bytes and the active proposal forbids carrying this review across such a change."
+  ],
+  "residual_uncertainty": [
+    "The existing maintenance cadence anchor determines how many authoritative occurrences fall inside the half-open observation interval and is not knowable until the OPS-00 baseline is captured.",
+    "PT19H12M creates a topologically usable closeout reserve, but no bounded ordinary merge, receipt, readback, or independent-compilation latency is evidenced for that reserve.",
+    "Protected heads in MATH-PROGRAMME, MATHFORGE, MATHSOLVE, MATHCERT, and INTELLECT will continue to drift between Council review, merge, activation readback, and OPS-00 and must be captured rather than presumed equal.",
+    "Availability of distinct non-author reviewers and an independent external actor within the compressed critical path remains an operational uncertainty; a blocker or continuation packet remains the honest output if they are unavailable.",
+    "Passing the candidate transform tests establishes only their covered arithmetic invariants and does not establish successful required checks, protected merge, protected-main inclusion, activation, or feasibility of every nine-day workstream."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:29-64",
+    "CONSTITUTION.md:66-138",
+    "CONSTITUTION.md:146-181",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/02-cartographer.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/ROUND-1-RESULT.md",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:governance/agent_cadence_operating_plan_transform.json",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:ci/validate_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:tests/test_agent_cadence_operating_plan.py"
+  ]
+}

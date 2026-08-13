@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "title": "Nine-day agent-cadence post-pilot operating plan",
+  "status": "before_council",
+  "decision_class": "operating_policy_schedule_and_reserved_human_action",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+  "proposal_sha256": "fb7f33223d08548fa91bad1f51f32ec917340fcd51938059e572440e084732f3",
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward",
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject",
+    "abstain"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/disposition.json"
+}
