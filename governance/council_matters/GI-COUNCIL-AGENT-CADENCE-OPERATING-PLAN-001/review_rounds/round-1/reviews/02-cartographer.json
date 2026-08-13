@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "18726690cfc8cbd246bafcb687e32a455d922ae9ae580e891d5938e64c95e545",
+  "office": "cartographer",
+  "reviewer_id": "agent-cartographer-agent-cadence-20260812-a",
+  "decision": "changes_requested",
+  "deliberation": "The nine-day topology can preserve substantive and authority boundaries, but the exact candidate is not yet an executable dependency map. The phase table names exit gates A1, B1, C1, D1, E1, B2, C2, D2, F1, and G2, while the work packages define OPS-A/B, ADM-A/B, HWM-A/B/C, CMDG-A/B, OZ-A/B, PRV-A/B/C, VIS-A/B, and EXT-A/B/C. No deterministic phase transition can therefore be evaluated from the stated map. In addition, ADM-02 uses the full T0/P9D interval as its observation window while ADM-03 and the consolidated terminal disposition are also due at T0 plus P9D; the final in-window occurrence cannot be terminalized, independently read back, and compiled before the same boundary at which observation ends. Finally, the proposal defines T0 as the protected merge timestamp but says the clock does not start until a later protected-main readback, creating retrospective activation and consuming an unbounded part of the compressed window before activation exists. Cross-repository drift is expected and is appropriately assigned to OPS-00, but all downstream work must depend on successful OPS-A rather than run against unbound repository heads. Live inspection found PR 493 still open and draft at the specified head acf30e66812deb1f9b5aa3e2e31687511160e966, while the five protected repositories already occupy distinct moving heads; this confirms the need for an explicit baseline barrier and an ancestry-aware activation receipt.",
+  "discharged_obligations": [
+    "Mapped the Council, exact-candidate validation, Human Steward disposition, protected merge, protected-main readback, activation, rebaseline, workstream, and terminal-disposition dependencies.",
+    "Compared the phase exit map against every declared acceptance-gate identifier and identified unresolved references.",
+    "Assessed exact-head invalidation across candidate-head changes, protected-base movement, merge strategy, and post-merge protected-head movement.",
+    "Checked the live protected heads of MATH-PROGRAMME, MATHFORGE, MATHSOLVE, MATHCERT, and INTELLECT and assessed the proposed cross-repository rebaseline barrier.",
+    "Tested the P9D schedule for predecessor-successor feasibility at observation close, independent readback, and terminal compilation."
+  ],
+  "findings": [
+    "The phase exit conditions reference gate identifiers that are absent from the work-package register, so the phase graph is not machine-resolvable.",
+    "A full T0/P9D ADM observation window cannot precede an ADM-03 disposition and consolidated terminal packet that are both due at T0 plus P9D.",
+    "Defining T0 as merge time while withholding clock start until subsequent readback makes activation retrospective and leaves readback latency unbudgeted.",
+    "OPS-00 correctly anticipates cross-repository drift, but the plan does not state that successful OPS-A is a hard predecessor of every mutating or claim-bearing downstream lane.",
+    "The activation receipt must distinguish candidate head, protected merge commit, plan blob and file digest, and later protected-main readback head; equality of all Git identities cannot be assumed across merge methods or subsequent protected commits.",
+    "At review time PR 493 remained an open draft at the tabled candidate head, so no current merge, activation, or protected-main inclusion can be inferred from successful checks."
+  ],
+  "conditions": [
+    "Replace every A1/B1/C1/D1/E1/B2/C2/D2/F1/G2 phase reference with declared canonical gate identifiers and add a validator that rejects unknown gate references and any predecessor deadline later than its dependent deadline.",
+    "Define T0 as the timestamp of a durable successful protected-main activation-readback receipt, and separately record the protected merge timestamp; prohibit all plan-authorized mutating dispatch before T0.",
+    "End the primary ADM observation window early enough to reserve a declared terminalization, independent-readback, and compilation buffer before P9D, or move the terminal disposition after the observation window; encode the interval boundary and buffer as machine-checked durations.",
+    "Make OPS-A a hard predecessor for all downstream mutating, evaluative, externally exercised, or claim-bearing work; a baseline mismatch must block only the affected lane while preserving the exact mismatch.",
+    "Require the activation receipt to bind the Council matter digest, compiled disposition digest, Human Steward disposition identity, candidate head, protected merge commit, plan blob, plan SHA-256, protected-main readback head, ancestry result, and readback timestamp; any candidate-head or plan-byte change requires fresh Council review.",
+    "Retable the revised exact candidate because satisfying these conditions changes the governed plan or proposal bytes and therefore invalidates this packet by its own exact-candidate rule."
+  ],
+  "residual_uncertainty": [
+    "The maintenance cadence anchor and due occurrences inside the eventual shortened observation interval are not known until OPS-00 rebaseline.",
+    "Protected branch merge method and the maximum ordinary merge-to-readback latency are not specified in this matter.",
+    "Availability of independent mathematical reviewers, semantic reviewers, and an external reproducer within the corrected critical path remains unproven.",
+    "Cross-repository protected heads and open-candidate topology will continue to drift between Council review and activation and must be captured rather than assumed stable."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:55-73",
+    "CONSTITUTION.md:77-138",
+    "CONSTITUTION.md:164-181",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "grandchallenge/MATH-PROGRAMME@acf30e66812deb1f9b5aa3e2e31687511160e966:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/pull/493",
+    "https://api.github.com/repos/grandchallenge/MATH-PROGRAMME/commits/main",
+    "https://api.github.com/repos/grandchallenge/MATHFORGE/commits/main",
+    "https://api.github.com/repos/grandchallenge/MATHSOLVE/commits/main",
+    "https://api.github.com/repos/grandchallenge/MATHCERT/commits/main",
+    "https://api.github.com/repos/grandchallenge/INTELLECT/commits/main"
+  ]
+}

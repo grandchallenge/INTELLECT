@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office": "steward",
+  "reviewer_id": "agent-steward-agent-cadence-r3-20260812-c",
+  "decision": "changes_requested",
+  "deliberation": "The exact candidate is directionally proportionate in its treatment of human attention: one authenticated exact-packet Human Steward activation remains reserved, routine status and recovery are not routed to people for reassurance, and later human action is requested only when a genuinely reserved power is implicated. Its bounded mathematical lanes, one-at-a-time research candidates, single visual tranche, one selected flagship, blocker-as-result rule, explicit parking, claim nonpromotion, and terminal adverse-history packet are sound Stewardship choices. The candidate is nevertheless not ready for activation because the nine-day resource envelope is not closed. Eight workstreams may execute concurrently under lane-specific limits, while reviews, evidence production, retries, dispatch, and reporting sit outside any aggregate WIP definition. No agent-concurrency, workflow-runner, retry, storage, or artifact-production ceiling is declared; no capacity baseline demonstrates that the uncompressed evidentiary workload fits P9D; and fixed PT2H24M digests plus PT16H48M reviews can themselves become a high-volume control plane. The risk table describes local responses but supplies no plan-level kill or suspension rule for capacity exhaustion, repeated gate failure, authority ambiguity, or external-lane starvation. The plan also does not state the automatic post-P9D operating default or require decommissioning of plan-specific schedules and temporary control artifacts. Deadline pressure therefore remains capable of multiplying nominal activity, governance output, and maintenance debt even though human interruptions are minimized. These are governed candidate defects, not details that should be improvised during execution, so they require an exact revision and fresh review.",
+  "discharged_obligations": [
+    "Assessed proportionality between the factor-0.1 deadline transform and the unchanged evidence, review, protection, and authority workload.",
+    "Evaluated lane-specific and aggregate work-in-progress controls across OPS, ADM, HWM, CMDG, OZ, PRV, VIS, and EXT.",
+    "Reviewed human-action accounting against the Constitution and GI-STEWARD-0002, including activation, routine operation, merge execution, external participation, and later reserved decisions.",
+    "Evaluated maintainability, reporting burden, retry and compute exposure, artifact growth, reversibility, terminal closure, and decommissioning.",
+    "Checked whether external-value concentration, escalation routes, and kill or stop conditions protect purpose when the nine-day envelope becomes infeasible."
+  ],
+  "findings": [
+    "The zero-routine-human target is consistent with GI-STEWARD-0002 only because the plan preserves one substantive authenticated exact-packet Human Steward activation and does not treat silence, automation, Council advice, ordinary retry, or a merge executor as that authorization.",
+    "The human-action counters are usefully disaggregated. A later action remains zero unless a terminal packet actually seeks constitutional, production, certification, publication, commercial, credential, protected-rule, or other reserved authority.",
+    "External work is more concentrated than in the predecessor: no more than three lanes are nominated, one flagship is selected, one minimum independent-use packet is built, and negative or absent external-value evidence is preserved without promotion to adoption, publication, product, revenue, or commercial claims.",
+    "An authorized independent agent outside the original authoring path is sufficient to test reproducibility or independent use without consuming human attention. It is not evidence of an outside human, institution, market, or adopter, and the candidate correctly retains those nonclaims.",
+    "The WIP controls cap two control-plane implementation candidates, one CMDG candidate, one odd-zeta candidate, and one visual tranche, but they do not define an aggregate active-work unit or cap simultaneous EXT, ADM, HWM, PRV, OPS, review, evidence, recovery, and reporting work. The nominal ceiling can therefore exceed the capacity it is meant to protect.",
+    "No measured capacity baseline or explicit ceiling exists for concurrent agent sessions, CI or workflow runs, runner minutes, retries per failed transition, storage, generated evidence, live branches, or control-plane artifacts. Unknown capacity is not presently a stop condition.",
+    "While work is active, the maximum-interval status rule permits approximately ninety fixed-cadence digest loci during P9D, and the PT16H48M rule permits approximately thirteen operating reviews, in addition to event-driven updates. The single-ledger design reduces duplication, but no delta, deduplication, retention, or administrative-budget rule prevents reporting from becoming the main output.",
+    "Local lane responses are generally fail closed: checkpoint advancement stops on missing intermediate evidence; unbounded odd-zeta work does not execute; weak visuals do not switch live; competing CMDG branches are parked; and blockers are valid terminal results. These controls do not compose into a global suspend or kill rule.",
+    "The risk table has no objective trigger that freezes new work when a critical gate is missed, capacity or retry budget is exhausted, P0/P1 integrity is unresolved, required authority is ambiguous, routine human intervention is being requested, or the flagship loses its reserved delivery capacity.",
+    "P9D is a terminal-packet deadline, but the candidate does not say which temporary schedules, dispatches, branches, trackers, or plan-specific controls stop automatically, what operating rules resume, or whether unfinished execution may continue without a separately authorized continuation. This leaves avoidable maintenance and authority ambiguity at expiry.",
+    "The plan's retirement cadence is maintainable only if retirement means a reversible governed state transition with canonical history and recovery identity. It cannot authorize deletion, protected-rule mutation, or removal of evidence required for reconstruction.",
+    "The Council record is advisory. This Steward review does not activate the plan, approve or merge PR #493, expand permissions, authorize resource overruns, certify mathematics, or confer production, publication, external-commitment, or commercial authority."
+  ],
+  "conditions": [
+    "Define one machine-readable aggregate WIP contract covering every implementation, experiment, review, recovery, and evidence-production unit across all eight workstreams. Set a total concurrency ceiling, retain the existing lane ceilings, reserve explicit capacity for EXT and terminal verification, and reject or park new starts when the aggregate ceiling is reached.",
+    "Add a bounded resource budget for the P9D window with measurable ceilings for agent concurrency, workflow or CI dispatch, runner consumption, retries per failed unit, live temporary branches or trackers, and retained plan-generated artifacts. Record unknown capacity as BLOCKED; do not obtain more credentials, permissions, paid capacity, or major resources without the separately required authority.",
+    "Make reporting proportional: preserve the exact transformed cadence while requiring one canonical delta ledger, idempotent no-op handling, deduplication, retention rules, and an explicit administrative-work ceiling. If reporting or governance work breaches that ceiling, suspend nonessential control-plane production before displacing substantive evidence or the flagship.",
+    "Define objective plan-level stop and suspension triggers and machine-test their routing. At minimum include unresolved P0/P1 evidence-integrity defects, inability to prove protected ancestry or readback, exhausted retry or resource budget, an unowned blocker, authority ambiguity, repeated routine-human routing, and loss of reserved EXT or terminal-verification capacity. A trigger must stop affected descendants, preserve the last proven state and adverse history, prevent checkpoint or claim promotion, and emit an owned blocker or continuation packet.",
+    "Bind critical-gate failure to scope reduction: if OPS-A fails, no downstream work begins; if Gate B or C cannot be met within the declared resource envelope, freeze new optional work and park the lowest-purpose lanes until EXT and terminal evidence are protected. Deadline pressure must never authorize extra concurrency, hidden retries, weakened review, or scope expansion.",
+    "Add an explicit P9D expiry and decommission contract. At the terminal cutoff, stop plan-specific schedules and new dispatch, close or park unfinished units under their last proven state, preserve all required evidence, and revert to the pre-existing effective operating rules unless a fresh exact-packet continuation or authority change is separately approved. Deletion and irreversible disposal remain reserved.",
+    "Retable the revised exact candidate with regenerated plan, transform, and Council identities for fresh independent review; none of this review's advice supplies Human Steward activation or carries forward to changed bytes."
+  ],
+  "residual_uncertainty": [
+    "Actual agent, CI, reviewer, and repository capacity during the future P9D window has not been measured and may vary with external service limits, exact-head churn, and unrelated incidents.",
+    "The due-occurrence count inside the anchored maintenance interval may be small, so a completed window can remain weak evidence of long-run reliability even when every due occurrence has a terminal record.",
+    "A single flagship improves focus but may still produce no evidence of external value; an internal independent-agent exercise establishes reproducibility or usability only within its stated boundary.",
+    "Even with explicit resource and stop contracts, nine days may lawfully end in blockers, bounded negative results, parked lanes, or a recommendation to resume under ordinary cadence rather than in delivery success.",
+    "The future protected heads, Human Steward choice, required-check state, merge identity, activation readback, T0, resource consumption, and terminal disposition do not yet exist."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md#article-ii-offices",
+    "CONSTITUTION.md#article-iii-separation-of-powers",
+    "CONSTITUTION.md#article-viii-disposal",
+    "CONSTITUTION.md#article-x-human-authority",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json#canonical-sha256=90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md#sha256=f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:governance/agent_cadence_operating_plan_transform.json",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:schemas/agent_cadence_operating_plan_activation.schema.json",
+    "grandchallenge/MATH-PROGRAMME@da753cfd7f0128fb78948a240de336c58db9a50d:governance/agent_cadence_operating_plan_predecessor_90d.json"
+  ]
+}

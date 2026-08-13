@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "18726690cfc8cbd246bafcb687e32a455d922ae9ae580e891d5938e64c95e545",
+  "office": "verifier",
+  "reviewer_id": "agent-verifier-agent-cadence-20260812-a",
+  "decision": "changes_requested",
+  "deliberation": "The compressed offsets are arithmetically coherent and strictly ordered, and the proposal preserves blockers, bounded negative results, unknowns, protected-branch controls, and mathematical nonclaims. The exact transformation and activation epoch are not yet independently reproducible, however. No immutable predecessor-plan identity is supplied, several phase exits cite undefined gate aliases, and the proposal makes T0 the protected merge timestamp while also stating that the clock does not start until a later protected-main readback. A nine-day terminal state can be verified without claim inflation only after these ambiguities are removed and the cutoff, receipts, gate vocabulary, independent-use evidence, and success-versus-blocker semantics are made machine-checkable.",
+  "discharged_obligations": [
+    "Recomputed the milestone and operating-cadence arithmetic and checked strict phase ordering.",
+    "Verified the Council matter canonical digest, proposal digest, candidate commit, plan blob, and plan file digest.",
+    "Inspected the Council review schema and compiler for exact-matter binding, office uniqueness, fail-closed completeness, and advisory authority.",
+    "Assessed exact-head checks, non-author review, protected merge, protected-main readback, P9D cutoff evidence, external-use reproducibility, and mathematical claim boundaries."
+  ],
+  "findings": [
+    "The supplied matter digest recomputes to 18726690cfc8cbd246bafcb687e32a455d922ae9ae580e891d5938e64c95e545, and the proposal bytes recompute to the matter-recorded SHA-256 fb7f33223d08548fa91bad1f51f32ec917340fcd51938059e572440e084732f3.",
+    "The exact MATH-PROGRAMME checkout and live PR #493 head matched acf30e66812deb1f9b5aa3e2e31687511160e966; the plan matched Git blob c5bdb8c2df1cc3df81d5dc5e88086bb1d20064f3 and SHA-256 dd156944c7b522e341dbba2859d0c7bc8528052e5a58ae91e30ffdb51f31103e.",
+    "The implied source-to-target milestone arithmetic is exact: 2 days to PT4H48M, 25 days to P2DT12H, 54 days to P5DT9H36M, 82 days to P8DT4H48M, and 90 days to P9D; the resulting offsets are strictly increasing. PT2H24M, PT16H48M, and P2DT19H12M are likewise exact factor-0.1 transforms of one day, seven days, and 28 days.",
+    "The exact-factor claim is not independently reproducible because neither the matter nor candidate binds an immutable predecessor plan, and no protected predecessor artifact containing the asserted source offsets was found in the referenced candidate history.",
+    "The activation sequence is temporally inconsistent: T0 is declared to be the protected merge timestamp, but the clock is also prohibited from starting until the later protected-main readback. This permits retrospective loss of part of P9D and leaves timezone, interval, and boundary-event handling unspecified.",
+    "The phase table cites Gates A1, B1, C1, D1, E1, B2, C2, D2, F1, and G2, none of which are defined by the candidate; the actual gates use OPS, ADM, HWM, CMDG, OZ, PRV, VIS, EXT, and integrated A through E identifiers. The workstream heading '90-day result' and 'weekly review' instruction also conflict with the compressed vocabulary.",
+    "The plan correctly makes UNKNOWN, BLOCKED, an exact blocker, and a bounded negative result valid outputs and explicitly bars promotion to CM4, T3, certification, publication, product, adoption, revenue, or commercial claims. Therefore schedule closure can be distinguished from substantive success if the terminal record preserves these states exactly.",
+    "The full ADM observation window and terminal disposition share the same P9D boundary, but no atomic close rule or post-cutoff receipt rule states how final boundary events are included and when the disposition becomes verifiable.",
+    "The external-use gate requires a person outside the authoring path but does not define identity, independence, clean-room intervention, or human-action accounting evidence. Without those fields, an externally exercised result and the zero-routine-human measure are not reproducible.",
+    "At live inspection, PR #493 remained an open draft at the exact candidate head; its two reported required checks passed, but mergeStateStatus remained BLOCKED. This is current candidate state, not activation or protected-main evidence."
+  ],
+  "conditions": [
+    "Revise and re-table an exact candidate that binds the predecessor plan by repository, commit, path, Git blob, and SHA-256, or embeds a complete normative source-to-target duration table whose arithmetic can be independently recomputed.",
+    "Define one non-retrospective UTC activation event. T0 should be the successful protected-main activation-readback receipt time, while the protected merge timestamp is retained as a separate field; no deadline may accrue before T0.",
+    "Replace every undefined phase-exit alias and stale 90-day or weekly label with the canonical gate and cadence identifiers, and validate that each milestone references only declared gates.",
+    "Publish a versioned activation receipt schema and verifier binding the candidate head, plan blob and SHA-256, Council matter digest, all ten office records, compiled disposition digest, authenticated Human Steward disposition, exact-head required-check conclusions, authenticated non-author review where required, protected merge commit and ancestry, protected-main readback head, and T0; any mismatch must fail closed.",
+    "Define the primary window as an exact UTC interval with explicit endpoint inclusion, atomically close its evidence ledger at T0 plus PT216H, and record cutoff time separately from terminal-receipt publication time. No P9D outcome may be asserted until the receipt verifies, and a late receipt must not rewrite the cutoff state.",
+    "Validate a terminal packet schema containing every gate status, exact evidence identities, adverse history, unknowns, blockers, interventions, human actions, and nonclaims. Schedule completion must never imply that a substantive gate passed; missing or stale evidence must serialize as UNKNOWN or BLOCKED.",
+    "Require the external-exercise receipt to bind the authoring identities, reproducer identity and class, independence test, clean-room procedure, interventions, outputs, defects, and whether any human act occurred. Count every actual human act rather than coercing the zero-routine-human measure, and route reserved acts separately.",
+    "After revision, rerun independent exact-candidate Council review; successful checks on the superseded head must not carry forward."
+  ],
+  "residual_uncertainty": [
+    "The immutable 90-day predecessor plan was not identified, so the numerical source offsets were inferred from the candidate's stated factor and cannot yet be checked against a canonical predecessor artifact.",
+    "The number and cadence of maintenance occurrences falling inside an eventual P9D interval depend on the preserved maintenance anchor and future T0.",
+    "Live PR checks, draft state, review state, mergeability, and protected heads are volatile and require exact-head revalidation immediately before Human Steward disposition and merge.",
+    "A negative or blocker terminal disposition is verifiable within the proposed model; successful scientific, operational, external-value, or reliability outcomes remain contingent on future independent evidence."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md:39-48",
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-178",
+    "AGENTS.md",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "grandchallenge/MATH-PROGRAMME@acf30e66812deb1f9b5aa3e2e31687511160e966:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/pull/493"
+  ]
+}

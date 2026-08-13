@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "18726690cfc8cbd246bafcb687e32a455d922ae9ae580e891d5938e64c95e545",
+  "office": "axiomatist",
+  "reviewer_id": "agent-axiomatist-agent-cadence-20260812-a",
+  "decision": "changes_requested",
+  "deliberation": "Time is a scheduling primitive, not evidence or authority. The candidate preserves this distinction well: missing evidence remains UNKNOWN or BLOCKED, bounded negative results remain bounded, and agents receive no new approval, merge, activation, certification, production, publication, or commercial power. The displayed deadline arithmetic is coherent and strictly ordered: 2, 25, 54, 82, and 90 predecessor days would transform exactly to PT4H48M, P2DT12H, P5DT9H36M, P8DT4H48M, and P9D. However, the exact predecessor revision and source offsets are not identified in the packet, so the assertion of an exact transform is not independently reproducible from immutable evidence. More importantly, T0 is defined as the protected merge timestamp while the packet also says the clock does not start until the later protected-main readback. That creates retrospective activation and makes the first deadline depend on unbounded readback latency. The human-action primitive is also equivocal: zero routine human action is asserted, yet EXT-B requires a person outside the authoring path and the protected merge may require a human mechanical action because automation is forbidden to merge. GI-STEWARD-0002 targets one substantive reserved authorization per governed decision; it does not establish zero total human interactions. These ambiguities are material to the question before Council and require a fresh exact candidate rather than post hoc interpretation.",
+  "discharged_obligations": [
+    "Exposed the candidate, predecessor, transform factor, source offsets, target offsets, T0, activation predicate, gate disposition, reserved authorization, routine operation, and external exercise as distinct primitives.",
+    "Checked the stated 0.1 deadline arithmetic, cumulative phase ordering, and fail-closed treatment of missing or adverse evidence.",
+    "Tested the proposed agent actions against constitutional separation of powers, Human Steward reservations, production semantic authority, and mathematical certification boundaries.",
+    "Audited whether the human-action budget counts reserved authorization, mechanical operations, independent review, and external-use participation consistently."
+  ],
+  "findings": [
+    "The five displayed target offsets are exact one-tenth transforms of predecessor offsets D2, D25, D54, D82, and D90 and remain strictly increasing, but the packet does not bind an immutable predecessor artifact or enumerate those source offsets.",
+    "The activation sequence defines T0 as the protected merge timestamp and also states that the clock does not start until protected-main readback; both statements cannot govern the same clock without an explicit retrospective-time rule.",
+    "The zero-routine-human formulation is sound only as a reserved-authority budget: one authenticated Human Steward disposition remains mandatory, and agents cannot infer authority from silence, checks, review, merge, or readback.",
+    "As written, EXT-B mandates a person outside the authoring path, so the plan cannot also claim zero total routine human participation; any human merge click creates the same accounting distinction even when it is not a substantive authorization.",
+    "The plan correctly protects exact-head review, non-author review, ordinary protected merge, protected-main readback, adverse history, mathematical blockers, bounded negative results, and nonclaims from deadline pressure.",
+    "The work-in-progress limits are management constraints only and do not grant authority; a missed timebox can lawfully end in a blocker, negative result, parked lane, or continuation packet.",
+    "The workstream register still labels its outcome column as '90-day result', which weakens the otherwise exact nine-day terminology."
+  ],
+  "conditions": [
+    "Bind the predecessor plan by repository, commit, path, blob, and SHA-256, and add a source-to-target transform table or validator proving target_seconds equals source_seconds divided by ten for every transformed phase, milestone, cadence, review, retirement, and immediate-action offset.",
+    "Define one non-retrospective T0 event. Prefer the timestamp of a successful protected-main readback receipt binding the merge SHA, plan digest, Human Steward disposition, and compiled Council disposition; no deadline may accrue before that event.",
+    "Replace the undifferentiated human-action budget with machine-checkable counters separating substantive reserved Human Steward authorizations, routine human authorizations, mechanical human operations, independent human participation, and agent actions. The activation target may be one substantive reserved authorization and zero routine human authorizations, but total human interactions must be observed rather than asserted as zero.",
+    "Make EXT-B satisfiable by an independent actor or clean-room reproducer outside the original authoring path, including a distinct agent where no public commitment or human-user claim is made, or explicitly count the outside person as a planned human dependency and remove the zero-total-human implication.",
+    "State that every deadline produces a disposition rather than a waiver: PASS, BLOCKED, UNKNOWN, NEGATIVE_RESULT, PARKED, or owned continuation, as applicable, with no automatic completion or authority expansion.",
+    "Rename the workstream register column from '90-day result' to 'nine-day result' and issue fresh Council review for the revised exact candidate and matter digest."
+  ],
+  "residual_uncertainty": [
+    "The predecessor 90-day artifact was not available as an immutable evidence reference in this Council packet, so full transform coverage cannot be independently established.",
+    "Protected-main readback latency and the identity of the ordinary merge executor are not bounded in the candidate.",
+    "A nine-day window may contain too few scheduled maintenance occurrences or may fail to secure an external exercise; the plan appropriately permits a bounded adverse or continuation disposition, but it cannot guarantee the positive outcome."
+  ],
+  "evidence_refs": [
+    "CONSTITUTION.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "grandchallenge/MATH-PROGRAMME@acf30e66812deb1f9b5aa3e2e31687511160e966:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md#sha256=dd156944c7b522e341dbba2859d0c7bc8528052e5a58ae91e30ffdb51f31103e",
+    "governance/steward_directives/GI-STEWARD-0002.md",
+    "governance/constitutional_authority_schedule.json",
+    "schemas/council_review.schema.json"
+  ]
+}
