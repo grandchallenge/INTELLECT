@@ -18,6 +18,8 @@ TROVE–CURATA is the GCL-contained data-curation programme bootstrapped in INTE
 
 The fixture ladder is deliberately fail-closed: provider outputs remain observations, authority stays GCL-owned, and review defects are preserved and prospectively remediated rather than rewritten.
 
+`TC-BOOTSTRAP-CLOSE-001` is the governed T3 boundary candidate for closing this bootstrap ladder and moving substantive implementation to a dedicated GCL repository. The destination remains inactive until the INTELLECT source closure, destination acceptance, and two-sided protected readback all complete. No Fixture 006 work or corpus-admission authority is created by preparing the closure package.
+
 ## Current release boundary
 
 This repository is an **executable foundation**, not a completed autonomous research institution.

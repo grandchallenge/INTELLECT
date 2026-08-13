@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.ai/schemas/trove_curata_bootstrap_closure.schema.json",
+  "title": "TROVE-CURATA bootstrap closure record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "closure_id",
+    "status",
+    "source",
+    "destination",
+    "bootstrap_ladder",
+    "bootstrap_roots",
+    "artifact_inventory",
+    "artifact_inventory_sha256",
+    "schema_paths",
+    "workflow_paths",
+    "review_remedies",
+    "migration_contract",
+    "authority_boundary",
+    "claim_boundary",
+    "closure_record_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "0.1.0"},
+    "closure_id": {"const": "TC-BOOTSTRAP-CLOSE-001"},
+    "status": {"const": "prepared_pending_source_merge_and_destination_acceptance"},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "issue_number", "protected_head_at_preparation", "protected_tree_at_preparation", "bootstrap_role_after_activation"],
+      "properties": {
+        "repository": {"const": "grandchallenge/INTELLECT"},
+        "issue_number": {"const": 68},
+        "protected_head_at_preparation": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "protected_tree_at_preparation": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "bootstrap_role_after_activation": {"const": "immutable_history_replay_and_constitutional_context"}
+      }
+    },
+    "destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["repository", "repository_observed_existing_at_preparation", "acceptance_record_id", "canonical_from", "activation_state"],
+      "properties": {
+        "repository": {"const": "grandchallenge/TROVE-CURATA"},
+        "repository_observed_existing_at_preparation": {"const": false},
+        "acceptance_record_id": {"const": "TC-REPO-ACCEPT-001"},
+        "canonical_from": {"const": "TC-FIXTURE-006"},
+        "activation_state": {"const": "not_active"}
+      }
+    },
+    "bootstrap_ladder": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/ladderEntry"}
+    },
+    "bootstrap_roots": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fixtures/trove_curata", "schemas", "workflows"],
+      "properties": {
+        "fixtures/trove_curata": {"$ref": "#/$defs/gitSha"},
+        "schemas": {"$ref": "#/$defs/gitSha"},
+        "workflows": {"$ref": "#/$defs/gitSha"}
+      }
+    },
+    "artifact_inventory": {
+      "type": "array",
+      "minItems": 50,
+      "items": {"$ref": "#/$defs/artifact"}
+    },
+    "artifact_inventory_sha256": {"$ref": "#/$defs/sha256"},
+    "schema_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "workflow_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "review_remedies": {"type": "object"},
+    "migration_contract": {"type": "object"},
+    "authority_boundary": {"type": "object"},
+    "claim_boundary": {
+      "type": "object",
+      "additionalProperties": {"const": false},
+      "minProperties": 17,
+      "maxProperties": 17
+    },
+    "closure_record_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "gitSha": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "ladderEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record_id", "role", "pull_request", "exact_head", "protected_merge"],
+      "properties": {
+        "record_id": {"type": "string"},
+        "role": {"type": "string"},
+        "pull_request": {"type": "integer", "minimum": 1},
+        "exact_head": {"$ref": "#/$defs/gitSha"},
+        "protected_merge": {"$ref": "#/$defs/gitSha"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "mode", "blob_sha", "size"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "mode": {"enum": ["100644", "100755"]},
+        "blob_sha": {"$ref": "#/$defs/gitSha"},
+        "size": {"type": "integer", "minimum": 0}
+      }
+    }
+  }
+}

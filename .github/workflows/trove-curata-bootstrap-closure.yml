@@ -1,0 +1,50 @@
+name: TROVE-CURATA bootstrap closure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: intellect-trove-curata-bootstrap-closure-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.11.14"
+      - name: Install package
+        run: python -m pip install --no-build-isolation --no-deps -e .
+      - name: Compile closure surface
+        run: python -m compileall -q src/grand_intellect/trove_curata_bootstrap_closure.py tests/test_trove_curata_bootstrap_closure.py scripts/build_trove_curata_bootstrap_closure.py
+      - name: Validate closure and mutations
+        run: python -m unittest -v tests.test_trove_curata_bootstrap_closure
+      - name: Validate predecessor dependency-light ladder
+        run: |
+          python -m unittest -v \
+            tests.test_trove_curata_contract \
+            tests.test_trove_curata_fixture \
+            tests.test_trove_curata_pii_fixture \
+            tests.test_trove_curata_transform_fixture \
+            tests.test_trove_curata_duplicate_fixture \
+            tests.test_trove_curata_duplicate_mutations \
+            tests.test_trove_curata_quality_fixture \
+            tests.test_trove_curata_fixture_003_review_attestation \
+            tests.test_trove_curata_fixture_004_review_attestation
+      - name: Require byte-identical canonical validation output
+        run: |
+          python -m grand_intellect.trove_curata_bootstrap_closure governance/trove_curata_bootstrap_closure.json > /tmp/closure-a.json
+          python -m grand_intellect.trove_curata_bootstrap_closure governance/trove_curata_bootstrap_closure.json > /tmp/closure-b.json
+          cmp /tmp/closure-a.json /tmp/closure-b.json
