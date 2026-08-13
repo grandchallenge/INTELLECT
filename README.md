@@ -11,8 +11,8 @@ The Grand Intellect turns a collection of agents into a governed cognitive insti
 TROVE–CURATA is the GCL-contained data-curation programme bootstrapped in INTELLECT. Its first five retained/synthetic fixtures form a governed chain from HTML extraction through PII observation, authorized transformation, duplicate observation, and quality-signal observation. The chain is evidence-bound and deliberately does **not** authorize production-corpus admission, dataset-quality certification, privacy certification, or training-fitness qualification.
 
 <p align="center">
-  <a href="docs/assets/trove-curata-progress.jpg">
-    <img src="docs/assets/trove-curata-progress.jpg" alt="TROVE-CURATA progress through TC-FIXTURE-005, including review hardening and documentary remedies" width="760">
+  <a href="docs/assets/trove-curata-progress.svg">
+    <img src="docs/assets/trove-curata-progress.svg" alt="TROVE-CURATA progress through TC-FIXTURE-005, including review hardening and documentary remedies" width="760">
   </a>
 </p>
 
