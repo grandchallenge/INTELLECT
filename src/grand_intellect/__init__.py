@@ -53,6 +53,11 @@ from .trove_curata_contract import (
     load_and_validate_trove_curata_contract,
     validate_trove_curata_contract,
 )
+from .trove_curata_bootstrap_closure import (
+    TroveCurataBootstrapClosureError,
+    load_and_validate_trove_curata_bootstrap_closure,
+    validate_trove_curata_bootstrap_closure,
+)
 from .workspace import WorkPackageWorkspace
 
 __all__ = [
@@ -104,12 +109,15 @@ __all__ = [
     "TROVE_CURATA_RECORD_CONTRACTS",
     "TROVE_CURATA_REVIEW_TIERS",
     "TroveCurataContractError",
+    "TroveCurataBootstrapClosureError",
     "WorkPackageMetrics",
     "WorkPackageWorkspace",
     "calculate_metrics",
     "load_and_validate_trove_curata_contract",
+    "load_and_validate_trove_curata_bootstrap_closure",
     "maintenance_adoption_errors",
     "validate_trove_curata_contract",
+    "validate_trove_curata_bootstrap_closure",
 ]
 
 __version__ = "0.2.2"
