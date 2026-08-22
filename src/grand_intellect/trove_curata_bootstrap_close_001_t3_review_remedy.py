@@ -48,6 +48,15 @@ def exact_json_equal(actual: Any, expected: Any) -> bool:
     return actual == expected
 
 
+def reject_duplicate_json_object_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Build an object while rejecting every duplicate JSON member name."""
+    result: dict[str, Any] = {}
+    for key, value in pairs:
+        require(key not in result, f"duplicate JSON object key: {key}")
+        result[key] = value
+    return result
+
+
 def validate_trove_curata_bootstrap_close_t3_review_remedy(
     record: dict[str, Any],
 ) -> dict[str, Any]:
@@ -225,6 +234,9 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
 def load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(
     path: str | Path,
 ) -> dict[str, Any]:
-    record = json.loads(Path(path).read_text(encoding="utf-8"))
+    record = json.loads(
+        Path(path).read_text(encoding="utf-8"),
+        object_pairs_hook=reject_duplicate_json_object_pairs,
+    )
     require(isinstance(record, dict), "remedy root must be an object")
     return validate_trove_curata_bootstrap_close_t3_review_remedy(record)

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import copy
 import json
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -29,6 +30,19 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
         with self.assertRaisesRegex(TroveCurataBootstrapCloseT3ReviewRemedyError, pattern):
             validate_trove_curata_bootstrap_close_t3_review_remedy(broken)
 
+    def reject_duplicate(self, marker: str, duplicate_member: str) -> None:
+        source = RECORD.read_text(encoding="utf-8")
+        self.assertEqual(source.count(marker), 1)
+        broken = source.replace(marker, f"{duplicate_member}\n{marker}", 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "duplicate.json"
+            path.write_text(broken, encoding="utf-8")
+            with self.assertRaisesRegex(
+                TroveCurataBootstrapCloseT3ReviewRemedyError,
+                "duplicate JSON object key",
+            ):
+                load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(path)
+
     def test_canonical_remedy_validates(self) -> None:
         self.assertEqual(load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(RECORD), self.record)
 
@@ -46,6 +60,24 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
         schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
         jsonschema.validate(record, schema, cls=jsonschema.Draft202012Validator)
         self.assertEqual(validate_trove_curata_bootstrap_close_t3_review_remedy(record), record)
+
+    def test_duplicate_root_field_rejected(self) -> None:
+        self.reject_duplicate('  "schema_version": "0.1.0",', '  "schema_version": "escalated",')
+
+    def test_duplicate_identity_field_rejected(self) -> None:
+        self.reject_duplicate('    "issue_number": 68,', '    "issue_number": 999,')
+
+    def test_duplicate_gate_field_rejected(self) -> None:
+        self.reject_duplicate(
+            '    "exact_head_checks_required": true,',
+            '    "exact_head_checks_required": false,',
+        )
+
+    def test_duplicate_authority_field_rejected(self) -> None:
+        self.reject_duplicate('    "destination_activated": false,', '    "destination_activated": true,')
+
+    def test_duplicate_claim_field_rejected(self) -> None:
+        self.reject_duplicate('    "corpus_admitted": false,', '    "corpus_admitted": true,')
 
     def test_historical_gate_cannot_be_promoted(self) -> None:
         self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": True}), "historical subject drift")
