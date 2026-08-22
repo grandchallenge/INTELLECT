@@ -40,6 +40,12 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
     def test_historical_gate_cannot_be_promoted(self) -> None:
         self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": True}), "historical subject drift")
 
+    def test_historical_gate_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": 0}), "historical subject drift")
+
+    def test_declared_gate_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["declared_t3_gate"].update({"exact_head_checks_required": 1}), "declared T3 gate drift")
+
     def test_missing_adversary_cannot_be_relabelled(self) -> None:
         self.reject(lambda r: r["observed_evidence"].update({"bound_non_author_adversary_finding": {"status": "approved"}}), "missing historical evidence relabelled")
 
@@ -58,6 +64,9 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
     def test_recovery_owner_cannot_become_mandatory(self) -> None:
         self.reject(lambda r: r["remedy_contract"].update({"mandatory_routine_human_reviewers": ["jimsteeg"]}), "remedy contract drift")
 
+    def test_remedy_contract_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["remedy_contract"].update({"prospective_remediation_only": 1}), "remedy contract drift")
+
     def test_self_merge_cannot_be_enabled(self) -> None:
         self.reject(lambda r: r["remedy_contract"].update({"agent_may_merge_own_work": True}), "remedy contract drift")
 
@@ -66,6 +75,9 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
 
     def test_bootstrap_artifacts_cannot_change(self) -> None:
         self.reject(lambda r: r["authority_boundary"].update({"bootstrap_artifacts_changed": True}), "authority boundary drift")
+
+    def test_authority_boundary_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["authority_boundary"].update({"bootstrap_artifacts_changed": 0}), "authority boundary drift")
 
     def test_claim_inflation_rejected(self) -> None:
         self.reject(lambda r: r["claim_boundary"].update({"dataset_quality_certified": True}), "claim boundary drift or inflation")
@@ -76,6 +88,9 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
             record["claim_boundary"]["invented_claim"] = False
 
         self.reject(substitute_claim_key, "claim boundary drift or inflation")
+
+    def test_claim_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["claim_boundary"].update({"corpus_admitted": 0}), "claim boundary drift or inflation")
 
 
 if __name__ == "__main__":

@@ -28,6 +28,13 @@ def require(condition: bool, message: str) -> None:
         raise TroveCurataBootstrapCloseT3ReviewRemedyError(message)
 
 
+def exact_json_equal(actual: Any, expected: Any) -> bool:
+    """Compare JSON values without Python's bool/int equality coercion."""
+    return json.dumps(actual, sort_keys=True, separators=(",", ":")) == json.dumps(
+        expected, sort_keys=True, separators=(",", ":")
+    )
+
+
 def validate_trove_curata_bootstrap_close_t3_review_remedy(
     record: dict[str, Any],
 ) -> dict[str, Any]:
@@ -59,8 +66,9 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
     )
 
     require(
-        record["historical_subject"]
-        == {
+        exact_json_equal(
+            record["historical_subject"],
+            {
             "repository": "grandchallenge/INTELLECT",
             "issue_number": 68,
             "pull_request_number": 69,
@@ -71,18 +79,21 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
             "protected_merge_commit": "041f7d9b1c85e157a651bcf3edf07c7499185b00",
             "merged_at": "2026-08-14T00:37:36Z",
             "historical_t3_gate_satisfied": False,
-        },
+            },
+        ),
         "historical subject drift",
     )
     require(
-        record["declared_t3_gate"]
-        == {
+        exact_json_equal(
+            record["declared_t3_gate"],
+            {
             "exact_head_checks_required": True,
             "non_author_agent_adversary_required": True,
             "distinct_session_non_author_agent_referee_required": True,
             "exact_head_human_steward_disposition_required": True,
             "protected_merge_required": True,
-        },
+            },
+        ),
         "declared T3 gate drift",
     )
 
@@ -101,15 +112,17 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
         "observed evidence field set drift",
     )
     require(
-        evidence["exact_head_github_approval"]
-        == {
+        exact_json_equal(
+            evidence["exact_head_github_approval"],
+            {
             "review_id": 4932733903,
             "reviewer": "jimsteeg",
             "commit_id": "d587996f71a38aeb8ce4a0c667da1a8350b7f153",
             "submitted_at": "2026-08-14T00:35:49Z",
             "state": "APPROVED",
             "is_t3_substitute": False,
-        },
+            },
+        ),
         "historical GitHub review drift",
     )
     for key in {
@@ -118,26 +131,29 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
         "bound_exact_head_human_steward_disposition",
     }:
         require(evidence[key] is None, "missing historical evidence relabelled")
-    require(evidence["required_check_runs"] == EXPECTED_CHECKS, "check evidence drift")
+    require(exact_json_equal(evidence["required_check_runs"], EXPECTED_CHECKS), "check evidence drift")
     require(evidence["workflow_success_is_t3_substitute"] is False, "workflow substituted for T3")
     require(evidence["mechanical_merge_is_t3_substitute"] is False, "merge substituted for T3")
 
     require(
-        record["defect"]
-        == {
+        exact_json_equal(
+            record["defect"],
+            {
             "kind": "missing_bound_t3_role_and_steward_records",
             "historical_timeline_rewritten": False,
             "historical_review_relabelled": False,
             "historical_disposition_relabelled": False,
             "source_content_identity_disputed": False,
             "source_protected_merge_identity_disputed": False,
-        },
+            },
+        ),
         "defect characterization drift",
     )
 
     require(
-        record["remedy_contract"]
-        == {
+        exact_json_equal(
+            record["remedy_contract"],
+            {
             "prospective_remediation_only": True,
             "historical_state_rewritten": False,
             "corrective_non_author_agent_adversary_required": True,
@@ -152,13 +168,15 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
             "protected_merge_required": True,
             "protected_main_readback_required": True,
             "destination_acceptance_blocked_until_remedy_protected_merge": True,
-        },
+            },
+        ),
         "remedy contract drift",
     )
 
     require(
-        record["authority_boundary"]
-        == {
+        exact_json_equal(
+            record["authority_boundary"],
+            {
             "project_owner": "grandchallenge",
             "project_scope": "gcl_contained",
             "implementation_changed": False,
@@ -166,12 +184,14 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
             "destination_activated": False,
             "fixture_006_authorized": False,
             "aether_role": "future_projection_nonblocking",
-        },
+            },
+        ),
         "authority boundary drift",
     )
     require(
-        record["claim_boundary"]
-        == {
+        exact_json_equal(
+            record["claim_boundary"],
+            {
             "corpus_admitted": False,
             "deletion_authorized": False,
             "privacy_compliance_proved": False,
@@ -182,7 +202,8 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
             "public_release_authorized": False,
             "mathematics_certified": False,
             "commercial_claim_authorized": False,
-        },
+            },
+        ),
         "claim boundary drift or inflation",
     )
     return record
