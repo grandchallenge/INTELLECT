@@ -52,6 +52,9 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
     def test_merge_cannot_substitute_for_t3(self) -> None:
         self.reject(lambda r: r["observed_evidence"].update({"mechanical_merge_is_t3_substitute": True}), "merge substituted for T3")
 
+    def test_unexpected_observed_evidence_field_rejected(self) -> None:
+        self.reject(lambda r: r["observed_evidence"].update({"invented_evidence": None}), "observed evidence field set drift")
+
     def test_recovery_owner_cannot_become_mandatory(self) -> None:
         self.reject(lambda r: r["remedy_contract"].update({"mandatory_routine_human_reviewers": ["jimsteeg"]}), "remedy contract drift")
 
@@ -65,7 +68,14 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
         self.reject(lambda r: r["authority_boundary"].update({"bootstrap_artifacts_changed": True}), "authority boundary drift")
 
     def test_claim_inflation_rejected(self) -> None:
-        self.reject(lambda r: r["claim_boundary"].update({"dataset_quality_certified": True}), "claim inflation")
+        self.reject(lambda r: r["claim_boundary"].update({"dataset_quality_certified": True}), "claim boundary drift or inflation")
+
+    def test_claim_key_substitution_rejected(self) -> None:
+        def substitute_claim_key(record) -> None:
+            del record["claim_boundary"]["corpus_admitted"]
+            record["claim_boundary"]["invented_claim"] = False
+
+        self.reject(substitute_claim_key, "claim boundary drift or inflation")
 
 
 if __name__ == "__main__":

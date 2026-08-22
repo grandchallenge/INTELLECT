@@ -88,6 +88,19 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
 
     evidence = record["observed_evidence"]
     require(
+        set(evidence)
+        == {
+            "exact_head_github_approval",
+            "bound_non_author_adversary_finding",
+            "bound_distinct_session_referee_finding",
+            "bound_exact_head_human_steward_disposition",
+            "required_check_runs",
+            "workflow_success_is_t3_substitute",
+            "mechanical_merge_is_t3_substitute",
+        },
+        "observed evidence field set drift",
+    )
+    require(
         evidence["exact_head_github_approval"]
         == {
             "review_id": 4932733903,
@@ -156,9 +169,22 @@ def validate_trove_curata_bootstrap_close_t3_review_remedy(
         },
         "authority boundary drift",
     )
-    claims = record["claim_boundary"]
-    require(isinstance(claims, dict) and len(claims) == 10, "claim boundary field set drift")
-    require(all(value is False for value in claims.values()), "claim inflation")
+    require(
+        record["claim_boundary"]
+        == {
+            "corpus_admitted": False,
+            "deletion_authorized": False,
+            "privacy_compliance_proved": False,
+            "legality_or_rights_proved": False,
+            "dataset_quality_certified": False,
+            "fitness_for_training_proved": False,
+            "production_release_qualified": False,
+            "public_release_authorized": False,
+            "mathematics_certified": False,
+            "commercial_claim_authorized": False,
+        },
+        "claim boundary drift or inflation",
+    )
     return record
 
 
