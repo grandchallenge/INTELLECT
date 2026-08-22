@@ -37,6 +37,16 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
         jsonschema.Draft202012Validator.check_schema(schema)
         jsonschema.validate(self.record, schema, cls=jsonschema.Draft202012Validator)
 
+    def test_integral_numeric_forms_have_schema_semantic_parity(self) -> None:
+        record = copy.deepcopy(self.record)
+        record["historical_subject"]["issue_number"] = 68.0
+        record["historical_subject"]["pull_request_number"] = 69.0
+        record["observed_evidence"]["exact_head_github_approval"]["review_id"] = 4932733903.0
+        record["observed_evidence"]["required_check_runs"][0]["job_id"] = 94628521372.0
+        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        jsonschema.validate(record, schema, cls=jsonschema.Draft202012Validator)
+        self.assertEqual(validate_trove_curata_bootstrap_close_t3_review_remedy(record), record)
+
     def test_historical_gate_cannot_be_promoted(self) -> None:
         self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": True}), "historical subject drift")
 

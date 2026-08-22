@@ -29,10 +29,23 @@ def require(condition: bool, message: str) -> None:
 
 
 def exact_json_equal(actual: Any, expected: Any) -> bool:
-    """Compare JSON values without Python's bool/int equality coercion."""
-    return json.dumps(actual, sort_keys=True, separators=(",", ":")) == json.dumps(
-        expected, sort_keys=True, separators=(",", ":")
-    )
+    """Compare parsed JSON values using JSON Schema's value semantics."""
+    if isinstance(actual, bool) or isinstance(expected, bool):
+        return type(actual) is bool and type(expected) is bool and actual is expected
+    if isinstance(actual, (int, float)) and isinstance(expected, (int, float)):
+        return actual == expected
+    if type(actual) is not type(expected):
+        return False
+    if isinstance(actual, dict):
+        return set(actual) == set(expected) and all(
+            exact_json_equal(actual[key], expected[key]) for key in actual
+        )
+    if isinstance(actual, list):
+        return len(actual) == len(expected) and all(
+            exact_json_equal(actual_item, expected_item)
+            for actual_item, expected_item in zip(actual, expected, strict=True)
+        )
+    return actual == expected
 
 
 def validate_trove_curata_bootstrap_close_t3_review_remedy(
