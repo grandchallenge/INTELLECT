@@ -28,9 +28,18 @@ jobs:
       - name: Install package
         run: python -m pip install --no-build-isolation --no-deps -e .
       - name: Compile closure surface
-        run: python -m compileall -q src/grand_intellect/trove_curata_bootstrap_closure.py tests/test_trove_curata_bootstrap_closure.py scripts/build_trove_curata_bootstrap_closure.py
+        run: >-
+          python -m compileall -q
+          src/grand_intellect/trove_curata_bootstrap_closure.py
+          src/grand_intellect/trove_curata_bootstrap_close_001_t3_review_remedy.py
+          tests/test_trove_curata_bootstrap_closure.py
+          tests/test_trove_curata_bootstrap_close_001_t3_review_remedy.py
+          scripts/build_trove_curata_bootstrap_closure.py
       - name: Validate closure and mutations
-        run: python -m unittest -v tests.test_trove_curata_bootstrap_closure
+        run: >-
+          python -m unittest -v
+          tests.test_trove_curata_bootstrap_closure
+          tests.test_trove_curata_bootstrap_close_001_t3_review_remedy
       - name: Validate predecessor dependency-light ladder
         run: |
           python -m unittest -v \
