@@ -43,6 +43,16 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
             ):
                 load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(path)
 
+    def reject_text_replacement(self, marker: str, replacement: str, pattern: str) -> None:
+        source = RECORD.read_text(encoding="utf-8")
+        self.assertEqual(source.count(marker), 1)
+        broken = source.replace(marker, replacement, 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "mutated.json"
+            path.write_text(broken, encoding="utf-8")
+            with self.assertRaisesRegex(TroveCurataBootstrapCloseT3ReviewRemedyError, pattern):
+                load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(path)
+
     def test_canonical_remedy_validates(self) -> None:
         self.assertEqual(load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(RECORD), self.record)
 
@@ -78,6 +88,43 @@ class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
 
     def test_duplicate_claim_field_rejected(self) -> None:
         self.reject_duplicate('    "corpus_admitted": false,', '    "corpus_admitted": true,')
+
+    def test_issue_number_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '    "issue_number": 68,',
+            '    "issue_number": 68.0000000000000000000000001,',
+            "historical subject drift",
+        )
+
+    def test_issue_number_exponent_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '    "issue_number": 68,',
+            '    "issue_number": 6.800000000000000000000001e1,',
+            "historical subject drift",
+        )
+
+    def test_review_id_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '      "review_id": 4932733903,',
+            '      "review_id": 4932733903.0000001,',
+            "historical GitHub review drift",
+        )
+
+    def test_job_id_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '      {"name": "Analyze (actions)", "job_id": 94628521372, "conclusion": "success"},',
+            '      {"name": "Analyze (actions)", "job_id": 94628521372.000001, "conclusion": "success"},',
+            "check evidence drift",
+        )
+
+    def test_non_finite_number_tokens_rejected(self) -> None:
+        for token in ("NaN", "Infinity", "-Infinity"):
+            with self.subTest(token=token):
+                self.reject_text_replacement(
+                    '    "issue_number": 68,',
+                    f'    "issue_number": {token},',
+                    "non-finite JSON number rejected",
+                )
 
     def test_historical_gate_cannot_be_promoted(self) -> None:
         self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": True}), "historical subject drift")

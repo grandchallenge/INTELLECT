@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+from decimal import Decimal
 from pathlib import Path
 from typing import Any
 
@@ -32,7 +33,7 @@ def exact_json_equal(actual: Any, expected: Any) -> bool:
     """Compare parsed JSON values using JSON Schema's value semantics."""
     if isinstance(actual, bool) or isinstance(expected, bool):
         return type(actual) is bool and type(expected) is bool and actual is expected
-    if isinstance(actual, (int, float)) and isinstance(expected, (int, float)):
+    if isinstance(actual, (int, float, Decimal)) and isinstance(expected, (int, float, Decimal)):
         return actual == expected
     if type(actual) is not type(expected):
         return False
@@ -55,6 +56,13 @@ def reject_duplicate_json_object_pairs(pairs: list[tuple[str, Any]]) -> dict[str
         require(key not in result, f"duplicate JSON object key: {key}")
         result[key] = value
     return result
+
+
+def reject_non_finite_json_constant(token: str) -> None:
+    """Reject Python's non-standard NaN and infinity JSON extensions."""
+    raise TroveCurataBootstrapCloseT3ReviewRemedyError(
+        f"non-finite JSON number rejected: {token}"
+    )
 
 
 def validate_trove_curata_bootstrap_close_t3_review_remedy(
@@ -237,6 +245,8 @@ def load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(
     record = json.loads(
         Path(path).read_text(encoding="utf-8"),
         object_pairs_hook=reject_duplicate_json_object_pairs,
+        parse_float=Decimal,
+        parse_constant=reject_non_finite_json_constant,
     )
     require(isinstance(record, dict), "remedy root must be an object")
     return validate_trove_curata_bootstrap_close_t3_review_remedy(record)
