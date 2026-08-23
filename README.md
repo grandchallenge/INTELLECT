@@ -6,6 +6,20 @@ The Grand Intellect turns a collection of agents into a governed cognitive insti
 
 > Intelligence is the disciplined production of alternatives, their confrontation with reality, their selection under purpose, their preservation across time, their realization as consequential artifacts, and the deliberate removal of what no longer deserves cognitive space.
 
+## TROVE–CURATA governed curation fixture chain
+
+TROVE–CURATA is the GCL-contained data-curation programme bootstrapped in INTELLECT. Its first five retained/synthetic fixtures form a governed chain from HTML extraction through PII observation, authorized transformation, duplicate observation, and quality-signal observation. The chain is evidence-bound and deliberately does **not** authorize production-corpus admission, dataset-quality certification, privacy certification, or training-fitness qualification.
+
+<p align="center">
+  <a href="docs/assets/trove-curata-progress.png">
+    <img src="docs/assets/trove-curata-progress.png" alt="TROVE-CURATA progress through TC-FIXTURE-005, including review hardening and documentary remedies" width="760">
+  </a>
+</p>
+
+The fixture ladder is deliberately fail-closed: provider outputs remain observations, authority stays GCL-owned, and review defects are preserved and prospectively remediated rather than rewritten.
+
+`TC-BOOTSTRAP-CLOSE-001` is the governed T3 boundary candidate for closing this bootstrap ladder and moving substantive implementation to a dedicated GCL repository. The destination remains inactive until the INTELLECT source closure, destination acceptance, and two-sided protected readback all complete. No Fixture 006 work or corpus-admission authority is created by preparing the closure package.
+
 ## Current release boundary
 
 This repository is an **executable foundation**, not a completed autonomous research institution.

@@ -1,0 +1,186 @@
+from __future__ import annotations
+
+import copy
+import json
+import tempfile
+import unittest
+from pathlib import Path
+
+import jsonschema
+
+from grand_intellect.trove_curata_bootstrap_close_001_t3_review_remedy import (
+    TroveCurataBootstrapCloseT3ReviewRemedyError,
+    load_and_validate_trove_curata_bootstrap_close_t3_review_remedy,
+    validate_trove_curata_bootstrap_close_t3_review_remedy,
+)
+
+
+ROOT = Path(__file__).resolve().parents[1]
+RECORD = ROOT / "governance" / "trove_curata_bootstrap_close_001_t3_review_remedy.json"
+SCHEMA = ROOT / "schemas" / "trove_curata_bootstrap_close_001_t3_review_remedy.schema.json"
+
+
+class TroveCurataBootstrapCloseT3ReviewRemedyTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.record = json.loads(RECORD.read_text(encoding="utf-8"))
+
+    def reject(self, mutate, pattern: str) -> None:
+        broken = copy.deepcopy(self.record)
+        mutate(broken)
+        with self.assertRaisesRegex(TroveCurataBootstrapCloseT3ReviewRemedyError, pattern):
+            validate_trove_curata_bootstrap_close_t3_review_remedy(broken)
+
+    def reject_duplicate(self, marker: str, duplicate_member: str) -> None:
+        source = RECORD.read_text(encoding="utf-8")
+        self.assertEqual(source.count(marker), 1)
+        broken = source.replace(marker, f"{duplicate_member}\n{marker}", 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "duplicate.json"
+            path.write_text(broken, encoding="utf-8")
+            with self.assertRaisesRegex(
+                TroveCurataBootstrapCloseT3ReviewRemedyError,
+                "duplicate JSON object key",
+            ):
+                load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(path)
+
+    def reject_text_replacement(self, marker: str, replacement: str, pattern: str) -> None:
+        source = RECORD.read_text(encoding="utf-8")
+        self.assertEqual(source.count(marker), 1)
+        broken = source.replace(marker, replacement, 1)
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "mutated.json"
+            path.write_text(broken, encoding="utf-8")
+            with self.assertRaisesRegex(TroveCurataBootstrapCloseT3ReviewRemedyError, pattern):
+                load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(path)
+
+    def test_canonical_remedy_validates(self) -> None:
+        self.assertEqual(load_and_validate_trove_curata_bootstrap_close_t3_review_remedy(RECORD), self.record)
+
+    def test_schema_is_closed_and_accepts_canonical_record(self) -> None:
+        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        jsonschema.Draft202012Validator.check_schema(schema)
+        jsonschema.validate(self.record, schema, cls=jsonschema.Draft202012Validator)
+
+    def test_integral_numeric_forms_have_schema_semantic_parity(self) -> None:
+        record = copy.deepcopy(self.record)
+        record["historical_subject"]["issue_number"] = 68.0
+        record["historical_subject"]["pull_request_number"] = 69.0
+        record["observed_evidence"]["exact_head_github_approval"]["review_id"] = 4932733903.0
+        record["observed_evidence"]["required_check_runs"][0]["job_id"] = 94628521372.0
+        schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
+        jsonschema.validate(record, schema, cls=jsonschema.Draft202012Validator)
+        self.assertEqual(validate_trove_curata_bootstrap_close_t3_review_remedy(record), record)
+
+    def test_duplicate_root_field_rejected(self) -> None:
+        self.reject_duplicate('  "schema_version": "0.1.0",', '  "schema_version": "escalated",')
+
+    def test_duplicate_identity_field_rejected(self) -> None:
+        self.reject_duplicate('    "issue_number": 68,', '    "issue_number": 999,')
+
+    def test_duplicate_gate_field_rejected(self) -> None:
+        self.reject_duplicate(
+            '    "exact_head_checks_required": true,',
+            '    "exact_head_checks_required": false,',
+        )
+
+    def test_duplicate_authority_field_rejected(self) -> None:
+        self.reject_duplicate('    "destination_activated": false,', '    "destination_activated": true,')
+
+    def test_duplicate_claim_field_rejected(self) -> None:
+        self.reject_duplicate('    "corpus_admitted": false,', '    "corpus_admitted": true,')
+
+    def test_issue_number_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '    "issue_number": 68,',
+            '    "issue_number": 68.0000000000000000000000001,',
+            "historical subject drift",
+        )
+
+    def test_issue_number_exponent_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '    "issue_number": 68,',
+            '    "issue_number": 6.800000000000000000000001e1,',
+            "historical subject drift",
+        )
+
+    def test_review_id_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '      "review_id": 4932733903,',
+            '      "review_id": 4932733903.0000001,',
+            "historical GitHub review drift",
+        )
+
+    def test_job_id_precision_collision_rejected(self) -> None:
+        self.reject_text_replacement(
+            '      {"name": "Analyze (actions)", "job_id": 94628521372, "conclusion": "success"},',
+            '      {"name": "Analyze (actions)", "job_id": 94628521372.000001, "conclusion": "success"},',
+            "check evidence drift",
+        )
+
+    def test_non_finite_number_tokens_rejected(self) -> None:
+        for token in ("NaN", "Infinity", "-Infinity"):
+            with self.subTest(token=token):
+                self.reject_text_replacement(
+                    '    "issue_number": 68,',
+                    f'    "issue_number": {token},',
+                    "non-finite JSON number rejected",
+                )
+
+    def test_historical_gate_cannot_be_promoted(self) -> None:
+        self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": True}), "historical subject drift")
+
+    def test_historical_gate_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["historical_subject"].update({"historical_t3_gate_satisfied": 0}), "historical subject drift")
+
+    def test_declared_gate_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["declared_t3_gate"].update({"exact_head_checks_required": 1}), "declared T3 gate drift")
+
+    def test_missing_adversary_cannot_be_relabelled(self) -> None:
+        self.reject(lambda r: r["observed_evidence"].update({"bound_non_author_adversary_finding": {"status": "approved"}}), "missing historical evidence relabelled")
+
+    def test_github_approval_cannot_substitute_for_t3(self) -> None:
+        self.reject(lambda r: r["observed_evidence"]["exact_head_github_approval"].update({"is_t3_substitute": True}), "historical GitHub review drift")
+
+    def test_workflow_cannot_substitute_for_t3(self) -> None:
+        self.reject(lambda r: r["observed_evidence"].update({"workflow_success_is_t3_substitute": True}), "workflow substituted for T3")
+
+    def test_merge_cannot_substitute_for_t3(self) -> None:
+        self.reject(lambda r: r["observed_evidence"].update({"mechanical_merge_is_t3_substitute": True}), "merge substituted for T3")
+
+    def test_unexpected_observed_evidence_field_rejected(self) -> None:
+        self.reject(lambda r: r["observed_evidence"].update({"invented_evidence": None}), "observed evidence field set drift")
+
+    def test_recovery_owner_cannot_become_mandatory(self) -> None:
+        self.reject(lambda r: r["remedy_contract"].update({"mandatory_routine_human_reviewers": ["jimsteeg"]}), "remedy contract drift")
+
+    def test_remedy_contract_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["remedy_contract"].update({"prospective_remediation_only": 1}), "remedy contract drift")
+
+    def test_self_merge_cannot_be_enabled(self) -> None:
+        self.reject(lambda r: r["remedy_contract"].update({"agent_may_merge_own_work": True}), "remedy contract drift")
+
+    def test_destination_cannot_be_unblocked_early(self) -> None:
+        self.reject(lambda r: r["remedy_contract"].update({"destination_acceptance_blocked_until_remedy_protected_merge": False}), "remedy contract drift")
+
+    def test_bootstrap_artifacts_cannot_change(self) -> None:
+        self.reject(lambda r: r["authority_boundary"].update({"bootstrap_artifacts_changed": True}), "authority boundary drift")
+
+    def test_authority_boundary_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["authority_boundary"].update({"bootstrap_artifacts_changed": 0}), "authority boundary drift")
+
+    def test_claim_inflation_rejected(self) -> None:
+        self.reject(lambda r: r["claim_boundary"].update({"dataset_quality_certified": True}), "claim boundary drift or inflation")
+
+    def test_claim_key_substitution_rejected(self) -> None:
+        def substitute_claim_key(record) -> None:
+            del record["claim_boundary"]["corpus_admitted"]
+            record["claim_boundary"]["invented_claim"] = False
+
+        self.reject(substitute_claim_key, "claim boundary drift or inflation")
+
+    def test_claim_boolean_cannot_be_replaced_by_integer(self) -> None:
+        self.reject(lambda r: r["claim_boundary"].update({"corpus_admitted": 0}), "claim boundary drift or inflation")
+
+
+if __name__ == "__main__":
+    unittest.main()
