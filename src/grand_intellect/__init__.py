@@ -58,6 +58,11 @@ from .trove_curata_bootstrap_closure import (
     load_and_validate_trove_curata_bootstrap_closure,
     validate_trove_curata_bootstrap_closure,
 )
+from .trove_curata_bootstrap_close_001_t3_review_remedy import (
+    TroveCurataBootstrapCloseT3ReviewRemedyError,
+    load_and_validate_trove_curata_bootstrap_close_t3_review_remedy,
+    validate_trove_curata_bootstrap_close_t3_review_remedy,
+)
 from .workspace import WorkPackageWorkspace
 
 __all__ = [
@@ -110,14 +115,17 @@ __all__ = [
     "TROVE_CURATA_REVIEW_TIERS",
     "TroveCurataContractError",
     "TroveCurataBootstrapClosureError",
+    "TroveCurataBootstrapCloseT3ReviewRemedyError",
     "WorkPackageMetrics",
     "WorkPackageWorkspace",
     "calculate_metrics",
     "load_and_validate_trove_curata_contract",
     "load_and_validate_trove_curata_bootstrap_closure",
+    "load_and_validate_trove_curata_bootstrap_close_t3_review_remedy",
     "maintenance_adoption_errors",
     "validate_trove_curata_contract",
     "validate_trove_curata_bootstrap_closure",
+    "validate_trove_curata_bootstrap_close_t3_review_remedy",
 ]
 
 __version__ = "0.2.2"

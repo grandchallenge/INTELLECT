@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1.0",
+  "remedy_id": "TC-BOOTSTRAP-CLOSE-001-T3-REVIEW-REMEDY-001",
+  "status": "pending_exact_head_t3_review_steward_disposition_and_protected_merge",
+  "historical_subject": {
+    "repository": "grandchallenge/INTELLECT",
+    "issue_number": 68,
+    "pull_request_number": 69,
+    "author_account": "fyremael",
+    "protected_predecessor": "8c3da17b2c401944e43b6e9bb0fae3bc95b05624",
+    "final_merged_head": "d587996f71a38aeb8ce4a0c667da1a8350b7f153",
+    "final_tree": "27539df4924775abf5a841b7591aaaa38223d672",
+    "protected_merge_commit": "041f7d9b1c85e157a651bcf3edf07c7499185b00",
+    "merged_at": "2026-08-14T00:37:36Z",
+    "historical_t3_gate_satisfied": false
+  },
+  "declared_t3_gate": {
+    "exact_head_checks_required": true,
+    "non_author_agent_adversary_required": true,
+    "distinct_session_non_author_agent_referee_required": true,
+    "exact_head_human_steward_disposition_required": true,
+    "protected_merge_required": true
+  },
+  "observed_evidence": {
+    "exact_head_github_approval": {
+      "review_id": 4932733903,
+      "reviewer": "jimsteeg",
+      "commit_id": "d587996f71a38aeb8ce4a0c667da1a8350b7f153",
+      "submitted_at": "2026-08-14T00:35:49Z",
+      "state": "APPROVED",
+      "is_t3_substitute": false
+    },
+    "bound_non_author_adversary_finding": null,
+    "bound_distinct_session_referee_finding": null,
+    "bound_exact_head_human_steward_disposition": null,
+    "required_check_runs": [
+      {"name": "Analyze (actions)", "job_id": 94628521372, "conclusion": "success"},
+      {"name": "Analyze (python)", "job_id": 94628521430, "conclusion": "success"},
+      {"name": "CodeQL", "job_id": 94628623529, "conclusion": "success"},
+      {"name": "policy / policy", "job_id": 94628523542, "conclusion": "success"},
+      {"name": "security / action-policy", "job_id": 94628523449, "conclusion": "success"},
+      {"name": "test (3.11.14)", "job_id": 94628524365, "conclusion": "success"},
+      {"name": "test (3.12.13)", "job_id": 94628524463, "conclusion": "success"},
+      {"name": "validate", "job_id": 94628522589, "conclusion": "success"}
+    ],
+    "workflow_success_is_t3_substitute": false,
+    "mechanical_merge_is_t3_substitute": false
+  },
+  "defect": {
+    "kind": "missing_bound_t3_role_and_steward_records",
+    "historical_timeline_rewritten": false,
+    "historical_review_relabelled": false,
+    "historical_disposition_relabelled": false,
+    "source_content_identity_disputed": false,
+    "source_protected_merge_identity_disputed": false
+  },
+  "remedy_contract": {
+    "prospective_remediation_only": true,
+    "historical_state_rewritten": false,
+    "corrective_non_author_agent_adversary_required": true,
+    "corrective_distinct_session_non_author_agent_referee_required": true,
+    "corrective_exact_head_human_steward_disposition_required": true,
+    "ordinary_human_steward": "fyremael",
+    "recovery_owner": "jimsteeg",
+    "mandatory_routine_human_reviewers": [],
+    "github_approval_is_steward_authorization": false,
+    "mechanical_merge_is_steward_authorization": false,
+    "agent_may_merge_own_work": false,
+    "protected_merge_required": true,
+    "protected_main_readback_required": true,
+    "destination_acceptance_blocked_until_remedy_protected_merge": true
+  },
+  "authority_boundary": {
+    "project_owner": "grandchallenge",
+    "project_scope": "gcl_contained",
+    "implementation_changed": false,
+    "bootstrap_artifacts_changed": false,
+    "destination_activated": false,
+    "fixture_006_authorized": false,
+    "aether_role": "future_projection_nonblocking"
+  },
+  "claim_boundary": {
+    "corpus_admitted": false,
+    "deletion_authorized": false,
+    "privacy_compliance_proved": false,
+    "legality_or_rights_proved": false,
+    "dataset_quality_certified": false,
+    "fitness_for_training_proved": false,
+    "production_release_qualified": false,
+    "public_release_authorized": false,
+    "mathematics_certified": false,
+    "commercial_claim_authorized": false
+  }
+}
