@@ -1,0 +1,60 @@
+name: GH-OS routing enforcement
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ghos-routing-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  routing-enforcement:
+    name: routing-enforcement
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Check out protected base
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: protected-base
+          persist-credentials: false
+      - name: Check out candidate read-only
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: candidate
+          persist-credentials: false
+      - name: Reject enforcement self-modification after bootstrap
+        shell: bash
+        run: |
+          if [[ -f protected-base/.github/workflows/ghos-routing-enforcement.yml ]]; then
+            cmp --silent \
+              protected-base/.github/workflows/ghos-routing-enforcement.yml \
+              candidate/.github/workflows/ghos-routing-enforcement.yml || {
+                echo "GH-OS routing enforcement workflow may not be changed through an ordinary candidate PR"
+                exit 1
+              }
+          else
+            echo "Bootstrap: protected base has no routing-enforcement workflow yet"
+          fi
+      - name: Check out externally governed routing gate
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          repository: grandchallenge/.github
+          ref: ef1cce6029233a68cf46063cea2384772fcae613
+          path: policy-runtime
+          persist-credentials: false
+      - name: Install routing gate dependency
+        run: python -m pip install PyYAML==6.0.3
+      - name: Verify and execute external gate
+        shell: bash
+        run: |
+          echo "fc0a9a4d20de72e9fbc04c8cd54cffc3a6e4657fb09e7978b360616bd5e94a17  policy-runtime/scripts/ghos_execution_routing_gate.py" | sha256sum --check --strict
+          python -c 'import runpy,sys; runpy.run_path(sys.argv.pop(1), run_name="__main__")' policy-runtime/scripts/ghos_execution_routing_gate.py \
+            --root candidate \
+            --repository "$GITHUB_REPOSITORY"
