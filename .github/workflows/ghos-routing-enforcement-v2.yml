@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - name: Materialize protected and candidate routing bytes as inert public data
+      - name: Materialize protected and effective candidate routing bytes as inert public data
         shell: bash
         run: |
           python - <<'PY'
@@ -30,9 +30,13 @@ jobs:
 
           event = json.loads(pathlib.Path(os.environ["GITHUB_EVENT_PATH"]).read_text(encoding="utf-8"))
           pull = event["pull_request"]
+          merge_sha = pull.get("merge_commit_sha")
+          if not merge_sha:
+              raise SystemExit("pull request has no effective merge commit")
+          base_repository = pull["base"]["repo"]["full_name"]
           snapshots = {
-              "protected-base": (pull["base"]["repo"]["full_name"], pull["base"]["sha"]),
-              "candidate": (pull["head"]["repo"]["full_name"], pull["head"]["sha"]),
+              "protected-base": (base_repository, pull["base"]["sha"]),
+              "candidate": (base_repository, merge_sha),
           }
 
           for destination, (repository, sha) in snapshots.items():
@@ -67,19 +71,15 @@ jobs:
                       target.parent.mkdir(parents=True, exist_ok=True)
                       target.write_bytes(source.read())
           PY
-      - name: Reject enforcement self-modification after bootstrap
+      - name: Reject enforcement self-modification
         shell: bash
         run: |
-          if [[ -f protected-base/.github/workflows/ghos-routing-enforcement-v2.yml ]]; then
-            cmp --silent \
-              protected-base/.github/workflows/ghos-routing-enforcement-v2.yml \
-              candidate/.github/workflows/ghos-routing-enforcement-v2.yml || {
-                echo "GH-OS routing enforcement workflow may not be changed through an ordinary candidate PR"
-                exit 1
-              }
-          else
-            echo "Bootstrap: protected base has no routing-enforcement workflow yet"
-          fi
+          cmp --silent \
+            protected-base/.github/workflows/ghos-routing-enforcement-v2.yml \
+            candidate/.github/workflows/ghos-routing-enforcement-v2.yml || {
+              echo "GH-OS routing enforcement workflow may not be changed through an ordinary candidate PR"
+              exit 1
+            }
       - name: Fetch and verify externally governed routing gate
         shell: bash
         run: |
@@ -91,7 +91,7 @@ jobs:
       - name: Install routing gate dependency
         run: |
           python -m pip install --disable-pip-version-check --no-deps --only-binary=:all: PyYAML==6.0.3
-      - name: Execute external gate against inert candidate bytes
+      - name: Execute external gate against effective candidate bytes
         shell: bash
         run: |
           python -c 'import runpy,sys; runpy.run_path(sys.argv.pop(1), run_name="__main__")' policy-runtime/scripts/ghos_execution_routing_gate.py \
