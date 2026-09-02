@@ -70,10 +70,10 @@ jobs:
       - name: Reject enforcement self-modification after bootstrap
         shell: bash
         run: |
-          if [[ -f protected-base/.github/workflows/ghos-routing-enforcement.yml ]]; then
+          if [[ -f protected-base/.github/workflows/ghos-routing-enforcement-v2.yml ]]; then
             cmp --silent \
-              protected-base/.github/workflows/ghos-routing-enforcement.yml \
-              candidate/.github/workflows/ghos-routing-enforcement.yml || {
+              protected-base/.github/workflows/ghos-routing-enforcement-v2.yml \
+              candidate/.github/workflows/ghos-routing-enforcement-v2.yml || {
                 echo "GH-OS routing enforcement workflow may not be changed through an ordinary candidate PR"
                 exit 1
               }
