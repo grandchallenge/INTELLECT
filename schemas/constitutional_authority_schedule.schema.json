@@ -19,7 +19,7 @@
   ],
   "properties": {
     "$schema": {"type": "string"},
-    "schema_version": {"enum": ["1.4.0", "1.5.0"]},
+    "schema_version": {"enum": ["1.4.0", "1.5.0", "1.6.0"]},
     "status": {"enum": ["proposed", "active", "superseded"]},
     "staffing": {
       "type": "object",
@@ -33,14 +33,14 @@
         "separation_controls"
       ],
       "properties": {
-        "mode": {"enum": ["steward_supervised_agents", "minimum_steady_state_human_authorization"]},
+        "mode": {"enum": ["steward_supervised_agents", "minimum_steady_state_human_authorization", "streamlined_multi_role_agent_staffing"]},
         "directive": {
           "type": "object",
           "additionalProperties": false,
           "required": ["identifier", "path", "status", "issued_at"],
           "properties": {
-            "identifier": {"enum": ["GI-STEWARD-0001", "GI-STEWARD-0002"]},
-            "path": {"enum": ["governance/steward_directives/GI-STEWARD-0001.md", "governance/steward_directives/GI-STEWARD-0002.md"]},
+            "identifier": {"enum": ["GI-STEWARD-0001", "GI-STEWARD-0002", "GI-STEWARD-0003"]},
+            "path": {"enum": ["governance/steward_directives/GI-STEWARD-0001.md", "governance/steward_directives/GI-STEWARD-0002.md", "governance/steward_directives/GI-STEWARD-0003.md"]},
             "status": {"const": "effective"},
             "issued_at": {"type": "string", "format": "date"}
           }
@@ -148,6 +148,17 @@
         "authority": {"const": "supreme_constitutional_law"},
         "effective_version": {"type": "string", "minLength": 1},
         "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "staffing_amendment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identifier", "path", "status", "effective_version"],
+      "properties": {
+        "identifier": {"const": "GI-AMEND-0002"},
+        "path": {"const": "AMENDMENTS/0002-multi-role-functional-separation.md"},
+        "status": {"const": "effective"},
+        "effective_version": {"const": "1.2.0"}
       }
     },
     "amendment": {
@@ -310,6 +321,28 @@
                 "properties": {
                   "identifier": {"const": "GI-STEWARD-0002"},
                   "path": {"const": "governance/steward_directives/GI-STEWARD-0002.md"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"schema_version": {"const": "1.6.0"}}},
+      "then": {
+        "required": ["staffing_amendment"],
+        "properties": {
+          "constitution": {"properties": {"effective_version": {"const": "1.2.0"}}},
+          "staffing": {
+            "required": ["ordinary_human_steward", "recovery_owner", "mandatory_routine_reviewers", "human_actions_per_governed_decision_target", "authorization_action", "recovery_protocols", "supersession"],
+            "properties": {
+              "mode": {"const": "streamlined_multi_role_agent_staffing"},
+              "human_steward": {"const": "fyremael"},
+              "directive": {
+                "properties": {
+                  "identifier": {"const": "GI-STEWARD-0003"},
+                  "path": {"const": "governance/steward_directives/GI-STEWARD-0003.md"}
                 }
               }
             }

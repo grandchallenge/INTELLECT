@@ -1,0 +1,34 @@
+{
+  "$schema": "../../../schemas/multi_role_transition_manifest.schema.json",
+  "schema_version": "1.0.0",
+  "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+  "status": "exact_candidate",
+  "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+  "effective_version": "1.2.0",
+  "artifacts": [
+    {"path": "CONSTITUTION.md", "git_blob_sha1": "b0cc411a5cc5027a631df8ac9e457dc1bf5294d8", "sha256": "85ea47cb67ebe15210b6743e186d36db2336bd0a610929392806406be5a49c1a"},
+    {"path": "AMENDMENTS/0002-multi-role-functional-separation.md", "git_blob_sha1": "f7f09638fcbc5843e19b602d1a32872a299246e5", "sha256": "0922b3a979a776a5bd7849f9ef9120565e12ea706808300f284185a0bed6c9e8"},
+    {"path": "governance/steward_directives/GI-STEWARD-0003.md", "git_blob_sha1": "53fb4e506505d870d32a0e03476900da02389a14", "sha256": "4b4f6ab964a7d3233585ea65606a75f8e05821a1ffd288bf62c7b620e56581a2"},
+    {"path": "governance/constitutional_authority_schedule.json", "git_blob_sha1": "f88629ea89e96f18f9f6f5c0f8ee4bd9125e04f0", "sha256": "e9b94d12068dc3789deaea01ac5ba0c6700dfa4c84c0756a3477138382b41b26"},
+    {"path": "schemas/constitutional_authority_schedule.schema.json", "git_blob_sha1": "dcdb0937fa5c832f93693a48e37851bf8d34fc07", "sha256": "6956a4d03675c4f4ec2dbd426aee7088fc4ca2d7a95b545594d2a60e038918c6"},
+    {"path": "schemas/multi_role_review.schema.json", "git_blob_sha1": "c70050d9b178dc875070a98d809ecf307b905e4a", "sha256": "04833073238803db5a6e804d1eaa660232f22dc2a8f2f833e0e3fac09e81be41"},
+    {"path": "src/grand_intellect/constitutional_authority.py", "git_blob_sha1": "e8376766bf90b36802ed06fa1a259b0ac1d9f8de", "sha256": "fbb172b5fbbd96cab3d144aa7290e7c32bc678129cc31aba2304cb7d588c4937"},
+    {"path": "src/grand_intellect/multi_role_staffing.py", "git_blob_sha1": "d4533895592a72081b9607bed589f0e3a770b147", "sha256": "5dd2d049c0f633b43d086f0fd4eb64c53d3e58d8a5d16db88f5623ab1fda76eb"},
+    {"path": "AGENTS.md", "git_blob_sha1": "234fa91408d04ce21f4ea116da4c7638867ef374", "sha256": "c653053ac3cdce0c118a575468a307524dc67e29b1e032f1a8bcdb80f2d9885c"}
+  ],
+  "activation_order": [
+    "validate_exact_artifact_blobs_and_digests",
+    "obtain_distinct_predecessor_policy_adversary_and_referee_findings",
+    "obtain_one_exact_packet_human_steward_authorization",
+    "merge_exact_pull_request_through_protected_controls",
+    "verify_constitution_version_directive_schedule_and_parentage_on_main",
+    "admit_canonical_standard_and_roll_out_non_reserved_adoptions"
+  ],
+  "rollback": "later_exact_human_steward_directive_and_protected_schedule_selection",
+  "unresolved_obligations": [
+    "fresh_exact_head_adversary_finding",
+    "fresh_exact_head_referee_finding",
+    "human_steward_exact_packet_authorization",
+    "protected_merge_and_readback"
+  ]
+}

@@ -121,7 +121,7 @@ def validate_authority_schedule(
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
     schema_version = schedule.get("schema_version")
-    if schema_version not in {"1.4.0", "1.5.0"}:
+    if schema_version not in {"1.4.0", "1.5.0", "1.6.0"}:
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
@@ -152,7 +152,7 @@ def validate_authority_schedule(
             raise ConstitutionalAuthorityError(
                 "GI-STEWARD-0001 requires the exact bootstrap staffing sequence"
             )
-    else:
+    elif schema_version == "1.5.0":
         supersession = _mapping(staffing, "supersession")
         organization_2fa = _mapping(supersession, "organization_2fa")
         if (
@@ -218,6 +218,27 @@ def validate_authority_schedule(
                 "GI-STEWARD-0002 requires exact organization 2FA evidence"
             )
         validate_organization_2fa_evidence(organization_2fa_evidence)
+    else:
+        if (
+            schema_version != "1.6.0"
+            or staffing.get("mode") != "streamlined_multi_role_agent_staffing"
+            or staffing.get("external_human_review_required") is not False
+            or directive.get("identifier") != "GI-STEWARD-0003"
+            or directive.get("path")
+            != "governance/steward_directives/GI-STEWARD-0003.md"
+            or directive.get("status") != "effective"
+            or staffing.get("human_steward") != "fyremael"
+            or staffing.get("ordinary_human_steward") != "fyremael"
+            or staffing.get("recovery_owner") != "jimsteeg"
+            or staffing.get("mandatory_routine_reviewers") != []
+            or staffing.get("human_actions_per_governed_decision_target") != 1
+            or staffing.get("authorization_action")
+            != "authenticated_role_bound_exact_packet_authorization"
+            or staffing.get("recovery_protocols") != _RECOVERY_PROTOCOLS
+        ):
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 requires the streamlined multi-role sequence"
+            )
     human_steward = staffing.get("human_steward")
     if not isinstance(human_steward, str) or not human_steward:
         raise ConstitutionalAuthorityError("staffing requires one Human Steward")
@@ -230,13 +251,23 @@ def validate_authority_schedule(
             f"missing={missing}, extra={extra}"
         )
     separation_controls = set(_list(staffing, "separation_controls"))
-    required_separation = {
-        "non_author_adversary",
-        "distinct_agent_referee",
-        "distinct_agent_sessions",
-        "exact_revision_findings",
-        "human_steward_reserved_authority",
-    }
+    required_separation = (
+        {
+            "non_author_adversary",
+            "role_scoped_logical_passes",
+            "non_authoring_read_only_review",
+            "exact_revision_findings",
+            "human_steward_reserved_authority",
+        }
+        if schema_version == "1.6.0"
+        else {
+            "non_author_adversary",
+            "distinct_agent_referee",
+            "distinct_agent_sessions",
+            "exact_revision_findings",
+            "human_steward_reserved_authority",
+        }
+    )
     if missing := sorted(required_separation - separation_controls):
         raise ConstitutionalAuthorityError(
             f"agent separation controls are incomplete: {missing}"

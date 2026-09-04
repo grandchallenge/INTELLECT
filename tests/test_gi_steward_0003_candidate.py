@@ -36,12 +36,12 @@ class MultiRoleStaffingCandidateTests(unittest.TestCase):
         self.assertIn("MATHCERT", text)
         self.assertIn("must not invent", text)
 
-    def test_current_schedule_remains_effective_until_exact_activation(self) -> None:
+    def test_atomic_candidate_selects_successor_only_on_protected_merge(self) -> None:
         schedule = (
             ROOT / "governance/constitutional_authority_schedule.json"
         ).read_text(encoding="utf-8")
-        self.assertIn('"identifier": "GI-STEWARD-0002"', schedule)
-        self.assertNotIn('"identifier": "GI-STEWARD-0003"', schedule)
+        self.assertIn('"identifier": "GI-STEWARD-0003"', schedule)
+        self.assertIn('"schema_version": "1.6.0"', schedule)
 
 
 if __name__ == "__main__":

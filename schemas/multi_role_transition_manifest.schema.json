@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["$schema", "schema_version", "operation_id", "status", "base_commit", "effective_version", "artifacts", "activation_order", "rollback", "unresolved_obligations"],
+  "properties": {
+    "$schema": {"const": "../../../schemas/multi_role_transition_manifest.schema.json"},
+    "schema_version": {"const": "1.0.0"},
+    "operation_id": {"const": "GI-MULTI-ROLE-STAFFING-001"},
+    "status": {"const": "exact_candidate"},
+    "base_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+    "effective_version": {"const": "1.2.0"},
+    "artifacts": {"type": "array", "minItems": 9, "uniqueItems": true, "items": {"type": "object", "additionalProperties": false, "required": ["path", "git_blob_sha1", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "git_blob_sha1": {"type": "string", "pattern": "^[0-9a-f]{40}$"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}},
+    "activation_order": {"type": "array", "minItems": 6, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "rollback": {"const": "later_exact_human_steward_directive_and_protected_schedule_selection"},
+    "unresolved_obligations": {"type": "array", "minItems": 4, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+  }
+}

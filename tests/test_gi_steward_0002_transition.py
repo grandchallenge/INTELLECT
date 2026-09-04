@@ -42,12 +42,12 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
         schema = json.loads(SCHEMA.read_text(encoding="utf-8"))
         self.assertEqual(
             schema["properties"]["schema_version"]["enum"],
-            ["1.4.0", "1.5.0"],
+            ["1.4.0", "1.5.0", "1.6.0"],
         )
         staffing = schema["properties"]["staffing"]["properties"]
         self.assertEqual(
             staffing["directive"]["properties"]["identifier"]["enum"],
-            ["GI-STEWARD-0001", "GI-STEWARD-0002"],
+            ["GI-STEWARD-0001", "GI-STEWARD-0002", "GI-STEWARD-0003"],
         )
         self.assertEqual(staffing["ordinary_human_steward"]["const"], "fyremael")
         self.assertEqual(staffing["recovery_owner"]["const"], "jimsteeg")
@@ -130,9 +130,9 @@ class MinimumSteadyStateHumanGovernanceTests(unittest.TestCase):
             cls=jsonschema.Draft202012Validator,
             format_checker=jsonschema.FormatChecker(),
         )
-        self.assertEqual(current["schema_version"], "1.5.0")
+        self.assertEqual(current["schema_version"], "1.6.0")
         self.assertEqual(
-            current["staffing"]["directive"]["identifier"], "GI-STEWARD-0002"
+            current["staffing"]["directive"]["identifier"], "GI-STEWARD-0003"
         )
         self.assertEqual(
             current["staffing"]["supersession"]["review_packet_sha256"],

@@ -9,6 +9,14 @@ Treat `CONSTITUTION.md` as supreme law, effective amendments as its lawful
 supplements, and constitutional commentary as nonbinding interpretation.
 `gcl-standards` is a subordinate registry and publication repository.
 
-Agents may open branches and pull requests but may not approve or merge their
-own work, ratify an amendment, supply independent review of their own work, or
-write directly to protected branches.
+Under the effective authority schedule, one Codex system may staff multiple
+non-reserved roles through distinct, exact-subject logical audit passes.
+Routine bounded and non-reserved substantive work may proceed through protected
+merge and readback without a fresh human action or identity hand-off. A system
+that authored a subject must use a declared non-authoring, read-only mode when
+acting as Adversary or Referee; mutation invalidates that pass.
+
+Agents may not ratify a constitutional amendment, manufacture Human Steward
+authorization, self-certify a mathematical claim, exercise reserved authority,
+bypass protected controls, or write directly to protected branches. Follow
+`GI-STEWARD-0003` only when it is selected by the protected schedule.

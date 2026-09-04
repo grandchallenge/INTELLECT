@@ -16,14 +16,17 @@ SCHEMA = json.loads((ROOT / "schemas/multi_role_review.schema.json").read_text()
 
 def review(role: str, pass_id: str) -> dict[str, object]:
     return {
-        "schema_version": "1.0.0", "work_class": "substantive",
+        "schema_version": "1.0.0", "work_class": "substantive", "effects": ["public_contract"],
         "reviewer_system_id": "codex-system", "logical_pass_id": pass_id,
         "role": role, "mode": "non_authoring_read_only",
         "subject": {"repository": "grandchallenge/INTELLECT", "commit": "a" * 40,
-                    "tree": "b" * 40, "material_evidence_sha256": "c" * 64},
+                    "tree": "b" * 40, "base_commit": "d" * 40,
+                    "dependency_closure_sha256": "e" * 64,
+                    "material_evidence_sha256": "c" * 64},
         "criteria": [f"{role} criteria"], "finding": "approved",
         "evidence": ["exact evidence"], "unresolved_obligations": [],
         "reserved_authority_ref": None,
+        "authority_claims": {"human_authorized": False, "mathcert_certified": False},
     }
 
 
@@ -52,8 +55,21 @@ class MultiRoleStaffingTests(unittest.TestCase):
     def test_reserved_authority_is_explicit(self) -> None:
         bad = review("Referee", "pass-r")
         bad["work_class"] = "reserved"
+        bad["effects"] = ["human_authority"]
         with self.assertRaises(MultiRoleReviewError):
             validate_review_set([bad])
+
+    def test_classification_downgrade_and_duplicate_analysis_are_rejected(self) -> None:
+        bad = review("Verifier", "pass-v")
+        bad["work_class"] = "routine_bounded"
+        bad["effects"] = ["credential_expansion"]
+        with self.assertRaises(MultiRoleReviewError):
+            validate_review_set([bad])
+        duplicate = review("Referee", "pass-r")
+        original = review("Adversary", "pass-a")
+        duplicate["criteria"] = copy.deepcopy(original["criteria"])
+        with self.assertRaises(MultiRoleReviewError):
+            validate_review_set([original, duplicate])
 
     def test_schema_rejects_unknown_and_missing_fields(self) -> None:
         bad = review("Referee", "pass-r")
