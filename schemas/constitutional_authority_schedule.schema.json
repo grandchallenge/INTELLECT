@@ -161,6 +161,30 @@
         "effective_version": {"const": "1.2.0"}
       }
     },
+    "staffing_transition_activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["operation_id", "predecessor", "successor", "subject_manifest", "subject_manifest_sha256", "base_commit", "receipt_surface", "predecessor_policy_reviews", "human_steward_authorization", "historical_receipts_satisfy_transition", "effective_condition", "effective_at"],
+      "properties": {
+        "operation_id": {"const": "GI-MULTI-ROLE-STAFFING-001"},
+        "predecessor": {"const": "GI-STEWARD-0002"},
+        "successor": {"const": "GI-STEWARD-0003"},
+        "subject_manifest": {"const": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json"},
+        "subject_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "base_commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+        "receipt_surface": {"const": "https://github.com/grandchallenge/INTELLECT/issues/89"},
+        "predecessor_policy_reviews": {
+          "const": {
+            "adversary": "distinct_non_author_read_only_exact_packet_finding_required",
+            "referee": "different_distinct_non_author_read_only_exact_packet_finding_required"
+          }
+        },
+        "human_steward_authorization": {"const": "authenticated_fyremael_exact_packet_authorization_required"},
+        "historical_receipts_satisfy_transition": {"const": false},
+        "effective_condition": {"const": "protected_merge_after_external_receipt_verification"},
+        "effective_at": {"const": "protected_merge_timestamp"}
+      }
+    },
     "amendment": {
       "type": "object",
       "additionalProperties": false,
@@ -331,7 +355,7 @@
     {
       "if": {"properties": {"schema_version": {"const": "1.6.0"}}},
       "then": {
-        "required": ["staffing_amendment"],
+        "required": ["staffing_amendment", "staffing_transition_activation"],
         "properties": {
           "constitution": {"properties": {"effective_version": {"const": "1.2.0"}}},
           "staffing": {

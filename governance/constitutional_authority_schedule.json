@@ -124,6 +124,23 @@
     "status": "effective",
     "effective_version": "1.2.0"
   },
+  "staffing_transition_activation": {
+    "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+    "predecessor": "GI-STEWARD-0002",
+    "successor": "GI-STEWARD-0003",
+    "subject_manifest": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json",
+    "subject_manifest_sha256": "b5b9d46ff04d48be51da2f9494c74826ed094323f9d1f3f22a3926402550d21f",
+    "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+    "receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89",
+    "predecessor_policy_reviews": {
+      "adversary": "distinct_non_author_read_only_exact_packet_finding_required",
+      "referee": "different_distinct_non_author_read_only_exact_packet_finding_required"
+    },
+    "human_steward_authorization": "authenticated_fyremael_exact_packet_authorization_required",
+    "historical_receipts_satisfy_transition": false,
+    "effective_condition": "protected_merge_after_external_receipt_verification",
+    "effective_at": "protected_merge_timestamp"
+  },
   "amendment": {
     "identifier": "GI-AMEND-0001",
     "path": "AMENDMENTS/0001-commentary-and-gcl-ghos.md",

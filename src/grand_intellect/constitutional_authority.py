@@ -239,6 +239,33 @@ def validate_authority_schedule(
             raise ConstitutionalAuthorityError(
                 "GI-STEWARD-0003 requires the streamlined multi-role sequence"
             )
+        transition = _mapping(schedule, "staffing_transition_activation")
+        expected_transition = {
+            "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+            "predecessor": "GI-STEWARD-0002",
+            "successor": "GI-STEWARD-0003",
+            "subject_manifest": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json",
+            "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+            "receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89",
+            "predecessor_policy_reviews": {
+                "adversary": "distinct_non_author_read_only_exact_packet_finding_required",
+                "referee": "different_distinct_non_author_read_only_exact_packet_finding_required",
+            },
+            "human_steward_authorization": "authenticated_fyremael_exact_packet_authorization_required",
+            "historical_receipts_satisfy_transition": False,
+            "effective_condition": "protected_merge_after_external_receipt_verification",
+            "effective_at": "protected_merge_timestamp",
+        }
+        for key, value in expected_transition.items():
+            if transition.get(key) != value:
+                raise ConstitutionalAuthorityError(
+                    "GI-STEWARD-0003 requires an exact 0002-to-0003 transition activation"
+                )
+        manifest_digest = transition.get("subject_manifest_sha256")
+        if not isinstance(manifest_digest, str) or not _DIGEST_PATTERN.fullmatch(manifest_digest):
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 transition requires a content-addressed subject manifest"
+            )
     human_steward = staffing.get("human_steward")
     if not isinstance(human_steward, str) or not human_steward:
         raise ConstitutionalAuthorityError("staffing requires one Human Steward")
@@ -460,6 +487,14 @@ def load_and_validate(path: Path) -> dict[str, Any]:
         staffing_transition_receipt=transition_receipt,
         organization_2fa_evidence=organization_2fa_evidence,
     )
+    if schedule.get("schema_version") == "1.6.0":
+        transition = _mapping(schedule, "staffing_transition_activation")
+        manifest_path = path.resolve().parent.parent / str(transition["subject_manifest"])
+        manifest_bytes = manifest_path.read_bytes()
+        if hashlib.sha256(manifest_bytes).hexdigest() != transition["subject_manifest_sha256"]:
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 transition manifest digest drift"
+            )
     return schedule
 
 

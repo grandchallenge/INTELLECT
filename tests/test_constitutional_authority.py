@@ -336,6 +336,31 @@ class ConstitutionalAuthorityTests(unittest.TestCase):
         with self.assertRaisesRegex(ConstitutionalAuthorityError, "staffing roster"):
             validate_authority_schedule(broken)
 
+    def test_multi_role_transition_cannot_reuse_old_or_stale_authority(self) -> None:
+        mutations = (
+            ("predecessor", "GI-STEWARD-0001"),
+            ("successor", "GI-STEWARD-0002"),
+            ("receipt_surface", "https://github.com/grandchallenge/INTELLECT/pull/32"),
+            ("historical_receipts_satisfy_transition", True),
+            ("base_commit", "a" * 40),
+        )
+        for field, value in mutations:
+            with self.subTest(field=field):
+                broken = copy.deepcopy(self.canonical)
+                broken["staffing_transition_activation"][field] = value
+                with self.assertRaisesRegex(
+                    ConstitutionalAuthorityError, "exact 0002-to-0003 transition"
+                ):
+                    validate_authority_schedule(broken)
+
+    def test_multi_role_transition_manifest_digest_is_required(self) -> None:
+        broken = copy.deepcopy(self.canonical)
+        broken["staffing_transition_activation"]["subject_manifest_sha256"] = "not-a-digest"
+        with self.assertRaisesRegex(
+            ConstitutionalAuthorityError, "content-addressed subject manifest"
+        ):
+            validate_authority_schedule(broken)
+
     def test_minimum_steady_state_staffing_accepts_only_exact_supersession(self) -> None:
         steady = copy.deepcopy(self.canonical)
         steady["schema_version"] = "1.5.0"

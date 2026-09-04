@@ -34,7 +34,12 @@ class MultiRoleTransitionManifestTests(unittest.TestCase):
         manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
         order = manifest["activation_order"]
         self.assertLess(order.index("obtain_one_exact_packet_human_steward_authorization"), order.index("merge_exact_pull_request_through_protected_controls"))
-        self.assertIn("protected_merge_and_readback", manifest["unresolved_obligations"])
+        self.assertEqual(manifest["review_addressable_obligations"], [])
+        self.assertIn("protected_merge_and_readback", manifest["activation_preconditions"])
+        self.assertEqual(
+            manifest["schedule_binding"]["external_receipt_surface"],
+            "https://github.com/grandchallenge/INTELLECT/issues/89",
+        )
 
 
 if __name__ == "__main__":
