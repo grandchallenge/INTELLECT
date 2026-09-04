@@ -7,11 +7,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTIVE = ROOT / "governance/steward_directives/GI-STEWARD-0003.md"
 PACKET = ROOT / "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001"
+AMENDMENT = ROOT / "AMENDMENTS/0002-multi-role-functional-separation.md"
 
 
 class MultiRoleStaffingCandidateTests(unittest.TestCase):
     def test_candidate_contains_article_xi_package(self) -> None:
         self.assertTrue(DIRECTIVE.is_file())
+        self.assertTrue(AMENDMENT.is_file())
         for name in ("ADR.md", "THREAT_ANALYSIS.md", "MIGRATION.md"):
             self.assertTrue((PACKET / name).is_file())
 

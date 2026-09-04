@@ -10,7 +10,9 @@
 - **Self-created human authority:** reserved records require an authenticated
   Human Steward identity and exact authorization reference.
 - **Stale evidence reuse:** material subject or evidence drift invalidates
-  affected passes; unrelated base movement does not.
+  affected passes. Materiality is the closed tuple of candidate commit, tree,
+  and declared evidence digest; any changed tuple member fails closed. Base
+  movement is unrelated only when all tuple members remain byte-identical.
 - **Classification downgrade:** unknown or mixed effects take the highest class;
   validators reject routine classification when reserved effects are present.
 - **Certification laundering:** domain validators reject inference of MATHCERT

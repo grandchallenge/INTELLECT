@@ -15,7 +15,8 @@ automation may integrate already-authorized work.
 
 ## Decision
 
-Adopt `GI-STEWARD-0003`. Separate functions through exact-subject, role-scoped,
+Adopt constitutional amendment `GI-AMEND-0002` and implement it through
+`GI-STEWARD-0003`. Separate functions through exact-subject, role-scoped,
 read-only logical passes. Permit one system to staff multiple non-reserved roles
 and autonomously complete routine and non-reserved substantive work through
 protected controls. Retain one human decision only for reserved authority and

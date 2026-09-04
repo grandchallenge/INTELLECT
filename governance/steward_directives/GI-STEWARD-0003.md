@@ -72,10 +72,11 @@ previously effective `GI-STEWARD-0002`: one non-author Adversary agent and a
 different non-author Referee agent from a distinct session, followed by one
 authenticated exact-packet authorization by `fyremael`.
 
-That single authorization may cover the deterministic schedule cutover,
-admission of `GCL-AGENT-STAFFING-001` version `1.0.0`, organization defaults,
-and commit-addressed downstream adoption when the exact transition packet lists
-those operations. No later ceremonial human click is required.
+That single authorization covers the exact constitutional amendment and
+deterministic schedule cutover named by the content-addressed transition
+packet. After cutover, admission of `GCL-AGENT-STAFFING-001` and downstream
+policy adoption are non-reserved substantive operations under this directive
+and require no later ceremonial human click.
 
 Completed decisions retain their recorded rules. In-flight decisions either
 finish under an already authorized exact packet or restart under this directive.
@@ -84,8 +85,8 @@ Steward directive and protected schedule selection.
 
 ## Authority boundary
 
-This directive changes staffing and execution procedure, not office powers. It
-does not amend the Constitution; grant mathematical, scientific, production,
+This directive implements the separately admitted Article XI amendment to
+separation procedure; it does not otherwise change office powers or grant mathematical, scientific, production,
 safety, deployment, commercial, credential, destructive, novelty, or priority
 authority; weaken protected branches or immutable releases; or make GitHub a
 constitutional or production-semantic authority.
