@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office": "amanuensis",
+  "reviewer_id": "agent-amanuensis-agent-cadence-r3-20260812-c",
+  "decision": "changes_requested",
+  "deliberation": "The active docket substantially improves institutional inheritance: it preserves the original matter, proposal, three office records, and result for each failed review round; binds those rounds to canonical matter digests and exact candidate heads; candidly identifies the source schedule as a frozen reconstruction rather than invented Git history; and requires the terminal packet to retain failures, lateness, superseded candidates, unknowns, and adverse results. Those are sound inscriptions, not merely a consensus paraphrase. The exact candidate is nevertheless not ready for activation because the durable lineage remains ambiguous and its future records are not reconstructible without operator interpretation. Candidate heads acf30e66812deb1f9b5aa3e2e31687511160e966, be3690286eaaa7dd6ffce6407856f28777327fdf, and 4abe7653e74a3a1fd16e8b9e72e5c61646718241 all reuse plan identifier MP-OPERATING-PLAN-2026-08-POST-PILOT-001-R2, while no machine-readable lineage record marks their predecessor, successor, supersession reason, effective status, or non-carry-forward boundary. The activation schema records mostly shape-constrained strings: it does not bind the exact reviewed packet, prove authenticated Human Steward provenance, identify the protected repository, branch, and readback head, establish merge ancestry, or require T0 to equal successful readback completion. A future custodian could therefore retrieve a schema-valid but historically false activation. Runtime preservation is also prose-only: no versioned occurrence, cutoff, terminal-disposition, or operating-ledger contract supplies immutable record identities, canonical custody, append-only supplements for late evidence, retention periods, retrieval keys, migration rules, integrity checks, or recovery drills. The instruction to retire branches, workflows, trackers, and reports when history is 'preserved canonically' is unsafe until canonical preservation and recoverability are defined. Repair requires new governed bytes and fresh exact-candidate inscription, so these defects cannot be discharged as post-approval interpretation.",
+  "discharged_obligations": [
+    "Reconstructed the source schedule, three exact candidate heads, three Council matter digests, archived review rounds, active packet, proposed activation receipt, and terminal-record chain.",
+    "Assessed inscription, provenance, lineage, supersession, retention, retrieval, protected-main readback, migration, recovery, and personnel-independent reconstruction.",
+    "Verified that prior adverse findings remain present as immutable predecessor records rather than being overwritten by the active correction summary.",
+    "Preserved the distinctions among a reconstructed source, reviewed candidate, advisory Council record, Human Steward act, protected merge, protected-main readback, activation, terminal evidence, production authority, and mathematical certification."
+  ],
+  "findings": [
+    "The active matter canonical digest is 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504, and proposal.md reproduces matter.json proposal SHA-256 f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620.",
+    "Round 1 is preserved at matter digest 18726690cfc8cbd246bafcb687e32a455d922ae9ae580e891d5938e64c95e545 and candidate acf30e66812deb1f9b5aa3e2e31687511160e966; round 2 is preserved at matter digest 6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55 and candidate be3690286eaaa7dd6ffce6407856f28777327fdf; each archive retains its proposal, matter, three independent changes-requested reviews, and result record.",
+    "The active packet binds candidate 4abe7653e74a3a1fd16e8b9e72e5c61646718241, plan blob 8d1f06567acc40f196a0952bdbce0ee4cbc84c21 and SHA-256 e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843, and transform blob 012b3ef62d14b51b3d4f08c5c565024a0356e674 and SHA-256 24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086.",
+    "The frozen predecessor schedule is content-addressed at commit da753cfd7f0128fb78948a240de336c58db9a50d, blob a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42, and SHA-256 0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc; its stated reconstructed status preserves the limitation of the historical evidence.",
+    "All three byte-distinct candidate heads use the same semantic plan identifier MP-OPERATING-PLAN-2026-08-POST-PILOT-001-R2. Exact Git and matter digests disambiguate them only for a reader who already knows the archive layout; no canonical machine-readable supersession graph or candidate-instance identifier makes that inheritance explicit.",
+    "ROUND-1-RESULT.md, ROUND-2-RESULT.md, and the active correction narrative explain why earlier candidates were returned, but there is no versioned index recording immutable predecessor and successor identities, supersession reason, status, effective interval, and prohibition on carrying checks or reviews forward.",
+    "The activation receipt schema lacks exact constants for the active plan, transform, and Council identities; equality between nested and top-level Human Steward bindings; authenticated disposition provenance; protected repository, branch, and readback-head identity; candidate-to-merge ancestry; and a verified atomic relation between readback completion and T0.",
+    "Because no executable activation verifier is declared, shape-valid receipt bytes cannot establish that this exact reviewed candidate became the protected effective plan. This is an inscription and readback failure even if the intended activation sequence is correct in prose.",
+    "The plan properly requires failures, late events, superseded candidates, unknowns, blockers, and bounded negative results in the terminal packet, but no terminal schema or ledger contract makes the cutoff snapshot immutable or represents later evidence as a non-destructive supplement rather than a rewrite.",
+    "No canonical custody map, retention schedule, retrieval index, schema-migration rule, digest-audit cadence, backup or mirror requirement, or recovery test is defined for activation receipts, occurrence records, cutoff states, terminal packets, superseded candidates, and their evidence references.",
+    "The retirement instruction depends on history being preserved canonically without naming the canonical record, custodian, retrieval key, integrity proof, or recovery path. It therefore cannot yet justify retiring a branch, workflow, tracker, or report that may be the only surviving route to required provenance.",
+    "The active Axiomatist, Cartographer, Verifier, Adversary, Formalist, and Steward records are themselves preserved adverse evidence bound to the same matter digest; each requests governed-byte repair and none supplies activation, merge, or Human Steward authority."
+  ],
+  "conditions": [
+    "Create a versioned machine-readable lineage index for this plan family. Give every candidate instance an immutable identity distinct from the reusable semantic plan identifier, and bind the reconstructed source, round-1 candidate and matter, round-2 candidate and matter, active candidate and matter, proposal and artifact digests, review-set identities, status, supersession reason, successor, and prohibition on carrying prior checks or reviews forward.",
+    "Do not relabel or rewrite either failed round. Express correction, supersession, invalidation, abandonment, continuation, and any later activation as append-only successor records with explicit typed links; preserve the reconstructed-source limitation in every compressed or migrated representation.",
+    "Replace the activation shape contract with a versioned receipt plus executable verifier that content-binds this exact candidate, plan blob and SHA-256, transform blob and SHA-256, Council matter and compiled disposition, all required review records, authenticated approving Human Steward evidence, required checks, protected repository and branch, merge identity and ancestry, protected-main readback head and bytes, and one canonical T0 equal to successful durable readback completion. Reject substitution, conflict, replay, and retrospective activation.",
+    "Publish versioned occurrence-ledger, cutoff-snapshot, terminal-disposition, and terminal-packet schemas. Require immutable record IDs, actor and time provenance, source digests, predecessor evidence, status transitions, last-proven state, owner and continuation route, and append-only supplement links so late recovery can never rewrite PENDING_AT_CUTOFF, FAILED_AT_CUTOFF, adverse history, or the primary-window result.",
+    "Name canonical custody and authoritative boundaries for governance records and any production-derived facts. Define retention periods or durable retention classes, retrieval keys and indexes, digest and reference integrity checks, mirror or backup expectations, schema migration with old-byte preservation, reconciliation states for missing or divergent records, and periodic restoration or recovery tests.",
+    "Make retirement fail closed until the preservation precondition is machine-verifiable. Routine retirement may perform only recoverable archival with a recorded location, digest, custodian, retention class, retrieval test, recovery path, and supersession link; deletion, protected-workflow mutation, authority-bearing record removal, and irreversible disposal remain separately reserved.",
+    "Retable the repaired MATH-PROGRAMME candidate and regenerate the Council matter for fresh independent office review. The new packet must link to this matter and both failed rounds as immutable adverse predecessors; no present review, check, disposition, activation, merge, or clock-start claim carries across changed bytes."
+  ],
+  "residual_uncertainty": [
+    "The earlier 90-day prose was uncommitted; the frozen schedule is an honest reconstruction but cannot prove every byte or nuance of that original draft.",
+    "No future activation receipt, protected merge, protected-main readback, T0, occurrence ledger, cutoff snapshot, terminal packet, migration, retention event, or recovery test exists yet.",
+    "The appropriate long-term division between Git-governance custody and AETHER production provenance remains to be specified without moving constitutional authority into the production substrate.",
+    "Repository retention, branch deletion, workflow history, and service-level artifact availability may impose constraints not represented by the current plan.",
+    "Even a complete archive can establish only what was recorded under its evidence and authority boundaries; it cannot turn deadline completion into operational success, external adoption, commercial readiness, mathematical truth, or MATHCERT certification."
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CONSTITUTION.md#article-ii-offices",
+    "CONSTITUTION.md#article-iii-separation-of-powers",
+    "CONSTITUTION.md#article-vii-memory",
+    "CONSTITUTION.md#article-viii-disposal",
+    "CONSTITUTION.md#article-ix-semantic-authority",
+    "CONSTITUTION.md#article-x-human-authority",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json#canonical-sha256=90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md#sha256=f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/ROUND-1-RESULT.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-2/ROUND-2-RESULT.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/01-axiomatist.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/02-cartographer.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/03-verifier.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/04-adversary.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/05-formalist.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/reviews/06-steward.json",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "grandchallenge/MATH-PROGRAMME@da753cfd7f0128fb78948a240de336c58db9a50d:governance/agent_cadence_operating_plan_predecessor_90d.json#blob=a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42&sha256=0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md#blob=8d1f06567acc40f196a0952bdbce0ee4cbc84c21&sha256=e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:governance/agent_cadence_operating_plan_transform.json#blob=012b3ef62d14b51b3d4f08c5c565024a0356e674&sha256=24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:schemas/agent_cadence_operating_plan_activation.schema.json"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office": "verifier",
+  "reviewer_id": "agent-verifier-agent-cadence-r3-20260812-c",
+  "decision": "changes_requested",
+  "deliberation": "The third candidate closes several concrete round-two defects: the reconstructed source schedule is now content-addressed at an ancestor commit, every recorded ISO duration in the canonical transform agrees with its seconds value, the canonical phase and cadence arithmetic is an exact factor-0.1 transform, OPS-A is represented as a hard dependency, the canonical terminal offsets are strictly ordered, stale terminology is removed, and T0 remains non-retrospective and reserved to successful protected-main activation readback. The candidate nevertheless overstates what is machine-checked. The transform validator does not enforce repository identity, complete and unique milestone identities, milestone ordering, or phase-to-milestone correspondence; deliberately reversed, incomplete, and duplicate milestone tables all validate. The activation schema is a shape contract rather than an activation verifier: it accepts arbitrary candidate identities, does not prove an approving authenticated Human Steward disposition or successful exact-head checks and reviews, does not verify merge ancestry or protected-main identity, and permits T0 to precede readback. The previously requested terminal occurrence and cutoff contract is still prose-only. These gaps permit mutually inconsistent implementations to produce schema-valid activation or terminal claims, so they require exact-candidate repair and fresh review rather than post-approval conditions. The plan's authority, adverse-history, blocker, bounded-negative-result, and mathematical nonclaim boundaries otherwise remain appropriately fail-closed.",
+  "discharged_obligations": [
+    "Recomputed the canonical Council matter digest and proposal digest and confirmed that this review is bound to matter 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504.",
+    "Verified the exact MATH-PROGRAMME candidate head, plan Git blob and SHA-256, transform Git blob and SHA-256, and the immutable source commit, path, Git blob, SHA-256, and ancestry.",
+    "Ran the canonical transform validator and all seven agent-cadence unit tests at candidate head 4abe7653e74a3a1fd16e8b9e72e5c61646718241.",
+    "Independently recomputed source and target totals, phase durations, cumulative gate offsets, cadence transforms, the observation buffer, and the declared terminal ordering.",
+    "Ran adversarial transform mutations for reordered, missing, and duplicate milestone identities and a false source-repository identity, and tested a semantically inconsistent activation receipt against the declared schema.",
+    "Inspected the Constitution, Council matter and review schemas, Council compiler, active proposal, retained round-one and round-two records, plan, transform, activation schema, validator, and tests.",
+    "Queried live PR #493 head, draft and merge state, review state, check runs, workflow runs, and the active main-branch ruleset required-check contract."
+  ],
+  "findings": [
+    "The canonical Council matter digest is 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504. The proposal SHA-256 is f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620 and matches matter.json.",
+    "At exact MATH-PROGRAMME head 4abe7653e74a3a1fd16e8b9e72e5c61646718241, the plan is Git blob 8d1f06567acc40f196a0952bdbce0ee4cbc84c21 with SHA-256 e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843, and the transform manifest is Git blob 012b3ef62d14b51b3d4f08c5c565024a0356e674 with SHA-256 24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086.",
+    "The transform source resolves at ancestor commit da753cfd7f0128fb78948a240de336c58db9a50d, path governance/agent_cadence_operating_plan_predecessor_90d.json, Git blob a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42, and SHA-256 0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc. The source candidly identifies itself as a reconstructed frozen schedule rather than falsely claiming a Git identity for the earlier uncommitted prose.",
+    "The canonical numeric transform is correct. Four source phases total 7776000 seconds and their targets total 777600 seconds. Gates A through E are PT4H48M, P2DT12H, P5DT9H36M, P8DT4H48M, and P9D; the primary interval plus PT19H12M equals P9D; one-day, seven-day, and 28-day cadences transform to PT2H24M, PT16H48M, and P2DT19H12M.",
+    "The canonical validator completed successfully and all seven unit tests passed. It now parses supported ISO durations, reads and hashes the bound source, checks canonical arithmetic, requires OPS-A in every listed execution dependency, checks the declared terminal sequence, checks required noncompressed labels, and checks for a closed activation-schema shape.",
+    "The transform validator still does not enforce the repository value in source_evidence, equality of complete source and target identity sets, uniqueness or exact order of milestone gates, strict milestone time order, or phase-cumulative-to-milestone correspondence. Reversing all canonical milestones, deleting gate E, duplicating gate A in place of B, or replacing the source repository with unrelated/repository each returned an empty validation-error list. The plan-token scan cannot establish semantic agreement between the normative tables and the manifest.",
+    "The activation schema requires many useful fields and is closed to additional properties, but their values are mostly unconstrained digest shapes. A receipt with arbitrary candidate and content identities, opaque unauthenticated Human Steward evidence containing no decision, arbitrary merge and readback identities, and t0_utc earlier than readback_completed_at_utc produced zero Draft 2020-12 validation errors. No declared activation verifier checks exact packet values, approving disposition, trust root, required-check set at the exact head, independent review digests, protected merge ancestry, protected repository/ref/readback commit, equality and ordering of T0, or replay and one-time activation.",
+    "The canonical terminal_sequence is ordered at P8DT4H48M, P8DT12H, P8DT16H, and P9D. However, no versioned terminal occurrence or plan-disposition schema and verifier defines the exact cutoff instant, racing receipt behavior, immutable PENDING_AT_CUTOFF and FAILED_AT_CUTOFF records, last-proven-state identity, or the rule that prevents later evidence from rewriting the primary result. The validator checks only the manifest's four labels and offsets; it cannot enforce the plan statement that a later step is not complete while an earlier step is absent.",
+    "The zero-routine-human model stays within stated delegated administrative work. Human Steward activation and later reserved constitutional, production, certification, publication, commercial, credential, and protected-rule actions remain explicit. Independent agents may perform the bounded external exercise without converting an operational observation into an adoption, product, publication, or commercial claim.",
+    "At live inspection, PR #493 remained an open draft at exact head 4abe7653e74a3a1fd16e8b9e72e5c61646718241, mergeable but merge-state BLOCKED, with no submitted GitHub reviews. GCL conformance and CodeQL checks shown on the head were successful, the advisory visual job was cancelled, and the exact-head Programme policy checks run 31664490580 was pending behind an earlier still-running policy workflow. The active main ruleset requires validate-json, three named formal replays, policy / policy, and security / action-policy; the exact head had not yet produced the full required set. This is pre-activation evidence and cannot satisfy Human Steward disposition, merge, readback, or T0."
+  ],
+  "conditions": [
+    "Make the transform validator enforce the expected source repository and exact complete, unique, ordered identity sets for phases, milestones, and cadences; check source correspondence in both directions, strict milestone ordering, phase-cumulative-to-milestone equality, and semantic agreement with the plan tables. Add adversarial tests for wrong repository, missing and duplicate identities, reordering, and plan-manifest drift.",
+    "Add a versioned activation verifier, not only a shape schema. It must bind the constants of this exact packet or resolve and compare them, validate an authenticated approving Human Steward disposition over the exact plan, transform, Council matter, and compiled disposition, prove the exact required checks and independent review set, verify protected merge ancestry and protected-main repository/ref/readback identity, define canonical UTC ordering with T0 equal to successful readback completion, and reject replay or conflicting activation.",
+    "Publish and validate a closed terminal occurrence and plan-disposition contract that freezes the half-open primary interval and P9D cutoff, defines endpoint and racing-event classification, content-binds last proven state and continuation routes, preserves adverse history, and mechanically prevents late evidence or out-of-order completion from rewriting PENDING_AT_CUTOFF, FAILED_AT_CUTOFF, or the primary-window result.",
+    "Re-table any repaired exact candidate for fresh independent Council review. Before Human Steward disposition, refresh the exact PR head and require the complete active ruleset check set, applicable independent non-author review, mergeability, and continued absence of activation; after authorization, ordinary merge and protected-main readback remain separate required gates."
+  ],
+  "residual_uncertainty": [
+    "The frozen source is a reproducible reconstruction, but the exact bytes of the original uncommitted 90-day prose remain unavailable; correspondence beyond the candidly bounded schedule artifact cannot be independently established.",
+    "The eventual occurrence set depends on the preserved cadence anchor and future non-retrospective T0, so no maintenance-window outcome is established by this plan review.",
+    "Live PR head, workflow concurrency, checks, reviews, mergeability, rulesets, and protected-main state are volatile and must be refreshed immediately before any later disposition or merge.",
+    "Future mathematical, reliability, usability, visual, and external-value outcomes remain contingent on execution evidence; this review establishes only current plan and contract properties and makes no scientific or production claim."
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CONSTITUTION.md:39-48",
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-178",
+    "schemas/council_review.schema.json",
+    "schemas/council_matter.schema.json",
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/03-verifier.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-2/reviews/03-verifier.json",
+    "grandchallenge/MATH-PROGRAMME@da753cfd7f0128fb78948a240de336c58db9a50d:governance/agent_cadence_operating_plan_predecessor_90d.json",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:governance/agent_cadence_operating_plan_transform.json",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:schemas/agent_cadence_operating_plan_activation.schema.json",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:ci/validate_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:tests/test_agent_cadence_operating_plan.py",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/pull/493",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31664490580",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/rules/17137629"
+  ]
+}

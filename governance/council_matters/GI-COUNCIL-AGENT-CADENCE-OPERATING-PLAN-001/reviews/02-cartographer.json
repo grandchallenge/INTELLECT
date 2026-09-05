@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504",
+  "office": "cartographer",
+  "reviewer_id": "agent-cartographer-agent-cadence-r3-20260812-c",
+  "decision": "changes_requested",
+  "deliberation": "The final candidate materially improves the terrain mapped in rounds one and two. Its predecessor schedule is now content-addressed at an immutable parent commit, every duration label parses to its recorded seconds, the stated phase and milestone clock is an exact 0.1 transform, T0 is described non-retrospectively, ADM-B and ADM-03 occupy distinct positions inside the terminal reserve, stale human and 90-day terminology is removed, and the canonical validator and seven tests pass at exact head 4abe7653e74a3a1fd16e8b9e72e5c61646718241. The remaining defects are in the topology actually enforced, not in the intent. The dependency validator checks only that each listed execution gate directly names OPS-A. It accepts a CMDG-A/CMDG-B cycle, an unknown GHOST predecessor, a duplicate execution gate, and removal of CMDG-A even though CMDG-A is a Phase 1 exit. It assigns no deadlines to graph nodes and does not bind phase-exit membership to the plan, so it cannot reject a predecessor later than its dependent or prove the advertised phase graph. Source correspondence is also one-way: removing milestone D from the transform remains valid, so the validator does not prove one-to-one coverage of the frozen schedule. The activation schema is closed syntactically but does not identify the protected repository, branch, protected-main readback head, candidate-to-merge ancestry result, or merge timestamp, and it permits t0_utc to differ from readback_completed_at_utc. Consequently it cannot establish the non-retrospective activation event or distinguish reviewed candidate, merge commit, and later protected head. Finally, OPS-00 still describes the five-repository baseline only in prose, without the repository/branch/SHA/observed-at/readback-evidence and active-contract digest tuples required to reconstruct a moving cross-repository cut. The ordered terminal offsets are coherent, but no cutoff-snapshot or occurrence-ledger contract makes the runtime observation-cutoff to ADM-B to ADM-03 to terminal-packet chain fail closed. These defects leave the exact plan understandable but not yet the executable dependency and identity map required by the prior Cartographer conditions. Because repair changes governed plan, manifest, schema, validator, or test bytes, conditional approval cannot cure them after review.",
+  "discharged_obligations": [
+    "Reconstructed the source-schedule, transform, activation, protected merge, protected-main readback, T0, OPS baseline, downstream workstream, observation-cutoff, ADM-B, ADM-03, and terminal-packet paths.",
+    "Recomputed the active Council matter and proposal digests and verified the exact MATH-PROGRAMME candidate, plan blob and SHA-256, transform blob and SHA-256, and frozen-source blob and SHA-256.",
+    "Ran the exact candidate validator and seven canonical tests, then exercised adversarial dependency, gate-completeness, and source-correspondence mutations against the validator.",
+    "Compared every round-one and round-two Cartographer condition with the final candidate rather than accepting the proposal's correction summary as discharge evidence.",
+    "Assessed cross-repository identity drift among reviewed candidate, protected merge, protected-main readback, and the future five-repository OPS-00 cut while preserving constitutional authority boundaries."
+  ],
+  "findings": [
+    "The active matter canonical digest is 90506de300daf50c96dd57eb6eeb01616b298dd454689c562ab6a56c17614504 and its proposal SHA-256 is f92a71f49d17d6848c10ecfc5310f859ec8fad1fe946eb413f5f46cf69218620.",
+    "At exact MATH-PROGRAMME head 4abe7653e74a3a1fd16e8b9e72e5c61646718241, the tabled plan, transform, and frozen source reproduce their declared blobs and SHA-256 values; the canonical validator and all seven candidate tests pass.",
+    "The four target phases total P9D, milestones A through E are strictly ordered, the observation cutoff precedes ADM-B and ADM-03, and the protected-main readback description avoids retrospective loss of the nine-day window.",
+    "The dependency validator accepts a direct CMDG-A/CMDG-B cycle, an unknown GHOST dependency, a duplicate execution-gate identifier, and removal of CMDG-A from the contract while CMDG-A remains a plan phase exit.",
+    "The machine dependency contract contains no node deadlines or phase-exit mapping and omits OPS-B, ADM-03, and terminal_packet from its execution graph; sorted terminal offsets do not repair the missing graph linkage.",
+    "The source-correspondence validator accepts removal of milestone D because it compares only transform items that remain; it does not require identity-set equality, uniqueness, or complete ordered coverage of source phases, milestones, and cadences.",
+    "The activation receipt schema lacks protected-main repository, protected branch, protected-main readback head, candidate-to-merge ancestry result, and protected merge timestamp, and no verifier requires t0_utc to equal or be atomically derived from successful readback_completed_at_utc.",
+    "The activation validator checks only that a subset of field names is required by a closed schema; it does not validate an activation receipt, authenticate its Human Steward evidence, prove ancestry, or enforce temporal relations.",
+    "OPS-00 still lacks a machine-readable cross-repository baseline contract binding each repository, protected branch, commit, observed-at timestamp, canonical readback evidence, and active-contract blob or content digest.",
+    "The final plan preserves zero routine human action as an operating target without granting approval, merge, activation, certification, production, publication, or commercial authority; blockers and bounded negative results remain valid terminal outputs."
+  ],
+  "conditions": [
+    "Replace the partial dependency check with a complete machine-readable DAG bound to the exact plan: require unique canonical gate identities, exact phase-exit membership, known predecessor references, acyclicity, explicit node deadlines, predecessor-deadline monotonicity, OPS-A reachability for every downstream node, and linkage of OPS-B, ADM-03, and the terminal packet. Add adversarial tests for every rejected mutation identified in this review.",
+    "Make frozen-source correspondence bijective and ordered: reject missing, extra, or duplicate phase, milestone, and cadence identities and prove every target item is the exact transform of the corresponding immutable source item.",
+    "Extend the activation receipt schema and add a receipt verifier that binds the protected repository and branch, reviewed candidate, protected merge commit and timestamp, protected-main readback head, candidate ancestry result, plan and transform protected blobs or digests, Council compilation, authenticated Human Steward evidence, and one canonical UTC activation event; require T0 to be atomically derived from successful readback rather than accepted as an unrelated timestamp.",
+    "Publish and validate an OPS-00 baseline contract in which each of MATH-PROGRAMME, MATHFORGE, MATHSOLVE, MATHCERT, and INTELLECT is represented by repository, protected branch, commit, observed-at timestamp, and canonical readback evidence, with every active contract path bound to a blob or content digest and affected-lane blocking on any irreproducible tuple.",
+    "Define a durable cutoff and occurrence-ledger contract that freezes the half-open observation set at P8DT4H48M, records immutable PENDING_AT_CUTOFF and FAILED_AT_CUTOFF states, orders ADM-B, ADM-03, and terminal compilation, classifies racing or late receipts without rewriting the primary result, and makes completion of a later node impossible when an earlier receipt is absent.",
+    "Retable the repaired exact MATH-PROGRAMME candidate and Council matter for fresh independent review; no current review, check result, mergeability observation, or digest may be carried across changed governed bytes."
+  ],
+  "residual_uncertainty": [
+    "The future cadence anchor and T0 determine which maintenance occurrences fall inside the primary half-open interval; neither is knowable from this pre-activation packet.",
+    "The PT19H12M terminal reserve is arithmetically coherent, but no evidence yet bounds ordinary receipt, readback, reconciliation, and independent compilation latency inside it.",
+    "Protected heads in the five named repositories will move independently between Council review, merge, activation readback, and OPS-00 and must be captured rather than presumed equal.",
+    "Availability of distinct non-author reviewers and an independent external actor inside the compressed critical path remains unproven; an exact blocker or continuation packet is the honest result when capacity is unavailable.",
+    "Passing the canonical tests establishes their covered configuration invariants only; it does not establish required-check success, protected merge, protected-main inclusion, activation, runtime terminal ordering, or positive workstream outcomes."
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CONSTITUTION.md:29-64",
+    "CONSTITUTION.md:66-138",
+    "CONSTITUTION.md:146-181",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/02-cartographer.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-2/reviews/02-cartographer.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-2/ROUND-2-RESULT.md",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md#blob=8d1f06567acc40f196a0952bdbce0ee4cbc84c21#sha256=e929e5f0fac363423ae8c1ea8ae84f0859a4103d8f9e01c3485f5e4e65ad9843",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:governance/agent_cadence_operating_plan_transform.json#blob=012b3ef62d14b51b3d4f08c5c565024a0356e674#sha256=24540e704c441780fec0dc5f59eee413a1e9b500455479d967f0a9ae19534086",
+    "grandchallenge/MATH-PROGRAMME@da753cfd7f0128fb78948a240de336c58db9a50d:governance/agent_cadence_operating_plan_predecessor_90d.json#blob=a02ccc6ae3b9cb8c335fe7a2f2766e314bf11d42#sha256=0bf778e1737abedf1bf5f9214418f1f9af8707310be155d0ff2ab52ae8a02bbc",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:ci/validate_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:schemas/agent_cadence_operating_plan_activation.schema.json#sha256=d2fc97adcd40739dc77459b3bbeff6e286bd21861eb35bfbef06a77c5d8c7574",
+    "grandchallenge/MATH-PROGRAMME@4abe7653e74a3a1fd16e8b9e72e5c61646718241:tests/test_agent_cadence_operating_plan.py"
+  ]
+}

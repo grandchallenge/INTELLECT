@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001",
+  "matter_sha256": "6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55",
+  "office": "verifier",
+  "reviewer_id": "agent-verifier-agent-cadence-r2-20260812-b",
+  "decision": "changes_requested",
+  "deliberation": "Round two materially improves the candidate: the phase and cadence arithmetic is exact, the gate aliases now resolve, OPS-A is a hard predecessor, the primary due-occurrence interval leaves an exact terminal-evidence buffer, and T0 no longer begins at merge or retrospectively. The candidate is still not independently reproducible enough for activation. The manifest freezes asserted source numbers but does not identify an immutable predecessor artifact, while its validator accepts false duration labels and does not enforce milestone ordering or declared identities. The plan also lacks a machine-verifiable activation/readback receipt and terminal cutoff contract, retains stale 90-day and weekly labels, and simultaneously requires a named human sponsor while saying an agent sponsor is sufficient and routine human action is zero. These are specification defects in the exact candidate, not conditions that can be discharged without changing it. The authority, adverse-history, blocker, negative-result, and mathematical nonclaim boundaries otherwise remain appropriately fail-closed.",
+  "discharged_obligations": [
+    "Recomputed the matter, proposal, plan, and transform identities against the exact bytes named in the Council packet.",
+    "Ran the transform validator and its three adversarial unit tests at MATH-PROGRAMME commit be3690286eaaa7dd6ffce6407856f28777327fdf.",
+    "Independently recomputed phase totals, cumulative milestone offsets, cadence transforms, terminal buffer arithmetic, and strict temporal ordering.",
+    "Checked T0, half-open observation-window, cutoff-state, workstream-gate, human-action, external-exercise, exact-head, and claim-boundary semantics.",
+    "Inspected the Council schema and compiler for exact-matter binding, office uniqueness, fail-closed completeness, and advisory-only authority.",
+    "Queried live PR #493 head, draft and merge state, checks, and review records for the exact candidate."
+  ],
+  "findings": [
+    "The canonical Council matter digest is 6c84d3431cb2fc541d2c5cd3e74931be3b14669851ec40360ff46588115fdc55, and the proposal SHA-256 is e557f56812e1b37db6b28589a6adf0ee41679f4df92b0d2b9621c97736d3fffa as recorded by the matter.",
+    "At exact MATH-PROGRAMME head be3690286eaaa7dd6ffce6407856f28777327fdf, the plan is Git blob fa11a2756faf238cffff3a071a3a349dcdea4784 with SHA-256 4731ab25b1e9eb8426b0602c89d14f1b0b55e655cb35f9477719818d73badcdf, and the transform manifest is Git blob 821cdd937146602687edb925bd9195fdab2d4e82 with SHA-256 040206e3e24e5ced5606fb80ab13e0d2baaf91b8299cbd8efed026c21824186e.",
+    "The four source phase durations total 90 days and their exact factor-0.1 targets total 9 days. Their cumulative targets are PT4H48M, P2DT12H, P5DT9H36M, and P9D. Milestones A through E are strictly ordered at PT4H48M, P2DT12H, P5DT9H36M, P8DT4H48M, and P9D. The P8DT4H48M primary interval plus the PT19H12M terminal buffer equals P9D. The one-day, seven-day, and 28-day cadences transform exactly to PT2H24M, PT16H48M, and P2DT19H12M.",
+    "The canonical transform validator completed successfully, and all three tests passed. It verifies the numeric factor, numeric totals, numeric phase accumulation, numeric item-wise transforms, and presence of eight named noncompressed requirements.",
+    "The manifest does not bind the asserted predecessor plan to a repository, commit, path, Git blob, or SHA-256. No predecessor copy exists in the candidate ancestry before the new plan was added. Consequently the source durations are frozen assertions, not a reproducible comparison with the predecessor whose deadlines are said to be compressed.",
+    "The validator does not parse or compare any ISO-8601 duration string with its seconds field; changing a displayed source_duration, target_duration, or target_cumulative_duration leaves validation green. It also does not enforce milestone identity, uniqueness, strict order, cumulative correspondence with phases, nonnegative values, or exact agreement between the plan's displayed deadlines and the manifest. Its machine-checked guarantee is therefore narrower than the plan and Council proposal state.",
+    "The revised T0 definition is non-retrospective and correctly occurs only after successful protected-main readback; failed or absent readback leaves the plan inactive. However, no versioned receipt schema or verifier defines UTC serialization, exact bound identities, authentication, one-time activation, or an atomic rule for writing T0, so two independent operators cannot yet verify the same activation event from a declared machine contract.",
+    "The half-open due-occurrence interval excludes events due exactly at T0 plus P8DT4H48M and reserves PT19H12M for terminalization, which removes the earlier collision between occurrence selection and final compilation. The plan does not define a machine-readable terminal ledger schema, the exact cutoff timestamp represented by PENDING_AT_CUTOFF and FAILED_AT_CUTOFF, or how a receipt racing the P9D boundary is atomically classified without later rewriting the primary result.",
+    "The phase table now references declared workstream gates and makes OPS-A a hard predecessor. Two stale predecessor labels remain: the workstream register column is titled '90-day result', and OPS-01 still requires update at 'the weekly review' even though the declared operating review is every PT16H48M.",
+    "The human-action accounting is otherwise well separated and preserves reserved authority, but the EXT row requires a 'named human sponsor' while EXT-A permits an authorized agent sponsor and the operating target is zero routine and zero external-participant human actions. The accountable sponsor requirement is therefore not deterministic.",
+    "Unknowns, blockers, missed occurrences, failures, superseded candidates, and negative mathematical or external results remain explicit valid records. Schedule closure is not represented as CM4, T3, certification, publication, product, adoption, revenue, or commercial completion.",
+    "At live inspection, PR #493 was an open draft at the exact candidate head, mergeable but merge-state BLOCKED, with no submitted GitHub reviews. Policy shard / contracts was failing, Policy shard / campaigns was still in progress, and the advisory visual-status job was cancelled. This is pre-activation evidence only and does not satisfy the candidate's required successful-check or protected-main sequence."
+  ],
+  "conditions": [
+    "Bind the predecessor plan by repository, commit, path, Git blob, and SHA-256, or include its complete canonical bytes as a governed source artifact, then make the transform validator verify those source values rather than trusting duplicated assertions.",
+    "Extend the transform contract and adversarial tests to parse every duration label, compare it with seconds, enforce nonnegative exact values, required identities and uniqueness, strict milestone ordering, phase-to-milestone correspondence, and agreement between manifest deadlines and the plan's normative tables.",
+    "Publish a versioned activation/readback receipt schema and verifier that binds the exact candidate head, plan and manifest identities, Council matter and compiled disposition digests, authenticated Human Steward disposition, exact-head checks and required independent review, protected merge identity and ancestry, protected-main readback identity, and one canonical UTC T0; every mismatch or replay must fail closed.",
+    "Publish a terminal occurrence and plan-disposition schema that freezes the primary interval and P9D cutoff, defines endpoint and racing-event behavior, records last proven state and immutable adverse history, and prevents a late receipt from rewriting PENDING_AT_CUTOFF, FAILED_AT_CUTOFF, or the primary-window result.",
+    "Replace the stale '90-day result' and 'weekly review' labels with the declared nine-day and PT16H48M vocabulary, and reconcile 'named human sponsor' with the authorized-agent sponsor rule so no human participation is silently required or concealed.",
+    "Re-table the changed exact candidate for fresh independent Council review. Before any Human Steward disposition, revalidate the live exact head, all required checks, authenticated non-author review where required, mergeability, and absence of protected-main activation evidence."
+  ],
+  "residual_uncertainty": [
+    "The historical predecessor bytes were not available in the candidate ancestry, so the authenticity of the asserted 90-day source phase and cadence values could not be established even though their arithmetic is internally consistent.",
+    "The number and timing of maintenance occurrences selected by the future half-open interval depend on the preserved cadence anchor and the eventual T0.",
+    "A manual receipt process might be capable of satisfying the prose requirements, but no declared machine contract currently makes activation or boundary classification reproducible.",
+    "Live PR head, checks, review state, mergeability, and protected heads are volatile and must be refreshed immediately before any later exact-candidate decision.",
+    "Successful scientific, operational, reliability, or external-value outcomes remain contingent on future evidence; the present review establishes only plan arithmetic and specification properties."
+  ],
+  "evidence_refs": [
+    "AGENTS.md",
+    "CONSTITUTION.md:39-48",
+    "CONSTITUTION.md:61-72",
+    "CONSTITUTION.md:164-178",
+    "schemas/council_review.schema.json",
+    "src/grand_intellect/council_review.py",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/matter.json",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AGENT-CADENCE-OPERATING-PLAN-001/review_rounds/round-1/reviews/03-verifier.json",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:docs/POST_PILOT_OPERATING_PLAN_2026_08_12.md",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:governance/agent_cadence_operating_plan_transform.json",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:ci/validate_agent_cadence_operating_plan.py",
+    "grandchallenge/MATH-PROGRAMME@be3690286eaaa7dd6ffce6407856f28777327fdf:tests/test_agent_cadence_operating_plan.py",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/pull/493",
+    "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/31664031001"
+  ]
+}
