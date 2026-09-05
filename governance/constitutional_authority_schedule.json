@@ -1,14 +1,14 @@
 {
   "$schema": "../schemas/constitutional_authority_schedule.schema.json",
-  "schema_version": "1.5.0",
+  "schema_version": "1.6.0",
   "status": "active",
   "staffing": {
-    "mode": "minimum_steady_state_human_authorization",
+    "mode": "streamlined_multi_role_agent_staffing",
     "directive": {
-      "identifier": "GI-STEWARD-0002",
-      "path": "governance/steward_directives/GI-STEWARD-0002.md",
+      "identifier": "GI-STEWARD-0003",
+      "path": "governance/steward_directives/GI-STEWARD-0003.md",
       "status": "effective",
-      "issued_at": "2026-08-09"
+      "issued_at": "2026-09-04"
     },
     "human_steward": "fyremael",
     "ordinary_human_steward": "fyremael",
@@ -105,8 +105,8 @@
     ],
     "separation_controls": [
       "non_author_adversary",
-      "distinct_agent_referee",
-      "distinct_agent_sessions",
+      "role_scoped_logical_passes",
+      "non_authoring_read_only_review",
       "exact_revision_findings",
       "human_steward_reserved_authority"
     ]
@@ -115,8 +115,31 @@
     "repository": "grandchallenge/INTELLECT",
     "path": "CONSTITUTION.md",
     "authority": "supreme_constitutional_law",
-    "effective_version": "1.1.0",
-    "content_sha256": "6eeaeea60f760f6d5b42ae63f849b3cce56e0695339490be0681faa0ec7afe3e"
+    "effective_version": "1.2.0",
+    "content_sha256": "85ea47cb67ebe15210b6743e186d36db2336bd0a610929392806406be5a49c1a"
+  },
+  "staffing_amendment": {
+    "identifier": "GI-AMEND-0002",
+    "path": "AMENDMENTS/0002-multi-role-functional-separation.md",
+    "status": "effective",
+    "effective_version": "1.2.0"
+  },
+  "staffing_transition_activation": {
+    "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+    "predecessor": "GI-STEWARD-0002",
+    "successor": "GI-STEWARD-0003",
+    "subject_manifest": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json",
+    "subject_manifest_sha256": "b5b9d46ff04d48be51da2f9494c74826ed094323f9d1f3f22a3926402550d21f",
+    "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+    "receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89",
+    "predecessor_policy_reviews": {
+      "adversary": "distinct_non_author_read_only_exact_packet_finding_required",
+      "referee": "different_distinct_non_author_read_only_exact_packet_finding_required"
+    },
+    "human_steward_authorization": "authenticated_fyremael_exact_packet_authorization_required",
+    "historical_receipts_satisfy_transition": false,
+    "effective_condition": "protected_merge_after_external_receipt_verification",
+    "effective_at": "protected_merge_timestamp"
   },
   "amendment": {
     "identifier": "GI-AMEND-0001",

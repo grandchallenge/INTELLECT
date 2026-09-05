@@ -101,7 +101,8 @@ class GIAmend0001DocumentaryClosureTests(unittest.TestCase):
     def test_header_binds_active_schedule_and_receipt(self) -> None:
         self.assertEqual(self.schedule["status"], "active")
         self.assertEqual(self.schedule["amendment"]["status"], "effective")
-        self.assertEqual(self.schedule["constitution"]["effective_version"], "1.1.0")
+        self.assertEqual(self.schedule["constitution"]["effective_version"], "1.2.0")
+        self.assertEqual(self.schedule["staffing_amendment"]["identifier"], "GI-AMEND-0002")
         self.assertEqual(
             self.schedule["operating_standard"]["status_at_activation"], "candidate"
         )

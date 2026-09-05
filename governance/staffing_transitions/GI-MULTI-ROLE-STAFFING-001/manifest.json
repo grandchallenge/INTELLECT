@@ -1,0 +1,51 @@
+{
+  "$schema": "../../../schemas/multi_role_transition_manifest.schema.json",
+  "schema_version": "1.0.0",
+  "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+  "status": "exact_candidate",
+  "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+  "effective_version": "1.2.0",
+  "schedule_binding": {
+    "path": "governance/constitutional_authority_schedule.json",
+    "schema_version": "1.6.0",
+    "runtime_validation": "grand_intellect.constitutional_authority.load_and_validate",
+    "external_receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89"
+  },
+  "artifacts": [
+    {"path": "AGENTS.md", "git_blob_sha1": "234fa91408d04ce21f4ea116da4c7638867ef374", "sha256": "c653053ac3cdce0c118a575468a307524dc67e29b1e032f1a8bcdb80f2d9885c"},
+    {"path": "AMENDMENTS/0002-multi-role-functional-separation.md", "git_blob_sha1": "f7f09638fcbc5843e19b602d1a32872a299246e5", "sha256": "0922b3a979a776a5bd7849f9ef9120565e12ea706808300f284185a0bed6c9e8"},
+    {"path": "CONSTITUTION.md", "git_blob_sha1": "b0cc411a5cc5027a631df8ac9e457dc1bf5294d8", "sha256": "85ea47cb67ebe15210b6743e186d36db2336bd0a610929392806406be5a49c1a"},
+    {"path": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/ADR.md", "git_blob_sha1": "9134cf8a01fe3883e3f97dd5a1721eb40f3676d3", "sha256": "201b47da0db2c94f7dced50d062b192b514257784bc76f3176e14e9a1e08e3e0"},
+    {"path": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/MIGRATION.md", "git_blob_sha1": "a11b732a7e13cb96203c55d13dd9f7be15aa3466", "sha256": "3d589c4db859ec13eaba91f2fc72cdca72b6294dd6e9d1b31a620a8155d819de"},
+    {"path": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/THREAT_ANALYSIS.md", "git_blob_sha1": "783ef84a4b8b52f720af9b44ee41cb317e6331ac", "sha256": "4c6ff913c2030d5c2cecccf6be4c1cf7ffa4d5a2c618dff26b49f26dacfdb0ba"},
+    {"path": "governance/steward_directives/GI-STEWARD-0003.md", "git_blob_sha1": "53fb4e506505d870d32a0e03476900da02389a14", "sha256": "4b4f6ab964a7d3233585ea65606a75f8e05821a1ffd288bf62c7b620e56581a2"},
+    {"path": "schemas/constitutional_authority_schedule.schema.json", "git_blob_sha1": "19d371c186cb0889d3fff9ebad2d927f78922daf", "sha256": "4cace2b30dfabebd3d7095b8266b8b87847eef1aac0ac00034dfa45a2a7031ad"},
+    {"path": "schemas/multi_role_review.schema.json", "git_blob_sha1": "c70050d9b178dc875070a98d809ecf307b905e4a", "sha256": "04833073238803db5a6e804d1eaa660232f22dc2a8f2f833e0e3fac09e81be41"},
+    {"path": "schemas/multi_role_transition_manifest.schema.json", "git_blob_sha1": "78fdca3676ab85b0fd4a7e9141c2492283ee2c3a", "sha256": "c4d0e0819b46a80958291a3c061ca8d34626f07145a5acb18cd263354cbf8ab5"},
+    {"path": "src/grand_intellect/constitutional_authority.py", "git_blob_sha1": "a9bd9e5f0511f3fb0986cd4ed1db476c324dbc81", "sha256": "c22b01a0e9e90447a35f4b606a22760a5896f43739880390a029917ae7f7070b"},
+    {"path": "src/grand_intellect/multi_role_staffing.py", "git_blob_sha1": "d4533895592a72081b9607bed589f0e3a770b147", "sha256": "5dd2d049c0f633b43d086f0fd4eb64c53d3e58d8a5d16db88f5623ab1fda76eb"},
+    {"path": "tests/test_constitutional_authority.py", "git_blob_sha1": "76d4595f0c7f0692fe7a6ae14aede6164b8062a1", "sha256": "4060668e9b90bebc48c16e3a5f7cdb9507f5bb3165ebfc4b6bd899a747413713"},
+    {"path": "tests/test_gi_amend_0001_documentary_closure.py", "git_blob_sha1": "39d8173ad444a13cc9a0125d5cb815db1c263fb6", "sha256": "bcb7663a109a55c759d28dab7212939c4836de1e9e4be7f5866ad2561d8a10c5"},
+    {"path": "tests/test_gi_steward_0002_transition.py", "git_blob_sha1": "24aa1c5e582dfc86ed449581f38b8a14aef1328d", "sha256": "0cbaa9adcaab6c353bf08c4eb67dffc6ec31c441891fd26cc304bf317421e541"},
+    {"path": "tests/test_gi_steward_0003_candidate.py", "git_blob_sha1": "ab1b888daecd229efc01c0d92daa737f1068e05d", "sha256": "fb763e6df7470bf29cc7e8d708ddcab7cf566edeb7f8f2c3a0d6aa5d8ee1c58c"},
+    {"path": "tests/test_multi_role_staffing.py", "git_blob_sha1": "73666f48ee6529d767ef7923b6154146605eeeae", "sha256": "fe987d111fd4c36fad6ab3dbea9f4afa7cb31026f7066c5aecd979117121048c"},
+    {"path": "tests/test_multi_role_transition_manifest.py", "git_blob_sha1": "c1d72b95ef6834f782b276974470d567563d1b9d", "sha256": "78eeefd55fa7bc9fe433e49ee6d39f69f8c3ec335bdbce568eb456d73fc09090"}
+  ],
+  "activation_order": [
+    "validate_exact_artifact_blobs_digests_and_schedule_semantics",
+    "obtain_distinct_predecessor_policy_adversary_and_referee_findings",
+    "obtain_one_exact_packet_human_steward_authorization",
+    "verify_external_receipt_binds_exact_head_tree_base_and_manifest_digest",
+    "merge_exact_pull_request_through_protected_controls",
+    "verify_constitution_version_directive_schedule_parentage_and_receipt_on_main",
+    "admit_canonical_standard_and_roll_out_non_reserved_adoptions"
+  ],
+  "rollback": "later_exact_human_steward_directive_and_protected_schedule_selection",
+  "review_addressable_obligations": [],
+  "activation_preconditions": [
+    "fresh_exact_packet_adversary_finding",
+    "fresh_exact_packet_referee_finding",
+    "human_steward_exact_packet_authorization",
+    "protected_merge_and_readback"
+  ]
+}

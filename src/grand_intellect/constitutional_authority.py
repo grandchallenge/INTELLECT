@@ -121,7 +121,7 @@ def validate_authority_schedule(
     """Fail closed if a constitutional authority schedule crosses a boundary."""
 
     schema_version = schedule.get("schema_version")
-    if schema_version not in {"1.4.0", "1.5.0"}:
+    if schema_version not in {"1.4.0", "1.5.0", "1.6.0"}:
         raise ConstitutionalAuthorityError("unsupported authority schedule version")
     if schedule.get("status") not in {"proposed", "active", "superseded"}:
         raise ConstitutionalAuthorityError("invalid authority schedule status")
@@ -152,7 +152,7 @@ def validate_authority_schedule(
             raise ConstitutionalAuthorityError(
                 "GI-STEWARD-0001 requires the exact bootstrap staffing sequence"
             )
-    else:
+    elif schema_version == "1.5.0":
         supersession = _mapping(staffing, "supersession")
         organization_2fa = _mapping(supersession, "organization_2fa")
         if (
@@ -218,6 +218,54 @@ def validate_authority_schedule(
                 "GI-STEWARD-0002 requires exact organization 2FA evidence"
             )
         validate_organization_2fa_evidence(organization_2fa_evidence)
+    else:
+        if (
+            schema_version != "1.6.0"
+            or staffing.get("mode") != "streamlined_multi_role_agent_staffing"
+            or staffing.get("external_human_review_required") is not False
+            or directive.get("identifier") != "GI-STEWARD-0003"
+            or directive.get("path")
+            != "governance/steward_directives/GI-STEWARD-0003.md"
+            or directive.get("status") != "effective"
+            or staffing.get("human_steward") != "fyremael"
+            or staffing.get("ordinary_human_steward") != "fyremael"
+            or staffing.get("recovery_owner") != "jimsteeg"
+            or staffing.get("mandatory_routine_reviewers") != []
+            or staffing.get("human_actions_per_governed_decision_target") != 1
+            or staffing.get("authorization_action")
+            != "authenticated_role_bound_exact_packet_authorization"
+            or staffing.get("recovery_protocols") != _RECOVERY_PROTOCOLS
+        ):
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 requires the streamlined multi-role sequence"
+            )
+        transition = _mapping(schedule, "staffing_transition_activation")
+        expected_transition = {
+            "operation_id": "GI-MULTI-ROLE-STAFFING-001",
+            "predecessor": "GI-STEWARD-0002",
+            "successor": "GI-STEWARD-0003",
+            "subject_manifest": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json",
+            "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+            "receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89",
+            "predecessor_policy_reviews": {
+                "adversary": "distinct_non_author_read_only_exact_packet_finding_required",
+                "referee": "different_distinct_non_author_read_only_exact_packet_finding_required",
+            },
+            "human_steward_authorization": "authenticated_fyremael_exact_packet_authorization_required",
+            "historical_receipts_satisfy_transition": False,
+            "effective_condition": "protected_merge_after_external_receipt_verification",
+            "effective_at": "protected_merge_timestamp",
+        }
+        for key, value in expected_transition.items():
+            if transition.get(key) != value:
+                raise ConstitutionalAuthorityError(
+                    "GI-STEWARD-0003 requires an exact 0002-to-0003 transition activation"
+                )
+        manifest_digest = transition.get("subject_manifest_sha256")
+        if not isinstance(manifest_digest, str) or not _DIGEST_PATTERN.fullmatch(manifest_digest):
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 transition requires a content-addressed subject manifest"
+            )
     human_steward = staffing.get("human_steward")
     if not isinstance(human_steward, str) or not human_steward:
         raise ConstitutionalAuthorityError("staffing requires one Human Steward")
@@ -230,13 +278,23 @@ def validate_authority_schedule(
             f"missing={missing}, extra={extra}"
         )
     separation_controls = set(_list(staffing, "separation_controls"))
-    required_separation = {
-        "non_author_adversary",
-        "distinct_agent_referee",
-        "distinct_agent_sessions",
-        "exact_revision_findings",
-        "human_steward_reserved_authority",
-    }
+    required_separation = (
+        {
+            "non_author_adversary",
+            "role_scoped_logical_passes",
+            "non_authoring_read_only_review",
+            "exact_revision_findings",
+            "human_steward_reserved_authority",
+        }
+        if schema_version == "1.6.0"
+        else {
+            "non_author_adversary",
+            "distinct_agent_referee",
+            "distinct_agent_sessions",
+            "exact_revision_findings",
+            "human_steward_reserved_authority",
+        }
+    )
     if missing := sorted(required_separation - separation_controls):
         raise ConstitutionalAuthorityError(
             f"agent separation controls are incomplete: {missing}"
@@ -429,6 +487,14 @@ def load_and_validate(path: Path) -> dict[str, Any]:
         staffing_transition_receipt=transition_receipt,
         organization_2fa_evidence=organization_2fa_evidence,
     )
+    if schedule.get("schema_version") == "1.6.0":
+        transition = _mapping(schedule, "staffing_transition_activation")
+        manifest_path = path.resolve().parent.parent / str(transition["subject_manifest"])
+        manifest_bytes = manifest_path.read_bytes()
+        if hashlib.sha256(manifest_bytes).hexdigest() != transition["subject_manifest_sha256"]:
+            raise ConstitutionalAuthorityError(
+                "GI-STEWARD-0003 transition manifest digest drift"
+            )
     return schedule
 
 

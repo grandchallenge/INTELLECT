@@ -60,7 +60,9 @@ The Human Steward retains accountable authority over constitutional changes, irr
 
 ## Article III: Separation of powers
 
-1. A proposer shall not be the sole verifier of its proposal.
+1. Proposal construction and verification shall be separated by recorded
+   function and logical audit pass. A different underlying identity is not
+   required unless an admitted domain contract expressly requires it.
 2. A measurer shall not silently define the utility function.
 3. A judge shall not rewrite evidence after observing it.
 4. An Executor shall not redefine acceptance criteria during realization.
@@ -68,8 +70,13 @@ The Human Steward retains accountable authority over constitutional changes, irr
 6. A Continuity Minder shall preserve rejected alternatives and reversal conditions.
 7. A Capacity Minder may retire an artifact but shall not erase required provenance.
 8. Irreversible deletion requires explicit Human Steward authority.
-9. An agent invocation does not constitute a review. A review must state discharged obligations, findings, and evidence.
-10. No agent may certify the full chain of its own proposal.
+9. An agent invocation does not constitute a review. A review must bind an
+   exact subject and state the role, system identity, logical pass identity,
+   mode, discharged criteria, evidence, findings, and residual uncertainty.
+10. No system may certify a proposal merely from its own assertions. A system
+    may perform multiple non-reserved roles when each pass applies declared
+    criteria to independently inspectable evidence and review passes remain
+    non-authoring and read-only.
 
 ## Article IV: Work-package phases
 
