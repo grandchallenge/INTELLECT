@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "amanuensis",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "amanuensis-lineage-inheritance-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123574182,
+  "decision": "approve",
+  "findings": [
+    "Revision 1 preserves historical terminology and rejected/stale realizations rather than rewriting lineage.",
+    "Migration ledger requirements make architecture recommendation, constitutional amendment, extraction, and activation distinguishable."
+  ],
+  "conditions": [],
+  "residual_uncertainty": [
+    "If FABRIC custody later moves elsewhere in GCT, canonical lineage must remain discoverable from this matter and the Article XI packet."
+  ]
+}
