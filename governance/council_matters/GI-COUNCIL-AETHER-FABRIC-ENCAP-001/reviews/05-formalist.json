@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "formalist",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "formalist-interface-contracts-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123573393,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 supplies the missing event algebra and identity separation.",
+    "Allocation, mechanical authorization, route realization, delivery, semantic admission, and institutional decision are explicitly non-collapsible."
+  ],
+  "conditions": [
+    "E1 must publish versioned schemas with preconditions, postconditions, idempotency, ordering, retry, expiry, and failure semantics.",
+    "No cross-event implication may exist unless normatively declared and tested.",
+    "Protocol negotiation must fail closed across incompatible versions.",
+    "Delivery guarantees should be selected by workload evidence rather than assumed exactly-once semantics."
+  ],
+  "residual_uncertainty": [
+    "Limited mechanical validation of opaque capability-bearing envelopes may later be useful but cannot expand authority."
+  ]
+}
