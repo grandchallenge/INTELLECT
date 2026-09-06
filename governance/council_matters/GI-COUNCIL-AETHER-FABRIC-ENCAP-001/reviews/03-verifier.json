@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "verifier",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "verifier-falsifiability-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123573014,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 defines semantic equivalence and an executable E2 conformance procedure.",
+    "The architecture recommendation is falsifiable rather than merely descriptive."
+  ],
+  "conditions": [
+    "E2 must compare canonical semantic cuts, facts, derived tuples, policy visibility, provenance, proof traces, and admission outcomes.",
+    "Operational metadata exclusions must be schema-defined rather than ad hoc.",
+    "Hostile duplication, reordering, loss, replay, restart, invalid-envelope, and forged-advertisement cases must be fail-capable.",
+    "E3/E4 advancement must bind exact evidence revisions."
+  ],
+  "residual_uncertainty": [
+    "Performance acceptability and interface survival under real distributed load remain empirical questions."
+  ]
+}
