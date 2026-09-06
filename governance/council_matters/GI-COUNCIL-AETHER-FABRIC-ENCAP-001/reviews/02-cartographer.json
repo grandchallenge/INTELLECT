@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "cartographer",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "cartographer-dependency-terrain-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123572800,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 resolves the principal dependency ambiguity and preserves AETHER authority partitions and semantic fencing.",
+    "Feedback from FABRIC into allocation is acceptable only through admitted evidence, not a hidden policy channel."
+  ],
+  "conditions": [
+    "E0 must map all material current responsibilities and dependencies before extraction.",
+    "AMBIGUOUS must remain a legitimate classification rather than being forced into FABRIC.",
+    "Topology-aware advisory feedback must return as evidence while institutional allocation remains upstream."
+  ],
+  "residual_uncertainty": [
+    "Future topology-aware allocation may require a carefully governed bidirectional advisory loop."
+  ]
+}
