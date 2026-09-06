@@ -1,4 +1,4 @@
-# WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY — Executive Polity Operationalization Pilot
+# WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY â€” Executive Polity Operationalization Pilot
 
 ## Purpose
 
@@ -10,7 +10,7 @@ Design and execute a bounded institutional/technical pilot over representative r
 
 ## Stakeholders
 
-- Grand Challenge Technologies Ltd — Founder & CEO Jamie Steeg
+- Grand Challenge Technologies Ltd â€” Founder & CEO Jamie Steeg
 - GCT Agentic Executive Cabinet
 - Grand Challenge Labs
 - INTELLECT
@@ -25,6 +25,10 @@ Design and execute a bounded institutional/technical pilot over representative r
 - Any paid compute, external service, account, professional engagement, external outreach, or permission escalation remains separately authorized.
 - The pilot must preserve exact artifact/revision identities and reconstructible routing for each sampled matter.
 - AETHER production semantic authority, where applicable, remains distinct from GCT corporate authority and from local authoring projections.
+
+## Bounded design
+
+The proposed evaluation envelope and fixed comparison/disposition rules are in `SPEC.md`: at most ten matters, two per declared class, fourteen days, eight person-hours, and two recovery attempts per matter. These are ceilings and do not create resource or corporate authority. Missing measurements and unmatched baselines remain explicit.
 
 ## Acceptance criteria
 
