@@ -1,0 +1,21 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "axiomatist",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "axiomatist-boundary-primitives-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123572503,
+  "decision": "approve",
+  "findings": [
+    "Revision 1 cleanly separates semantic authority, institutional allocation, mechanical realization, identity strata, admission, and execution-controller authority.",
+    "The influence-without-authority channel is explicit rather than hidden.",
+    "A future shared primitive below AETHER and above raw FABRIC, if required, must be separately reviewed rather than silently migrated."
+  ],
+  "conditions": [],
+  "residual_uncertainty": [
+    "The eventual mechanical capability/policy envelope must preserve these primitive distinctions exactly."
+  ]
+}
