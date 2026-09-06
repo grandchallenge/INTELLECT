@@ -1,25 +1,30 @@
 {
   "schema_version": "1.0",
   "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
-  "round": 2,
-  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
   "office": "steward",
-  "system_identity": "GPT-5.6 Sol",
-  "logical_pass_identity": "steward-proportion-maintainability-r2-001",
-  "mode": "non_authoring_review",
-  "github_review_id": 5123573664,
+  "reviewer_id": "gpt-5.6-sol/steward-aether-fabric-r2-001",
   "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 makes the programme proportionate: E0-E4 are gated, repository extraction is contingent, and independent FABRIC must demonstrate reusable utility before its permanent lifecycle cost is justified.",
+  "discharged_obligations": [
+    "Assessed proportionality, maintenance cost, resource burden, reversibility, and operational ownership."
+  ],
   "findings": [
-    "Revision 1 makes extraction contingent on evidence and preserves a legitimate off-ramp.",
-    "Independent FABRIC lifecycle cost is not justified until reuse and failure-containment benefits are demonstrated."
+    "The staged programme has explicit off-ramps.",
+    "Independent encapsulation is not justified solely by architectural tidiness."
   ],
   "conditions": [
-    "Do not displace active AETHER remediation/release-control obligations for architectural extraction.",
+    "Do not displace active AETHER remediation or release-control obligations for architectural extraction.",
     "Before E4, name maintainers, incident ownership, compatibility burden, rollback ownership, and a bounded resource envelope.",
     "Preserve a simple local AETHER path unless separately governed evidence justifies removal.",
     "Stop the split if coupling reduction, failure containment, or reusable utility is not demonstrated."
   ],
   "residual_uncertainty": [
     "The architecture may be correct while the timing of independent extraction remains premature."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
   ]
 }
