@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "referee",
+  "reviewer_id": "gpt-5.6-sol/referee-aether-fabric-r2-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "The revised subject satisfies the material objections from Round 1. The Council now has a coherent, falsifiable, and governable separation doctrine. Advisory architecture disposition: APPROVE_WITH_CONDITIONS for independent AETHER/FABRIC encapsulation with asymmetric semantics. This does not amend Article IX or alter the AETHER authority boundary; Article XI and Human Steward authorization remain required for constitutional activation.",
+  "discharged_obligations": [
+    "Applied the Council's declared decision vocabulary, reconciled material objections, and controlled advisory closure without exercising reserved authority."
+  ],
+  "findings": [
+    "Round-1 material objections are resolved in Revision 1.",
+    "The architecture is ready for an advisory Council disposition with conditions.",
+    "Constitutional activation remains reserved and separate."
+  ],
+  "conditions": [
+    "Execute E0 before code movement and preserve AMBIGUOUS classifications.",
+    "Keep AETHER locally correct without FABRIC and prove semantic equivalence before extraction.",
+    "Constrain FABRIC optimization to authorized mechanical envelopes and test influence-without-authority attacks.",
+    "Preserve separate identity/event strata and AETHER semantic fencing/authority-partition semantics.",
+    "Require at least one useful non-AETHER FABRIC workload and measurable coupling/failure-containment benefit before E4.",
+    "Preserve migration lineage, compatibility/rollback, maintenance ownership, and bounded resource commitments.",
+    "Keep GHOS controller admission and INTELLECT constitutional authority separate."
+  ],
+  "residual_uncertainty": [
+    "Article IX wording and any effective AETHER authority-boundary change remain subject to Article XI and Human Steward authorization."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

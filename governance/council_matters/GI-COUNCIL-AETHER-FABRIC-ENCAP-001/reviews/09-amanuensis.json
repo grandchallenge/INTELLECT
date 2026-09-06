@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "amanuensis",
+  "reviewer_id": "gpt-5.6-sol/amanuensis-aether-fabric-r2-001",
+  "decision": "approve",
+  "deliberation": "Revision 1 contains an adequate inheritance contract. It preserves historical terminology and stale realizations as lineage and requires a migration ledger for every moved responsibility.",
+  "discharged_obligations": [
+    "Checked preservation of reasons, terminology, decision lineage, migration provenance, and future recoverability."
+  ],
+  "findings": [
+    "Architecture recommendation, constitutional amendment, repository extraction, and production activation are now distinguishable institutional events.",
+    "Historical AETHER-POL and 'AETHER fabric' records remain interpretable rather than rewritten."
+  ],
+  "conditions": [],
+  "residual_uncertainty": [
+    "If FABRIC custody later moves elsewhere in GCT, canonical lineage must remain discoverable from this matter and the Article XI packet."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

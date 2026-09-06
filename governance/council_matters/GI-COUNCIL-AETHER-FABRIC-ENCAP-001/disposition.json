@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "review_count": 10,
+  "office_decisions": {
+    "axiomatist": "approve",
+    "cartographer": "approve_with_conditions",
+    "verifier": "approve_with_conditions",
+    "adversary": "approve_with_conditions",
+    "formalist": "approve_with_conditions",
+    "steward": "approve_with_conditions",
+    "grammarian": "approve",
+    "composer": "approve_with_conditions",
+    "amanuensis": "approve",
+    "referee": "approve_with_conditions"
+  },
+  "review_sha256": {
+    "axiomatist": "53c31829f1e57cf6990fc0c2da0f6a8723a8c0be6f9616a5f53e1f1addba83c0",
+    "cartographer": "bbca5d49411cc9926a7a8b79e7fee49e03d0907f23697048bdf03a32f5d891e8",
+    "verifier": "72fbec37011a24c0f9688b48606f39d1bfe18817858abea6901b64630b4aab39",
+    "adversary": "34d38a9c55b23b67aaf8b3f37b610ec3e3606ab821a81d2294d142762715f17d",
+    "formalist": "76219218b708d31937666506300d94297212cd739034615b079a48386b091cfa",
+    "steward": "bff725d86c06ef70406d6404c3849d4fe0e436e79c28270706795253e24fe333",
+    "grammarian": "f7fbabb9137198c5481cd2a80a53559b0abf7e0344b3de5da8b295428cdf46f1",
+    "composer": "67cb00610a4e02edeef47925dc30cd34588b0dde9c97f5065606b0f887ce8f26",
+    "amanuensis": "11fbbbefa044023861d186f967f1312506072c3e7b4aefaeb0ef407c0e43bd61",
+    "referee": "a1327435905807ba939c37135f305d3a50583d90bc1168e40c5e5bf4dde0e5ab"
+  },
+  "procedural_disposition": "ready_with_conditions",
+  "ready_for_human_disposition": true,
+  "conditions": [
+    "Execute E0 before code movement and preserve AMBIGUOUS classifications.",
+    "Keep AETHER locally correct without FABRIC and prove semantic equivalence before extraction.",
+    "Constrain FABRIC optimization to authorized mechanical envelopes and test influence-without-authority attacks.",
+    "Preserve separate identity/event strata and AETHER semantic fencing/authority-partition semantics.",
+    "Require at least one useful non-AETHER FABRIC workload and measurable coupling/failure-containment benefit before E4.",
+    "Preserve migration lineage, compatibility/rollback, maintenance ownership, and bounded resource commitments.",
+    "Keep GHOS controller admission and INTELLECT constitutional authority separate."
+  ],
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify."
+}
