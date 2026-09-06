@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "adversary",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "adversary-boundary-collapse-r2-001",
+  "mode": "non_authoring_read_only",
+  "github_review_id": 5123573209,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 addresses the primary attack: a mechanical fabric can manipulate institutional outcomes through scheduling and selective delivery without claiming truth authority.",
+    "Authorized mechanical envelopes and explicit policy-laundering prohibitions make the influence channel visible and testable."
+  ],
+  "conditions": [
+    "Starvation, selective suppression, priority inversion, replay amplification, and missing-transport-vs-negative-evidence must be mandatory hostile tests.",
+    "Mechanical optimization policy must be attributable and auditable.",
+    "A compromised FABRIC must have a tested containment path that preserves AETHER semantic correctness.",
+    "Any future FABRIC interpretation of authority-bearing tokens requires separate review."
+  ],
+  "residual_uncertainty": [
+    "Denial, selective delay, and topology bias remain substantial attack surfaces even when semantic authority is protected."
+  ]
+}
