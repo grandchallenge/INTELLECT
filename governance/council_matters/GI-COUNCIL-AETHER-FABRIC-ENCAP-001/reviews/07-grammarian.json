@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "grammarian",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "grammarian-terminology-contract-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123573835,
+  "decision": "approve",
+  "findings": [
+    "Revision 1 resolves the material terminology ambiguity and bounds AETHER semantic authority to its governed domain.",
+    "Institutional allocation, physical realization, semantic admission, and historical uses of fabric are now distinguishable."
+  ],
+  "conditions": [],
+  "residual_uncertainty": [
+    "Future glossary work should reserve uppercase FABRIC for the component and lowercase fabric for generic prose."
+  ]
+}
