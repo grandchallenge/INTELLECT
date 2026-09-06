@@ -1,17 +1,17 @@
 {
   "schema_version": "1.0",
   "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
-  "round": 2,
-  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
   "office": "formalist",
-  "system_identity": "GPT-5.6 Sol",
-  "logical_pass_identity": "formalist-interface-contracts-r2-001",
-  "mode": "non_authoring_review",
-  "github_review_id": 5123573393,
+  "reviewer_id": "gpt-5.6-sol/formalist-aether-fabric-r2-001",
   "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 supplies the missing event algebra and identity separation. Allocation, mechanical authorization, route realization, delivery, semantic admission, and institutional decision are explicitly non-collapsible.",
+  "discharged_obligations": [
+    "Converted the separation doctrine into explicit event, identity, and protocol obligations."
+  ],
   "findings": [
-    "Revision 1 supplies the missing event algebra and identity separation.",
-    "Allocation, mechanical authorization, route realization, delivery, semantic admission, and institutional decision are explicitly non-collapsible."
+    "The event sequence can be represented as distinct normative contracts.",
+    "Exactly-once transport need not be assumed if semantic admission is idempotent."
   ],
   "conditions": [
     "E1 must publish versioned schemas with preconditions, postconditions, idempotency, ordering, retry, expiry, and failure semantics.",
@@ -21,5 +21,10 @@
   ],
   "residual_uncertainty": [
     "Limited mechanical validation of opaque capability-bearing envelopes may later be useful but cannot expand authority."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
   ]
 }
