@@ -1,20 +1,25 @@
 {
   "schema_version": "1.0",
   "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
-  "round": 2,
-  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
   "office": "grammarian",
-  "system_identity": "GPT-5.6 Sol",
-  "logical_pass_identity": "grammarian-terminology-contract-r2-001",
-  "mode": "non_authoring_review",
-  "github_review_id": 5123573835,
+  "reviewer_id": "gpt-5.6-sol/grammarian-aether-fabric-r2-001",
   "decision": "approve",
+  "deliberation": "Revision 1 resolves the material naming ambiguity. AETHER semantic authority is bounded to admitted semantic state, institutional allocation is distinguished from physical realization, and historical uses of 'AETHER fabric' remain interpretable without being redefined as the future FABRIC component.",
+  "discharged_obligations": [
+    "Checked terminology for stable meaning across constitutional, semantic, and distributed-systems interfaces."
+  ],
   "findings": [
-    "Revision 1 resolves the material terminology ambiguity and bounds AETHER semantic authority to its governed domain.",
-    "Institutional allocation, physical realization, semantic admission, and historical uses of fabric are now distinguishable."
+    "The revised vocabulary no longer implies universal epistemic authority or an operational command hierarchy.",
+    "Historical terminology has an explicit migration interpretation."
   ],
   "conditions": [],
   "residual_uncertainty": [
     "Future glossary work should reserve uppercase FABRIC for the component and lowercase fabric for generic prose."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
   ]
 }
