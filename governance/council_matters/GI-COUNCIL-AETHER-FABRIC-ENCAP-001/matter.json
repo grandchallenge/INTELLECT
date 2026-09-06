@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "title": "Separate AETHER and FABRIC into independently encapsulated systems",
+  "status": "before_council",
+  "decision_class": "constitutional_architecture_boundary",
+  "intake_issue": 90,
+  "proposal_path": "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+  "proposal_sha256": "a90166ec217339034ac36582f3bf2abd65805f287b28483e158c4bfa86751a29",
+  "live_basis": {
+    "intellect_main": "7e01dc6b1be46171f0cba5e140ca881f6ab2f50f",
+    "aether_main": "159cf930ae9130060f16d9fbc2608ad8a4069fae"
+  },
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward_if_article_ix_or_aether_authority_boundary_changes",
+    "automation_may_activate": false,
+    "automation_may_amend_constitution": false,
+    "automation_may_change_aether_authority": false,
+    "automation_may_admit_fabric_as_ghos_controller": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject",
+    "abstain"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/disposition.json"
+}
