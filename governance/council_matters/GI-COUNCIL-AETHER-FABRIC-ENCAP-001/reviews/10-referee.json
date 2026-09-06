@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "referee",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "referee-council-disposition-r2-001",
+  "mode": "non_authoring_read_only",
+  "github_review_id": 5123574412,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 satisfies the material Round-1 objections and yields a coherent, falsifiable, governable separation doctrine.",
+    "The architecture is approved as an advisory recommendation, not as a constitutional amendment or production activation."
+  ],
+  "conditions": [
+    "Execute E0 before code movement and preserve AMBIGUOUS classifications.",
+    "Keep AETHER locally correct without FABRIC and prove semantic equivalence before extraction.",
+    "Constrain FABRIC optimization to authorized mechanical envelopes and test influence-without-authority attacks.",
+    "Preserve separate identity/event strata and AETHER semantic fencing/authority-partition semantics.",
+    "Require at least one useful non-AETHER FABRIC workload and measurable coupling/failure-containment benefit before E4.",
+    "Preserve migration lineage, compatibility/rollback, maintenance ownership, and bounded resource commitments.",
+    "Keep GHOS controller admission and INTELLECT constitutional authority separate."
+  ],
+  "procedural_disposition": "council_architecture_approved_with_conditions__article_xi_required_for_constitutional_activation",
+  "ready_for_next_step": true,
+  "residual_uncertainty": [
+    "Article IX wording and any effective AETHER authority-boundary change remain subject to Article XI and Human Steward authorization."
+  ]
+}
