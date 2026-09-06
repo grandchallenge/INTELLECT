@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 2,
+  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "office": "composer",
+  "system_identity": "GPT-5.6 Sol",
+  "logical_pass_identity": "composer-system-coherence-r2-001",
+  "mode": "non_authoring_review",
+  "github_review_id": 5123574023,
+  "decision": "approve_with_conditions",
+  "findings": [
+    "Revision 1 composes POL, AETHER, AETHER-Learn, FABRIC, GHOS, AETHER-MEM, sidecars, and distributed truth without collapsing their authority roles.",
+    "The cross-plane trace model provides a coherent operational story."
+  ],
+  "conditions": [
+    "E1 should publish one canonical end-to-end sequence and correlation model.",
+    "AETHER-MEM and sidecars must retain semantic identity/provenance in AETHER while FABRIC handles physical locality/movement only.",
+    "Distributed-truth semantic cuts and fencing must remain AETHER responsibilities.",
+    "Do not introduce another telemetry plane without evidence that owning-plane telemetry is insufficient."
+  ],
+  "residual_uncertainty": [
+    "High-performance paths may require co-designed interfaces, which must not become semantic collapse."
+  ]
+}
