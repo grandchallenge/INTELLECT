@@ -1,17 +1,18 @@
 {
   "schema_version": "1.0",
   "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
-  "round": 2,
-  "exact_subject_head": "05fdaaef29885c89f3e109096504a232dfa3ebc3",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
   "office": "referee",
-  "system_identity": "GPT-5.6 Sol",
-  "logical_pass_identity": "referee-council-disposition-r2-001",
-  "mode": "non_authoring_read_only",
-  "github_review_id": 5123574412,
+  "reviewer_id": "gpt-5.6-sol/referee-aether-fabric-r2-001",
   "decision": "approve_with_conditions",
+  "deliberation": "The revised subject satisfies the material objections from Round 1. The Council now has a coherent, falsifiable, and governable separation doctrine. Advisory architecture disposition: APPROVE_WITH_CONDITIONS for independent AETHER/FABRIC encapsulation with asymmetric semantics. This does not amend Article IX or alter the AETHER authority boundary; Article XI and Human Steward authorization remain required for constitutional activation.",
+  "discharged_obligations": [
+    "Applied the Council's declared decision vocabulary, reconciled material objections, and controlled advisory closure without exercising reserved authority."
+  ],
   "findings": [
-    "Revision 1 satisfies the material Round-1 objections and yields a coherent, falsifiable, governable separation doctrine.",
-    "The architecture is approved as an advisory recommendation, not as a constitutional amendment or production activation."
+    "Round-1 material objections are resolved in Revision 1.",
+    "The architecture is ready for an advisory Council disposition with conditions.",
+    "Constitutional activation remains reserved and separate."
   ],
   "conditions": [
     "Execute E0 before code movement and preserve AMBIGUOUS classifications.",
@@ -22,9 +23,12 @@
     "Preserve migration lineage, compatibility/rollback, maintenance ownership, and bounded resource commitments.",
     "Keep GHOS controller admission and INTELLECT constitutional authority separate."
   ],
-  "procedural_disposition": "council_architecture_approved_with_conditions__article_xi_required_for_constitutional_activation",
-  "ready_for_next_step": true,
   "residual_uncertainty": [
     "Article IX wording and any effective AETHER authority-boundary change remain subject to Article XI and Human Steward authorization."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
   ]
 }
