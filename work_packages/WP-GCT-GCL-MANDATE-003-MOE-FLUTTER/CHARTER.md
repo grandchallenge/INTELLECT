@@ -1,4 +1,4 @@
-# WP-GCT-GCL-MANDATE-003-MOE-FLUTTER — MoE Flutter Boundary E1 Reconnaissance
+# WP-GCT-GCL-MANDATE-003-MOE-FLUTTER â€” MoE Flutter Boundary E1 Reconnaissance
 
 ## Purpose
 
@@ -10,7 +10,7 @@ Pre-register and, only after applicable Charter/review gates clear, execute a bo
 
 ## Stakeholders
 
-- Grand Challenge Technologies Ltd — GCT-CSO and GCT-CTO sponsors
+- Grand Challenge Technologies Ltd â€” GCT-CSO and GCT-CTO sponsors
 - Grand Challenge Labs
 - INTELLECT
 - future receiving neural-systems research lane selected after Charter admission
@@ -25,6 +25,10 @@ Pre-register and, only after applicable Charter/review gates clear, execute a bo
 - Analysis windows, mode-selection rules, classification thresholds, and candidate-surface nomination rules must be frozen before examining continuation results.
 - Negative and null results must be retained as first-class evidence.
 - Repository artifacts are a local authoring projection; production work-package authority remains subject to the INTELLECT Constitution and AETHER-backed history.
+
+## Fixed design revision
+
+SPEC section 12 selects the minimal synthetic proxy and supersedes its previously open numerical defaults. The proposed envelope is CPU-only, at most 188 runs including null controls, 192,512 update steps, two CPU-hours and 4 GiB memory. These are ceilings, not an allocation. No production-MoE or Hopf claim is admitted by this proxy.
 
 ## Acceptance criteria
 
