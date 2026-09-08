@@ -9,6 +9,13 @@ Treat `CONSTITUTION.md` as supreme law, effective amendments as its lawful
 supplements, and constitutional commentary as nonbinding interpretation.
 `gcl-standards` is a subordinate registry and publication repository.
 
+The canonical GCL handoff contract is `governance/handoffs/README.md` and the
+copy/paste takeover entry point is
+`governance/handoffs/CANONICAL_TAKEOVER_PROMPT.md`. Generic handoff machinery
+belongs here; actual work-set continuity state belongs in the target
+repository at `handoffs/<WORKSET-ID>/README.md` unless that repository is
+itself INTELLECT.
+
 Under the effective authority schedule, one Codex system may staff multiple
 non-reserved roles through distinct, exact-subject logical audit passes.
 Routine bounded and non-reserved substantive work may proceed through protected
