@@ -15,6 +15,26 @@ Before mutation, resolve authority in this order:
 
 A lower layer may not enlarge its own authority. `MATHCERT` alone renders bounded mathematical certification dispositions through accepted routes. AETHER retains the production semantic authority assigned by INTELLECT Article IX. GitHub issues, pull requests, checks, releases, and repository settings are operational or evidentiary surfaces; they do not create constitutional, certification, semantic, or domain authority by themselves.
 
+## GitHub execution transport invariant
+
+Authorization and execution transport are separate questions. A missing connector capability does not revoke authority already granted by the governing chain and is not, by itself, a material blocker.
+
+For an otherwise authorized GitHub operation:
+
+1. use the connected GitHub action when it exposes the required operation;
+2. if the connected action surface does not expose the operation, use authenticated `gh` or the GitHub REST/GraphQL API directly when the current execution environment permits it;
+3. if direct CLI/API execution is unavailable in the current environment, provide one complete, copy/pasteable, self-contained `gh`/bash script for the authenticated operator instead of stopping or routing the operator to the GitHub UI;
+4. preserve every applicable protected-branch, pull-request, review, check, exact-head, evidence, and authority boundary regardless of transport;
+5. after mutation, read back the authoritative GitHub state and report the exact result.
+
+A fallback script must validate the relevant authentication/prerequisites and live target state, perform only the authorized mutation, and verify the resulting state. It must preserve the caller's interactive shell: do not use parent-shell `set -e`, `exit`, `kill`, `exec`, or terminating traps as control flow. Prefer explicit guarded conditionals and diagnostic output so a failed step returns control normally.
+
+Do not substitute manual GitHub UI instructions merely because a connector endpoint is missing when `gh` or the GitHub API can express the operation. Manual UI routing is appropriate only when the GitHub API itself cannot express the required operation, the user explicitly requests UI instructions, or a genuine authentication/authorization boundary requires operator action.
+
+Transport fallback never authorizes protected bypass, scope expansion, claim promotion, certification, destructive action, credential escalation, or any other reserved transition. Stop only at a genuine authority, authentication, safety, materially changed-state, protected-state, substantive evidentiary, or actual recovery-exhaustion boundary.
+
+Regression expectation: if a request authorizes changing a GitHub organization description and the connected action surface lacks organization-profile mutation, the passing behavior is authenticated `gh api --method PATCH /orgs/<org> ...` execution when available, or a complete self-contained `gh` fallback script when not. Sending the operator to GitHub Settings solely because the connector lacks the endpoint is a failure of this invariant.
+
 ## Repository placement rule
 
 The generic handoff machinery lives here in `grandchallenge/INTELLECT`:
