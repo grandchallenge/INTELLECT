@@ -80,8 +80,12 @@ Execution rules:
 - Do not reproduce historical ceremony that is no longer a live material dependency.
 - Prefer terminal completion of a meaningful substantive unit over accumulation of branches, manifests, evidence packets, gates, or intermediate state.
 - Proceed autonomously through routine bounded, non-reserved work under the live delegated authority schedule.
+- For authorized GitHub operations, use the connected GitHub action when it exposes the required capability. If the connected surface lacks the operation, treat that as a transport gap rather than an authority boundary: use authenticated `gh`/GitHub API execution directly when available.
+- If direct CLI/API execution is unavailable, provide one complete, copy/pasteable, self-contained `gh`/bash script that validates prerequisites and live state, performs the authorized mutation through the required protected route, and reads back the result. Do not substitute manual GitHub UI instructions solely because the connector lacks an endpoint when `gh` or the GitHub API can express the operation.
+- Any fallback script must preserve the caller's interactive shell and must not use parent-shell `set -e`, `exit`, `kill`, `exec`, or terminating traps as control flow.
+- Transport fallback never weakens branch protection, exact-head checks, evidence requirements, claim boundaries, or reserved authority.
 - Do not request Human Steward, Referee, Council, or other approval merely as ceremony. Where an exact governing instrument requires an office finding or reserves a transition, satisfy that exact requirement and record the exact subject.
-- Stop only for a genuine material blocker, material scope/control-plan change, exact reserved authority boundary, substantive contradiction/failure requiring escalation, or completed material closure.
+- Stop only for a genuine material blocker, material scope/control-plan change, exact reserved authority boundary, authentication/safety boundary, substantive contradiction/failure requiring escalation, actual recovery exhaustion, or completed material closure.
 
 If the repository-local handoff duplicates obsolete ceremony or conflicts with the live authority chain, preserve historical evidence but follow the higher live authority and identify the shortest safe path back to substantive execution.
 
