@@ -8,13 +8,17 @@ on:
       - "lean/RSICCC.lean"
       - "lean/RSICCCM1.lean"
       - "lean/RSICCCM2.lean"
+      - "lean/RSICCCM2Receipts.lean"
       - "lean-toolchain"
       - "lakefile.toml"
       - "governance/rsi_ccc_wp00/formal_object.json"
       - "governance/rsi_ccc_wp00/manifest.json"
       - "governance/rsi_ccc_wp00/m2_sequence.json"
+      - "governance/rsi_ccc_wp00/m2_trust_receipts.json"
       - "src/grand_intellect/rsi_ccc_wp00.py"
       - "src/grand_intellect/rsi_ccc_wp00_m2.py"
+      - "src/grand_intellect/rsi_ccc_wp00_m2_receipts.py"
+      - "src/grand_intellect/rsi_ccc_wp00_m2_ledger.py"
       - "tests/test_rsi_ccc_wp00_m2*.py"
       - ".github/workflows/rsi-ccc-m2.yml"
   workflow_dispatch:
@@ -86,14 +90,18 @@ jobs:
             -o .lake/build/lib/lean/RSICCCM2.olean \
             -i .lake/build/lib/lean/RSICCCM2.ilean \
             lean/RSICCCM2.lean
+          lake env lean \
+            -o .lake/build/lib/lean/RSICCCM2Receipts.olean \
+            -i .lake/build/lib/lean/RSICCCM2Receipts.ilean \
+            lean/RSICCCM2Receipts.lean
 
       - name: Replay M1 and M2 compiled modules with Lean kernel checker
         shell: bash
         run: |
           set -euo pipefail
-          lake env leanchecker RSICCC RSICCCM1 RSICCCM2
+          lake env leanchecker RSICCC RSICCCM1 RSICCCM2 RSICCCM2Receipts
 
-      - name: Replay exact M2 executable evidence
+      - name: Replay exact M2 executable evidence and trust receipts
         shell: bash
         run: |
           set -euo pipefail
