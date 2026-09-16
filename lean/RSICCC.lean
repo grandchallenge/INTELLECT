@@ -171,8 +171,8 @@ theorem gfixVal_natural {X : TreeObj.{u}} (f : TreeHom (Later X) X) :
       simpa [gfixVal, Later, laterRes] using
         f.natural 0 (gfixVal f 0)
   | succ n ih =>
-      simpa [gfixVal, Later, laterRes, ih] using
-        f.natural (n + 1) (gfixVal f (n + 1))
+      rw [f.natural (n + 1) (gfixVal f (n + 1))]
+      simpa [Later, laterRes] using congrArg (f.app (n + 1)) ih
 
 def gfix {X : TreeObj.{u}} (f : TreeHom (Later X) X) : Global X where
   val := gfixVal f

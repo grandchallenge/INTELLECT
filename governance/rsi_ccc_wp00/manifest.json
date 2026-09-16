@@ -81,7 +81,12 @@
     ]
   },
   "mechanization": {
-    "status": "in_progress",
+    "status": "pending",
+    "active_tranche": {
+      "id": "M1",
+      "status": "in_progress",
+      "meaning": "theorem-first Lean work is active while the retained M0 promotion-state field remains pending"
+    },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "milestone": "M1-one-proved-guarded-self-replacement-step",
@@ -134,7 +139,7 @@
     "proof_artifacts": [
       {
         "path": "lean/RSICCC.lean",
-        "git_blob_sha": "b29dc4c537b1e65dbe99593c179c45a66b73e47c",
+        "git_blob_sha": "ff0b0a9b599972c536ad1bfef9fd98e7b482d874",
         "role": "M1 theorem-first Lean proof surface"
       },
       {
@@ -149,7 +154,7 @@
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
-        "git_blob_sha": "b5d9f229f0224586276e0968765eef7ff5f5733f",
+        "git_blob_sha": "8571ed2873e38f6cf226672e976c77de12c9eb8b",
         "role": "M1 formal-object freeze and proof-artifact binding checks"
       },
       {

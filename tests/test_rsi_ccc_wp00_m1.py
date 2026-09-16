@@ -34,7 +34,11 @@ class RsiCccWp00M1BindingTests(unittest.TestCase):
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         mechanization = manifest["mechanization"]
 
-        self.assertEqual(mechanization["status"], "in_progress")
+        # Preserve the exact M0 promotion-state contract while M1 records its
+        # active work separately. This keeps the retained M0 test artifact valid.
+        self.assertEqual(mechanization["status"], "pending")
+        self.assertEqual(mechanization["active_tranche"]["id"], "M1")
+        self.assertEqual(mechanization["active_tranche"]["status"], "in_progress")
         self.assertFalse(manifest["promotion_ready"])
         self.assertEqual(mechanization["issue"], 104)
         self.assertEqual(mechanization["lean_toolchain"], "leanprover/lean4:v4.34.0")
