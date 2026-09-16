@@ -84,8 +84,8 @@
     "status": "pending",
     "active_tranche": {
       "id": "M1",
-      "status": "in_progress",
-      "meaning": "candidate closure proof is content-bound; compiler replay and independent exact-head review are still required"
+      "status": "proof_complete_exact_head_replayed_pending_review",
+      "meaning": "the M1 closure proof compiles and kernel-replays; independent exact-head review remains required before any promotion decision"
     },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
@@ -132,11 +132,11 @@
       "typed run interpretation connected to the concrete exponential layer",
       "non-vacuous finite parity refinement domain with exact capability and optimization transitions",
       "frozen checker certificate semantics bridged to AdmissionEvidence",
-      "candidate complete guarded capability-extension replacement theorem",
-      "candidate complete guarded semantics-preserving optimization replacement theorem"
+      "complete guarded capability-extension replacement theorem",
+      "complete guarded semantics-preserving optimization replacement theorem",
+      "exact-head Lean compile and independent kernel replay"
     ],
     "open_targets": [
-      "compile and kernel-replay the candidate closure proof on one exact head",
       "perform independent non-authoring Formalist/Adversary/Referee review of the exact compiled head before any promotion decision"
     ],
     "proof_artifacts": [
@@ -162,8 +162,8 @@
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
-        "git_blob_sha": "4c24f019d0f76b3fd49a32ca7c181fe919afc69a",
-        "role": "M1 formal-object freeze, target naming, and proof-artifact binding checks"
+        "git_blob_sha": "a8da0ae3e71ee9864a9820d8c9a83ec4eec62bd4",
+        "role": "M1 formal-object freeze, replay-state, target naming, and proof-artifact binding checks"
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
@@ -173,5 +173,5 @@
     ]
   },
   "promotion_ready": false,
-  "blocking_reason": "candidate M1 closure proof is content-bound but has not yet passed exact-head compiler/kernel replay and independent review"
+  "blocking_reason": "M1 proof is compiled and content-bound; independent non-authoring exact-head review remains required before any promotion decision"
 }

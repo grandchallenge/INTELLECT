@@ -36,10 +36,19 @@ class RsiCccWp00M1BindingTests(unittest.TestCase):
 
         self.assertEqual(mechanization["status"], "pending")
         self.assertEqual(mechanization["active_tranche"]["id"], "M1")
-        self.assertEqual(mechanization["active_tranche"]["status"], "in_progress")
+        self.assertEqual(
+            mechanization["active_tranche"]["status"],
+            "proof_complete_exact_head_replayed_pending_review",
+        )
         self.assertFalse(manifest["promotion_ready"])
         self.assertEqual(mechanization["issue"], 104)
         self.assertEqual(mechanization["lean_toolchain"], "leanprover/lean4:v4.34.0")
+        self.assertEqual(
+            mechanization["open_targets"],
+            [
+                "perform independent non-authoring Formalist/Adversary/Referee review of the exact compiled head before any promotion decision"
+            ],
+        )
 
         records = mechanization["proof_artifacts"]
         self.assertGreaterEqual(len(records), 6)
