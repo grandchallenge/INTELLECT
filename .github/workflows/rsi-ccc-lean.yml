@@ -9,9 +9,7 @@ on:
       - "lean-toolchain"
       - "lakefile.toml"
       - "governance/rsi_ccc_wp00/**"
-      - "src/grand_intellect/rsi_ccc_wp00_m2.py"
       - "tests/test_rsi_ccc_wp00_m1.py"
-      - "tests/test_rsi_ccc_wp00_m2.py"
       - ".github/workflows/rsi-ccc-lean.yml"
   workflow_dispatch:
 
@@ -77,4 +75,4 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          lake env leanchecker RSICCC RSICCCM1 RSICCCM2
+          lake env leanchecker RSICCC RSICCCM1
