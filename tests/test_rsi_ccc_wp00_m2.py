@@ -154,12 +154,21 @@ class RsiCccWp00M2Tests(unittest.TestCase):
         self.assertEqual(m2["id"], "M2")
         self.assertEqual(m2["issue"], 106)
 
+        m1_paths = {record["path"] for record in mechanization["proof_artifacts"]}
+        self.assertIn("lakefile.toml", m1_paths)
+        self.assertIn(".github/workflows/rsi-ccc-lean.yml", m1_paths)
+        self.assertNotIn("governance/rsi_ccc_wp00/m1_retained/lakefile.toml", m1_paths)
+        self.assertNotIn("governance/rsi_ccc_wp00/m1_retained/rsi-ccc-lean.yml", m1_paths)
+
         records = m2["evidence_artifacts"]
         paths = {record["path"] for record in records}
         self.assertIn("lean/RSICCCM2.lean", paths)
         self.assertIn("governance/rsi_ccc_wp00/m2_sequence.json", paths)
         self.assertIn("src/grand_intellect/rsi_ccc_wp00_m2.py", paths)
         self.assertIn("tests/test_rsi_ccc_wp00_m2.py", paths)
+        self.assertIn("tests/test_rsi_ccc_wp00_m2_resource_laundering.py", paths)
+        self.assertIn(".github/workflows/rsi-ccc-m2.yml", paths)
+        self.assertIn(".ghos-routing/workflows.json", paths)
 
         for record in records:
             data = (ROOT / record["path"]).read_bytes()
