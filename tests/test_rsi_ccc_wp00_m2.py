@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import unittest
 
-from grand_intellect.rsi_ccc_wp00 import canonical_json, refines, sha256_json
+from grand_intellect.rsi_ccc_wp00 import refines, sha256_json
 from grand_intellect.rsi_ccc_wp00_m2 import (
     FROZEN_CHECKER_GIT_BLOB,
     FROZEN_FORMAL_OBJECT_GIT_BLOB,
@@ -147,13 +147,14 @@ class RsiCccWp00M2Tests(unittest.TestCase):
     def test_manifest_keeps_m2_non_promotable_and_content_bound(self) -> None:
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         mechanization = manifest["mechanization"]
+        m2 = mechanization["m2_tranche"]
 
         self.assertFalse(manifest["promotion_ready"])
         self.assertEqual(mechanization["must_bind_to_formal_object_sha256"], FROZEN_FORMAL_OBJECT_SHA256)
-        self.assertEqual(mechanization["active_tranche"]["id"], "M2")
-        self.assertEqual(mechanization["active_tranche"]["issue"], 106)
+        self.assertEqual(m2["id"], "M2")
+        self.assertEqual(m2["issue"], 106)
 
-        records = mechanization["active_tranche"]["evidence_artifacts"]
+        records = m2["evidence_artifacts"]
         paths = {record["path"] for record in records}
         self.assertIn("lean/RSICCCM2.lean", paths)
         self.assertIn("governance/rsi_ccc_wp00/m2_sequence.json", paths)
