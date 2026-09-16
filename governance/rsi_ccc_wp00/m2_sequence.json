@@ -1,0 +1,181 @@
+{
+  "accepted_transition_count": 5,
+  "checker": {
+    "git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
+    "path": "src/grand_intellect/rsi_ccc_wp00.py"
+  },
+  "event_chain_digest": "47b2a9d249befeaada200e4163235324a2347502478b84f27aa3c4c778ef1da9",
+  "events": [
+    {
+      "event_digest": "f5b5c4cddccc91b0771954b4d0c504ccc691d1774468efbdb5d427cea88d8df0",
+      "event_id": "A1-capability-0-7",
+      "expected_decision": {"accepted": true, "code": "accepted"},
+      "expected_state_digest_after": "6d2f3dedffd06f9abfe3d767c3b0686d40c80bca9948b62ed2c9a2aa572852e5",
+      "previous_event_digest": "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6",
+      "proposal_digest": "c48b9eb1f664658e4e00e7192317b36be38e389804087c71d3f3bfc5afffe690",
+      "scenario": "accepted_capability",
+      "serialized_bytes": 520
+    },
+    {
+      "event_digest": "8afa8992b450f59a5a9eb8bf63bf3c49af485ffb36323296bbd8b5da498bc8ec",
+      "event_id": "R1-unsafe",
+      "expected_decision": {"accepted": false, "code": "unsafe_candidate"},
+      "expected_state_digest_after": "6d2f3dedffd06f9abfe3d767c3b0686d40c80bca9948b62ed2c9a2aa572852e5",
+      "previous_event_digest": "f5b5c4cddccc91b0771954b4d0c504ccc691d1774468efbdb5d427cea88d8df0",
+      "proposal_digest": "1a0ff212dc653786223befb0edf3c89913ffdf1c4115b7acd0b0834c440f028a",
+      "scenario": "unsafe_candidate",
+      "serialized_bytes": 517
+    },
+    {
+      "event_digest": "d0a550c1e529237d832800584a0f51107acb58b42b3a7509c78040c020e17a24",
+      "event_id": "A2-optimize-0-7",
+      "expected_decision": {"accepted": true, "code": "accepted"},
+      "expected_state_digest_after": "07b96e8d3d78f13772e3942cbfafeb00ed1a65ebd5cd0539b07458a1fc13d2cd",
+      "previous_event_digest": "8afa8992b450f59a5a9eb8bf63bf3c49af485ffb36323296bbd8b5da498bc8ec",
+      "proposal_digest": "5d132973675d8e54fcd31a12c7b2b9ff4ce520aa52f7dd1da6750fc00652a30a",
+      "scenario": "accepted_optimization",
+      "serialized_bytes": 532
+    },
+    {
+      "event_digest": "f2e50c3e4baee058c36963d5357f1cedaed8552e8a9373d5a8f3a332ff5bb4d7",
+      "event_id": "R2-stale-ancestry",
+      "expected_decision": {"accepted": false, "code": "stale_base"},
+      "expected_state_digest_after": "07b96e8d3d78f13772e3942cbfafeb00ed1a65ebd5cd0539b07458a1fc13d2cd",
+      "previous_event_digest": "d0a550c1e529237d832800584a0f51107acb58b42b3a7509c78040c020e17a24",
+      "proposal_digest": "7285842ae9ea9ba26b945873f932ca2c07db8f615b7db0e58efa3089c593cfcf",
+      "scenario": "stale_ancestry",
+      "serialized_bytes": 523
+    },
+    {
+      "event_digest": "ba36a7502125ce56fe99a92ce753c9487d600dc49d693c41330821b137677ab8",
+      "event_id": "A3-capability-0-11",
+      "expected_decision": {"accepted": true, "code": "accepted"},
+      "expected_state_digest_after": "cd7fdccfda70687abb71a937505abbfd3c9e208015e37d3cea7818759328b3e8",
+      "previous_event_digest": "f2e50c3e4baee058c36963d5357f1cedaed8552e8a9373d5a8f3a332ff5bb4d7",
+      "proposal_digest": "e35745452befafd849fc7d83ff2cc630e8f93538733e9a72f8418058b7f715e4",
+      "scenario": "accepted_capability",
+      "serialized_bytes": 523
+    },
+    {
+      "event_digest": "1ee09f0d60a40763be4d4f0c7c85dc24a37f4bb013550dfa544f610c9afef887",
+      "event_id": "R3-context-drift",
+      "expected_decision": {"accepted": false, "code": "context_substitution"},
+      "expected_state_digest_after": "cd7fdccfda70687abb71a937505abbfd3c9e208015e37d3cea7818759328b3e8",
+      "previous_event_digest": "ba36a7502125ce56fe99a92ce753c9487d600dc49d693c41330821b137677ab8",
+      "proposal_digest": "5aff03b4eacc1a1b9942f6798ada06ad5744b6049519c00fcc32a528a51dd6b2",
+      "scenario": "context_drift",
+      "serialized_bytes": 527
+    },
+    {
+      "event_digest": "ced81cafd3f8463f1b5b266011049eb59e803242a3dae05c1ef486eff079738f",
+      "event_id": "R4-trust-boundary-creep",
+      "expected_decision": {"accepted": false, "code": "trust_kernel_mutation"},
+      "expected_state_digest_after": "cd7fdccfda70687abb71a937505abbfd3c9e208015e37d3cea7818759328b3e8",
+      "previous_event_digest": "1ee09f0d60a40763be4d4f0c7c85dc24a37f4bb013550dfa544f610c9afef887",
+      "proposal_digest": "e4613a9132f6c8d2607eddd44b130885f79412acce4b85f869066167663a398e",
+      "scenario": "trust_boundary_creep",
+      "serialized_bytes": 524
+    },
+    {
+      "event_digest": "8396c6a0dc60e503ee407684f792cf2383ddabeafeb8f050436c782fd40214c0",
+      "event_id": "A4-capability-0-15",
+      "expected_decision": {"accepted": true, "code": "accepted"},
+      "expected_state_digest_after": "101c289d2575c798dccc7ffc25faaeffc0fa3c18b7b98000e8a6cb02f204eabb",
+      "previous_event_digest": "ced81cafd3f8463f1b5b266011049eb59e803242a3dae05c1ef486eff079738f",
+      "proposal_digest": "205aadc286496c225737d967fab9b07b7f83cf332da1000a1606abbdc543978c",
+      "scenario": "accepted_capability",
+      "serialized_bytes": 525
+    },
+    {
+      "event_digest": "90228e27d6267f6f72d492e06ab0f4c27acceeb6666b21f3c0fdf9acb96a19ce",
+      "event_id": "R5-ratcheting-regression",
+      "expected_decision": {"accepted": false, "code": "non_refinement"},
+      "expected_state_digest_after": "101c289d2575c798dccc7ffc25faaeffc0fa3c18b7b98000e8a6cb02f204eabb",
+      "previous_event_digest": "8396c6a0dc60e503ee407684f792cf2383ddabeafeb8f050436c782fd40214c0",
+      "proposal_digest": "50976d42dea6005e5fa085b1d416c8aca9bfb2d45c3a53da125b00343712fe95",
+      "scenario": "ratcheting_regression",
+      "serialized_bytes": 520
+    },
+    {
+      "event_digest": "e76d7aadeb931389223e6c36b5e492e341b9ef84301d1b02f7367e000c2a9e2e",
+      "event_id": "R6-metric-gaming",
+      "expected_decision": {"accepted": false, "code": "malformed"},
+      "expected_state_digest_after": "101c289d2575c798dccc7ffc25faaeffc0fa3c18b7b98000e8a6cb02f204eabb",
+      "previous_event_digest": "90228e27d6267f6f72d492e06ab0f4c27acceeb6666b21f3c0fdf9acb96a19ce",
+      "proposal_digest": "822f78e25a4d237e67554ee3f98bb021d019df3656c9223a5df9d534a8f9b56c",
+      "scenario": "metric_gaming",
+      "serialized_bytes": 585
+    },
+    {
+      "event_digest": "bf982aa9d1a191c77f666463bdad5c09f5dcdc6b07a15d1440d5df439208b222",
+      "event_id": "R7-resource-laundering",
+      "expected_decision": {"accepted": false, "code": "resource_bound"},
+      "expected_state_digest_after": "101c289d2575c798dccc7ffc25faaeffc0fa3c18b7b98000e8a6cb02f204eabb",
+      "previous_event_digest": "e76d7aadeb931389223e6c36b5e492e341b9ef84301d1b02f7367e000c2a9e2e",
+      "proposal_digest": "94277120f04034c141d79717dbdb916aabfa799a0456d2a372b49aca3024e3fc",
+      "scenario": "resource_laundering",
+      "serialized_bytes": 542
+    },
+    {
+      "event_digest": "6f88fd316c5b88473367b5972d57e33bcd3cf7de46bc541a7cd08efb2a91e815",
+      "event_id": "R8-no-op",
+      "expected_decision": {"accepted": false, "code": "non_improvement"},
+      "expected_state_digest_after": "101c289d2575c798dccc7ffc25faaeffc0fa3c18b7b98000e8a6cb02f204eabb",
+      "previous_event_digest": "bf982aa9d1a191c77f666463bdad5c09f5dcdc6b07a15d1440d5df439208b222",
+      "proposal_digest": "8a7de3ce68de6b7282b0de7c0a6f2797c0b02c9f68e8316cff967ae1a76b8b42",
+      "scenario": "no_op_succession",
+      "serialized_bytes": 532
+    },
+    {
+      "event_digest": "3770962df55866958de9fb223f799c3a721c92dca4142c1aa387ef9dbe44ba41",
+      "event_id": "A5-optimize-0-15",
+      "expected_decision": {"accepted": true, "code": "accepted"},
+      "expected_state_digest_after": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+      "previous_event_digest": "6f88fd316c5b88473367b5972d57e33bcd3cf7de46bc541a7cd08efb2a91e815",
+      "proposal_digest": "a01b2d61440704a22dea5d3252c3bae1d3bf9820029de4667133d7339cba23f7",
+      "scenario": "accepted_optimization",
+      "serialized_bytes": 537
+    },
+    {
+      "event_digest": "6b35750c653ffa7052785221093d83a1e8e4bb18216d0149c3ec4c10d56eb9ca",
+      "event_id": "R9-reused-old-proposal",
+      "expected_decision": {"accepted": false, "code": "stale_base"},
+      "expected_state_digest_after": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+      "previous_event_digest": "3770962df55866958de9fb223f799c3a721c92dca4142c1aa387ef9dbe44ba41",
+      "proposal_digest": "c48b9eb1f664658e4e00e7192317b36be38e389804087c71d3f3bfc5afffe690",
+      "scenario": "certificate_receipt_reuse",
+      "serialized_bytes": 520
+    },
+    {
+      "event_digest": "47b2a9d249befeaada200e4163235324a2347502478b84f27aa3c4c778ef1da9",
+      "event_id": "R10-oscillation",
+      "expected_decision": {"accepted": false, "code": "non_improvement"},
+      "expected_state_digest_after": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+      "previous_event_digest": "6b35750c653ffa7052785221093d83a1e8e4bb18216d0149c3ec4c10d56eb9ca",
+      "proposal_digest": "7bbd7a2e383097531d6a392ffdb7b8b6fdd95fbc4c7fb1de9d76621212a46011",
+      "scenario": "cycling_oscillation",
+      "serialized_bytes": 538
+    }
+  ],
+  "final_candidate_digest": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+  "fixed_context": {
+    "context_id": "parity16-fixed-context-v1",
+    "kernel_id": "rsi-ccc-fixed-kernel-v1",
+    "max_declared_cost": 10000,
+    "max_serialized_bytes": 4096
+  },
+  "formal_object": {
+    "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
+    "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc"
+  },
+  "genesis": {
+    "candidate_digest": "8b00933f5ccf3d497f12b4d11ea547bede001afc95508548b097ad5d593d677c",
+    "candidate_id": "baseline",
+    "genesis_digest": "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6"
+  },
+  "milestone": "M2-compositional-guarded-replacement-sequence",
+  "promotion_ready": false,
+  "rejected_event_count": 10,
+  "schema_version": "1.0.0",
+  "work_package_id": "RSI-CCC-WP00"
+}
