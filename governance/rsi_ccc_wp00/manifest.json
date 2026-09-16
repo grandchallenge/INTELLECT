@@ -178,7 +178,7 @@
     "m2_tranche": {
       "id": "M2",
       "issue": 106,
-      "status": "candidate_constructed_pending_exact_head_replay",
+      "status": "sequence_complete_exact_head_replayed_pending_review",
       "basis_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6",
       "milestone": "M2-compositional-guarded-replacement-sequence",
       "checker_git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
@@ -198,7 +198,6 @@
         "independent whole-chain replay from genesis to final state"
       ],
       "open_targets": [
-        "complete fresh exact-head Python and Lean replay on the isolated M2 workflow",
         "complete independent non-authoring Formalist/Adversary/Referee review",
         "integrate the exact reviewed head without changing the frozen checker or formal object"
       ],
@@ -242,5 +241,5 @@
     }
   },
   "promotion_ready": false,
-  "blocking_reason": "M2 candidate is content-bound and non-promotable; fresh exact-head replay and independent review remain required before integration"
+  "blocking_reason": "M2 sequence evidence is complete and exactly replayed; independent exact-head review and integration remain"
 }
