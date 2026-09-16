@@ -60,7 +60,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -nE '(^|[[:space:]])(sorry|admit|axiom)[[:space:]]' lean/RSICCC.lean; then
+          if grep -R -nE '(^|[[:space:]])(sorry|admit|axiom)[[:space:]]' lean --include='*.lean'; then
             echo "Proof placeholder or local axiom detected" >&2
             exit 1
           fi
@@ -71,8 +71,8 @@ jobs:
           set -euo pipefail
           lake build
 
-      - name: Replay compiled module with Lean kernel checker
+      - name: Replay compiled modules with Lean kernel checker
         shell: bash
         run: |
           set -euo pipefail
-          lake env leanchecker RSICCC
+          lake env leanchecker RSICCC RSICCCM1

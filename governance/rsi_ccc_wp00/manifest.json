@@ -85,7 +85,7 @@
     "active_tranche": {
       "id": "M1",
       "status": "in_progress",
-      "meaning": "theorem-first Lean work is active while the retained M0 promotion-state field remains pending"
+      "meaning": "candidate closure proof is content-bound; compiler replay and independent exact-head review are still required"
     },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
@@ -127,20 +127,28 @@
       "operational quality represented separately from semantic refinement",
       "explicit checker/certificate/context/kernel/resource evidence boundary",
       "rejected-step stasis",
-      "abstract one-step accepted replacement preservation theorem"
+      "abstract one-step accepted replacement preservation theorem",
+      "concrete Kripke exponential witness with beta and eta laws",
+      "typed run interpretation connected to the concrete exponential layer",
+      "non-vacuous finite parity refinement domain with exact capability and optimization transitions",
+      "frozen checker certificate semantics bridged to AdmissionEvidence",
+      "candidate complete guarded capability-extension replacement theorem",
+      "candidate complete guarded semantics-preserving optimization replacement theorem"
     ],
     "open_targets": [
-      "construct the concrete Kripke exponential witness for TreeObj and discharge its beta/eta laws",
-      "connect the intrinsically typed program interpretation to the concrete Kripke exponential layer",
-      "show the represented refinement domain contains the actual programs/morphisms used by the one-step theorem without vacuity",
-      "connect abstract AdmissionEvidence assumptions to the frozen bounded checker/certificate semantics",
-      "independently replay the completed theorem surface at one exact head before any promotion decision"
+      "compile and kernel-replay the candidate closure proof on one exact head",
+      "perform independent non-authoring Formalist/Adversary/Referee review of the exact compiled head before any promotion decision"
     ],
     "proof_artifacts": [
       {
         "path": "lean/RSICCC.lean",
         "git_blob_sha": "2f9dd2ae49d81d59ba03640f7850c1056e495309",
-        "role": "M1 theorem-first Lean proof surface"
+        "role": "M1 theorem-first Lean core proof surface"
+      },
+      {
+        "path": "lean/RSICCCM1.lean",
+        "git_blob_sha": "cf1c67bc67bce33607d0b6e2774c978f493ef2ec",
+        "role": "M1 concrete exponential, finite checker bridge, and complete guarded replacement proofs"
       },
       {
         "path": "lean-toolchain",
@@ -149,21 +157,21 @@
       },
       {
         "path": "lakefile.toml",
-        "git_blob_sha": "44ae3f431bfe6ad0669a04018fb3af96346bee39",
-        "role": "Lean package build definition"
+        "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
+        "role": "Lean package build definition for core and M1 closure modules"
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
-        "git_blob_sha": "8571ed2873e38f6cf226672e976c77de12c9eb8b",
-        "role": "M1 formal-object freeze and proof-artifact binding checks"
+        "git_blob_sha": "4c24f019d0f76b3fd49a32ca7c181fe919afc69a",
+        "role": "M1 formal-object freeze, target naming, and proof-artifact binding checks"
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
-        "git_blob_sha": "642098c193233ba6d21cd8e28ac211ae5a8c3141",
-        "role": "exact-head Lean build, kernel replay, and no-placeholder/local-axiom guard"
+        "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
+        "role": "exact-head Lean build, multi-module kernel replay, and no-placeholder/local-axiom guard"
       }
     ]
   },
   "promotion_ready": false,
-  "blocking_reason": "M1 proof lane is in progress; the concrete Kripke exponential witness, checker-to-theorem connection, non-vacuous refinement-domain closure, and independent exact-head replay remain open"
+  "blocking_reason": "candidate M1 closure proof is content-bound but has not yet passed exact-head compiler/kernel replay and independent review"
 }

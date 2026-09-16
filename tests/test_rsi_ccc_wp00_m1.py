@@ -34,8 +34,6 @@ class RsiCccWp00M1BindingTests(unittest.TestCase):
         manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
         mechanization = manifest["mechanization"]
 
-        # Preserve the exact M0 promotion-state contract while M1 records its
-        # active work separately. This keeps the retained M0 test artifact valid.
         self.assertEqual(mechanization["status"], "pending")
         self.assertEqual(mechanization["active_tranche"]["id"], "M1")
         self.assertEqual(mechanization["active_tranche"]["status"], "in_progress")
@@ -44,10 +42,23 @@ class RsiCccWp00M1BindingTests(unittest.TestCase):
         self.assertEqual(mechanization["lean_toolchain"], "leanprover/lean4:v4.34.0")
 
         records = mechanization["proof_artifacts"]
-        self.assertGreaterEqual(len(records), 5)
+        self.assertGreaterEqual(len(records), 6)
+        paths = {record["path"] for record in records}
+        self.assertIn("lean/RSICCC.lean", paths)
+        self.assertIn("lean/RSICCCM1.lean", paths)
+
         for record in records:
             data = (ROOT / record["path"]).read_bytes()
             self.assertEqual(git_blob_sha(data), record["git_blob_sha"])
+
+    def test_m1_candidate_closure_targets_are_named(self) -> None:
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        completed = set(manifest["mechanization"]["completed_on_current_proof_surface"])
+        self.assertIn("concrete Kripke exponential witness with beta and eta laws", completed)
+        self.assertIn("typed run interpretation connected to the concrete exponential layer", completed)
+        self.assertIn("non-vacuous finite parity refinement domain with exact capability and optimization transitions", completed)
+        self.assertIn("frozen checker certificate semantics bridged to AdmissionEvidence", completed)
+        self.assertFalse(manifest["promotion_ready"])
 
 
 if __name__ == "__main__":
