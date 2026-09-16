@@ -1,6 +1,6 @@
 name = "rsi_ccc_wp00"
 version = "0.1.0"
-defaultTargets = ["RSICCC", "RSICCCM1"]
+defaultTargets = ["RSICCC", "RSICCCM1", "RSICCCM2"]
 
 [[lean_lib]]
 name = "RSICCC"
@@ -8,4 +8,8 @@ srcDir = "lean"
 
 [[lean_lib]]
 name = "RSICCCM1"
+srcDir = "lean"
+
+[[lean_lib]]
+name = "RSICCCM2"
 srcDir = "lean"
