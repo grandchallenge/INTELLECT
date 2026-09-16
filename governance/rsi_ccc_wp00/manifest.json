@@ -1,7 +1,7 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.2",
   "work_package_id": "RSI-CCC-WP00",
-  "milestone": "M1-one-proved-guarded-self-replacement-step",
+  "milestone": "M2-compositional-guarded-replacement-sequence",
   "authority_basis": {
     "council_matter": "GI-COUNCIL-RSI-CCC-001",
     "intake_pr": 100,
@@ -9,8 +9,10 @@
     "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
     "execution_issue": 101,
     "m1_issue": 104,
+    "m2_issue": 106,
     "m0_merge_commit": "18ded6c7d8bc491c63d247f7a71899e4e2f7bf07",
-    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d"
+    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d",
+    "m1_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6"
   },
   "model_resolution": {
     "ambient_category": "Set^(omega^op)",
@@ -25,7 +27,8 @@
     "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
     "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "claim_state": "research_target_not_yet_mathematically_certified",
-    "frozen_for_m1": true
+    "frozen_for_m1": true,
+    "frozen_for_m2": true
   },
   "bound_artifacts": [
     {
@@ -36,7 +39,7 @@
     {
       "path": "src/grand_intellect/rsi_ccc_wp00.py",
       "git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
-      "role": "bounded executable checker and positive trace"
+      "role": "frozen bounded executable checker and positive trace"
     },
     {
       "path": "tests/test_rsi_ccc_wp00.py",
@@ -85,7 +88,7 @@
     "active_tranche": {
       "id": "M1",
       "status": "proof_complete_exact_head_replayed_pending_review",
-      "meaning": "the M1 closure proof compiles and kernel-replays; independent exact-head review remains required before any promotion decision"
+      "meaning": "retained M1 manifest contract; M1 was subsequently reviewed and integrated without rewriting this historical field"
     },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
@@ -159,20 +162,117 @@
       {
         "path": "lakefile.toml",
         "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
-        "role": "Lean package build definition for core and M1 closure modules"
+        "role": "M1 Lean package build definition retained at its original reviewed path"
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
         "git_blob_sha": "797302608209ca1f1c727e4872e161b1e969f6ce",
-        "role": "M1 formal-object freeze, replay-state, target naming, proof-artifact binding, and cross-language checker replay"
+        "role": "retained M1 formal-object freeze and checker replay"
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
         "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
-        "role": "exact-head Lean build, multi-module kernel replay, and no-placeholder/local-axiom guard"
+        "role": "M1 exact-head Lean build and kernel replay workflow retained at its original reviewed path"
       }
-    ]
+    ],
+    "m2_tranche": {
+      "id": "M2",
+      "issue": 106,
+      "status": "receipt_strengthened_candidate_bound_pending_exact_head_replay",
+      "basis_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6",
+      "milestone": "M2-compositional-guarded-replacement-sequence",
+      "checker_git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
+      "formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
+      "accepted_transition_count": 5,
+      "rejected_event_count": 10,
+      "genesis_digest": "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6",
+      "final_candidate_digest": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+      "event_chain_digest": "da24637752e285b39e56c39f4a435e9d4b61be44adad813190a1247f9a52d10e",
+      "trust_genesis_digest": "6981d788da4f47be73c17d7cd52686eb3eb0491089b4e55f59a189361463d834",
+      "trust_receipt_chain_digest": "980a63cd95fe091b756e583da2970c5bf233576c5ea8da57c024d83bbe11393b",
+      "policy_digest": "3cdf44504e3d030780b7328615781f5588a437a2324b4052034e67e0be82e754",
+      "evaluation_context_digest": "b130d3dd562c60e759b1bdbba43d0a5001354797bd6e03c0d438e62017cba9e6",
+      "kernel_digest": "3acc6dcd3f5c289535ec9e6e113780a5259c7f9d3b968a8d7a20862fc839b8a9",
+      "resource_envelope_digest": "7356525574cd2c628dc4374c6688115c6effd47607229f6aa5285ffa2b5b10ae",
+      "required_evidence": [
+        "inductive composition of M1 accepted-step preservation across exact succession",
+        "heterogeneous accepted capability and optimization transitions",
+        "cumulative non-regression of previously admitted obligations",
+        "content-addressed predecessor/proposal/event lineage",
+        "per-event certificate/checker/policy/context/kernel/resource-envelope identities",
+        "sequence-level adversarial rejection fixtures including hidden resource laundering",
+        "byte-stable fixed checker and trust boundary",
+        "independent whole-chain and trust-receipt replay from genesis to final state"
+      ],
+      "open_targets": [
+        "complete fresh exact-head Python, Lean, kernel, routing and trust-receipt replay",
+        "complete independent non-authoring Formalist/Adversary/Referee review",
+        "integrate the exact reviewed head without changing the frozen checker or formal object"
+      ],
+      "evidence_artifacts": [
+        {
+          "path": "lean/RSICCCM2.lean",
+          "git_blob_sha": "9231ae9282a3b729bd61d27ac986a2eb6c3aaa35",
+          "role": "M2 inductive sequence theorem and exact five-step proof"
+        },
+        {
+          "path": "lean/RSICCCM2Receipts.lean",
+          "git_blob_sha": "47d5eb5d93ed7eea71806bed2cb303e51df3036d",
+          "role": "Lean binding for strengthened M2 trust-receipt identities"
+        },
+        {
+          "path": "governance/rsi_ccc_wp00/m2_sequence.json",
+          "git_blob_sha": "3f28de3e40ae67ee16f61b56ef4635d339bdeeff",
+          "role": "canonical content-addressed mixed accepted/rejected trajectory receipts"
+        },
+        {
+          "path": "governance/rsi_ccc_wp00/m2_trust_receipts.json",
+          "git_blob_sha": "4df0e4496e109ca6abf6ef65b7099ef390e6c7f2",
+          "role": "per-event certificate and fixed-trust identity receipt ledger"
+        },
+        {
+          "path": "src/grand_intellect/rsi_ccc_wp00_m2.py",
+          "git_blob_sha": "1690293d07c8cf3939bf2de78463bdab71b5b7da",
+          "role": "deterministic frozen-checker whole-chain reconstruction"
+        },
+        {
+          "path": "src/grand_intellect/rsi_ccc_wp00_m2_receipts.py",
+          "git_blob_sha": "25359f6d3e3d761ece10314d57b1926112d91045",
+          "role": "strong event certificate and trust-identity reconstruction"
+        },
+        {
+          "path": "src/grand_intellect/rsi_ccc_wp00_m2_ledger.py",
+          "git_blob_sha": "9655712423c5a7b95d169a1d2abf4a828f4e0282",
+          "role": "independent trust-receipt ledger generation and exact replay"
+        },
+        {
+          "path": "tests/test_rsi_ccc_wp00_m2.py",
+          "git_blob_sha": "4518d8df8b4ae9290d82e92e07a5600cdb219691",
+          "role": "whole-chain replay, cumulative obligation, tamper, historical-binding and cross-language binding tests"
+        },
+        {
+          "path": "tests/test_rsi_ccc_wp00_m2_resource_laundering.py",
+          "git_blob_sha": "f2a1118394192c8021c9883499ff063d884496e6",
+          "role": "hidden external-resource laundering rejection fixture"
+        },
+        {
+          "path": "tests/test_rsi_ccc_wp00_m2_receipts.py",
+          "git_blob_sha": "91ece90c890b765916e2a1bafaa66a804ee1da6e",
+          "role": "independent certificate/receipt recomputation and trust-identity invariance tests"
+        },
+        {
+          "path": ".github/workflows/rsi-ccc-m2.yml",
+          "git_blob_sha": "bfb884a7fc829e2a9dd5422693a2ab9529858d51",
+          "role": "isolated M2 Lean compile, kernel replay, executable sequence and trust-receipt replay workflow"
+        },
+        {
+          "path": ".ghos-routing/workflows.json",
+          "git_blob_sha": "d11bf9f7682ef98055e4be033fc83e407d835880",
+          "role": "registered execution routing for the isolated M2 workflow"
+        }
+      ]
+    }
   },
   "promotion_ready": false,
-  "blocking_reason": "M1 proof is compiled and content-bound; independent non-authoring exact-head review remains required before any promotion decision"
+  "blocking_reason": "M2 sequence and strengthened trust receipts are content-bound but conservatively await fresh exact-head replay, independent review, and integration"
 }
