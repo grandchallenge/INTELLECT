@@ -1,26 +1,31 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "work_package_id": "RSI-CCC-WP00",
-  "milestone": "M0-smallest-complete-model",
+  "milestone": "M1-one-proved-guarded-self-replacement-step",
   "authority_basis": {
     "council_matter": "GI-COUNCIL-RSI-CCC-001",
     "intake_pr": 100,
     "authorized_head": "c65e821f77fdf0ee7a21bda16d2c6d394c4aa118",
     "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
-    "execution_issue": 101
+    "execution_issue": 101,
+    "m1_issue": 104,
+    "m0_merge_commit": "18ded6c7d8bc491c63d247f7a71899e4e2f7bf07",
+    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d"
   },
   "model_resolution": {
     "ambient_category": "Set^(omega^op)",
     "ambient_order_enrichment_claimed": false,
     "refinement_placement": "external certified preorder on an explicitly admitted typed program/morphism relation domain",
     "descriptive_title": "Guarded Reflective Cartesian Closure with Certified Refinement",
-    "round_1_review_outcome": "returned_for_narrowing"
+    "round_1_review_outcome": "returned_for_narrowing",
+    "round_2_review_outcome": "M0_APPROVED_FOR_INTEGRATION"
   },
   "formal_object": {
     "path": "governance/rsi_ccc_wp00/formal_object.json",
     "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
     "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
-    "claim_state": "research_target_not_yet_mathematically_certified"
+    "claim_state": "research_target_not_yet_mathematically_certified",
+    "frozen_for_m1": true
   },
   "bound_artifacts": [
     {
@@ -77,9 +82,16 @@
   },
   "mechanization": {
     "status": "pending",
+    "active_tranche": {
+      "id": "M1",
+      "status": "proof_complete_exact_head_replayed_pending_review",
+      "meaning": "the M1 closure proof compiles and kernel-replays; independent exact-head review remains required before any promotion decision"
+    },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "milestone": "M1-one-proved-guarded-self-replacement-step",
+    "issue": 104,
+    "lean_toolchain": "leanprover/lean4:v4.34.0",
     "proof_order": [
       "CCC laws",
       "guardedness",
@@ -99,8 +111,68 @@
       "scoped compatibility with currying and evaluation",
       "admission preservation under explicit checker-soundness and evaluation-context assumptions",
       "guarded productivity"
+    ],
+    "completed_on_current_proof_surface": [
+      "stage-indexed objects with adjacent restriction maps",
+      "identity, composition, products, pairing and projections",
+      "function-level evaluation/currying beta and eta sanity laws",
+      "Later and next definitions",
+      "stagewise guarded fixed-point construction and productivity equation",
+      "intrinsically typed closed Bool object language",
+      "typed quotation/run adequacy for the current object-language fragment",
+      "external represented-program semantic refinement preorder",
+      "semantic refinement reflexivity and transitivity",
+      "semantic refinement compatibility with represented composition",
+      "scoped currying and evaluation refinement lemmas",
+      "operational quality represented separately from semantic refinement",
+      "explicit checker/certificate/context/kernel/resource evidence boundary",
+      "rejected-step stasis",
+      "abstract one-step accepted replacement preservation theorem",
+      "concrete Kripke exponential witness with beta and eta laws",
+      "typed run interpretation connected to the concrete exponential layer",
+      "non-vacuous finite parity refinement domain with exact capability and optimization transitions",
+      "frozen checker certificate semantics bridged to AdmissionEvidence",
+      "complete guarded capability-extension replacement theorem",
+      "complete guarded semantics-preserving optimization replacement theorem",
+      "exact-head Lean compile and independent kernel replay",
+      "cross-language replay of checker digests, proposal digests, byte bounds, and accepted transitions"
+    ],
+    "open_targets": [
+      "perform independent non-authoring Formalist/Adversary/Referee review of the exact compiled head before any promotion decision"
+    ],
+    "proof_artifacts": [
+      {
+        "path": "lean/RSICCC.lean",
+        "git_blob_sha": "2f9dd2ae49d81d59ba03640f7850c1056e495309",
+        "role": "M1 theorem-first Lean core proof surface"
+      },
+      {
+        "path": "lean/RSICCCM1.lean",
+        "git_blob_sha": "6eec8d83197148669030314db9b1bcfd46a4a95f",
+        "role": "M1 concrete exponential, finite checker bridge, and complete guarded replacement proofs"
+      },
+      {
+        "path": "lean-toolchain",
+        "git_blob_sha": "12359f928f18e4a89ebd1444a0310b025931b17d",
+        "role": "pinned Lean 4 toolchain"
+      },
+      {
+        "path": "lakefile.toml",
+        "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
+        "role": "Lean package build definition for core and M1 closure modules"
+      },
+      {
+        "path": "tests/test_rsi_ccc_wp00_m1.py",
+        "git_blob_sha": "797302608209ca1f1c727e4872e161b1e969f6ce",
+        "role": "M1 formal-object freeze, replay-state, target naming, proof-artifact binding, and cross-language checker replay"
+      },
+      {
+        "path": ".github/workflows/rsi-ccc-lean.yml",
+        "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
+        "role": "exact-head Lean build, multi-module kernel replay, and no-placeholder/local-axiom guard"
+      }
     ]
   },
   "promotion_ready": false,
-  "blocking_reason": "Lean 4 preservation theorem for the narrowed formal object not yet bound"
+  "blocking_reason": "M1 proof is compiled and content-bound; independent non-authoring exact-head review remains required before any promotion decision"
 }
