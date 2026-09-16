@@ -1,0 +1,120 @@
+{
+  "authority_basis": {
+    "authorized_head": "c65e821f77fdf0ee7a21bda16d2c6d394c4aa118",
+    "council_matter": "GI-COUNCIL-RSI-CCC-001",
+    "intake_pr": 100,
+    "merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
+    "successor_issue": 101
+  },
+  "claim": "A Cartesian-closed semantic core, typed reflection over explicit program representations, a certified refinement/improvement ordering, and guarded recursion are to be combined into a coherent bounded self-replacement mechanism beneath a fixed verification/admission kernel.",
+  "claim_state": "research_target_not_yet_mathematically_certified",
+  "concrete_model_candidate": {
+    "category": "Set^(omega^op)",
+    "ccc_required": true,
+    "guarded_fixpoint_target": {
+      "input": "f : Later A -> A",
+      "law": "gfix(f) = f(next(gfix(f)))",
+      "output": "gfix(f) : A",
+      "status": "to_be_mechanized"
+    },
+    "later_modality": {
+      "natural_transformation": "next_X : X -> Later X",
+      "notation": "Later",
+      "stage_zero": "1",
+      "successor_stage": "(Later X)_(n+1) = X_n"
+    },
+    "name": "topos_of_trees"
+  },
+  "executable_instance": {
+    "abstention": "None",
+    "capability_refinement": "preserve every previously answered value and weakly extend competence domain",
+    "capability_strictness": "strict competence-domain inclusion",
+    "context_id": "parity16-fixed-context-v1",
+    "domain": "integers 0..15",
+    "evidence_class": "bounded_executable_only",
+    "kernel_id": "rsi-ccc-fixed-kernel-v1",
+    "max_declared_cost": 10000,
+    "max_serialized_bytes": 4096,
+    "optimization_strictness": "identical answer vector and strictly lower declared cost",
+    "task": "parity"
+  },
+  "milestone": "M0-smallest-complete-model",
+  "non_goals": [
+    "universal program equivalence",
+    "unrestricted internal truth",
+    "infallible self-verification",
+    "guaranteed discovery of improvements",
+    "unbounded intelligence growth",
+    "unrestricted self-application",
+    "unguarded recursion",
+    "self-replacement of the complete trust base",
+    "production self-modification",
+    "autonomous deployment"
+  ],
+  "preservation_theorem_target": {
+    "assumption": "trusted checker is sound for the admitted certificate language and evaluation context",
+    "conclusions": [
+      "type preservation",
+      "contract preservation",
+      "monotone semantic refinement for accepted replacements",
+      "strict declared quality progress when optimization mode is used",
+      "stasis after rejected proposals",
+      "guarded productivity"
+    ],
+    "status": "pending_mechanization"
+  },
+  "refinement": {
+    "ccc_compatibility_targets": [
+      "composition monotone in each argument",
+      "currying order-preserving",
+      "evaluation order-preserving on the admitted ordered structure"
+    ],
+    "operational_quality": "Q represented separately from semantic refinement",
+    "semantic_equivalence": "[[p]] = [[q]]",
+    "specification_refinement": "p <=_Sigma q",
+    "status": "to_be_mechanized"
+  },
+  "required_rejection_fixtures": [
+    "malformed",
+    "stale_base",
+    "artifact_identity_mismatch",
+    "context_substitution",
+    "trust_kernel_mutation",
+    "resource_bound",
+    "unsafe_candidate",
+    "non_refinement",
+    "non_improvement"
+  ],
+  "schema_version": "0.1.0",
+  "status": "specified_executable_evidence_present_mechanization_pending",
+  "stop_or_narrow_criteria": [
+    "no concrete model supports the interfaces without changing the admitted claim",
+    "reflection requires unrestricted quotation or self-application outside the intake boundary",
+    "refinement is incompatible with the claimed categorical structure",
+    "preservation depends on an unstated oracle or mutable trust anchor",
+    "bounded checker cannot reject the declared adversarial fixtures under fixed context",
+    "formal and executable artifacts cannot be bound to one exact manifest"
+  ],
+  "trust_kernel": {
+    "fixed_components": [
+      "certificate checker semantics",
+      "evaluator/interpreter semantics used by the checker",
+      "admission policy",
+      "artifact/content identity rules",
+      "evaluation-context and metric binding",
+      "checker resource limits"
+    ],
+    "mutation_attempt_policy": "reject",
+    "self_replacement_allowed": false
+  },
+  "typed_reflection": {
+    "adequacy_target": "run_tau(quote(t)) = next_tau([[t]])",
+    "code_object": "Prog(tau)",
+    "evaluation": "run_tau : Prog(tau) -> Later [[tau]]",
+    "forbidden_assumption": "unrestricted semantic quotation A -> Prog(A)",
+    "quotation": "quote(t) : Prog(tau)",
+    "scope": "closed well-typed syntax for an admitted object language",
+    "status": "to_be_mechanized"
+  },
+  "work_package_id": "RSI-CCC-WP00"
+}
