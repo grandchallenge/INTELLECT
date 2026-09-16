@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.2.0",
   "work_package_id": "RSI-CCC-WP00",
   "milestone": "M0-smallest-complete-model",
   "authority_basis": {
@@ -9,17 +9,24 @@
     "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
     "execution_issue": 101
   },
+  "model_resolution": {
+    "ambient_category": "Set^(omega^op)",
+    "ambient_order_enrichment_claimed": false,
+    "refinement_placement": "external certified preorder on an explicitly admitted typed program/morphism relation domain",
+    "descriptive_title": "Guarded Reflective Cartesian Closure with Certified Refinement",
+    "round_1_review_outcome": "returned_for_narrowing"
+  },
   "formal_object": {
     "path": "governance/rsi_ccc_wp00/formal_object.json",
-    "git_blob_sha": "77baf4dc529f5493eab21922d2516b956664d45d",
-    "sha256": "af54d3d9605f3e041ad87ed57823d0b8ea9c8ff48a27cfa9d4a60897bbc3beee",
+    "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
+    "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "claim_state": "research_target_not_yet_mathematically_certified"
   },
   "bound_artifacts": [
     {
       "path": "docs/work_packages/RSI-CCC-WP00.md",
-      "git_blob_sha": "61d2f47133f4a6741021d7544660d749c355d497",
-      "role": "work-package specification and claim boundary"
+      "git_blob_sha": "6b37af847c0f53f32b72ebbc20adff108fcc7893",
+      "role": "work-package specification and narrowed claim boundary"
     },
     {
       "path": "src/grand_intellect/rsi_ccc_wp00.py",
@@ -71,18 +78,29 @@
   "mechanization": {
     "status": "pending",
     "required_before_wp00_promotion": true,
-    "must_bind_to_formal_object_sha256": "af54d3d9605f3e041ad87ed57823d0b8ea9c8ff48a27cfa9d4a60897bbc3beee",
+    "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
+    "milestone": "M1-one-proved-guarded-self-replacement-step",
+    "proof_order": [
+      "CCC laws",
+      "guardedness",
+      "reflection adequacy",
+      "refinement compatibility on the declared external relation domain",
+      "admission preservation"
+    ],
     "required_targets": [
-      "CCC evaluation/currying laws",
-      "typed Prog/quotation/run adequacy assumptions",
+      "stage-indexed objects and restriction maps",
+      "products and Kripke exponential",
+      "evaluation and currying laws",
       "Later/next/gfix laws",
-      "refinement preorder laws",
-      "monotonicity of composition",
-      "compatibility with currying and evaluation",
-      "admission preservation under explicit checker-soundness assumptions",
+      "intrinsically typed object language",
+      "typed Prog/quotation/run adequacy theorem",
+      "external refinement preorder laws on the declared relation domain",
+      "scoped monotonicity of composition",
+      "scoped compatibility with currying and evaluation",
+      "admission preservation under explicit checker-soundness and evaluation-context assumptions",
       "guarded productivity"
     ]
   },
   "promotion_ready": false,
-  "blocking_reason": "mechanically checked categorical preservation theorem not yet bound"
+  "blocking_reason": "Lean 4 preservation theorem for the narrowed formal object not yet bound"
 }
