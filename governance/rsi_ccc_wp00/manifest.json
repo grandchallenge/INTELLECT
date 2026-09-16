@@ -246,9 +246,9 @@
           "role": "independent trust-receipt ledger generation and exact replay"
         },
         {
-          "path": "tests/test_rsi_ccc_wp00_m2.py",
+          "path": "governance/rsi_ccc_wp00/m2_test_rsi_ccc_wp00_m2.py",
           "git_blob_sha": "4518d8df8b4ae9290d82e92e07a5600cdb219691",
-          "role": "whole-chain replay, cumulative obligation, tamper, historical-binding and cross-language binding tests"
+          "role": "immutable snapshot of the reviewed M2 whole-chain regression test"
         },
         {
           "path": "tests/test_rsi_ccc_wp00_m2_resource_laundering.py",
