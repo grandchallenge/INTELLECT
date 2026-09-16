@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office": "steward",
+  "reviewer_id": "openai-gpt-5.6-sol-council-steward-gi-council-rsi-ccc-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-RSI-CCC-001/steward/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2. The work package is appropriately bounded for research intake. Its value is highest if it remains a small formal and executable experiment rather than expanding immediately into a general autonomous-agent platform. Resource discipline requires an early stop gate around one model, one checker, one bounded domain, and one mechanized preservation theorem.",
+  "discharged_obligations": [
+    "Assess proportionality, maintainability, resource commitment, and purpose.",
+    "Ensure intake does not silently authorize deployment or operational self-modification."
+  ],
+  "findings": [
+    "The proposal has a narrow promotion target and explicit non-claims.",
+    "A bounded finite-domain demonstration can be run without frontier-scale resources.",
+    "Production activation and self-modifying deployment remain outside this intake."
+  ],
+  "conditions": [
+    "WP00 should begin with a smallest-complete-model milestone. Do not broaden scope until the model, checker, theorem statement, and negative fixtures exist and agree. Record explicit stop or narrow criteria if the combined structure cannot be mechanized economically."
+  ],
+  "residual_uncertainty": [
+    "Engineering cost is uncertain until the categorical model and proof assistant are selected."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:CONSTITUTION.md",
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:governance/constitutional_authority_schedule.json",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md"
+  ]
+}

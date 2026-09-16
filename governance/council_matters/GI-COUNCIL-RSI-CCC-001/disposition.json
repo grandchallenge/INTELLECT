@@ -1,0 +1,41 @@
+{
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify.",
+  "conditions": [
+    "Bind WP00 to one exact content-addressed formal object and manifest; the categorical model, mechanized theorem, checker, executable demonstration, quality and refinement definitions, fixtures, and trust-boundary statement must all refer to that object.",
+    "Enumerate the fixed trust kernel. The checker, certificate semantics or interpreter, admission policy, artifact-identity rules, and evaluation-context binding may not be modified through the same replacement gate they validate.",
+    "State exact typed laws and assumptions for Prog/run/quotation adequacy, Later/next/gfix, semantic refinement, operational quality Q, and compatibility with composition, currying, and evaluation.",
+    "Make checker soundness, evaluation-context integrity, certificate validity, and any decidability, termination, or resource assumptions explicit in the mechanized preservation theorem; do not promote bounded results to claims of self-verification or unbounded intelligence growth.",
+    "Demonstrate at least one bounded capability-extension transition and one semantics-preserving optimization, plus fail-closed adversarial fixtures covering malformed and stale proposals, unsafe or non-refining candidates, non-improvement, metric or context substitution, trust-kernel mutation attempts, and resource exhaustion.",
+    "Use a smallest-complete-model milestone and explicit stop or narrow criteria before any scope expansion or production-oriented implementation."
+  ],
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office_decisions": {
+    "adversary": "approve_with_conditions",
+    "amanuensis": "approve_with_conditions",
+    "axiomatist": "approve_with_conditions",
+    "cartographer": "approve_with_conditions",
+    "composer": "approve_with_conditions",
+    "formalist": "approve_with_conditions",
+    "grammarian": "approve_with_conditions",
+    "referee": "approve_with_conditions",
+    "steward": "approve_with_conditions",
+    "verifier": "approve_with_conditions"
+  },
+  "procedural_disposition": "ready_with_conditions",
+  "ready_for_human_disposition": true,
+  "review_count": 10,
+  "review_sha256": {
+    "adversary": "543282fd7890de38a1d27ae0d9bb140af5e330215b8a4d3c21587af56f497729",
+    "amanuensis": "4af496ddde7c42f3f2f20516bc018a88f77036203f9f39b534aff8160ae5c851",
+    "axiomatist": "4cd20b04381d2eb1c32d542c76993119b4c23619c49b3cc79f0dd72ec6320a65",
+    "cartographer": "95b22e467455c42de22eb908d224dae01021cf92441fa0599a1422d567e61d07",
+    "composer": "58b0b3e2ace873f05624cf565b53abe88254bac8bcab8541bc7630b655b1795f",
+    "formalist": "f5a1b327ad2c87eab6da99075468826830efae50e11d940ee9437e43c3842c87",
+    "grammarian": "5bf581043b8a3d44fe03e6c99f6f176a79813e418e93a6a33ac817e959c74f8b",
+    "referee": "a3c0448e7d0efb4a1ad833464ee2c7c9f95b8261c8200a1a0ca46636b6dbd597",
+    "steward": "31513790b2bfc77097f9f2347e1582488b68f128041b2b9547ac4bd9b66aed51",
+    "verifier": "1fe631f2f91c58c3fd79f0edff9eb48f51875eacbaebb5bb29bf21053d1ac206"
+  },
+  "schema_version": "1.0"
+}

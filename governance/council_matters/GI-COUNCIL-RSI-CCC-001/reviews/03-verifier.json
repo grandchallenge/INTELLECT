@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office": "verifier",
+  "reviewer_id": "openai-gpt-5.6-sol-council-verifier-gi-council-rsi-ccc-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-RSI-CCC-001/verifier/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2. The proposal states falsifiable outputs and negative fixtures. It avoids an impossible universal-equivalence requirement by putting admission behind a bounded certificate language. Verification remains conditional on exact artifact/evaluation binding and on making every theorem assumption machine-visible.",
+  "discharged_obligations": [
+    "Check whether the proposed claims admit reproducible tests or proof obligations.",
+    "Check fail-closed behavior and exact binding requirements.",
+    "Separate executable evidence from mathematical proof."
+  ],
+  "findings": [
+    "The bounded positive and negative fixtures are sufficient for an intake-stage verification plan.",
+    "Strict quality progress is only as strong as the declared Q relation and evidence used by the checker.",
+    "Successful CI for the intake packet establishes repository conformance only; it does not validate the mathematical claim."
+  ],
+  "conditions": [
+    "The mechanized theorem must name checker soundness, evaluation-context integrity, certificate validity, and any decidability or termination assumptions. Candidate, certificate, policy, benchmark, and evaluation context must be content-addressed in every admission record."
+  ],
+  "residual_uncertainty": [
+    "No independent proof or executable realization exists yet; verification of the research claim is intentionally deferred to WP00."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:CONSTITUTION.md",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/matter.json",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md",
+    "PR100-CI:35047294420:success",
+    "PR100-GCL-conformance:35047294901:success"
+  ]
+}
