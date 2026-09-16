@@ -205,7 +205,7 @@
       "evidence_artifacts": [
         {
           "path": "lean/RSICCCM2.lean",
-          "git_blob_sha": "e52338ea7143aa343a14124494f9a5e056f2dffd",
+          "git_blob_sha": "fd0af1980467fd078580de2bdc69966c4266d71d",
           "role": "M2 inductive sequence theorem and exact five-step proof"
         },
         {
