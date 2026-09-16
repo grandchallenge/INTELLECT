@@ -1,5 +1,5 @@
 {
-  "schema_version": "0.4.0",
+  "schema_version": "0.4.1",
   "work_package_id": "RSI-CCC-WP00",
   "milestone": "M2-compositional-guarded-replacement-sequence",
   "authority_basis": {
@@ -160,9 +160,9 @@
         "role": "pinned Lean 4 toolchain"
       },
       {
-        "path": "governance/rsi_ccc_wp00/m1_retained/lakefile.toml",
+        "path": "lakefile.toml",
         "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
-        "role": "immutable retained M1 Lean package build definition"
+        "role": "M1 Lean package build definition retained at its original reviewed path"
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
@@ -170,15 +170,15 @@
         "role": "retained M1 formal-object freeze and checker replay"
       },
       {
-        "path": "governance/rsi_ccc_wp00/m1_retained/rsi-ccc-lean.yml",
+        "path": ".github/workflows/rsi-ccc-lean.yml",
         "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
-        "role": "immutable retained M1 exact-head Lean build and kernel replay workflow"
+        "role": "M1 exact-head Lean build and kernel replay workflow retained at its original reviewed path"
       }
     ],
     "m2_tranche": {
       "id": "M2",
       "issue": 106,
-      "status": "sequence_complete_exact_head_replayed_pending_review",
+      "status": "candidate_constructed_pending_exact_head_replay",
       "basis_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6",
       "milestone": "M2-compositional-guarded-replacement-sequence",
       "checker_git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
@@ -193,11 +193,12 @@
         "heterogeneous accepted capability and optimization transitions",
         "cumulative non-regression of previously admitted obligations",
         "content-addressed predecessor/proposal/event lineage",
-        "sequence-level adversarial rejection fixtures",
+        "sequence-level adversarial rejection fixtures including hidden resource laundering",
         "byte-stable fixed checker and trust boundary",
         "independent whole-chain replay from genesis to final state"
       ],
       "open_targets": [
+        "complete fresh exact-head Python and Lean replay on the isolated M2 workflow",
         "complete independent non-authoring Formalist/Adversary/Referee review",
         "integrate the exact reviewed head without changing the frozen checker or formal object"
       ],
@@ -219,22 +220,27 @@
         },
         {
           "path": "tests/test_rsi_ccc_wp00_m2.py",
-          "git_blob_sha": "941c99b421875c9308e8a974e01cd469c55fd887",
-          "role": "whole-chain replay, cumulative obligation, tamper and cross-language binding tests"
+          "git_blob_sha": "4518d8df8b4ae9290d82e92e07a5600cdb219691",
+          "role": "whole-chain replay, cumulative obligation, tamper, historical-binding and cross-language binding tests"
         },
         {
-          "path": "lakefile.toml",
-          "git_blob_sha": "daf7bdf479ec11907f89f642ea577508a2691654",
-          "role": "Lean package registration for the M2 module"
+          "path": "tests/test_rsi_ccc_wp00_m2_resource_laundering.py",
+          "git_blob_sha": "f2a1118394192c8021c9883499ff063d884496e6",
+          "role": "hidden external-resource laundering rejection fixture"
         },
         {
-          "path": ".github/workflows/rsi-ccc-lean.yml",
-          "git_blob_sha": "533386c02bcca5b46ffdccddceae6ca958849851",
-          "role": "Lean build and kernel replay extended to RSICCCM2"
+          "path": ".github/workflows/rsi-ccc-m2.yml",
+          "git_blob_sha": "c4816b2172de40cf1a2d9cc321bf154dfb609463",
+          "role": "isolated M2 Lean compile, kernel replay, and executable evidence replay workflow"
+        },
+        {
+          "path": ".ghos-routing/workflows.json",
+          "git_blob_sha": "d11bf9f7682ef98055e4be033fc83e407d835880",
+          "role": "registered execution routing for the isolated M2 workflow"
         }
       ]
     }
   },
   "promotion_ready": false,
-  "blocking_reason": "M2 sequence evidence is complete and exactly replayed; independent exact-head review and integration remain"
+  "blocking_reason": "M2 candidate is content-bound and non-promotable; fresh exact-head replay and independent review remain required before integration"
 }
