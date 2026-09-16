@@ -1,4 +1,4 @@
-# RSI-CCC-WP00 — Guarded Reflective Order-Enriched Cartesian Closure
+# RSI-CCC-WP00 — Guarded Reflective Cartesian Closure with Certified Refinement
 
 ## Status
 
@@ -6,41 +6,66 @@ M0 smallest-complete-model tranche in progress under `grandchallenge/INTELLECT#1
 
 Research intake was authorized under `GI-COUNCIL-RSI-CCC-001` and integrated by PR #100 at merge commit `2badd8c3197ef4515591bba05ff782ff3cafc930`.
 
-The current tranche supplies a content-bound formal target, a bounded executable checker, and adversarial fixtures. It does **not** yet supply the mechanically checked categorical preservation theorem required for WP00 promotion.
+The current tranche supplies a content-bound formal target, a bounded executable checker, and adversarial fixtures. It does **not** yet supply the mechanically checked preservation theorem required for WP00 promotion.
+
+The governed identity remains `RSI-CCC-WP00`. The M0 descriptive title is narrowed from “Order-Enriched Cartesian Closure” because the selected ambient model is not presently claimed to carry a nontrivial order on every hom-set.
 
 ## Exact research claim
 
 The target is a bounded self-replacement mechanism with four distinct components:
 
-1. a Cartesian-closed semantic core;
+1. a Cartesian-closed guarded semantic core;
 2. typed reflection over explicit program representations;
-3. semantic refinement plus a separate operational quality order;
+3. an external certified semantic-refinement preorder over an explicitly admitted program or morphism relation domain, plus a separate operational quality order;
 4. guarded recursion beneath a fixed verification/admission kernel.
 
-The strongest intended WP00 claim remains:
+The strongest intended WP00 claim is:
 
 > Cartesian closure, typed reflection, certified refinement ordering, and guarded recursion can be combined into a coherent formal mechanism for recursively replacing a system with certified non-regressive variants beneath a fixed verification and admission kernel.
 
 This statement remains a research target until the mechanized proof lane closes.
 
+## M0 enrichment resolution
+
+M0 takes the smaller defensible path.
+
+The ambient categorical model remains the topos of trees, `Set^(omega^op)`. WP00 does **not** infer an order-enriched category merely because admitted programs carry a refinement relation. Instead, refinement is a separately defined preorder over an explicit relation domain of typed admitted programs or represented morphisms.
+
+The theorem lane must prove the declared compatibility laws only on that relation domain:
+
+- reflexivity and transitivity;
+- monotonicity of composition when all represented morphisms are in scope;
+- order preservation by currying for declared related representations;
+- order preservation by evaluation for declared related function and argument representations.
+
+A later move to `Pos`/CPO-valued guarded presheaves would be a stronger model change and requires a new exact formal object and review. It is not assumed by M0.
+
 ## M0 concrete model
 
-The formal-object record selects the topos of trees, `Set^(omega^op)`, as the first concrete model candidate.
+The formal-object record selects `Set^(omega^op)` as the first concrete model candidate.
 
-The required categorical surface is:
+The required Cartesian-closed surface is
 
 \[
-\mathcal C(X\times A,B)\cong\mathcal C(X,B^A)
+\mathcal C(X\times A,B)\cong\mathcal C(X,B^A),
 \]
 
-with evaluation/currying compatibility, together with a later modality `Later` satisfying the staged interpretation
+with explicit product, Kripke exponential, evaluation, and currying constructions in the mechanization.
+
+The later modality target is
 
 \[
 (\mathrm{Later}\,X)_0=1,\qquad
-(\mathrm{Later}\,X)_{n+1}=X_n.
+(\mathrm{Later}\,X)_{n+1}=X_n,
 \]
 
-The guarded fixed-point target is:
+with natural transformation
+
+\[
+\mathrm{next}_X:X\to\mathrm{Later}\,X.
+\]
+
+The guarded fixed-point target is
 
 \[
 f:\mathrm{Later}\,A\to A
@@ -58,7 +83,7 @@ These are theorem targets, not claims established by the Python reference model.
 
 ## Reflection boundary
 
-`Prog(tau)` denotes closed, well-typed program representations for an admitted object language. Reflection is staged:
+`Prog(tau)` denotes closed, intrinsically well-typed program representations for an admitted object language. Reflection is staged:
 
 \[
 \mathrm{run}_\tau:\mathrm{Prog}(\tau)\to\mathrm{Later}\,\llbracket\tau\rrbracket.
@@ -83,6 +108,8 @@ For the bounded executable instance, a candidate refines the admitted solver onl
 A semantics-preserving optimization requires an identical answer vector and strictly lower declared cost under the same fixed evaluation context.
 
 A candidate cannot supply its own metric or context.
+
+This executable preorder is evidence about the admission protocol. It is not evidence that every hom-set of `Set^(omega^op)` is ordered.
 
 ## Fixed trust kernel
 
@@ -136,28 +163,54 @@ The test suite exercises fail-closed rejection for:
 
 These tests establish behavior of the bounded executable checker only.
 
+## M1 theorem order
+
+The mechanization tranche must proceed in layers:
+
+\[
+\text{CCC laws}
+\to
+\text{guardedness}
+\to
+\text{reflection adequacy}
+\to
+\text{refinement compatibility}
+\to
+\text{admission preservation}.
+\]
+
+The admission theorem must retain checker soundness, evaluation-context integrity, certificate validity, and resource assumptions as explicit hypotheses.
+
+The M1 milestone is:
+
+\[
+\boxed{\text{one proved guarded self-replacement step}}
+\]
+
+One typed program representation proposes another; the checker accepts or rejects it; an accepted transition preserves the declared invariant. Repeated application may be considered only after the one-step theorem is closed.
+
 ## Mechanization obligation
 
-WP00 cannot pass its promotion gate until a proof artifact, bound into the same governed manifest, establishes the categorical and guarded preservation claims.
+WP00 cannot pass its promotion gate until a Lean 4 proof artifact, bound into the same governed manifest, establishes at least:
 
-The mechanized statement must expose at least:
-
-- CCC laws used by the construction;
-- `Prog`/quotation/`run` typing and adequacy assumptions;
-- `Later`/`next`/`gfix` laws;
-- refinement preorder laws;
-- monotonicity of composition;
-- compatibility with currying and evaluation;
+- the stage-indexed objects and restriction maps;
+- products and the Kripke exponential;
+- evaluation and currying laws;
+- `Later`, `next`, and guarded fixed-point laws;
+- the intrinsically typed object language;
+- quotation/interpreter adequacy;
+- external refinement-preorder laws on the declared relation domain;
+- scoped compatibility with composition, currying, and evaluation;
 - checker-soundness and evaluation-context assumptions;
-- admission preservation;
-- guarded productivity.
+- one-step admission preservation;
+- guarded productivity for the later trace theorem.
 
 Undecidable properties must enter through an explicit certificate language or a bounded decision procedure. No implicit oracle is admissible.
 
 ## Stop or narrow gate
 
-Do not expand scope if the selected model cannot support the required interfaces without changing the claim, if reflection requires unrestricted quotation, if the refinement relation fails the claimed categorical compatibility, if preservation requires a mutable trust anchor or unstated oracle, or if the formal and executable artifacts cannot remain bound to one exact manifest.
+Do not expand scope if the ambient guarded CCC cannot support the typed semantics, if reflection requires unrestricted quotation, if the external refinement relation cannot satisfy its scoped compatibility laws, if preservation requires a mutable trust anchor or unstated oracle, or if the formal and executable artifacts cannot remain bound to one exact manifest.
 
 ## Claim boundary
 
-M0 does not certify the proposed mathematics and does not authorize production self-modification, autonomous deployment, unbounded RSI claims, unrestricted self-reference, or replacement of the verification/admission trust kernel.
+M0 does not claim ambient order enrichment of `Set^(omega^op)`. It does not certify the proposed mathematics and does not authorize production self-modification, autonomous deployment, unbounded RSI claims, unrestricted self-reference, or replacement of the verification/admission trust kernel.
