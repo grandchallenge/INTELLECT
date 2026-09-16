@@ -1,0 +1,7 @@
+name = "rsi_ccc_wp00"
+version = "0.1.0"
+defaultTargets = ["RSICCC"]
+
+[[lean_lib]]
+name = "RSICCC"
+srcDir = "lean"

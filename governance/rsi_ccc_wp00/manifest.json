@@ -1,26 +1,31 @@
 {
-  "schema_version": "0.2.0",
+  "schema_version": "0.3.0",
   "work_package_id": "RSI-CCC-WP00",
-  "milestone": "M0-smallest-complete-model",
+  "milestone": "M1-one-proved-guarded-self-replacement-step",
   "authority_basis": {
     "council_matter": "GI-COUNCIL-RSI-CCC-001",
     "intake_pr": 100,
     "authorized_head": "c65e821f77fdf0ee7a21bda16d2c6d394c4aa118",
     "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
-    "execution_issue": 101
+    "execution_issue": 101,
+    "m1_issue": 104,
+    "m0_merge_commit": "18ded6c7d8bc491c63d247f7a71899e4e2f7bf07",
+    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d"
   },
   "model_resolution": {
     "ambient_category": "Set^(omega^op)",
     "ambient_order_enrichment_claimed": false,
     "refinement_placement": "external certified preorder on an explicitly admitted typed program/morphism relation domain",
     "descriptive_title": "Guarded Reflective Cartesian Closure with Certified Refinement",
-    "round_1_review_outcome": "returned_for_narrowing"
+    "round_1_review_outcome": "returned_for_narrowing",
+    "round_2_review_outcome": "M0_APPROVED_FOR_INTEGRATION"
   },
   "formal_object": {
     "path": "governance/rsi_ccc_wp00/formal_object.json",
     "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
     "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
-    "claim_state": "research_target_not_yet_mathematically_certified"
+    "claim_state": "research_target_not_yet_mathematically_certified",
+    "frozen_for_m1": true
   },
   "bound_artifacts": [
     {
@@ -76,10 +81,12 @@
     ]
   },
   "mechanization": {
-    "status": "pending",
+    "status": "in_progress",
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "milestone": "M1-one-proved-guarded-self-replacement-step",
+    "issue": 104,
+    "lean_toolchain": "leanprover/lean4:v4.34.0",
     "proof_order": [
       "CCC laws",
       "guardedness",
@@ -99,8 +106,59 @@
       "scoped compatibility with currying and evaluation",
       "admission preservation under explicit checker-soundness and evaluation-context assumptions",
       "guarded productivity"
+    ],
+    "completed_on_current_proof_surface": [
+      "stage-indexed objects with adjacent restriction maps",
+      "identity, composition, products, pairing and projections",
+      "function-level evaluation/currying beta and eta sanity laws",
+      "Later and next definitions",
+      "stagewise guarded fixed-point construction and productivity equation",
+      "intrinsically typed closed Bool object language",
+      "typed quotation/run adequacy for the current object-language fragment",
+      "external represented-program semantic refinement preorder",
+      "semantic refinement reflexivity and transitivity",
+      "semantic refinement compatibility with represented composition",
+      "scoped currying and evaluation refinement lemmas",
+      "operational quality represented separately from semantic refinement",
+      "explicit checker/certificate/context/kernel/resource evidence boundary",
+      "rejected-step stasis",
+      "abstract one-step accepted replacement preservation theorem"
+    ],
+    "open_targets": [
+      "construct the concrete Kripke exponential witness for TreeObj and discharge its beta/eta laws",
+      "connect the intrinsically typed program interpretation to the concrete Kripke exponential layer",
+      "show the represented refinement domain contains the actual programs/morphisms used by the one-step theorem without vacuity",
+      "connect abstract AdmissionEvidence assumptions to the frozen bounded checker/certificate semantics",
+      "independently replay the completed theorem surface at one exact head before any promotion decision"
+    ],
+    "proof_artifacts": [
+      {
+        "path": "lean/RSICCC.lean",
+        "git_blob_sha": "b29dc4c537b1e65dbe99593c179c45a66b73e47c",
+        "role": "M1 theorem-first Lean proof surface"
+      },
+      {
+        "path": "lean-toolchain",
+        "git_blob_sha": "12359f928f18e4a89ebd1444a0310b025931b17d",
+        "role": "pinned Lean 4 toolchain"
+      },
+      {
+        "path": "lakefile.toml",
+        "git_blob_sha": "44ae3f431bfe6ad0669a04018fb3af96346bee39",
+        "role": "Lean package build definition"
+      },
+      {
+        "path": "tests/test_rsi_ccc_wp00_m1.py",
+        "git_blob_sha": "b5d9f229f0224586276e0968765eef7ff5f5733f",
+        "role": "M1 formal-object freeze and proof-artifact binding checks"
+      },
+      {
+        "path": ".github/workflows/rsi-ccc-lean.yml",
+        "git_blob_sha": "1eda37e72bcf82f9fc1e1fc3fbe4cfa2c7f05e96",
+        "role": "exact-head Lean build, independent checker, and axiom audit"
+      }
     ]
   },
   "promotion_ready": false,
-  "blocking_reason": "Lean 4 preservation theorem for the narrowed formal object not yet bound"
+  "blocking_reason": "M1 proof lane is in progress; the concrete Kripke exponential witness, checker-to-theorem connection, non-vacuous refinement-domain closure, and independent exact-head replay remain open"
 }

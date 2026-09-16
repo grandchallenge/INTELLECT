@@ -1,0 +1,37 @@
+name: RSI-CCC Lean mechanization
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "lean/**"
+      - "lean-toolchain"
+      - "lakefile.toml"
+      - "governance/rsi_ccc_wp00/**"
+      - "tests/test_rsi_ccc_wp00_m1.py"
+      - ".github/workflows/rsi-ccc-lean.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: intellect-rsi-ccc-lean-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lean:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: leanprover/lean-action@50fcf42d2e460296f1a34b402e990d1b24f8b596
+        with:
+          build: "true"
+          test: "false"
+          leanchecker: "true"
+          axiom-audit: "true"
+          use-github-cache: "true"
