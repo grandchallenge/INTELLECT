@@ -160,9 +160,9 @@
         "role": "pinned Lean 4 toolchain"
       },
       {
-        "path": "lakefile.toml",
+        "path": "governance/rsi_ccc_wp00/m1_retained/lakefile.toml",
         "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
-        "role": "retained M1 Lean package build definition"
+        "role": "immutable retained M1 Lean package build definition"
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
@@ -170,9 +170,9 @@
         "role": "retained M1 formal-object freeze and checker replay"
       },
       {
-        "path": ".github/workflows/rsi-ccc-lean.yml",
+        "path": "governance/rsi_ccc_wp00/m1_retained/rsi-ccc-lean.yml",
         "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
-        "role": "retained M1 exact-head Lean build and kernel replay workflow"
+        "role": "immutable retained M1 exact-head Lean build and kernel replay workflow"
       }
     ],
     "m2_tranche": {
@@ -187,7 +187,7 @@
       "rejected_event_count": 10,
       "genesis_digest": "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6",
       "final_candidate_digest": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
-      "event_chain_digest": "47b2a9d249befeaada200e4163235324a2347502478b84f27aa3c4c778ef1da9",
+      "event_chain_digest": "da24637752e285b39e56c39f4a435e9d4b61be44adad813190a1247f9a52d10e",
       "required_evidence": [
         "inductive composition of M1 accepted-step preservation across exact succession",
         "heterogeneous accepted capability and optimization transitions",
@@ -205,13 +205,13 @@
       "evidence_artifacts": [
         {
           "path": "lean/RSICCCM2.lean",
-          "git_blob_sha": "fd0af1980467fd078580de2bdc69966c4266d71d",
+          "git_blob_sha": "9231ae9282a3b729bd61d27ac986a2eb6c3aaa35",
           "role": "M2 inductive sequence theorem and exact five-step proof"
         },
         {
           "path": "governance/rsi_ccc_wp00/m2_sequence.json",
-          "git_blob_sha": "03991b4de9dada5b7d886cf94cf1e9030e584c82",
-          "role": "content-addressed mixed accepted/rejected trajectory receipts"
+          "git_blob_sha": "3f28de3e40ae67ee16f61b56ef4635d339bdeeff",
+          "role": "canonical content-addressed mixed accepted/rejected trajectory receipts"
         },
         {
           "path": "src/grand_intellect/rsi_ccc_wp00_m2.py",
@@ -220,7 +220,7 @@
         },
         {
           "path": "tests/test_rsi_ccc_wp00_m2.py",
-          "git_blob_sha": "ff0d2d27d6666360b115157eab7f0fe537142be2",
+          "git_blob_sha": "941c99b421875c9308e8a974e01cd469c55fd887",
           "role": "whole-chain replay, cumulative obligation, tamper and cross-language binding tests"
         },
         {
