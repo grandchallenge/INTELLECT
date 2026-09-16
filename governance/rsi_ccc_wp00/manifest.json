@@ -1,0 +1,106 @@
+{
+  "schema_version": "0.2.0",
+  "work_package_id": "RSI-CCC-WP00",
+  "milestone": "M0-smallest-complete-model",
+  "authority_basis": {
+    "council_matter": "GI-COUNCIL-RSI-CCC-001",
+    "intake_pr": 100,
+    "authorized_head": "c65e821f77fdf0ee7a21bda16d2c6d394c4aa118",
+    "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
+    "execution_issue": 101
+  },
+  "model_resolution": {
+    "ambient_category": "Set^(omega^op)",
+    "ambient_order_enrichment_claimed": false,
+    "refinement_placement": "external certified preorder on an explicitly admitted typed program/morphism relation domain",
+    "descriptive_title": "Guarded Reflective Cartesian Closure with Certified Refinement",
+    "round_1_review_outcome": "returned_for_narrowing"
+  },
+  "formal_object": {
+    "path": "governance/rsi_ccc_wp00/formal_object.json",
+    "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
+    "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
+    "claim_state": "research_target_not_yet_mathematically_certified"
+  },
+  "bound_artifacts": [
+    {
+      "path": "docs/work_packages/RSI-CCC-WP00.md",
+      "git_blob_sha": "6b37af847c0f53f32b72ebbc20adff108fcc7893",
+      "role": "work-package specification and narrowed claim boundary"
+    },
+    {
+      "path": "src/grand_intellect/rsi_ccc_wp00.py",
+      "git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
+      "role": "bounded executable checker and positive trace"
+    },
+    {
+      "path": "tests/test_rsi_ccc_wp00.py",
+      "git_blob_sha": "bb62645ed0c86b3dac8d062f0a210d94f0610240",
+      "role": "positive and fail-closed adversarial fixtures"
+    }
+  ],
+  "fixed_context": {
+    "context_id": "parity16-fixed-context-v1",
+    "kernel_id": "rsi-ccc-fixed-kernel-v1",
+    "domain": "integers 0..15",
+    "max_serialized_bytes": 4096,
+    "max_declared_cost": 10000
+  },
+  "trust_kernel": {
+    "mutable_by_candidate": false,
+    "components": [
+      "certificate checker semantics",
+      "evaluator/interpreter semantics used by the checker",
+      "admission policy",
+      "artifact/content identity rules",
+      "evaluation-context and metric binding",
+      "checker resource limits"
+    ]
+  },
+  "expected_executable_evidence": {
+    "accepted": [
+      "strict capability-domain extension",
+      "semantics-preserving lower-cost optimization"
+    ],
+    "rejected": [
+      "malformed",
+      "stale_base",
+      "artifact_identity_mismatch",
+      "context_substitution",
+      "trust_kernel_mutation",
+      "resource_bound",
+      "unsafe_candidate",
+      "non_refinement",
+      "non_improvement",
+      "candidate_defined_metric"
+    ]
+  },
+  "mechanization": {
+    "status": "pending",
+    "required_before_wp00_promotion": true,
+    "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
+    "milestone": "M1-one-proved-guarded-self-replacement-step",
+    "proof_order": [
+      "CCC laws",
+      "guardedness",
+      "reflection adequacy",
+      "refinement compatibility on the declared external relation domain",
+      "admission preservation"
+    ],
+    "required_targets": [
+      "stage-indexed objects and restriction maps",
+      "products and Kripke exponential",
+      "evaluation and currying laws",
+      "Later/next/gfix laws",
+      "intrinsically typed object language",
+      "typed Prog/quotation/run adequacy theorem",
+      "external refinement preorder laws on the declared relation domain",
+      "scoped monotonicity of composition",
+      "scoped compatibility with currying and evaluation",
+      "admission preservation under explicit checker-soundness and evaluation-context assumptions",
+      "guarded productivity"
+    ]
+  },
+  "promotion_ready": false,
+  "blocking_reason": "Lean 4 preservation theorem for the narrowed formal object not yet bound"
+}
