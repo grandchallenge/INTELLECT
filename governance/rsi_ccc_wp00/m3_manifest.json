@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0.0",
+  "work_package_id": "RSI-CCC-WP00",
+  "tranche": "M3",
+  "issue": 108,
+  "status": "candidate_bound_pending_exact_head_replay",
+  "basis_merge_commit": "6e3ced125ff8dfff6bc9ae427bbb5520e6ee3ba9",
+  "milestone": "M3-proposer-evidence-independence",
+  "frozen_formal_object": {
+    "path": "governance/rsi_ccc_wp00/formal_object.json",
+    "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
+    "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc"
+  },
+  "frozen_checker": {
+    "path": "src/grand_intellect/rsi_ccc_wp00.py",
+    "git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb"
+  },
+  "objective_digest": "3926dc39cf05d5030a9da60e6680eb53eaf18f14e81e621210d95213248625a5",
+  "accepted_transition_count": 5,
+  "genesis_candidate_digest": "8b00933f5ccf3d497f12b4d11ea547bede001afc95508548b097ad5d593d677c",
+  "final_candidate_digest": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+  "transcript_chain_digest": "295b815b1a14c4453da824d28c7e85309799678b737f274c795ebddd0704a008",
+  "independent_certificate_chain_digest": "7120c0be21626ab9a29b61a71f5a7837ea4c1cb163be54592d3f2f20d89411d8",
+  "independence_witness_certificate_digest": "eea1542f8196516ee4c7e6dffe6115c1d8238b2515c9476cb30ed7d91daf9aca",
+  "fixed_trust_identities": {
+    "policy_digest": "3cdf44504e3d030780b7328615781f5588a437a2324b4052034e67e0be82e754",
+    "evaluation_context_digest": "b130d3dd562c60e759b1bdbba43d0a5001354797bd6e03c0d438e62017cba9e6",
+    "kernel_digest": "3acc6dcd3f5c289535ec9e6e113780a5259c7f9d3b968a8d7a20862fc839b8a9",
+    "resource_envelope_digest": "7356525574cd2c628dc4374c6688115c6effd47607229f6aa5285ffa2b5b10ae"
+  },
+  "independence_contract": {
+    "proposer_checker_import": false,
+    "proposer_external_resource_import": false,
+    "proposal_committed_before_evaluation": true,
+    "authoritative_certificate_excludes_proposer_identity": true,
+    "authoritative_certificate_excludes_private_state_digest": true,
+    "admission_recomputed_by_frozen_checker": true,
+    "proposer_may_mutate_trust_kernel": false
+  },
+  "required_adversarial_rejections": [
+    "forged certificate or evidence field",
+    "candidate-defined metric",
+    "stale predecessor",
+    "context substitution",
+    "kernel substitution",
+    "resource-limit substitution",
+    "policy smuggling",
+    "transcript substitution",
+    "objective substitution",
+    "receipt reuse against a successor state"
+  ],
+  "evidence_artifacts": [
+    {
+      "path": "src/grand_intellect/rsi_ccc_wp00_m3_proposer.py",
+      "git_blob_sha": "9b3311b6ca28d7899af9653d89f118b8f4bfb617",
+      "role": "bounded public-state-only proposer"
+    },
+    {
+      "path": "src/grand_intellect/rsi_ccc_wp00_m3.py",
+      "git_blob_sha": "7545beb02d6bed7c1ba6226a11495033cefaca4f",
+      "role": "independent evaluator, certificate reconstruction and replay"
+    },
+    {
+      "path": "governance/rsi_ccc_wp00/m3_proposer_evidence.json",
+      "git_blob_sha": "b6bfac13b164950b0b15a211419d7ae6032beb7f",
+      "role": "canonical proposer transcript and independent evidence receipt chain"
+    },
+    {
+      "path": "lean/RSICCCM3.lean",
+      "git_blob_sha": "deab9a0296ad5335b39a14a619d043fb43da02ca",
+      "role": "mechanized proposer-private-state noninterference and M2 preservation reuse"
+    },
+    {
+      "path": "tests/test_rsi_ccc_wp00_m3.py",
+      "git_blob_sha": "da169f424d81191129c73655569a66b1a2a42b14",
+      "role": "exact replay, tamper, independence and adversarial fixtures"
+    },
+    {
+      "path": ".github/workflows/rsi-ccc-m3.yml",
+      "git_blob_sha": "a907c607f7fcd1d7e27763535fb83d0136f0a697",
+      "role": "isolated M3 Lean/kernel/executable replay workflow"
+    },
+    {
+      "path": ".ghos-routing/workflows.json",
+      "git_blob_sha": "dde0ce72ad247cf55c049565ca3f6e437cfd0d47",
+      "role": "registered execution routing for the M3 workflow"
+    }
+  ],
+  "claim_boundary": [
+    "bounded proposer only",
+    "no learned or generally capable autonomous proposer claim",
+    "no proposer secrecy claim",
+    "no self-certification",
+    "no evaluator or trust-kernel self-modification",
+    "no unbounded recursive self-improvement claim",
+    "no production self-modification or deployment authority"
+  ],
+  "promotion_ready": false
+}

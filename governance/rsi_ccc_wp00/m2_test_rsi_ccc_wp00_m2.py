@@ -165,11 +165,10 @@ class RsiCccWp00M2Tests(unittest.TestCase):
         self.assertIn("lean/RSICCCM2.lean", paths)
         self.assertIn("governance/rsi_ccc_wp00/m2_sequence.json", paths)
         self.assertIn("src/grand_intellect/rsi_ccc_wp00_m2.py", paths)
-        self.assertIn("governance/rsi_ccc_wp00/m2_test_rsi_ccc_wp00_m2.py", paths)
+        self.assertIn("tests/test_rsi_ccc_wp00_m2.py", paths)
         self.assertIn("tests/test_rsi_ccc_wp00_m2_resource_laundering.py", paths)
         self.assertIn(".github/workflows/rsi-ccc-m2.yml", paths)
-        self.assertIn("governance/rsi_ccc_wp00/m2_routing_registry.json", paths)
-        self.assertNotIn(".ghos-routing/workflows.json", paths)
+        self.assertIn(".ghos-routing/workflows.json", paths)
 
         for record in records:
             data = (ROOT / record["path"]).read_bytes()
