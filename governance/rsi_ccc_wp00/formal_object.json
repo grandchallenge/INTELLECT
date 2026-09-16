@@ -6,73 +6,87 @@
     "merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
     "successor_issue": 101
   },
-  "claim": "A Cartesian-closed semantic core, typed reflection over explicit program representations, a certified refinement/improvement ordering, and guarded recursion are to be combined into a coherent bounded self-replacement mechanism beneath a fixed verification/admission kernel.",
+  "descriptive_title": "Guarded Reflective Cartesian Closure with Certified Refinement",
+  "claim": "A Cartesian-closed guarded semantic core, typed reflection over explicit program representations, an external certified semantic-refinement/improvement preorder on an explicitly admitted program or morphism relation domain, and guarded recursion are to be combined into a coherent bounded self-replacement mechanism beneath a fixed verification/admission kernel.",
   "claim_state": "research_target_not_yet_mathematically_certified",
   "concrete_model_candidate": {
+    "name": "topos_of_trees",
     "category": "Set^(omega^op)",
     "ccc_required": true,
-    "guarded_fixpoint_target": {
-      "input": "f : Later A -> A",
-      "law": "gfix(f) = f(next(gfix(f)))",
-      "output": "gfix(f) : A",
-      "status": "to_be_mechanized"
-    },
+    "ambient_order_enrichment_claimed": false,
+    "model_role": "ambient Cartesian-closed guarded semantics; refinement is supplied by a separate admitted-program relation, not by an order on every hom-set",
     "later_modality": {
-      "natural_transformation": "next_X : X -> Later X",
       "notation": "Later",
       "stage_zero": "1",
-      "successor_stage": "(Later X)_(n+1) = X_n"
+      "successor_stage": "(Later X)_(n+1) = X_n",
+      "natural_transformation": "next_X : X -> Later X"
     },
-    "name": "topos_of_trees"
+    "guarded_fixpoint_target": {
+      "input": "f : Later A -> A",
+      "output": "gfix(f) : A",
+      "law": "gfix(f) = f(next(gfix(f)))",
+      "status": "to_be_mechanized"
+    }
+  },
+  "typed_reflection": {
+    "scope": "closed intrinsically well-typed syntax for an admitted object language",
+    "code_object": "Prog(tau)",
+    "quotation": "quote(t) : Prog(tau)",
+    "evaluation": "run_tau : Prog(tau) -> Later [[tau]]",
+    "adequacy_target": "run_tau(quote(t)) = next_tau([[t]])",
+    "forbidden_assumption": "unrestricted semantic quotation A -> Prog(A)",
+    "status": "to_be_mechanized"
+  },
+  "refinement": {
+    "placement": "external certified preorder on an explicitly admitted program/morphism relation domain",
+    "ambient_hom_order_claimed": false,
+    "relation_domain": "typed admitted programs or represented morphisms for which the refinement relation is explicitly defined",
+    "semantic_equivalence": "[[p]] = [[q]]",
+    "specification_refinement": "p <=_Sigma q",
+    "operational_quality": "Q represented separately from semantic refinement",
+    "preorder_targets": [
+      "reflexivity on the declared relation domain",
+      "transitivity on the declared relation domain"
+    ],
+    "compatibility_targets": [
+      "composition is monotone in each argument when all terms lie in the declared refinement domain",
+      "currying is order-preserving for declared related morphism representations",
+      "evaluation is order-preserving for declared related function and argument representations"
+    ],
+    "non_claim": "Set^(omega^op) is not being claimed order-enriched merely because the admitted program layer carries this preorder",
+    "status": "to_be_mechanized"
   },
   "executable_instance": {
+    "task": "parity",
+    "domain": "integers 0..15",
     "abstention": "None",
     "capability_refinement": "preserve every previously answered value and weakly extend competence domain",
     "capability_strictness": "strict competence-domain inclusion",
-    "context_id": "parity16-fixed-context-v1",
-    "domain": "integers 0..15",
-    "evidence_class": "bounded_executable_only",
-    "kernel_id": "rsi-ccc-fixed-kernel-v1",
-    "max_declared_cost": 10000,
-    "max_serialized_bytes": 4096,
     "optimization_strictness": "identical answer vector and strictly lower declared cost",
-    "task": "parity"
+    "context_id": "parity16-fixed-context-v1",
+    "kernel_id": "rsi-ccc-fixed-kernel-v1",
+    "max_serialized_bytes": 4096,
+    "max_declared_cost": 10000,
+    "evidence_class": "bounded_executable_only"
   },
-  "milestone": "M0-smallest-complete-model",
-  "non_goals": [
-    "universal program equivalence",
-    "unrestricted internal truth",
-    "infallible self-verification",
-    "guaranteed discovery of improvements",
-    "unbounded intelligence growth",
-    "unrestricted self-application",
-    "unguarded recursion",
-    "self-replacement of the complete trust base",
-    "production self-modification",
-    "autonomous deployment"
-  ],
   "preservation_theorem_target": {
-    "assumption": "trusted checker is sound for the admitted certificate language and evaluation context",
+    "assumption": "trusted checker is sound for the admitted certificate language, declared refinement relation domain, and fixed evaluation context",
     "conclusions": [
       "type preservation",
       "contract preservation",
-      "monotone semantic refinement for accepted replacements",
+      "monotone external semantic refinement for accepted replacements",
       "strict declared quality progress when optimization mode is used",
       "stasis after rejected proposals",
       "guarded productivity"
     ],
-    "status": "pending_mechanization"
-  },
-  "refinement": {
-    "ccc_compatibility_targets": [
-      "composition monotone in each argument",
-      "currying order-preserving",
-      "evaluation order-preserving on the admitted ordered structure"
+    "layer_order": [
+      "CCC laws",
+      "guardedness",
+      "reflection adequacy",
+      "refinement compatibility on the declared external relation domain",
+      "admission preservation"
     ],
-    "operational_quality": "Q represented separately from semantic refinement",
-    "semantic_equivalence": "[[p]] = [[q]]",
-    "specification_refinement": "p <=_Sigma q",
-    "status": "to_be_mechanized"
+    "status": "pending_mechanization"
   },
   "required_rejection_fixtures": [
     "malformed",
@@ -85,12 +99,13 @@
     "non_refinement",
     "non_improvement"
   ],
-  "schema_version": "0.1.0",
+  "milestone": "M0-smallest-complete-model",
+  "schema_version": "0.2.0",
   "status": "specified_executable_evidence_present_mechanization_pending",
   "stop_or_narrow_criteria": [
-    "no concrete model supports the interfaces without changing the admitted claim",
+    "the ambient guarded CCC cannot support the typed semantics without changing the admitted claim",
     "reflection requires unrestricted quotation or self-application outside the intake boundary",
-    "refinement is incompatible with the claimed categorical structure",
+    "the declared external refinement relation cannot satisfy its scoped compatibility laws",
     "preservation depends on an unstated oracle or mutable trust anchor",
     "bounded checker cannot reject the declared adversarial fixtures under fixed context",
     "formal and executable artifacts cannot be bound to one exact manifest"
@@ -107,14 +122,18 @@
     "mutation_attempt_policy": "reject",
     "self_replacement_allowed": false
   },
-  "typed_reflection": {
-    "adequacy_target": "run_tau(quote(t)) = next_tau([[t]])",
-    "code_object": "Prog(tau)",
-    "evaluation": "run_tau : Prog(tau) -> Later [[tau]]",
-    "forbidden_assumption": "unrestricted semantic quotation A -> Prog(A)",
-    "quotation": "quote(t) : Prog(tau)",
-    "scope": "closed well-typed syntax for an admitted object language",
-    "status": "to_be_mechanized"
-  },
+  "non_goals": [
+    "ambient order enrichment of all hom-sets of Set^(omega^op)",
+    "universal program equivalence",
+    "unrestricted internal truth",
+    "infallible self-verification",
+    "guaranteed discovery of improvements",
+    "unbounded intelligence growth",
+    "unrestricted self-application",
+    "unguarded recursion",
+    "self-replacement of the complete trust base",
+    "production self-modification",
+    "autonomous deployment"
+  ],
   "work_package_id": "RSI-CCC-WP00"
 }
