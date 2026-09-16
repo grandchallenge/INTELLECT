@@ -29,7 +29,7 @@ theorem parityPrefix_refines
       (parityPrefix newLimit newCost) := by
   intro x y h
   by_cases hx : x.val < oldLimit
-  · have hxNew : x.val < newLimit := lt_of_lt_of_le hx hLimits
+  · have hxNew : x.val < newLimit := Nat.lt_of_lt_of_le hx hLimits
     simpa [parityPrefix, hx, hxNew] using h
   · simp [parityPrefix, hx] at h
 
@@ -44,7 +44,7 @@ theorem parityPrefix_strict
     (hBound : newLimit ≤ 16) :
     StrictCapability (parityPrefix oldLimit oldCost)
       (parityPrefix newLimit newCost) := by
-  have hOldBound : oldLimit < 16 := lt_of_lt_of_le hStrict hBound
+  have hOldBound : oldLimit < 16 := Nat.lt_of_lt_of_le hStrict hBound
   let x : ParityInput := ⟨oldLimit, hOldBound⟩
   refine ⟨x, ?_, ?_⟩
   · simp [parityPrefix, x]
