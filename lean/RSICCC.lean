@@ -171,6 +171,9 @@ theorem gfixVal_natural {X : TreeObj.{u}} (f : TreeHom (Later X) X) :
       simpa [gfixVal, Later, laterRes] using
         f.natural 0 (gfixVal f 0)
   | succ n ih =>
+      change
+        X.res (n + 1) (f.app (n + 1 + 1) (gfixVal f (n + 1))) =
+          f.app (n + 1) (gfixVal f n)
       rw [f.natural (n + 1) (gfixVal f (n + 1))]
       simpa [Later, laterRes] using congrArg (f.app (n + 1)) ih
 

@@ -139,7 +139,7 @@
     "proof_artifacts": [
       {
         "path": "lean/RSICCC.lean",
-        "git_blob_sha": "ff0b0a9b599972c536ad1bfef9fd98e7b482d874",
+        "git_blob_sha": "2f9dd2ae49d81d59ba03640f7850c1056e495309",
         "role": "M1 theorem-first Lean proof surface"
       },
       {
