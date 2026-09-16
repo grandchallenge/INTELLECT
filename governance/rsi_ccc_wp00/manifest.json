@@ -154,8 +154,8 @@
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
-        "git_blob_sha": "1eda37e72bcf82f9fc1e1fc3fbe4cfa2c7f05e96",
-        "role": "exact-head Lean build, independent checker, and axiom audit"
+        "git_blob_sha": "642098c193233ba6d21cd8e28ac211ae5a8c3141",
+        "role": "exact-head Lean build, kernel replay, and no-placeholder/local-axiom guard"
       }
     ]
   },
