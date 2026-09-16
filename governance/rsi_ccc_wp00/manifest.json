@@ -1,7 +1,7 @@
 {
-  "schema_version": "0.3.0",
+  "schema_version": "0.4.0",
   "work_package_id": "RSI-CCC-WP00",
-  "milestone": "M1-one-proved-guarded-self-replacement-step",
+  "milestone": "M2-compositional-guarded-replacement-sequence",
   "authority_basis": {
     "council_matter": "GI-COUNCIL-RSI-CCC-001",
     "intake_pr": 100,
@@ -9,8 +9,10 @@
     "intake_merge_commit": "2badd8c3197ef4515591bba05ff782ff3cafc930",
     "execution_issue": 101,
     "m1_issue": 104,
+    "m2_issue": 106,
     "m0_merge_commit": "18ded6c7d8bc491c63d247f7a71899e4e2f7bf07",
-    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d"
+    "m0_reviewed_head": "8db7817b45c1040365c9a111f0f24a7bfceb533d",
+    "m1_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6"
   },
   "model_resolution": {
     "ambient_category": "Set^(omega^op)",
@@ -25,7 +27,8 @@
     "git_blob_sha": "8baee8d3a1f50a4d527afdc29747a0fa563451bb",
     "sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
     "claim_state": "research_target_not_yet_mathematically_certified",
-    "frozen_for_m1": true
+    "frozen_for_m1": true,
+    "frozen_for_m2": true
   },
   "bound_artifacts": [
     {
@@ -36,7 +39,7 @@
     {
       "path": "src/grand_intellect/rsi_ccc_wp00.py",
       "git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
-      "role": "bounded executable checker and positive trace"
+      "role": "frozen bounded executable checker and positive trace"
     },
     {
       "path": "tests/test_rsi_ccc_wp00.py",
@@ -85,7 +88,7 @@
     "active_tranche": {
       "id": "M1",
       "status": "proof_complete_exact_head_replayed_pending_review",
-      "meaning": "the M1 closure proof compiles and kernel-replays; independent exact-head review remains required before any promotion decision"
+      "meaning": "retained M1 manifest contract; M1 was subsequently reviewed and integrated without rewriting this historical field"
     },
     "required_before_wp00_promotion": true,
     "must_bind_to_formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
@@ -159,20 +162,80 @@
       {
         "path": "lakefile.toml",
         "git_blob_sha": "067b2cf821790d3b5a7bc18d2a4c0ca282bac49b",
-        "role": "Lean package build definition for core and M1 closure modules"
+        "role": "retained M1 Lean package build definition"
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
         "git_blob_sha": "797302608209ca1f1c727e4872e161b1e969f6ce",
-        "role": "M1 formal-object freeze, replay-state, target naming, proof-artifact binding, and cross-language checker replay"
+        "role": "retained M1 formal-object freeze and checker replay"
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
         "git_blob_sha": "49e2d3bf5a9e5ed8a35da6cd520c505421849650",
-        "role": "exact-head Lean build, multi-module kernel replay, and no-placeholder/local-axiom guard"
+        "role": "retained M1 exact-head Lean build and kernel replay workflow"
       }
-    ]
+    ],
+    "m2_tranche": {
+      "id": "M2",
+      "issue": 106,
+      "status": "implementation_in_progress",
+      "basis_merge_commit": "f3e801a973eb918e7a71601d52c95755a743efc6",
+      "milestone": "M2-compositional-guarded-replacement-sequence",
+      "checker_git_blob_sha": "e4ad8cef6fdf514c2aad0dbac372b3a42f5e6dbb",
+      "formal_object_sha256": "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc",
+      "accepted_transition_count": 5,
+      "rejected_event_count": 10,
+      "genesis_digest": "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6",
+      "final_candidate_digest": "4f0b7070b8e32d839f2d296bea9bb4ce3981aa0100e71605f4cf3dc45fe02b03",
+      "event_chain_digest": "47b2a9d249befeaada200e4163235324a2347502478b84f27aa3c4c778ef1da9",
+      "required_evidence": [
+        "inductive composition of M1 accepted-step preservation across exact succession",
+        "heterogeneous accepted capability and optimization transitions",
+        "cumulative non-regression of previously admitted obligations",
+        "content-addressed predecessor/proposal/event lineage",
+        "sequence-level adversarial rejection fixtures",
+        "byte-stable fixed checker and trust boundary",
+        "independent whole-chain replay from genesis to final state"
+      ],
+      "open_targets": [
+        "pass exact-head Python and Lean replay",
+        "complete independent non-authoring Formalist/Adversary/Referee review",
+        "integrate the exact reviewed head without changing the frozen checker or formal object"
+      ],
+      "evidence_artifacts": [
+        {
+          "path": "lean/RSICCCM2.lean",
+          "git_blob_sha": "e52338ea7143aa343a14124494f9a5e056f2dffd",
+          "role": "M2 inductive sequence theorem and exact five-step proof"
+        },
+        {
+          "path": "governance/rsi_ccc_wp00/m2_sequence.json",
+          "git_blob_sha": "03991b4de9dada5b7d886cf94cf1e9030e584c82",
+          "role": "content-addressed mixed accepted/rejected trajectory receipts"
+        },
+        {
+          "path": "src/grand_intellect/rsi_ccc_wp00_m2.py",
+          "git_blob_sha": "1690293d07c8cf3939bf2de78463bdab71b5b7da",
+          "role": "deterministic frozen-checker whole-chain reconstruction"
+        },
+        {
+          "path": "tests/test_rsi_ccc_wp00_m2.py",
+          "git_blob_sha": "ff0d2d27d6666360b115157eab7f0fe537142be2",
+          "role": "whole-chain replay, cumulative obligation, tamper and cross-language binding tests"
+        },
+        {
+          "path": "lakefile.toml",
+          "git_blob_sha": "daf7bdf479ec11907f89f642ea577508a2691654",
+          "role": "Lean package registration for the M2 module"
+        },
+        {
+          "path": ".github/workflows/rsi-ccc-lean.yml",
+          "git_blob_sha": "533386c02bcca5b46ffdccddceae6ca958849851",
+          "role": "Lean build and kernel replay extended to RSICCCM2"
+        }
+      ]
+    }
   },
   "promotion_ready": false,
-  "blocking_reason": "M1 proof is compiled and content-bound; independent non-authoring exact-head review remains required before any promotion decision"
+  "blocking_reason": "M2 sequence implementation is in progress; exact-head replay and independent review are required before integration"
 }
