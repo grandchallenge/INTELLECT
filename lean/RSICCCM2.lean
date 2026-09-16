@@ -462,7 +462,7 @@ def m2GenesisDigest : String :=
   "de941aa2dd670273052243d14f50448560b37950b49b4b5bfa5cd48cd961d4a6"
 
 def m2EventChainDigest : String :=
-  "47b2a9d249befeaada200e4163235324a2347502478b84f27aa3c4c778ef1da9"
+  "da24637752e285b39e56c39f4a435e9d4b61be44adad813190a1247f9a52d10e"
 
 end M2
 end RSICCC
