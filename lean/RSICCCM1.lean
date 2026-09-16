@@ -41,6 +41,12 @@ def expRes (A B : TreeObj.{u}) (n : Nat) :
     ExpStage A B (n + 1) → ExpStage A B n
   | ⟨f, h⟩ => ⟨f.2, h.1⟩
 
+theorem expRes_val (A B : TreeObj.{u}) (n : Nat)
+    (f : ExpStage A B (n + 1)) :
+    (expRes A B n f).1 = f.1.2 := by
+  cases f
+  rfl
+
 def kripkeExpObj (A B : TreeObj.{u}) : TreeObj.{u} where
   Obj := ExpStage A B
   res := expRes A B
@@ -131,15 +137,20 @@ theorem exp_eta {X A B : TreeObj.{u}}
       apply Prod.ext
       · funext a
         rfl
-      · have hprev :
+      · have hnat :
+            expRes A B n (g.app (n + 1) x) =
+              g.app n (X.res n x) := by
+          simpa [kripkeExpObj] using g.natural n x
+        have hprev :
             (expCurry (expUncurry g)).app n (X.res n x) =
-              expRes A B n (g.app (n + 1) x) := by
-          calc
-            (expCurry (expUncurry g)).app n (X.res n x) =
-                g.app n (X.res n x) := ih (X.res n x)
-            _ = expRes A B n (g.app (n + 1) x) :=
-                (g.natural n x).symm
-        simpa [expCurry, curryRaw, expRes] using congrArg Subtype.val hprev
+              expRes A B n (g.app (n + 1) x) :=
+          (ih (X.res n x)).trans hnat.symm
+        have hval := congrArg Subtype.val hprev
+        calc
+          curryRaw (expUncurry g) n (X.res n x) =
+              (expRes A B n (g.app (n + 1) x)).1 := by
+                simpa [expCurry] using hval
+          _ = (g.app (n + 1) x).1.2 := expRes_val A B n (g.app (n + 1) x)
 
 def kripkeExponential (X A B : TreeObj.{u}) :
     KripkeExponentialContract X A B where
@@ -183,7 +194,7 @@ theorem typed_run_exponential_beta (τ : Ty) (n : Nat) (p : Prog τ) :
     (typedRunContract τ).eval.app n
       ((runCurried τ).app n PUnit.unit, p) =
         (runHom τ).app n p := by
-  simpa [runProductHom] using
+  simpa [runCurried, runProductHom, TreeHom.comp, sndHom] using
     (typedRunContract τ).beta (runProductHom τ) n PUnit.unit p
 
 theorem typed_quote_run_exponential_adequacy
@@ -320,6 +331,18 @@ def frozenOptimized : FrozenCandidate where
   kernelId := fixedKernelId
   rep := parityOptimized
 
+theorem frozenBaseline_bound : CandidateBound frozenBaseline := by
+  refine ⟨rfl, rfl, ?_⟩
+  simp [admittedDigest, frozenBaseline]
+
+theorem frozenCapability_bound : CandidateBound frozenCapability := by
+  refine ⟨rfl, rfl, ?_⟩
+  simp [admittedDigest, frozenCapability]
+
+theorem frozenOptimized_bound : CandidateBound frozenOptimized := by
+  refine ⟨rfl, rfl, ?_⟩
+  simp [admittedDigest, frozenOptimized]
+
 structure FrozenTransition where
   old : FrozenCandidate
   new : FrozenCandidate
@@ -363,8 +386,8 @@ structure FrozenCheckerCertificate (t : FrozenTransition) : Prop where
 def capabilityCertificate : FrozenCheckerCertificate capabilityTransition where
   baseIdentity := rfl
   candidateIdentity := rfl
-  baseBound := by decide
-  candidateBound := by decide
+  baseBound := frozenBaseline_bound
+  candidateBound := frozenCapability_bound
   serializedBound := by decide
   declaredCostBound := by decide
   safeNew := parityCapability_safe
@@ -374,8 +397,8 @@ def capabilityCertificate : FrozenCheckerCertificate capabilityTransition where
 def optimizationCertificate : FrozenCheckerCertificate optimizationTransition where
   baseIdentity := rfl
   candidateIdentity := rfl
-  baseBound := by decide
-  candidateBound := by decide
+  baseBound := frozenCapability_bound
+  candidateBound := frozenOptimized_bound
   serializedBound := by decide
   declaredCostBound := by decide
   safeNew := parityCapability_safe

@@ -147,7 +147,7 @@
       },
       {
         "path": "lean/RSICCCM1.lean",
-        "git_blob_sha": "cf1c67bc67bce33607d0b6e2774c978f493ef2ec",
+        "git_blob_sha": "6eec8d83197148669030314db9b1bcfd46a4a95f",
         "role": "M1 concrete exponential, finite checker bridge, and complete guarded replacement proofs"
       },
       {
