@@ -28,7 +28,7 @@
     },
     {
       "path": "tests/test_rsi_ccc_wp00.py",
-      "git_blob_sha": "d160c9c05c0f094db64a0e92cf1093c306387c3d",
+      "git_blob_sha": "bb62645ed0c86b3dac8d062f0a210d94f0610240",
       "role": "positive and fail-closed adversarial fixtures"
     }
   ],
