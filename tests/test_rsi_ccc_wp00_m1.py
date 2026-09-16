@@ -5,15 +5,29 @@ import json
 from pathlib import Path
 import unittest
 
+from grand_intellect.rsi_ccc_wp00 import (
+    baseline_candidate,
+    capability_candidate,
+    canonical_json,
+    check_proposal,
+    make_proposal,
+    optimized_candidate,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "governance" / "rsi_ccc_wp00" / "manifest.json"
+LEAN_M1_PATH = ROOT / "lean" / "RSICCCM1.lean"
 FROZEN_FORMAL_OBJECT_SHA256 = "1fca7a5e5bba2f4b59ccf9288a6a01129652091f86071c7be70022ea076d0edc"
 
 
 def git_blob_sha(data: bytes) -> str:
     header = f"blob {len(data)}\0".encode("ascii")
     return sha1(header + data).hexdigest()
+
+
+def sha256_json(value: object) -> str:
+    return sha256(canonical_json(value).encode("utf-8")).hexdigest()
 
 
 class RsiCccWp00M1BindingTests(unittest.TestCase):
@@ -68,6 +82,38 @@ class RsiCccWp00M1BindingTests(unittest.TestCase):
         self.assertIn("non-vacuous finite parity refinement domain with exact capability and optimization transitions", completed)
         self.assertIn("frozen checker certificate semantics bridged to AdmissionEvidence", completed)
         self.assertFalse(manifest["promotion_ready"])
+
+    def test_lean_checker_constants_replay_from_frozen_python_checker(self) -> None:
+        baseline = baseline_candidate()
+        capability = capability_candidate()
+        optimized = optimized_candidate()
+        capability_proposal = make_proposal(baseline, capability, "capability_extension")
+        optimization_proposal = make_proposal(
+            capability,
+            optimized,
+            "semantics_preserving_optimization",
+        )
+
+        self.assertTrue(check_proposal(baseline, capability_proposal).accepted)
+        self.assertTrue(check_proposal(capability, optimization_proposal).accepted)
+
+        capability_bytes = len(canonical_json(capability_proposal).encode("utf-8"))
+        optimization_bytes = len(canonical_json(optimization_proposal).encode("utf-8"))
+        self.assertEqual(capability_bytes, 527)
+        self.assertEqual(optimization_bytes, 540)
+
+        expected_constants = {
+            baseline.digest,
+            capability.digest,
+            optimized.digest,
+            sha256_json(capability_proposal),
+            sha256_json(optimization_proposal),
+        }
+        lean_source = LEAN_M1_PATH.read_text(encoding="utf-8")
+        for value in expected_constants:
+            self.assertIn(value, lean_source)
+        self.assertIn("serializedBytes := 527", lean_source)
+        self.assertIn("serializedBytes := 540", lean_source)
 
 
 if __name__ == "__main__":

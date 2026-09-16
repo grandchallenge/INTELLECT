@@ -134,7 +134,8 @@
       "frozen checker certificate semantics bridged to AdmissionEvidence",
       "complete guarded capability-extension replacement theorem",
       "complete guarded semantics-preserving optimization replacement theorem",
-      "exact-head Lean compile and independent kernel replay"
+      "exact-head Lean compile and independent kernel replay",
+      "cross-language replay of checker digests, proposal digests, byte bounds, and accepted transitions"
     ],
     "open_targets": [
       "perform independent non-authoring Formalist/Adversary/Referee review of the exact compiled head before any promotion decision"
@@ -162,8 +163,8 @@
       },
       {
         "path": "tests/test_rsi_ccc_wp00_m1.py",
-        "git_blob_sha": "a8da0ae3e71ee9864a9820d8c9a83ec4eec62bd4",
-        "role": "M1 formal-object freeze, replay-state, target naming, and proof-artifact binding checks"
+        "git_blob_sha": "797302608209ca1f1c727e4872e161b1e969f6ce",
+        "role": "M1 formal-object freeze, replay-state, target naming, proof-artifact binding, and cross-language checker replay"
       },
       {
         "path": ".github/workflows/rsi-ccc-lean.yml",
