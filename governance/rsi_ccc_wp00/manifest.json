@@ -266,9 +266,9 @@
           "role": "isolated M2 Lean compile, kernel replay, executable sequence and trust-receipt replay workflow"
         },
         {
-          "path": ".ghos-routing/workflows.json",
+          "path": "governance/rsi_ccc_wp00/m2_routing_registry.json",
           "git_blob_sha": "d11bf9f7682ef98055e4be033fc83e407d835880",
-          "role": "registered execution routing for the isolated M2 workflow"
+          "role": "immutable snapshot of the execution-routing registry reviewed with M2"
         }
       ]
     }
