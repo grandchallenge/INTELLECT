@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+from hashlib import sha1, sha256
+import json
+from pathlib import Path
 import unittest
 
 from grand_intellect.rsi_ccc_wp00 import (
@@ -19,7 +22,30 @@ from grand_intellect.rsi_ccc_wp00 import (
 )
 
 
+ROOT = Path(__file__).resolve().parents[1]
+MANIFEST_PATH = ROOT / "governance" / "rsi_ccc_wp00" / "manifest.json"
+
+
+def git_blob_sha(data: bytes) -> str:
+    header = f"blob {len(data)}\0".encode("ascii")
+    return sha1(header + data).hexdigest()
+
+
 class RsiCccWp00Tests(unittest.TestCase):
+    def test_manifest_binds_exact_artifacts(self) -> None:
+        manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        formal = manifest["formal_object"]
+        formal_data = (ROOT / formal["path"]).read_bytes()
+        self.assertEqual(sha256(formal_data).hexdigest(), formal["sha256"])
+        self.assertEqual(git_blob_sha(formal_data), formal["git_blob_sha"])
+
+        for record in manifest["bound_artifacts"]:
+            data = (ROOT / record["path"]).read_bytes()
+            self.assertEqual(git_blob_sha(data), record["git_blob_sha"])
+
+        self.assertFalse(manifest["promotion_ready"])
+        self.assertEqual(manifest["mechanization"]["status"], "pending")
+
     def test_capability_extension_is_admitted(self) -> None:
         old = baseline_candidate()
         new = capability_candidate()
