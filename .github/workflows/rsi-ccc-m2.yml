@@ -1,0 +1,100 @@
+name: RSI-CCC M2 sequence mechanization
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "lean/RSICCC.lean"
+      - "lean/RSICCCM1.lean"
+      - "lean/RSICCCM2.lean"
+      - "lean-toolchain"
+      - "lakefile.toml"
+      - "governance/rsi_ccc_wp00/formal_object.json"
+      - "governance/rsi_ccc_wp00/manifest.json"
+      - "governance/rsi_ccc_wp00/m2_sequence.json"
+      - "src/grand_intellect/rsi_ccc_wp00.py"
+      - "src/grand_intellect/rsi_ccc_wp00_m2.py"
+      - "tests/test_rsi_ccc_wp00_m2*.py"
+      - ".github/workflows/rsi-ccc-m2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: intellect-rsi-ccc-m2-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  m2:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Install pinned elan bootstrap
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://raw.githubusercontent.com/leanprover/elan/0e36a07b9bbcc5381fa6250df109f9a4f94d7bac/elan-init.sh"
+          curl -fsSL "$url" -o /tmp/elan-init.sh
+          python - <<'PY'
+          from hashlib import sha1
+          from pathlib import Path
+          data = Path('/tmp/elan-init.sh').read_bytes()
+          got = sha1(f"blob {len(data)}\0".encode('ascii') + data).hexdigest()
+          expected = 'ab8c346be2d665b2c77a6eba0dc2338c43413a9c'
+          assert got == expected, (got, expected)
+          PY
+          sh /tmp/elan-init.sh -y --default-toolchain none --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Install pinned Lean toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          toolchain="$(cat lean-toolchain)"
+          elan toolchain install "$toolchain"
+          elan default "$toolchain"
+          lean --version
+          lake --version
+
+      - name: Reject proof placeholders and local axioms
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R -nE '(^|[[:space:]])(sorry|admit|axiom)[[:space:]]' lean --include='*.lean'; then
+            echo "Proof placeholder or local axiom detected" >&2
+            exit 1
+          fi
+
+      - name: Build retained M1 dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake build
+
+      - name: Compile M2 without mutating the retained M1 Lake manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .lake/build/lib/lean
+          lake env lean \
+            -o .lake/build/lib/lean/RSICCCM2.olean \
+            -i .lake/build/lib/lean/RSICCCM2.ilean \
+            lean/RSICCCM2.lean
+
+      - name: Replay M1 and M2 compiled modules with Lean kernel checker
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env leanchecker RSICCC RSICCCM1 RSICCCM2
+
+      - name: Replay exact M2 executable evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=src python -m unittest discover -s tests -p 'test_rsi_ccc_wp00_m2*.py' -v
