@@ -129,7 +129,7 @@
     "predecessor": "GI-STEWARD-0002",
     "successor": "GI-STEWARD-0003",
     "subject_manifest": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/manifest.json",
-    "subject_manifest_sha256": "b5b9d46ff04d48be51da2f9494c74826ed094323f9d1f3f22a3926402550d21f",
+    "subject_manifest_sha256": "ec814650e3ef450bb0eede2200343236d406936b7856619db361474f8aa04296",
     "base_commit": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
     "receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89",
     "predecessor_policy_reviews": {

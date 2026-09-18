@@ -16,6 +16,17 @@ merge and readback without a fresh human action or identity hand-off. A system
 that authored a subject must use a declared non-authoring, read-only mode when
 acting as Adversary or Referee; mutation invalidates that pass.
 
+All agents performing multi-step or interruption-prone work are bound by
+`GCL-AGENT-CONTINUITY-001@1.0.0` in
+`governance/agent_execution/GCL-AGENT-CONTINUITY-001.md`. In particular,
+agents must bind to the live exact head, work in narrow durable tranches,
+checkpoint proof-quality results before opening another expensive branch,
+read back after mutation, and recover from turn timeouts or connector failures
+from repository state rather than treating those failures as substantive stop
+conditions. A successor agent must rebind live state and continue from the last
+durable checkpoint. Before stopping, the agent must name the exact legitimate
+boundary that prevents the next authorized recovery action.
+
 Agents may not ratify a constitutional amendment, manufacture Human Steward
 authorization, self-certify a mathematical claim, exercise reserved authority,
 bypass protected controls, or write directly to protected branches. Follow

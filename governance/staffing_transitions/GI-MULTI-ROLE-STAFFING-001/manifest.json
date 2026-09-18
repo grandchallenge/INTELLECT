@@ -12,7 +12,7 @@
     "external_receipt_surface": "https://github.com/grandchallenge/INTELLECT/issues/89"
   },
   "artifacts": [
-    {"path": "AGENTS.md", "git_blob_sha1": "234fa91408d04ce21f4ea116da4c7638867ef374", "sha256": "c653053ac3cdce0c118a575468a307524dc67e29b1e032f1a8bcdb80f2d9885c"},
+    {"path": "AGENTS.md", "git_blob_sha1": "9b24aa804102a6f3f80728def2bd1322617e99e0", "sha256": "01b3bb3f9ceb2cf87f59ba5c2d85f2859bc52c45d7e4fb0f115a1133f7d8fcbf"},
     {"path": "AMENDMENTS/0002-multi-role-functional-separation.md", "git_blob_sha1": "f7f09638fcbc5843e19b602d1a32872a299246e5", "sha256": "0922b3a979a776a5bd7849f9ef9120565e12ea706808300f284185a0bed6c9e8"},
     {"path": "CONSTITUTION.md", "git_blob_sha1": "b0cc411a5cc5027a631df8ac9e457dc1bf5294d8", "sha256": "85ea47cb67ebe15210b6743e186d36db2336bd0a610929392806406be5a49c1a"},
     {"path": "governance/staffing_transitions/GI-MULTI-ROLE-STAFFING-001/ADR.md", "git_blob_sha1": "9134cf8a01fe3883e3f97dd5a1721eb40f3676d3", "sha256": "201b47da0db2c94f7dced50d062b192b514257784bc76f3176e14e9a1e08e3e0"},

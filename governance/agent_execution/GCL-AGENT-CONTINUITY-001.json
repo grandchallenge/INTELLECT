@@ -1,0 +1,40 @@
+{
+  "policy_id": "GCL-AGENT-CONTINUITY-001",
+  "version": "1.0.0",
+  "status": "effective_operational_policy",
+  "authority": "subordinate_to_constitution_and_effective_amendments",
+  "purpose": "bounded-turn continuity, durable checkpointing, and recovery from orchestration failure",
+  "required_agent_binding": true,
+  "recoverable_failures": [
+    "turn_timeout",
+    "connector_failure",
+    "truncated_tool_output",
+    "ci_infrastructure_failure",
+    "compiler_diagnostic",
+    "context_loss"
+  ],
+  "valid_terminal_boundaries": [
+    "governance_or_reserved_authority",
+    "authentication",
+    "safety",
+    "materially_changed_state",
+    "scope_change_requires_authority",
+    "substantive_evidentiary_boundary"
+  ],
+  "requirements": {
+    "exact_head_preflight": true,
+    "narrow_current_obligation": true,
+    "checkpoint_before_branch_expansion": true,
+    "post_mutation_readback": true,
+    "timeout_is_not_substantive_boundary": true,
+    "alternate_agent_live_rebind": true,
+    "named_terminal_boundary": true,
+    "terminal_exact_head_report": true
+  },
+  "enforcement": {
+    "root_agent_instruction_binding": true,
+    "ci_integrity_check": true,
+    "downstream_adoption_record": true,
+    "external_scheduler_control": false
+  }
+}
