@@ -92,6 +92,8 @@ Repositories adopting this policy SHALL bind it from their root `AGENTS.md` or e
 
 The canonical machine contract is `governance/agent_execution/GCL-AGENT-CONTINUITY-001.json`.
 
+The canonical downstream adoption schema is `schemas/agent_continuity_adoption.schema.json`. Downstream repositories SHALL retain repository-local validators for specialization semantics. A local schema snapshot is non-authoritative and must be pinned to the exact admitted INTELLECT schema identity; mutable remote schema fetching is not an authority or conformance mechanism.
+
 CI SHALL validate at least:
 
 - policy identifier and version;
