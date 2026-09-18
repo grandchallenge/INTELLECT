@@ -1,0 +1,29 @@
+name: Agent continuity policy
+
+on:
+  pull_request:
+    paths:
+      - "AGENTS.md"
+      - "governance/agent_execution/**"
+      - "scripts/validate_agent_continuity.py"
+      - ".github/workflows/agent-continuity-policy.yml"
+  push:
+    branches: [main]
+    paths:
+      - "AGENTS.md"
+      - "governance/agent_execution/**"
+      - "scripts/validate_agent_continuity.py"
+      - ".github/workflows/agent-continuity-policy.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate continuity contract
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate canonical policy binding
+        run: python3 scripts/validate_agent_continuity.py
