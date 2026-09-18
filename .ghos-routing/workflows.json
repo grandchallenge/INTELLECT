@@ -24,74 +24,109 @@
   ],
   "workflows": [
     {
+      "path": ".github/workflows/agent-continuity-policy.yml",
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
+      "topology": "PERSISTENT_CONTROLLER_REQUIRED",
+      "controller_id": "GITHUB_ACTIONS"
+    },
+    {
       "path": ".github/workflows/ci.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/gcl-conformance.yml",
-      "observed_features": ["AUTONOMOUS_WAKE", "EXTERNAL_REUSABLE_JOB", "OPAQUE_EXECUTION", "SCHEDULED"],
+      "observed_features": [
+        "AUTONOMOUS_WAKE",
+        "EXTERNAL_REUSABLE_JOB",
+        "OPAQUE_EXECUTION",
+        "SCHEDULED"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/ghos-routing-enforcement-v2.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/rsi-ccc-lean.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/rsi-ccc-m2.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/rsi-ccc-m3.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-bootstrap-closure.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-duplicate-fixture.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-fixture.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-pii-fixture.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-quality-fixture.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     },
     {
       "path": ".github/workflows/trove-curata-transform-fixture.yml",
-      "observed_features": ["OPAQUE_EXECUTION"],
+      "observed_features": [
+        "OPAQUE_EXECUTION"
+      ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
     }
