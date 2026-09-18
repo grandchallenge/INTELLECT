@@ -82,7 +82,7 @@
     },
     {
       "path": ".ghos-routing/workflows.json",
-      "git_blob_sha": "dde0ce72ad247cf55c049565ca3f6e437cfd0d47",
+      "git_blob_sha": "bc590db426e232e90e45a542ad246e064b1c5165",
       "role": "registered execution routing for the M3 workflow"
     }
   ],
