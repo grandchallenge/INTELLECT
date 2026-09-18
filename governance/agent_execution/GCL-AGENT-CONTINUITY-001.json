@@ -36,5 +36,14 @@
     "ci_integrity_check": true,
     "downstream_adoption_record": true,
     "external_scheduler_control": false
+  },
+  "downstream_adoption_schema": {
+    "schema_id": "GCL-AGENT-CONTINUITY-ADOPTION-001",
+    "schema_version": "1.0.0",
+    "path": "schemas/agent_continuity_adoption.schema.json",
+    "authority_repository": "grandchallenge/INTELLECT",
+    "local_snapshot_authoritative": false,
+    "mutable_remote_fetch_allowed": false,
+    "repository_local_validator_required": true
   }
 }
