@@ -1,0 +1,25 @@
+{
+  "missing": [
+    "approved review: axiomatist",
+    "obligation: axiomatist/axioms.exposed",
+    "approved review: purpose_minder",
+    "obligation: purpose_minder/purpose.explicit",
+    "obligation: purpose_minder/purpose.stakeholders_legible",
+    "approved review: referee",
+    "obligation: referee/referee.acceptance_testable",
+    "approved review: steward",
+    "obligation: steward/stewardship.proportionate"
+  ],
+  "phase": "charter",
+  "ready": false,
+  "satisfied": [
+    "charter title",
+    "explicit purpose",
+    "bounded scope",
+    "acceptance criteria",
+    "pre-registered E1 design",
+    "declared null models",
+    "resource-escalation trigger"
+  ],
+  "target_phase": "generation"
+}
