@@ -1,0 +1,14 @@
+{
+  "authority": "local_authoring_projection_only",
+  "gct_canonical_revision": "51c9b5bd36b6ea3c510f5b026ec6e61a903cffa9",
+  "gct_export_path": "exports/GCT-GCL-MANDATE-001/",
+  "gct_mandate_path": "mandates/GCT-GCL-MANDATE-001-EXECUTIVE-POLITY.md",
+  "gct_repository": "grandchallenge/GCT-EXECUTIVE",
+  "intellect_base_revision": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+  "intellect_issue": 81,
+  "publicity_class": "INTERNAL",
+  "resource_envelope": "UNALLOCATED",
+  "risk_class": "high",
+  "schema_blob_sha1": "6fb9f604483faadb6787e10f5ef0992140eb0920",
+  "schema_version": "gct.intellect-intake.v1"
+}
