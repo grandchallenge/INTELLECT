@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "cartographer",
+  "reviewer_id": "openai-gpt-5.6-sol-council-cartographer-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/cartographer/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. The proposed lifecycle fits the existing topology if the contribution inbox remains a bounded evidence surface. The main architectural risk is accidental creation of a second claim-state or coordination plane. The pilot should remain repository-local and proposal-only, with explicit mapping to MATH-CORE if a later admitted external-proposal representation exists.",
+  "discharged_obligations": [
+    "Mapped the proposed lifecycle to INTELLECT, MATH-CORE, MATHSOLVE, MATHCERT, trusted acceptance, and transport layers.",
+    "Checked for duplicate governance-plane creation and silent cross-layer authority."
+  ],
+  "findings": [
+    "Transport-independent raw intake is compatible with GitHub, file, chat, and future AETHER transport.",
+    "The contribution inbox must not become a substitute Claim Blackboard, Claim Ledger, certification registry, or dispatcher authority.",
+    "The NS-CI pilot is a proportionate local proving ground because it already has a sealed zero-context handoff."
+  ],
+  "conditions": [
+    "Pilot only in a bounded MATHSOLVE contribution inbox or equivalent evidence directory; do not establish an organization-wide canonical ontology before pilot evidence returns.",
+    "If MATH-CORE gains an admitted external-proposal object, map intake receipts to it rather than maintaining a drifting parallel representation."
+  ],
+  "residual_uncertainty": [
+    "The long-term storage location for cross-programme external contributions remains open and should be decided only after pilot volume and access patterns are measured."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}
