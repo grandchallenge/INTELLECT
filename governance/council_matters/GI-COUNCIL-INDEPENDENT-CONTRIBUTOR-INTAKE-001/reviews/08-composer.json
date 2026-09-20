@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "composer",
+  "reviewer_id": "openai-gpt-5.6-sol-council-composer-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/composer/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. The lifecycle is coherent if dispatch, blind cohort, raw intake, receipt, synthesis, adjudication, and incorporation are explicit stages. Concurrency introduces two additional needs: a cohort closure rule and a late/corrected-return rule. Without them, synthesis timing becomes race-dependent and a slow contributor can either contaminate or be silently discarded.",
+  "discharged_obligations": [
+    "Integrated dispatch, transport, concurrency, receipt, correction, synthesis, adjudication, and incorporation into one lifecycle.",
+    "Checked failure recovery and late-return behavior under concurrent execution."
+  ],
+  "findings": [
+    "Blind independence requires cohort-level state rather than only per-contribution metadata.",
+    "Late returns should remain preserved evidence even when excluded from a closed cohort's comparative synthesis.",
+    "Corrections must not replace the earlier raw artifact."
+  ],
+  "conditions": [
+    "Each blind cohort must declare membership or a closure condition before dispatch; closure must be durably recorded before cross-contribution synthesis begins.",
+    "Late returns after cohort closure are preserved with late_for_cohort status and may seed a successor cohort or separate adjudication, but must not silently alter the completed blind comparison.",
+    "Synthesis artifacts must list every contribution digest consumed and every dispatched-but-missing member at closure."
+  ],
+  "residual_uncertainty": [
+    "For open-ended human collaborations, fixed cohort membership may be impractical; the pilot should test only bounded cohorts."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}

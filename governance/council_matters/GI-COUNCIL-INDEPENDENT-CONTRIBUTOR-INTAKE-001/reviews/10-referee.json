@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "referee",
+  "reviewer_id": "openai-gpt-5.6-sol-council-referee-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/referee/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. Full quorum identifies no reason to reject the conceptual separation. The offices converge on a bounded pilot with stricter definitions and machine/review boundaries. The critical corrections are: treat independence as evidence-qualified rather than inferred; make raw intake append-only and content-addressed; separate deterministic byte/dispatch/freshness checks from semantic duplicate judgments; define blind-cohort closure and late-return semantics; quarantine executable payloads; and preserve Human Steward and protected-admission authority. The proposal should therefore advance as ready with conditions, not as immediate organization-wide policy.",
+  "discharged_obligations": [
+    "Reconciled all differentiated office findings into one bounded pilot disposition.",
+    "Preserved the distinction between Council advice, Human Steward authority, mathematical adjudication, and protected incorporation.",
+    "Checked that the conditions address executor concurrency and integrity feedback without imposing GCL internal mutation duties on external contributors."
+  ],
+  "findings": [
+    "All ten offices support the contributor/intake/adjudication separation subject to pilot conditions.",
+    "The most important concurrency defect is race-dependent cohort synthesis; explicit closure semantics repair it.",
+    "The most important integrity defect is overclaiming machine-detectable independence or semantic duplication; those remain evidence-qualified review judgments.",
+    "The pilot can test the protocol without creating a new claim authority plane."
+  ],
+  "conditions": [
+    "Pilot only: do not activate an organization-wide mandatory intake policy or persistent coordinator from this matter.",
+    "Represent independence with separate declared-context, authenticated-provenance-when-available, and adjudicated-independence fields; never infer independence from session/model/file identifiers alone.",
+    "Preserve every raw contribution and attachment immutably by exact content identity before normalization, synthesis, or adjudication; corrections are new linked records.",
+    "Automate only mechanically decidable classifications such as byte identity, exact dispatch binding, schema validity, explicit supersession links, and observable freshness. Semantic duplication, plagiarism, conflict meaning, and independence strength remain review-bound.",
+    "Define concurrency modes cooperative_claimed, independent_blind, and adversarial_replay, with explicit blind-cohort membership/closure. No cross-contribution synthesis before durable cohort closure; late returns remain preserved evidence with explicit late status.",
+    "Treat contributor payloads as untrusted data. Embedded instructions and executable attachments cannot trigger actions without a separate authorized sandboxed execution path.",
+    "Keep the inbox proposal-only and non-canonical. Protected dependency consumption requires ordinary exact-digest adjudication and the existing MATHSOLVE/MATHCERT/governance route.",
+    "Pilot receipts must bind dispatch identity, raw digest, attachment digests, declared context/provenance, concurrency mode, freshness, schema result, and handling state, and support idempotent replay without overwrite.",
+    "Run hostile fixtures for identifier collision, same bytes/different dispatch, different bytes/same identifier, stale live state, truncated return, blind-cohort contamination, duplicate attachment, late return, malicious embedded instruction, and transport replay.",
+    "Return pilot evidence, executor feedback, schema/validator proposal, and measured overhead to full Council review before broader institutionalization; final activation remains subject to Human Steward authority."
+  ],
+  "residual_uncertainty": [
+    "The long-term location of organization-wide contribution storage, authenticated identity model, and any MATH-CORE external-proposal representation remain open beyond the pilot.",
+    "The pilot will not establish philosophical or statistical independence between contributors; it will only preserve and expose the available provenance conditions."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}
