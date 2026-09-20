@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "amanuensis",
+  "reviewer_id": "openai-gpt-5.6-sol-council-amanuensis-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/amanuensis/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. The durable-return objective is sound only if future agents can distinguish original contributor bytes from normalized metadata and later summaries. The archival record should therefore preserve the original payload exactly, store any normalized rendering separately, and bind every attachment and source dispatch by digest.",
+  "discharged_obligations": [
+    "Checked documentary continuity, recoverability, lineage, and preservation of original versus normalized records.",
+    "Tested whether a successor agent could resume from repository evidence without access to chat history."
+  ],
+  "findings": [
+    "A complete raw packet plus receipt is sufficient for alternate-agent recovery.",
+    "A summary is not a substitute for the raw contribution.",
+    "Transport observations may be many-to-one with the same raw artifact and should be recorded without duplicating mathematical content."
+  ],
+  "conditions": [
+    "Persist original bytes or the exact uploaded artifact before generating summaries, normalized Markdown, extracted metadata, or adjudication notes.",
+    "Store normalization/extraction outputs as derived artifacts that cite the raw digest; never rewrite the raw record to make it schema-conforming.",
+    "Receipts must record the exact dispatch pointer/digest, raw digest, attachment digests, and the next handling state so recovery does not depend on conversational memory."
+  ],
+  "residual_uncertainty": [
+    "Long-term retention policy and storage tiering for very large external artifacts are outside this pilot."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}
