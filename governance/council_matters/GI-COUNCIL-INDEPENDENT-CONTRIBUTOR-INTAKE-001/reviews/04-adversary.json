@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "adversary",
+  "reviewer_id": "openai-gpt-5.6-sol-council-adversary-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/adversary/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. The proposal closes the obvious authority-inflation path but must explicitly withstand malicious or merely confused payloads. A contributor can lie about context, reuse another contribution_id, embed operational instructions, return executable code, submit a stale proof against a moved hypothesis, or flood a blind cohort with correlated pseudo-independent sessions. Raw preservation is necessary precisely because later adjudicators need to inspect such conflicts without losing the original evidence.",
+  "discharged_obligations": [
+    "Attempted authority escalation, identity spoofing, overwrite, stale-rebinding, prompt-injection, executable-payload, and sybil-independence attacks.",
+    "Checked whether negative or conflicting evidence can be erased by normalization or synthesis."
+  ],
+  "findings": [
+    "Append-only raw preservation prevents overwrite and retrospective cleaning of inconvenient evidence.",
+    "Contributor-declared identity and context must be treated as untrusted claims until corroborated.",
+    "Blind cohorts require dispatch-side isolation; intake alone cannot restore independence after cross-disclosure."
+  ],
+  "conditions": [
+    "Treat all returned text and attachments as untrusted data; no embedded instruction, URL, script, notebook, or executable attachment may trigger action without a separate authorized execution path.",
+    "Reject contribution_id collision as an intake defect unless the new packet is explicitly declared as a correction/supersession; never overwrite the earlier record.",
+    "Record a cohort contamination event when cross-disclosure is detected; do not continue to label affected returns independent_blind.",
+    "Do not count multiple sessions, filenames, or self-declared identities as independent sources for any quantitative assurance claim."
+  ],
+  "residual_uncertainty": [
+    "Authenticated provenance can still fail to establish epistemic independence if contributors share hidden training or upstream sources; the pilot should not attempt to solve that stronger problem."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}
