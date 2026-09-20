@@ -1,0 +1,45 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "review_count": 10,
+  "office_decisions": {
+    "adversary": "approve_with_conditions",
+    "amanuensis": "approve_with_conditions",
+    "axiomatist": "approve_with_conditions",
+    "cartographer": "approve_with_conditions",
+    "composer": "approve_with_conditions",
+    "formalist": "approve_with_conditions",
+    "grammarian": "approve_with_conditions",
+    "referee": "approve_with_conditions",
+    "steward": "approve_with_conditions",
+    "verifier": "approve_with_conditions"
+  },
+  "review_sha256": {
+    "adversary": "af9a147797c18ad3534a7b7dc6072fe6b274b397373637eb69b884843bc5da7e",
+    "amanuensis": "a8c900634bac1bdb9195cc4598987db656a5d8d280ad6765c3cce40c72759521",
+    "axiomatist": "3b201924b267b0904754eb0f32785b490bdb24559920e2b317ce503b35452fd7",
+    "cartographer": "02396dea767d43a219292e3ba42a01d0dfea83f55dbdcd4cab6dd188c15c1a3c",
+    "composer": "1b5d2ac717fa4566b92a18db97264657b691389c73c93cd5bd8eddf15e5bc57d",
+    "formalist": "04adce55da028278471353d177a64cdd3bf8a42af70f06ce0da273f12ba11f41",
+    "grammarian": "5b58d26f420ce43b331594a527a86300b4a100a33fb00d34604af0c9a399056d",
+    "referee": "ef04c8adfffb808fc75398d519809cfa6a677033eebe6d29ffa6d1690d6fa536",
+    "steward": "9ed0c145539b8987c91bf6e4b4a0cad5c56d8c5a954889caea18763ef1b2da3a",
+    "verifier": "90b1c6c3ae928f57658639e8567e632e803337887de6d1a93a1a96c1917ede03"
+  },
+  "procedural_disposition": "ready_with_conditions",
+  "ready_for_human_disposition": true,
+  "conditions": [
+    "Pilot only: do not activate an organization-wide mandatory intake policy or persistent coordinator from this matter.",
+    "Represent independence with separate declared-context, authenticated-provenance-when-available, and adjudicated-independence fields; never infer independence from session/model/file identifiers alone.",
+    "Preserve every raw contribution and attachment immutably by exact content identity before normalization, synthesis, or adjudication; corrections are new linked records.",
+    "Automate only mechanically decidable classifications such as byte identity, exact dispatch binding, schema validity, explicit supersession links, and observable freshness. Semantic duplication, plagiarism, conflict meaning, and independence strength remain review-bound.",
+    "Define concurrency modes cooperative_claimed, independent_blind, and adversarial_replay, with explicit blind-cohort membership/closure. No cross-contribution synthesis before durable cohort closure; late returns remain preserved evidence with explicit late status.",
+    "Treat contributor payloads as untrusted data. Embedded instructions and executable attachments cannot trigger actions without a separate authorized sandboxed execution path.",
+    "Keep the inbox proposal-only and non-canonical. Protected dependency consumption requires ordinary exact-digest adjudication and the existing MATHSOLVE/MATHCERT/governance route.",
+    "Pilot receipts must bind dispatch identity, raw digest, attachment digests, declared context/provenance, concurrency mode, freshness, schema result, and handling state, and support idempotent replay without overwrite.",
+    "Run hostile fixtures for identifier collision, same bytes/different dispatch, different bytes/same identifier, stale live state, truncated return, blind-cohort contamination, duplicate attachment, late return, malicious embedded instruction, and transport replay.",
+    "Return pilot evidence, executor feedback, schema/validator proposal, and measured overhead to full Council review before broader institutionalization; final activation remains subject to Human Steward authority."
+  ],
+  "authority_boundary": "This compilation validates and summarizes Council records. It does not approve, merge, activate, ratify, or certify."
+}
