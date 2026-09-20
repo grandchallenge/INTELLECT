@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "record_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001-HS-001",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "council_protected_merge": "242d3b6a4130c24214a56978d7237dc85883c946",
+  "council_disposition_path": "governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/disposition.json",
+  "council_disposition_blob_sha": "7cfea6627769de08d7ef22b86eb2ee01f43b23bc",
+  "council_disposition_sha256": "a11ee21db5dd0568c8ea253f4371d5d1aceb07a966729b1353121859be6bbaa2",
+  "acting_human_steward": "fyremael",
+  "authenticated_principal": "fyremael",
+  "authorization_action": "authenticated_role_bound_exact_packet_authorization",
+  "attestation": "I, Human Steward (fyremael) approve.",
+  "decision": "approve_with_conditions",
+  "authorized_scope": "bounded_ns_ci_independent_contributor_intake_pilot_only",
+  "authorized_effects": [
+    "Implement the bounded NS-CI pilot intake surface under the ten Council conditions.",
+    "Run the bounded pilot using independent_blind and comparison cooperative/adversarial contributions as specified by the Council proposal.",
+    "Collect raw contribution, receipt, concurrency, stale-state, security, recovery, and executor-overhead evidence.",
+    "Return pilot evidence, schema/validator proposal, and executor feedback to full Council review before broader institutionalization."
+  ],
+  "explicitly_not_authorized": [
+    "Organization-wide mandatory intake policy.",
+    "Persistent coordinator activation.",
+    "Contributor protected-branch, merge, Council, Referee, MATHCERT, certification, publication, or external-claim authority.",
+    "Mathematical certification or canonical claim promotion by intake.",
+    "Automatic execution of contributor payloads or executable attachments.",
+    "Broader institutionalization without renewed full Council review and applicable Human Steward authority."
+  ],
+  "authority_basis": [
+    "governance/constitutional_authority_schedule.json",
+    "governance/steward_directives/GI-STEWARD-0003.md",
+    "CONSTITUTION.md:Article X",
+    "governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/disposition.json"
+  ],
+  "status": "approved_for_bounded_pilot",
+  "recorded_date": "2026-09-20"
+}
