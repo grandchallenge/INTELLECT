@@ -1,5 +1,83 @@
 {
-  "reviews": [],
+  "reviews": [
+    {
+      "evidence_refs": [
+        "CHARTER_REVIEW.md#purpose_minder",
+        "charter_reviews.json:PR82-20261006-PURPOSE_MINDER-001",
+        "material_subject:4065a28b7a7099a8ab9327578c2514ac1826173c"
+      ],
+      "findings": [
+        "The original clerical-load question and stakeholders remain explicit. Institutional role ties executive support to existing research, product and institutional commitments without changing the issued five classes or creating a scientific mandate. Scope and constraints preserve corporate powers, mathematical programme authority and production semantic authority.",
+        "Residual uncertainty: No pilot benefit or research acceleration has been observed."
+      ],
+      "obligations": [
+        "purpose.explicit",
+        "purpose.stakeholders_legible"
+      ],
+      "office": "purpose_minder",
+      "phase": "charter",
+      "reviewed_at": "2026-10-06T09:59:55.887209+00:00",
+      "reviewer_id": "Codex-PR82-recovery-20261006",
+      "status": "approved"
+    },
+    {
+      "evidence_refs": [
+        "CHARTER_REVIEW.md#axiomatist",
+        "charter_reviews.json:PR82-20261006-AXIOMATIST-001",
+        "material_subject:4065a28b7a7099a8ab9327578c2514ac1826173c"
+      ],
+      "findings": [
+        "SPEC exposes chronological sampling, class matching, missing data and time-order/case-complexity confounding. Baseline pool and rules freeze before the start marker; arriving cases and comparator identities are appended before outcomes. The impossible advance freeze of future case identities is removed. Insufficient classes and unmatched comparisons remain explicit; no causal or population claim is supported.",
+        "Residual uncertainty: Eligibility and class definitions must be frozen before any later observation; those later execution records do not exist yet."
+      ],
+      "obligations": [
+        "axioms.exposed"
+      ],
+      "office": "axiomatist",
+      "phase": "charter",
+      "reviewed_at": "2026-10-06T09:59:55.897717+00:00",
+      "reviewer_id": "Codex-PR82-recovery-20261006",
+      "status": "approved"
+    },
+    {
+      "evidence_refs": [
+        "CHARTER_REVIEW.md#steward",
+        "charter_reviews.json:PR82-20261006-STEWARD-001",
+        "material_subject:4065a28b7a7099a8ab9327578c2514ac1826173c"
+      ],
+      "findings": [
+        "Ten matters, fourteen days, eight facilitator/reviewer person-hours and two recovery attempts cap the design. Existing authority is checked per matter; new paid services, credentials and outreach remain excluded. Founder, facilitator and reviewer effort are separately reported, total effort is unknown when components are missing, and increased measured effort blocks ACCELERATE pending a separate GCT trade-off decision.",
+        "Residual uncertainty: The design limits grant no resource allocation; observed workload and comparative benefit remain unknown."
+      ],
+      "obligations": [
+        "stewardship.proportionate"
+      ],
+      "office": "steward",
+      "phase": "charter",
+      "reviewed_at": "2026-10-06T09:59:55.908721+00:00",
+      "reviewer_id": "Codex-PR82-recovery-20261006",
+      "status": "approved"
+    },
+    {
+      "evidence_refs": [
+        "CHARTER_REVIEW.md#referee",
+        "charter_reviews.json:PR82-20261006-REFEREE-001",
+        "material_subject:4065a28b7a7099a8ab9327578c2514ac1826173c"
+      ],
+      "findings": [
+        "The prospective rule, comparator rule, raw paired fields, missingness, stop rules and class-level disposition rubric are inspectable. Prior three NARROW findings are answered in the revised SPEC. Institutional-need and obstacle fields explain purpose without converting time/count observations into scientific success. Approve Charter admission only; later Generation/Specification gates and production reconciliation remain distinct.",
+        "Residual uncertainty: There are no live cases, completed evaluation or production phase transition. Charter acceptance does not approve execution."
+      ],
+      "obligations": [
+        "referee.acceptance_testable"
+      ],
+      "office": "referee",
+      "phase": "charter",
+      "reviewed_at": "2026-10-06T09:59:55.919228+00:00",
+      "reviewer_id": "Codex-PR82-recovery-20261006",
+      "status": "approved"
+    }
+  ],
   "schema_version": "1.0",
   "work_package_id": "WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY"
 }

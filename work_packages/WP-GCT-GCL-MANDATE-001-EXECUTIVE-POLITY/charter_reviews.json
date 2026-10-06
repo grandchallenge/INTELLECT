@@ -1,0 +1,151 @@
+[
+  {
+    "authority_claims": {
+      "human_authorized": false,
+      "mathcert_certified": false
+    },
+    "criteria": [
+      "purpose.explicit",
+      "purpose.stakeholders_legible"
+    ],
+    "effects": [
+      "public_contract"
+    ],
+    "evidence": [
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/CHARTER.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SPEC.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SOURCE.json",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/RECOVERY.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/events.jsonl",
+      "https://github.com/grandchallenge/INTELLECT/issues/84"
+    ],
+    "finding": "approved",
+    "logical_pass_id": "PR82-20261006-PURPOSE_MINDER-001",
+    "mode": "non_authoring_read_only",
+    "reserved_authority_ref": null,
+    "reviewer_system_id": "Codex-PR82-recovery-20261006",
+    "role": "purpose_minder",
+    "schema_version": "1.0.0",
+    "subject": {
+      "base_commit": "cacfe1f749b91a335e1d1734352cecff56bad7c1",
+      "commit": "4065a28b7a7099a8ab9327578c2514ac1826173c",
+      "dependency_closure_sha256": "4ac524994da0492bd3b1305363359d1a1b84e0c2b07a01d3a45248fce25c01ff",
+      "material_evidence_sha256": "da6f405a078ca232ec189d228dd4dd574d01a6a50927145cfe3d741756010ff3",
+      "repository": "grandchallenge/INTELLECT",
+      "tree": "e48481d1343b4652383800c1a1ec62ef8ec0274e"
+    },
+    "unresolved_obligations": [],
+    "work_class": "substantive"
+  },
+  {
+    "authority_claims": {
+      "human_authorized": false,
+      "mathcert_certified": false
+    },
+    "criteria": [
+      "axioms.exposed"
+    ],
+    "effects": [
+      "public_contract"
+    ],
+    "evidence": [
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/CHARTER.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SPEC.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SOURCE.json",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/RECOVERY.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/events.jsonl",
+      "https://github.com/grandchallenge/INTELLECT/issues/84"
+    ],
+    "finding": "approved",
+    "logical_pass_id": "PR82-20261006-AXIOMATIST-001",
+    "mode": "non_authoring_read_only",
+    "reserved_authority_ref": null,
+    "reviewer_system_id": "Codex-PR82-recovery-20261006",
+    "role": "axiomatist",
+    "schema_version": "1.0.0",
+    "subject": {
+      "base_commit": "cacfe1f749b91a335e1d1734352cecff56bad7c1",
+      "commit": "4065a28b7a7099a8ab9327578c2514ac1826173c",
+      "dependency_closure_sha256": "4ac524994da0492bd3b1305363359d1a1b84e0c2b07a01d3a45248fce25c01ff",
+      "material_evidence_sha256": "da6f405a078ca232ec189d228dd4dd574d01a6a50927145cfe3d741756010ff3",
+      "repository": "grandchallenge/INTELLECT",
+      "tree": "e48481d1343b4652383800c1a1ec62ef8ec0274e"
+    },
+    "unresolved_obligations": [],
+    "work_class": "substantive"
+  },
+  {
+    "authority_claims": {
+      "human_authorized": false,
+      "mathcert_certified": false
+    },
+    "criteria": [
+      "stewardship.proportionate"
+    ],
+    "effects": [
+      "public_contract"
+    ],
+    "evidence": [
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/CHARTER.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SPEC.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SOURCE.json",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/RECOVERY.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/events.jsonl",
+      "https://github.com/grandchallenge/INTELLECT/issues/84"
+    ],
+    "finding": "approved",
+    "logical_pass_id": "PR82-20261006-STEWARD-001",
+    "mode": "non_authoring_read_only",
+    "reserved_authority_ref": null,
+    "reviewer_system_id": "Codex-PR82-recovery-20261006",
+    "role": "steward",
+    "schema_version": "1.0.0",
+    "subject": {
+      "base_commit": "cacfe1f749b91a335e1d1734352cecff56bad7c1",
+      "commit": "4065a28b7a7099a8ab9327578c2514ac1826173c",
+      "dependency_closure_sha256": "4ac524994da0492bd3b1305363359d1a1b84e0c2b07a01d3a45248fce25c01ff",
+      "material_evidence_sha256": "da6f405a078ca232ec189d228dd4dd574d01a6a50927145cfe3d741756010ff3",
+      "repository": "grandchallenge/INTELLECT",
+      "tree": "e48481d1343b4652383800c1a1ec62ef8ec0274e"
+    },
+    "unresolved_obligations": [],
+    "work_class": "substantive"
+  },
+  {
+    "authority_claims": {
+      "human_authorized": false,
+      "mathcert_certified": false
+    },
+    "criteria": [
+      "referee.acceptance_testable"
+    ],
+    "effects": [
+      "public_contract"
+    ],
+    "evidence": [
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/CHARTER.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SPEC.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SOURCE.json",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/RECOVERY.md",
+      "https://github.com/grandchallenge/INTELLECT/blob/4065a28b7a7099a8ab9327578c2514ac1826173c/work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/events.jsonl",
+      "https://github.com/grandchallenge/INTELLECT/issues/84"
+    ],
+    "finding": "approved",
+    "logical_pass_id": "PR82-20261006-REFEREE-001",
+    "mode": "non_authoring_read_only",
+    "reserved_authority_ref": null,
+    "reviewer_system_id": "Codex-PR82-recovery-20261006",
+    "role": "Referee",
+    "schema_version": "1.0.0",
+    "subject": {
+      "base_commit": "cacfe1f749b91a335e1d1734352cecff56bad7c1",
+      "commit": "4065a28b7a7099a8ab9327578c2514ac1826173c",
+      "dependency_closure_sha256": "4ac524994da0492bd3b1305363359d1a1b84e0c2b07a01d3a45248fce25c01ff",
+      "material_evidence_sha256": "da6f405a078ca232ec189d228dd4dd574d01a6a50927145cfe3d741756010ff3",
+      "repository": "grandchallenge/INTELLECT",
+      "tree": "e48481d1343b4652383800c1a1ec62ef8ec0274e"
+    },
+    "unresolved_obligations": [],
+    "work_class": "substantive"
+  }
+]

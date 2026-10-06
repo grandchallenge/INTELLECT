@@ -1,5 +1,12 @@
 {
-  "missing": [
+  "missing": [],
+  "phase": "charter",
+  "ready": true,
+  "satisfied": [
+    "charter title",
+    "explicit purpose",
+    "bounded scope",
+    "acceptance criteria",
     "approved review: axiomatist",
     "obligation: axiomatist/axioms.exposed",
     "approved review: purpose_minder",
@@ -9,14 +16,6 @@
     "obligation: referee/referee.acceptance_testable",
     "approved review: steward",
     "obligation: steward/stewardship.proportionate"
-  ],
-  "phase": "charter",
-  "ready": false,
-  "satisfied": [
-    "charter title",
-    "explicit purpose",
-    "bounded scope",
-    "acceptance criteria"
   ],
   "target_phase": "generation"
 }
