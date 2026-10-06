@@ -1,0 +1,70 @@
+{
+  "dependency_files": [
+    {
+      "path": "CONSTITUTION.md",
+      "sha256": "85ea47cb67ebe15210b6743e186d36db2336bd0a610929392806406be5a49c1a"
+    },
+    {
+      "path": "governance/constitutional_authority_schedule.json",
+      "sha256": "4c9dbb0d8ce3c899ce0a5de91d579707fc77bcf61730487e8dffabf5a171d206"
+    },
+    {
+      "path": "governance/steward_directives/GI-STEWARD-0003.md",
+      "sha256": "4b4f6ab964a7d3233585ea65606a75f8e05821a1ffd288bf62c7b620e56581a2"
+    },
+    {
+      "path": "schemas/agent_review.schema.json",
+      "sha256": "8ac40c8187a963426eee62f7cfe0d033659bc81414935ab9570526737f58a061"
+    },
+    {
+      "path": "schemas/event.schema.json",
+      "sha256": "7114b04d87c38dc2218d4c04fc561653a3aca3381a586eb6bcbd2879c78b23a7"
+    },
+    {
+      "path": "schemas/multi_role_review.schema.json",
+      "sha256": "04833073238803db5a6e804d1eaa660232f22dc2a8f2f833e0e3fac09e81be41"
+    },
+    {
+      "path": "src/grand_intellect/constitution.py",
+      "sha256": "e588167c4fb0399d3694fccf3fbce0129de3cc901758ad449ec3269937ba7a9b"
+    },
+    {
+      "path": "src/grand_intellect/model.py",
+      "sha256": "4b64de96e01bab8b2a2ef0b51d6187814bc1df78a7bc9411da2ebfae376e800b"
+    },
+    {
+      "path": "src/grand_intellect/workspace.py",
+      "sha256": "3e39580bfbd6aaa3983fe845ef0025b0692c3d8d889f55aeec409bcfe289f2a4"
+    }
+  ],
+  "material_files": [
+    {
+      "path": "work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/CHARTER.md",
+      "sha256": "0548f8f2a92dc50016b3ef8588517ea4d33f5ba1322a440bd77286c77cf892cc"
+    },
+    {
+      "path": "work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/RECOVERY.md",
+      "sha256": "dea934d0e6c648bbe9abd3e9307725b44064b5f2ee4383d3293b855c54a3dbcf"
+    },
+    {
+      "path": "work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SOURCE.json",
+      "sha256": "55ac60d384e7636a800a6d1cd5e828ccd176635c271ec356c62f134d08de8c8f"
+    },
+    {
+      "path": "work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/SPEC.md",
+      "sha256": "61fccaff2bdf78e934380a812e3dfd99d85845224f25510258755520e502b532"
+    },
+    {
+      "path": "work_packages/WP-GCT-GCL-MANDATE-001-EXECUTIVE-POLITY/events.jsonl",
+      "sha256": "bf5bad1e77063df2f0279a8db64572c92c4fd0334e78022a895fd45b256608ab"
+    }
+  ],
+  "subject": {
+    "base_commit": "cacfe1f749b91a335e1d1734352cecff56bad7c1",
+    "commit": "4065a28b7a7099a8ab9327578c2514ac1826173c",
+    "dependency_closure_sha256": "4ac524994da0492bd3b1305363359d1a1b84e0c2b07a01d3a45248fce25c01ff",
+    "material_evidence_sha256": "da6f405a078ca232ec189d228dd4dd574d01a6a50927145cfe3d741756010ff3",
+    "repository": "grandchallenge/INTELLECT",
+    "tree": "e48481d1343b4652383800c1a1ec62ef8ec0274e"
+  }
+}
