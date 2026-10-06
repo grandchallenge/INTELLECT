@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office": "formalist",
+  "reviewer_id": "openai-gpt-5.6-sol-council-formalist-gi-council-rsi-ccc-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-RSI-CCC-001/formalist/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2. The formal target is sufficiently precise for intake, but several symbols currently denote families of obligations rather than one typed theory. WP00 must make Prog structure explicit, state the categorical type of Later and next, define the guarded fixed-point operator in the chosen model, and give exact laws connecting refinement to composition, currying, and evaluation.",
+  "discharged_obligations": [
+    "Translate the proposal into explicit typed contracts and theorem obligations.",
+    "Check the intended relations among reflection, refinement, quality, and guarded recursion."
+  ],
+  "findings": [
+    "The staged run_A : Prog(A) -> Later A interface is suitable only after Prog, Later, and quote/adequacy are defined in one formal system.",
+    "Refinement compatibility with evaluation and currying must be theorem obligations, not prose assumptions.",
+    "The preservation theorem should distinguish invariant preservation, monotone refinement, policy-conditioned strict Q progress, and trace productivity."
+  ],
+  "conditions": [
+    "Before claiming the core theorem, publish exact signatures, laws, and quantified assumptions for Prog, run, quote/adequacy, Later/next/gfix, refinement, Q, composition monotonicity, and the certificate checker."
+  ],
+  "residual_uncertainty": [
+    "It is not yet established that the candidate topos-of-trees route is the most economical mechanization target; WP00 may select another model if it satisfies the same explicit interface."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:CONSTITUTION.md",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md"
+  ]
+}

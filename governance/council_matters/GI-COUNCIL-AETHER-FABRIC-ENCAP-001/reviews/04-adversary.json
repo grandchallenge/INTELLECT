@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "adversary",
+  "reviewer_id": "gpt-5.6-sol/adversary-aether-fabric-r2-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 addresses the primary Round-1 attack: a mechanical fabric can manipulate institutional outcomes through scheduling and selective delivery without claiming truth authority. Authorized mechanical envelopes and policy-laundering prohibitions make that influence visible and testable.",
+  "discharged_obligations": [
+    "Sought boundary-collapse, authority-laundering, denial, starvation, and selective-observation failure modes."
+  ],
+  "findings": [
+    "FABRIC can influence what the polity gets to observe even when it cannot admit truth.",
+    "Missing transport must remain distinguishable from negative evidence.",
+    "Mechanical optimization policy requires attributable authorization."
+  ],
+  "conditions": [
+    "Starvation, selective suppression, priority inversion, replay amplification, and missing-transport-vs-negative-evidence must be mandatory hostile tests.",
+    "Mechanical optimization policy must be attributable and auditable.",
+    "A compromised FABRIC must have a tested containment path that preserves AETHER semantic correctness.",
+    "Any future FABRIC interpretation of authority-bearing tokens requires separate review."
+  ],
+  "residual_uncertainty": [
+    "Denial, selective delay, and topology bias remain substantial attack surfaces."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

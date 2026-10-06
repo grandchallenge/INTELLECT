@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "title": "Independent contributor intake and concurrency integrity",
+  "status": "before_council",
+  "decision_class": "research_contribution_intake_concurrency_and_epistemic_integrity",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+  "proposal_sha256": "46631dc185b0319bccd12b72998a1ccd9648bfbe4ec3d91092edf4ce3e0f17c6",
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward",
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "abstain",
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/disposition.json"
+}

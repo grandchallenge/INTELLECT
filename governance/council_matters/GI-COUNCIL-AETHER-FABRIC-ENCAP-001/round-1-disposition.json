@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "round": 1,
+  "exact_subject_head": "59d71383f051a49ed88f0b375a19f9f332e10a13",
+  "office_decisions": {
+    "axiomatist": "approve_with_conditions",
+    "cartographer": "approve_with_conditions",
+    "verifier": "approve_with_conditions",
+    "adversary": "changes_requested",
+    "formalist": "approve_with_conditions",
+    "steward": "approve_with_conditions",
+    "grammarian": "changes_requested",
+    "composer": "approve_with_conditions",
+    "amanuensis": "approve_with_conditions",
+    "referee": "changes_requested"
+  },
+  "review_ids": {
+    "axiomatist": 5123567222,
+    "cartographer": 5123567474,
+    "verifier": 5123567709,
+    "adversary": 5123568042,
+    "formalist": 5123568276,
+    "steward": 5123568519,
+    "grammarian": 5123568723,
+    "composer": 5123569117,
+    "amanuensis": 5123569355,
+    "referee": 5123569746
+  },
+  "procedural_disposition": "returned_for_revision",
+  "material_revision_requirements": [
+    "govern influence-without-authority through scheduling, starvation, priority, retry asymmetry, locality bias, and selective delivery",
+    "define canonical terminology and identity strata",
+    "define semantic equivalence and the E2 conformance harness",
+    "separate allocation, route, delivery, receipt, semantic admission, and institutional decision as typed events",
+    "retain AETHER semantic fencing and authority-partition semantics",
+    "add migration/lineage duties and E0-E4 stop-go criteria",
+    "clarify that AETHER semantic authority is bounded to its admitted domain"
+  ],
+  "authority_boundary": "Round 1 was advisory and created no constitutional, production, controller-admission, or AETHER-authority effect."
+}

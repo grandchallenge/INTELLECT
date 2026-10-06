@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office": "axiomatist",
+  "reviewer_id": "openai-gpt-5.6-sol-council-axiomatist-gi-council-rsi-ccc-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-RSI-CCC-001/axiomatist/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2. The intake exposes the required primitives rather than deriving RSI from Cartesian closure alone. The proposed object distinguishes a Cartesian-closed semantic core, inspectable program representation, staged evaluation, refinement, operational quality, a later modality, and guarded fixed points. That is a coherent research charter, but WP00 must make the guarded categorical structure and trust assumptions formal rather than leave them at notation level.",
+  "discharged_obligations": [
+    "Expose the primitives and assumptions of the proposed formal object.",
+    "Check that Cartesian closure is not treated as sufficient for reflection, improvement, or safe recursion.",
+    "Identify assumptions that must remain external to the preservation theorem."
+  ],
+  "findings": [
+    "The proposal correctly separates denotational equality, semantic refinement, and operational quality.",
+    "Checker soundness and evaluation integrity are assumptions of the intended preservation result, not consequences of self-reference.",
+    "A concrete guarded model is required before the mechanism can acquire theorem status."
+  ],
+  "conditions": [
+    "Specify one exact categorical model with the CCC structure, Later/next, guarded fixed-point law, Prog/run interface, and the assumptions needed for the checker and evaluation context."
+  ],
+  "residual_uncertainty": [
+    "The existence and mechanizability of a single model satisfying all proposed laws has not yet been demonstrated; that is the WP00 research obligation."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:CONSTITUTION.md",
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:governance/steward_directives/GI-STEWARD-0003.md",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md",
+    "proposal_sha256:fb7edd874841d02b5dcb81d711f28cec7f8661da09569d795e855a91d1cd50bc"
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "composer",
+  "reviewer_id": "gpt-5.6-sol/composer-aether-fabric-r2-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 composes POL, AETHER, AETHER-Learn, FABRIC, GHOS, AETHER-MEM, sidecars, and distributed truth without collapsing their authority roles.",
+  "discharged_obligations": [
+    "Checked whole-system coherence and end-to-end composition across the proposed planes."
+  ],
+  "findings": [
+    "The end-to-end cycle can preserve institutional meaning while delegating physical realization.",
+    "A cross-plane correlation model can reconstruct operations without collapsing event semantics."
+  ],
+  "conditions": [
+    "E1 should publish one canonical end-to-end sequence and correlation model.",
+    "AETHER-MEM and sidecars must retain semantic identity and provenance in AETHER while FABRIC handles physical locality and movement only.",
+    "Distributed-truth semantic cuts and fencing must remain AETHER responsibilities.",
+    "Do not introduce another telemetry plane without evidence that owning-plane telemetry is insufficient."
+  ],
+  "residual_uncertainty": [
+    "High-performance paths may require co-designed interfaces, which must not become semantic collapse."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

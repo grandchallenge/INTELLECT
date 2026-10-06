@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "cartographer",
+  "reviewer_id": "gpt-5.6-sol/cartographer-aether-fabric-r2-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 resolves the principal dependency concern. It preserves AETHER authority partitions and semantic fencing and routes FABRIC telemetry back through admitted evidence rather than a hidden policy channel.",
+  "discharged_obligations": [
+    "Mapped the principal dependency edges, feedback paths, and ownership seams."
+  ],
+  "findings": [
+    "The proposed dependency graph is non-circular if FABRIC telemetry returns as evidence.",
+    "Repository extraction remains downstream of a responsibility map rather than defining it."
+  ],
+  "conditions": [
+    "E0 must map all material current responsibilities and dependencies before extraction.",
+    "AMBIGUOUS must remain a legitimate classification rather than being forced into FABRIC.",
+    "Topology-aware feedback may advise allocation only through an admitted evidence path."
+  ],
+  "residual_uncertainty": [
+    "Future topology-aware allocation may require a carefully governed bidirectional advisory loop."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

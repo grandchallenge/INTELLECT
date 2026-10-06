@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "verifier",
+  "reviewer_id": "openai-gpt-5.6-sol-council-verifier-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/verifier/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. Most integrity properties are mechanically testable: exact dispatch binding, raw-byte digest, attachment digest, schema completeness, append-only receipt creation, cohort membership, and live-head freshness. Two proposed classifications require narrowing. Semantic duplication and genuine independence are not deterministic machine facts in the general case and must remain review-only or evidence-qualified.",
+  "discharged_obligations": [
+    "Separated machine-checkable intake invariants from review-only semantic judgments.",
+    "Identified hostile fixtures needed to validate stale, duplicate, truncated, and conflicting returns."
+  ],
+  "findings": [
+    "Byte-identical duplicate detection can be deterministic.",
+    "Exact source-handoff and live-state freshness can be deterministic when repository identities are available.",
+    "Semantic equivalence, plagiarism, and independence strength cannot be safely reduced to content hashes or model/session identifiers."
+  ],
+  "conditions": [
+    "Revise pilot acceptance criterion 5 so deterministic classification is required only for byte identity, dispatch identity, schema validity, declared supersession links, and mechanically observable freshness; semantic duplicate/conflict classification must be review-bound.",
+    "Add hostile fixtures for same bytes/different dispatch, different bytes/same contribution_id, stale dispatch/current live head, truncated return, duplicate attachment digest, and late blind-cohort return."
+  ],
+  "residual_uncertainty": [
+    "Freshness for non-repository external handoffs may require an explicit dispatcher-issued content digest rather than a live-head comparison."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}

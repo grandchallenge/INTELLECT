@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "formalist",
+  "reviewer_id": "openai-gpt-5.6-sol-council-formalist-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/formalist/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. A minimal state machine is sufficient for the pilot. Formalize immutable raw object identity and receipt identity, but leave mathematical prose opaque. The strongest invariant is monotonicity: intake adds raw records and relations; it never mutates prior raw bytes or upgrades claim authority. Adjudication is a separate object referencing exact digests.",
+  "discharged_obligations": [
+    "Reduced the proposal to a minimal machine-state surface and invariants.",
+    "Checked that formalization does not pretend to decide mathematical truth or semantic independence."
+  ],
+  "findings": [
+    "A schema is useful for dispatch metadata and receipts; the mathematical body can remain an opaque content-addressed artifact.",
+    "A correction should be a new node with an explicit supersedes edge.",
+    "Cohort closure and late-return handling need explicit state transitions to avoid race-dependent synthesis."
+  ],
+  "conditions": [
+    "Pilot schemas must include immutable raw_digest, exact dispatch identity, assignment_id, concurrency_mode, receipt_id, declared context metadata, attachment manifest, freshness state, and adjudication pointer fields.",
+    "Define a cohort lifecycle at least OPEN -> CLOSED_FOR_BLINDNESS -> SYNTHESIS_ALLOWED, with late returns preserved but not retroactively counted in the closed blind cohort unless a new cohort is opened.",
+    "Define idempotent intake behavior for replay of the same raw bytes under the same dispatch: preserve one raw object and permit multiple transport observations without creating contradictory canonical receipts."
+  ],
+  "residual_uncertainty": [
+    "Whether receipt_id should be purely content-addressed or combine dispatch and raw digests should be decided during schema design with collision and transport-replay tests."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}

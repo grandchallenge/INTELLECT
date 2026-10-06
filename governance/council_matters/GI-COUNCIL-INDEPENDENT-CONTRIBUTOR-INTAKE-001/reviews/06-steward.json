@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001",
+  "matter_sha256": "6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130",
+  "office": "steward",
+  "reviewer_id": "openai-gpt-5.6-sol-council-steward-gi-council-independent-contributor-intake-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/steward/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:6f1280f8c7bdfd9195f266077666fe54270efe0b1a721a33c92614a99b9c2130. The bounded pilot preserves current authority if contributor mutation is proposal-only or absent and if protected incorporation remains a separate ordinary MATHSOLVE/MATHCERT/governance act. The Council may recommend the pilot, but organization-wide activation or a new mandatory policy remains reserved for an explicit Human Steward disposition after pilot evidence.",
+  "discharged_obligations": [
+    "Checked authority scope, reserved decisions, and whether the pilot creates synthetic Steward, Council, review, merge, or certification acts.",
+    "Distinguished pilot evidence collection from policy activation."
+  ],
+  "findings": [
+    "No contributor requires protected write authority to participate.",
+    "A bounded proposal-only inbox does not itself change mathematical or certification authority.",
+    "The pilot can proceed only after Human Steward disposition on the exact Council-returned conditions if the implementation creates a new governed intake contract."
+  ],
+  "conditions": [
+    "Council disposition must remain advisory and route the reconciled pilot packet to the Human Steward before any new mandatory cross-repository policy is activated.",
+    "The pilot may not grant contributor merge, protected-branch, Council, Referee, MATHCERT, certification, publication, or external-claim authority.",
+    "Any post-pilot organization-wide schema or persistent coordinator is a new governed transition and must return for the applicable authority process."
+  ],
+  "residual_uncertainty": [
+    "A purely local research experiment that stores returned artifacts without claiming policy effect may already be possible under existing repository authority, but this Council matter should govern the proposed common institutional contract."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@9be53d999cd9178435260554d2d31d78f46f45b0:governance/council_matters/GI-COUNCIL-INDEPENDENT-CONTRIBUTOR-INTAKE-001/proposal.md",
+    "grandchallenge/INTELLECT@7e6b61ddf77e2d73309657d089a98cae84cc735f:governance/agent_execution/GCL-AGENT-CONTINUITY-001.md",
+    "grandchallenge/MATHSOLVE@04a2d15d49c78027d75d76c22c67be3f4a12c73b:handoffs/RH-001/routes/README.md",
+    "grandchallenge/MATH-PROGRAMME@f1a57fc81bfa0389b070e7c896fa76baa83720c1:records/MATH_CORE_01_GCL_MATHEMATICS_ARCHITECTURE_MEMORIAL.md"
+  ]
+}

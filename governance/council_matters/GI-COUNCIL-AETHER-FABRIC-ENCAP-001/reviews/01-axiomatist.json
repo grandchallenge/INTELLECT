@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "axiomatist",
+  "reviewer_id": "gpt-5.6-sol/axiomatist-aether-fabric-r2-001",
+  "decision": "approve",
+  "deliberation": "Revision 1 closes the primitive ambiguity from Round 1. Semantic authority, institutional allocation, mechanical realization, identity strata, admission, and execution-controller authority are distinct kinds with explicit non-implication rules. The influence-without-authority channel is explicit.",
+  "discharged_obligations": [
+    "Exposed and separated the primitive entities, assumptions, and authority boundaries."
+  ],
+  "findings": [
+    "AETHER semantic authority is bounded to its admitted domain.",
+    "FABRIC mechanical realization cannot imply semantic admission or institutional authority.",
+    "Any future shared primitive between AETHER and raw FABRIC requires separate review."
+  ],
+  "conditions": [],
+  "residual_uncertainty": [
+    "The eventual mechanical capability and policy envelope must preserve these distinctions exactly."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

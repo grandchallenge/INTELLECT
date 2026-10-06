@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "matter_sha256": "2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2",
+  "office": "referee",
+  "reviewer_id": "openai-gpt-5.6-sol-council-referee-gi-council-rsi-ccc-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Pass metadata: reviewer_system_id=openai-gpt-5.6-sol; logical_pass_id=GI-COUNCIL-RSI-CCC-001/referee/read-only-v1; mode=non_authoring_read_only; exact_subject=matter_sha256:2cf5801a9cfd974b8ff94f8330794b7c75ba4c6b5909182f61c6c09b54ae1ad2. The preceding office questions can be discharged at research-intake level without presuming the mathematical result. The proposal is narrow, falsifiable, and fail-closed in intent. The Council should admit the investigation conditionally, with the trust-kernel, typing, exact-object, theorem-assumption, adversarial-fixture, and scope controls stated here as the controlling intake conditions. This finding is advisory; the matter contract reserves final intake disposition to the Human Steward.",
+  "discharged_obligations": [
+    "Reconcile the differentiated office findings against the declared intake criteria.",
+    "Control acceptance, revision, rejection, and closure without exceeding advisory Council authority.",
+    "Preserve residual uncertainty and the Human Steward reserved disposition."
+  ],
+  "findings": [
+    "No office identified a defect that requires rejection or pre-intake revision.",
+    "The common risk is semantic drift between the formal object, checker, demonstration, and public RSI language.",
+    "Conditional intake is proportionate because WP00 is explicitly required to prove or falsify the combined construction."
+  ],
+  "conditions": [
+    "Bind WP00 to one exact content-addressed formal object and manifest; the categorical model, mechanized theorem, checker, executable demonstration, quality and refinement definitions, fixtures, and trust-boundary statement must all refer to that object.",
+    "Enumerate the fixed trust kernel. The checker, certificate semantics or interpreter, admission policy, artifact-identity rules, and evaluation-context binding may not be modified through the same replacement gate they validate.",
+    "State exact typed laws and assumptions for Prog/run/quotation adequacy, Later/next/gfix, semantic refinement, operational quality Q, and compatibility with composition, currying, and evaluation.",
+    "Make checker soundness, evaluation-context integrity, certificate validity, and any decidability, termination, or resource assumptions explicit in the mechanized preservation theorem; do not promote bounded results to claims of self-verification or unbounded intelligence growth.",
+    "Demonstrate at least one bounded capability-extension transition and one semantics-preserving optimization, plus fail-closed adversarial fixtures covering malformed and stale proposals, unsafe or non-refining candidates, non-improvement, metric or context substitution, trust-kernel mutation attempts, and resource exhaustion.",
+    "Use a smallest-complete-model milestone and explicit stop or narrow criteria before any scope expansion or production-oriented implementation."
+  ],
+  "residual_uncertainty": [
+    "Whether a concrete model satisfying all laws exists and can be mechanized remains open by design.",
+    "Whether the bounded mechanism yields useful capability growth rather than merely local certified replacements is an empirical and mathematical question for later work.",
+    "Council approval does not certify mathematics, authorize deployment, or itself effect the reserved Human Steward disposition."
+  ],
+  "evidence_refs": [
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:CONSTITUTION.md",
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:governance/constitutional_authority_schedule.json",
+    "grandchallenge/INTELLECT@fc9ee5537bf07586dffcc621e753204ecd835365:governance/steward_directives/GI-STEWARD-0003.md",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/matter.json",
+    "grandchallenge/INTELLECT@14c00503d88efeb4c2f3de796b8f07bf1f9352cd:governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md"
+  ]
+}

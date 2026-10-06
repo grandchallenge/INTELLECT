@@ -1,0 +1,36 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-RSI-CCC-001",
+  "title": "Intake review for guarded reflective Cartesian-closure RSI",
+  "status": "before_council",
+  "decision_class": "research_programme_intake",
+  "proposal_path": "governance/council_matters/GI-COUNCIL-RSI-CCC-001/proposal.md",
+  "proposal_sha256": "fb7edd874841d02b5dcb81d711f28cec7f8661da09569d795e855a91d1cd50bc",
+  "authority": {
+    "council_effect": "advisory",
+    "reserved_disposition": "human_steward",
+    "automation_may_activate": false,
+    "automation_may_certify_mathematics": false
+  },
+  "required_offices": [
+    "axiomatist",
+    "cartographer",
+    "verifier",
+    "adversary",
+    "formalist",
+    "steward",
+    "grammarian",
+    "composer",
+    "amanuensis",
+    "referee"
+  ],
+  "allowed_decisions": [
+    "abstain",
+    "approve",
+    "approve_with_conditions",
+    "changes_requested",
+    "reject"
+  ],
+  "review_directory": "governance/council_matters/GI-COUNCIL-RSI-CCC-001/reviews",
+  "disposition_path": "governance/council_matters/GI-COUNCIL-RSI-CCC-001/disposition.json"
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "matter_id": "GI-COUNCIL-AETHER-FABRIC-ENCAP-001",
+  "matter_sha256": "f995c389742e50faa94eded43d6d097c8c0d38f506b90f64a8c6afa8999170cb",
+  "office": "verifier",
+  "reviewer_id": "gpt-5.6-sol/verifier-aether-fabric-r2-001",
+  "decision": "approve_with_conditions",
+  "deliberation": "Revision 1 supplies a usable definition of semantic equivalence and an explicit E2 conformance procedure. The architecture recommendation is falsifiable.",
+  "discharged_obligations": [
+    "Checked that the claimed boundary can be tested, compared, and disproved."
+  ],
+  "findings": [
+    "Semantic equivalence covers cuts, resolved facts, derived tuples, policy visibility, provenance, proof traces, and admission outcomes.",
+    "The proposed hostile cases can expose hidden semantic dependence on FABRIC."
+  ],
+  "conditions": [
+    "E2 must compare canonical semantic outputs while operational metadata exclusions are schema-defined.",
+    "Hostile duplication, reordering, loss, replay, restart, invalid-envelope, and forged-advertisement cases must be fail-capable.",
+    "E3 and E4 advancement must bind exact evidence revisions."
+  ],
+  "residual_uncertainty": [
+    "Performance acceptability and interface survival under real distributed load remain empirical questions."
+  ],
+  "evidence_refs": [
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/proposal.md",
+    "governance/council_matters/GI-COUNCIL-AETHER-FABRIC-ENCAP-001/revision-1.md",
+    "CONSTITUTION.md Articles IX-XI"
+  ]
+}

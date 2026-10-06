@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://grandchallenge.ai/schemas/GCL-AGENT-CONTINUITY-ADOPTION-001.schema.json",
+  "title": "GCL Agent Continuity Adoption",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_id",
+    "schema_version",
+    "adoption_id",
+    "policy_id",
+    "version",
+    "authority_repository",
+    "authority_path",
+    "repository",
+    "binding_surface",
+    "required",
+    "specialization",
+    "local_validator",
+    "authority_preservation",
+    "specialization_data"
+  ],
+  "properties": {
+    "schema_id": {"const": "GCL-AGENT-CONTINUITY-ADOPTION-001"},
+    "schema_version": {"const": "1.0.0"},
+    "adoption_id": {"type": "string", "minLength": 1},
+    "policy_id": {"const": "GCL-AGENT-CONTINUITY-001"},
+    "version": {"const": "1.0.0"},
+    "authority_repository": {"const": "grandchallenge/INTELLECT"},
+    "authority_path": {"const": "governance/agent_execution/GCL-AGENT-CONTINUITY-001.md"},
+    "repository": {"type": "string", "pattern": "^grandchallenge/[A-Za-z0-9_.-]+$"},
+    "binding_surface": {"const": "AGENTS.md"},
+    "required": {"const": true},
+    "specialization": {"type": ["string", "null"]},
+    "local_validator": {"type": "string", "minLength": 1},
+    "authority_preservation": {
+      "type": "object",
+      "required": ["authority_changed"],
+      "properties": {
+        "authority_changed": {"const": false}
+      },
+      "additionalProperties": {"type": "boolean"}
+    },
+    "specialization_data": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
