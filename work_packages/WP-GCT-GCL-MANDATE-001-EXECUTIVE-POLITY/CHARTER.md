@@ -4,6 +4,14 @@
 
 Determine whether GCT can materially reduce Founder clerical load by applying bounded autonomy, exact-state execution, independent review, provenance, and explicit authority routing to real non-reserved executive matters without transferring GCT corporate authority to GitHub, INTELLECT, AETHER, or any agentic office.
 
+## Institutional role
+
+Founder attention is a means to enable Grand Challenge's research institution. The issued mandate's strategic rationale is to increase capacity for research, products and institutional work. This evaluation therefore records which existing programme commitment or institutional need each executive matter serves, and whether its disposition removes an obstacle or leaves one unresolved.
+
+MATH-PROGRAMME owns mathematical programme integration and policy; MATHFORGE, MATHSOLVE and MATHCERT retain discovery, solving and independent assurance. INTELLECT supplies cognitive organization and review. AETHER retains its constitutional production semantic role. GCT supplies enterprise priorities, resources and obstacle removal within its own authority. This work package evaluates executive support for those functions; it does not replace their contracts or commission a new scientific campaign.
+
+Clerical savings, research progress and scientific truth are distinct outcomes. An interruption reduction cannot establish a theorem, research acceleration or a completed autonomous institution. The first evaluation must report total observed Founder, facilitator and reviewer effort as well as interruptions, so shifting effort does not appear as an institutional gain.
+
 ## Scope
 
 Design and execute a bounded institutional/technical pilot over representative real non-reserved GCT executive matters. Instrument intake classification, execution route, recovery, review separation, Founder escalation, closure time, review debt, stale-state incidents, and authority-boundary failures or near misses. Return evidence and recommendations to GCT; do not exercise or ratify GCT corporate acts.
