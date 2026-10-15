@@ -1,0 +1,40 @@
+{
+  "protocol": "GCL-ARC-001",
+  "version": "0.1.0",
+  "status": "PROPOSED_NOT_EFFECTIVE",
+  "effective_source": "governance/steward_directives/GI-STEWARD-0003.md",
+  "authority": "SUBORDINATE_EXISTING_AGENT_ROLE_SEPARATION",
+  "transport": {
+    "single_institutional_github_identity_permitted": true,
+    "distinct_github_login_per_specialist_required": false,
+    "github_actor_is_not_epistemic_independence": true,
+    "mechanical_reviewer_app_may_be_separate_from_transport": true
+  },
+  "roles": [
+    "CANDIDATE",
+    "VERIFIER",
+    "ADVERSARY",
+    "REFEREE",
+    "CONTROLLER",
+    "AMANUENSIS"
+  ],
+  "non_authoring_read_only": ["VERIFIER", "ADVERSARY", "REFEREE"],
+  "classes": [
+    "ROUTINE_BOUNDED",
+    "MATERIAL_CONTROL",
+    "MATHEMATICAL_CLAIM",
+    "RESERVED"
+  ],
+  "dispositions": ["ACCEPT_BOUNDED", "REVISE", "BLOCKED"],
+  "review_record_type": "GCL_AGENT_ROLE_PASS_V1",
+  "same_system_logical_passes_permitted": true,
+  "independent_method_required_for_scientific_claim": true,
+  "mechanical_github_approval_is_not_specialist_review": true,
+  "requires_protected_workflow_adoption_before_enforcement": true,
+  "self_referential_git_commit_sha_forbidden": true,
+  "reserved_authority_preserved": true,
+  "mathematical_certification_effect": false,
+  "credential_expansion_effect": false,
+  "human_default_technical_reviewer": false,
+  "receipt_phases": ["CANDIDATE_HEAD", "REVIEW_DOSSIER", "SOURCE_REVIEW_AND_MERGE", "LATER_PROTECTED_RECEIPT", "CONSUMER_VERIFICATION"]
+}
