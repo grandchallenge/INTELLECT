@@ -1,0 +1,33 @@
+{
+  "schema_version": "2.0.0",
+  "record_type": "GCL_PROTECTED_AGENT_ROLE_ADMISSION_EVIDENCE_V1",
+  "authority_domain": "PROTECTION",
+  "source_repository": "grandchallenge/INTELLECT",
+  "subject": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "head_sha": "e577477b656c6865698d5dbc18962e2810f53a26",
+    "material_sha256": "e8254dbd487e59529d64e67b7832066cb4ff3a5437421e7b073b3effdd4822f0"
+  },
+  "verdict": "ADMISSIBLE_FOR_PROTECTED_ADMISSION",
+  "review_scope": "SECURITY_AND_GOVERNANCE_REVIEW",
+  "protected_evidence": {
+    "path": "governance/agent_execution/reviews/MATH-PROGRAMME-e577477b656c6865698d5dbc18962e2810f53a26.json",
+    "blob_sha": "4b3d108922ed9cf345d6407d81a216a93da697c1"
+  },
+  "source_review_anchor": {
+    "source_pr_number": 121,
+    "source_pr_head_sha": "69f89aa56c373a5978e58740fb60a9a2e6b32a3d",
+    "review_dossier_blob_sha": "4b3d108922ed9cf345d6407d81a216a93da697c1",
+    "source_protected_merge_sha": "a643dc472e2ae1201528de3a67632f8662000e20"
+  },
+  "identity_policy": "GI-STEWARD-0003 GCL-ARC-001 role_scoped_same_system; actual authenticated GitHub transport fyremael",
+  "non_author_specialist_person_claim": false,
+  "independent_review_basis": "distinct non-authoring read-only role passes with reproducible tests, hostile controls, immutable evidence and actual native protected INTELLECT source checks; no fabricated GitHub APPROVED review event",
+  "limits": {
+    "mathematical_certification": false,
+    "claim_promotion": false,
+    "security_permission_expansion": false,
+    "council_clerk_execution": false,
+    "protected_branch_bypass": false
+  }
+}
