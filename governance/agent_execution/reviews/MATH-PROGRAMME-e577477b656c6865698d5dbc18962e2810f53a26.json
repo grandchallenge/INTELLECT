@@ -1,0 +1,106 @@
+{
+  "record_type": "GCL_AGENT_REVIEW_DOSSIER_V1",
+  "schema_version": "1.0.0",
+  "review_date_utc": "2026-10-15",
+  "subject": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "head_sha": "e577477b656c6865698d5dbc18962e2810f53a26",
+    "material_sha256": "e8254dbd487e59529d64e67b7832066cb4ff3a5437421e7b073b3effdd4822f0"
+  },
+  "work_class": "MATERIAL_CONTROL",
+  "authority": "GI-STEWARD-0003 and protected GCL-ARC-001",
+  "transport_login": "fyremael",
+  "identity_disclosure": "role_scoped_same_system; one authenticated GitHub transport; not a distinct independent person or separate account",
+  "review_scope": "SECURITY_AND_GOVERNANCE_REVIEW",
+  "passes": [
+    {
+      "role": "VERIFIER",
+      "logical_pass_id": "ERDOS2624-VERIFIER-20261015-1",
+      "reviewer_system_id": "GPT-6",
+      "transport_login": "fyremael",
+      "subject_head_sha": "e577477b656c6865698d5dbc18962e2810f53a26",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "grandchallenge/MATH-PROGRAMME PR2624 exact head e577477b656c6865698d5dbc18962e2810f53a26",
+        "tests/test_erdos_catalogue_queue_projection.py",
+        "ci/erdos_catalogue_queue_projection.py"
+      ],
+      "write_set": [],
+      "checks": [
+        {
+          "command": "PYTHONPATH=. python3 tests/test_erdos_catalogue_queue_projection.py",
+          "exit_code": 0,
+          "receipt_sha256": "6911b42399b43e37b097888660a5f386fc6294d23088649fcbc03dc453e5bb06"
+        }
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "unresolved": [],
+      "interpretation": "22 live non-mutating tests passed; no live queue changes or independent security certification."
+    },
+    {
+      "role": "ADVERSARY",
+      "logical_pass_id": "ERDOS2624-ADVERSARY-20261015-1",
+      "reviewer_system_id": "GPT-6",
+      "transport_login": "fyremael",
+      "subject_head_sha": "e577477b656c6865698d5dbc18962e2810f53a26",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "tests/test_erdos_rolling_review_queue.py",
+        "ci/erdos_rolling_review_queue.py",
+        "grandchallenge/MATH-PROGRAMME PR2624 four-file immutable manifest"
+      ],
+      "write_set": [],
+      "checks": [
+        {
+          "command": "PYTHONPATH=. python3 tests/test_erdos_rolling_review_queue.py",
+          "exit_code": 0,
+          "receipt_sha256": "62e6bd3a77554540929dd26eab6204ab86056dc07bacce00a71e4482e9f4bcb8"
+        }
+      ],
+      "negative_controls": [
+        "Reject altered review actor and disposition or duplicate review comments in review completion tests",
+        "Reject changed source issue binding and unexpected Project Status",
+        "Verify replay-idempotence after partial state transitions; no actual Project writes"
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "unresolved": [],
+      "interpretation": "14 read-only queue tests passed, supplemented by 22 protection-controller fixtures; not a separate-person audit."
+    },
+    {
+      "role": "REFEREE",
+      "logical_pass_id": "ERDOS2624-REFEREE-20261015-1",
+      "reviewer_system_id": "GPT-6",
+      "transport_login": "fyremael",
+      "subject_head_sha": "e577477b656c6865698d5dbc18962e2810f53a26",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "ci/validate_workflow_coverage_v2.py",
+        "branch policy and documented 14 issue review dispositions",
+        "verifier and adversary receipts on CHAD"
+      ],
+      "write_set": [],
+      "checks": [
+        {
+          "command": "python3 ci/validate_workflow_coverage_v2.py",
+          "exit_code": 0,
+          "receipt_sha256": "eb067ed4a0c2e2b16807e6a025d3537f65c45ed9c732c3650c3a3c1a70f77a85"
+        }
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "unresolved": [],
+      "interpretation": "Exact five-job protected Council Clerk workflow validated. Subject to independent native protected source checks, authentic later source receipt, and future queue postwrite readback."
+    }
+  ],
+  "additional_evidence": {
+    "read_only_preflight": "all 14 unique source critical reviews and issue bindings validated, 14 Project Todo, 14 Issue AVAILABLE; applied=false; not a certificate",
+    "files_changed": 4,
+    "source_pr": "https://github.com/grandchallenge/MATH-PROGRAMME/pull/2624",
+    "evidence_location": "/home/jim/.local/state/gcl-arc001-2624-source-review/",
+    "review_limits": "These are exact-head logical expert passes backed by tests; the later protected receipt and source PR checks are separate checks and are not represented as already completed."
+  },
+  "claimed_effects": {
+    "mathematical_certification": false,
+    "reserved_authorization": false,
+    "credential_escalation": false
+  }
+}
