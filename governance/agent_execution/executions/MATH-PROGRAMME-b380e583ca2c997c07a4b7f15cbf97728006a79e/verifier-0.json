@@ -1,0 +1,27 @@
+{
+  "command": "python3 -m unittest -q tests.test_paar_role_evidence_v2",
+  "environment": {
+    "os": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "toolchain": "CPython unittest / source commit b380e583ca2c997c07a4b7f15cbf97728006a79e"
+  },
+  "exit_code": 0,
+  "finding": "PASS",
+  "logical_pass_id": "GCL-PAAR-C-2710-VERIFIER-20261016",
+  "mode": "non_authoring_read_only",
+  "observed_utc": "2026-10-16T22:31:05Z",
+  "output": {
+    "selected_stream": "stderr",
+    "stderr": "----------------------------------------------------------------------\nRan 14 tests in 0.002s\n\nOK\n",
+    "stdout": ""
+  },
+  "record_type": "GCL_PROTECTED_ROLE_EXECUTION_OUTPUT_V1",
+  "reviewer_system_id": "GPT-6",
+  "role": "VERIFIER",
+  "subject": {
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4",
+    "repository": "grandchallenge/MATH-PROGRAMME"
+  },
+  "transport_login": "fyremael"
+}
