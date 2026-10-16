@@ -1,0 +1,102 @@
+{
+  "claimed_effects": {
+    "credential_escalation": false,
+    "mathematical_certification": false,
+    "reserved_authorization": false
+  },
+  "native_nonauthor_review_claimed": false,
+  "passes": [
+    {
+      "checks": [
+        {
+          "command": "python3 -m unittest -q tests.test_paar_role_evidence_v2",
+          "execution_evidence": {
+            "blob_sha": "2cd128c0ea05bb374b6e7dfd9ce6228f2611b36f",
+            "path": "governance/agent_execution/executions/MATH-PROGRAMME-b380e583ca2c997c07a4b7f15cbf97728006a79e/verifier-0.json"
+          },
+          "exit_code": 0,
+          "receipt_sha256": "fb00fe2cd41aa027bfbcaf3a5bceb40438a37a8d3283908be8129c0569affe0a"
+        }
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "logical_pass_id": "GCL-PAAR-C-2710-VERIFIER-20261016",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "MATH-PROGRAMME source b380e583ca2c997c07a4b7f15cbf97728006a79e",
+        "tests.test_paar_role_evidence_v2"
+      ],
+      "reviewer_system_id": "GPT-6",
+      "role": "VERIFIER",
+      "subject_head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+      "transport_login": "fyremael",
+      "unresolved": [],
+      "write_set": []
+    },
+    {
+      "checks": [
+        {
+          "command": "python3 -m unittest -q tests.test_agent_routine_review",
+          "execution_evidence": {
+            "blob_sha": "7edc5406243e49da5c1d6e3a23e1683fe2d758c0",
+            "path": "governance/agent_execution/executions/MATH-PROGRAMME-b380e583ca2c997c07a4b7f15cbf97728006a79e/adversary-0.json"
+          },
+          "exit_code": 0,
+          "receipt_sha256": "7d1e906c02ae0db5325620afda71f5a134d6d910589b68a33d220f2e1cfc2c22"
+        }
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "logical_pass_id": "GCL-PAAR-C-2710-ADVERSARY-20261016",
+      "mode": "non_authoring_read_only",
+      "negative_controls": [
+        "tests.test_agent_routine_review hostile role-source checks"
+      ],
+      "read_set": [
+        "MATH-PROGRAMME source b380e583ca2c997c07a4b7f15cbf97728006a79e",
+        "tests.test_agent_routine_review"
+      ],
+      "reviewer_system_id": "GPT-6",
+      "role": "ADVERSARY",
+      "subject_head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+      "transport_login": "fyremael",
+      "unresolved": [],
+      "write_set": []
+    },
+    {
+      "checks": [
+        {
+          "command": "python3 governance/assurance/GCL-PAAR-001/replay_baseline.py --offline",
+          "execution_evidence": {
+            "blob_sha": "aeeedfa40ed1f516d113ab383e6252de856d1373",
+            "path": "governance/agent_execution/executions/MATH-PROGRAMME-b380e583ca2c997c07a4b7f15cbf97728006a79e/referee-0.json"
+          },
+          "exit_code": 0,
+          "receipt_sha256": "bb32b7394c3cd71464b7dcd406324ff890929c46ecb6a7de8ca32669a83dcc6b"
+        }
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "logical_pass_id": "GCL-PAAR-C-2710-REFEREE-20261016",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "MATH-PROGRAMME source b380e583ca2c997c07a4b7f15cbf97728006a79e",
+        "--offline"
+      ],
+      "reviewer_system_id": "GPT-6",
+      "role": "REFEREE",
+      "subject_head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+      "transport_login": "fyremael",
+      "unresolved": [],
+      "write_set": []
+    }
+  ],
+  "record_type": "GCL_AGENT_REVIEW_DOSSIER_V2",
+  "review_scope": "SECURITY_AND_GOVERNANCE_REVIEW",
+  "reviewer_system_disclosure": "GPT-6 sequential same-transport logical passes",
+  "schema_version": "2.0.0",
+  "subject": {
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4",
+    "repository": "grandchallenge/MATH-PROGRAMME"
+  },
+  "transport_login": "fyremael",
+  "work_class": "MATERIAL_CONTROL"
+}
