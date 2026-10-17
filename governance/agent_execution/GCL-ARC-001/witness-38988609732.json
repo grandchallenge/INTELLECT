@@ -1,0 +1,89 @@
+{
+  "executions": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "-q",
+        "tests.test_paar_role_evidence_v2"
+      ],
+      "exit_code": 0,
+      "role": "VERIFIER",
+      "selected_sha256": "fb00fe2cd41aa027bfbcaf3a5bceb40438a37a8d3283908be8129c0569affe0a",
+      "selected_stream": "stderr",
+      "stderr": "----------------------------------------------------------------------\nRan 14 tests in 0.002s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "-q",
+        "tests.test_agent_routine_review"
+      ],
+      "exit_code": 0,
+      "role": "ADVERSARY",
+      "selected_sha256": "808896682ac451de4fc193b4b061ef818f046b667403fb55cfc8d104a4fd2092",
+      "selected_stream": "stderr",
+      "stderr": "----------------------------------------------------------------------\nRan 36 tests in 0.144s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "python3",
+        "governance/assurance/GCL-PAAR-001/replay_baseline.py",
+        "--offline"
+      ],
+      "exit_code": 0,
+      "role": "REFEREE",
+      "selected_sha256": "bb32b7394c3cd71464b7dcd406324ff890929c46ecb6a7de8ca32669a83dcc6b",
+      "selected_stream": "stdout",
+      "stderr": "",
+      "stdout": "{\n  \"global_integrity_certified\": false,\n  \"hostile_snapshot_controls_rejected\": 4,\n  \"offline_positive\": {\n    \"estate_wide_certified\": false,\n    \"pinned_files\": 14,\n    \"repositories\": 6,\n    \"sampled_public_unaccepted\": 168,\n    \"sampled_returned\": 168\n  },\n  \"record_authority\": \"SAMPLED_AUDIT_EVIDENCE_NOT_GOVERNANCE_CERTIFICATION\",\n  \"record_type\": \"GCL_PAAR_001_ASSURANCE_REPLAY_RESULT/1\",\n  \"result\": \"PASS_BOUNDED_ONLY\",\n  \"source\": \"AUDIT_BASELINE.json\"\n}\n"
+    }
+  ],
+  "limits": {
+    "gcl_wide_assurance_certified": false,
+    "independent_platform_replay": true,
+    "original_chad_execution_attested": false,
+    "scientific_certification": false
+  },
+  "producer_code": "protected-main-workflow",
+  "protected_source_blobs": [
+    {
+      "path": "ci/agent_role_receipt.py",
+      "sha": "4d846ec7666dea3653cd973d337b64a649398134"
+    },
+    {
+      "path": "ci/specialist_receipt_adapter.py",
+      "sha": "b3007a06a48e16297ee7d9b0a5cc8a9ed6cfa777"
+    },
+    {
+      "path": "governance/assurance/GCL-PAAR-001/PAAR_C_EXECUTION_EVIDENCE_V2.md",
+      "sha": "f518e122d2c0264a413aeff359d6d17c95711332"
+    },
+    {
+      "path": "tests/test_agent_routine_review.py",
+      "sha": "ca65e7887849770090292eb696e883ff4282d673"
+    },
+    {
+      "path": "tests/test_paar_role_evidence_v2.py",
+      "sha": "a5160d354d132113624ad0b7c6009d7209b675eb"
+    }
+  ],
+  "record_type": "GCL_PAAR_C_PLATFORM_EXECUTION_WITNESS/1",
+  "run_attempt": 1,
+  "run_event": "workflow_dispatch",
+  "run_id": 38988609732,
+  "runner_environment": "github-hosted",
+  "source": {
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4",
+    "pr_number": 2710,
+    "repository": "grandchallenge/MATH-PROGRAMME"
+  },
+  "workflow_path": ".github/workflows/paar-execution-origin.yml",
+  "workflow_sha": "80f3b83d94795dba2acceef05f66b386ac6f735d"
+}
