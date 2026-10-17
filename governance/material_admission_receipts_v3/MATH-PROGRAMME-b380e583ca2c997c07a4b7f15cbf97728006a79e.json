@@ -1,0 +1,47 @@
+{
+  "record_type": "GCL_PROTECTED_PLATFORM_ORIGIN_ADMISSION_EVIDENCE_V3",
+  "schema_version": "4.0.0",
+  "source_repository": "grandchallenge/INTELLECT",
+  "authority_domain": "PROTECTION",
+  "verdict": "PLATFORM_EXECUTION_ORIGIN_CORROBORATED_NOT_HISTORICAL_CHAD",
+  "subject": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4"
+  },
+  "source_review_anchor": {
+    "source_pr_number": 127,
+    "source_pr_head_sha": "a9dadf682be3d7a62870b00e005c087e06bc6165",
+    "source_protected_merge_sha": "f11a10721c05d8520d627e64e71030c8763f589c",
+    "source_native_nonauthor_reviewer": "jimsteeg",
+    "source_native_review_id": 5557187495,
+    "dossier_blob_sha": "3fcc621d55dd27afb58eb3a782c8e983fbd666bc"
+  },
+  "protected_evidence": {
+    "path": "governance/agent_execution/reviews_v3/MATH-PROGRAMME-b380e583ca2c997c07a4b7f15cbf97728006a79e.json",
+    "blob_sha": "3fcc621d55dd27afb58eb3a782c8e983fbd666bc"
+  },
+  "platform_witness": {
+    "path": "governance/agent_execution/GCL-ARC-001/witness-38988609732.json",
+    "blob_sha": "4f1114a841e1adc5039c518ab6a55eeec9e80509",
+    "sha256": "e9a6cc3f140a3ab1befdf5500c4779a10873b32886b7c69a785bb05b2d6198ab",
+    "run_id": 38988609732,
+    "run_attempt": 1,
+    "artifact_id": 12084032389
+  },
+  "claims": {
+    "later_independent_platform_execution_verified": true,
+    "historical_2026_10_15_chad_execution_authenticated": false,
+    "independent_specialist_persons_certified": false,
+    "cryptographic_hardware_attestation": false,
+    "mathematical_certification": false,
+    "gcl_wide_assurance_certified": false
+  },
+  "limits": {
+    "original_chad_execution_receipt_backfilled": false,
+    "new_scientific_or_approval_claim_created": false,
+    "protected_branch_bypass": false,
+    "distinct_person_authentication_claim": false,
+    "external_runner_artifact_may_expire": true
+  }
+}
