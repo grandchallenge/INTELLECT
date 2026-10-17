@@ -1,0 +1,49 @@
+{
+  "artifact_retention_days": 90,
+  "bound_v2_source": {
+    "separate_v2_receipt_pr": 125,
+    "source_dossier_blob_sha": "ddb195a8a1e4f4b6297eefbb652c12bf7c0b9565",
+    "source_pr": 124,
+    "source_pr_head_sha": "8f1f72d5ec42aaf6f1f1bd3342aff296a2d82eec",
+    "source_protected_merge_sha": "2dabc07788bdf8d9bca3ffea9bac868e64ef693e"
+  },
+  "claims": {
+    "cryptographic_hardware_attestation": false,
+    "gcl_wide_assurance_certified": false,
+    "historical_2026_10_15_chad_execution_authenticated": false,
+    "independent_specialist_persons_certified": false,
+    "later_independent_platform_execution_verified": true,
+    "mathematical_certification": false
+  },
+  "observed_utc": "2026-10-17T01:53:50Z",
+  "origin_limit": "This authentic contemporaneous GitHub Actions platform execution of three bounded checks occurred after the earlier CHAD V1 case; no origin transfer is implied.",
+  "platform_execution": {
+    "execution_service": "GitHub-hosted Actions",
+    "origin_artifact_id": 12084032389,
+    "origin_artifact_name": "paar-c-origin-38988609732-1",
+    "protected_witness": {
+      "git_blob_sha": "4f1114a841e1adc5039c518ab6a55eeec9e80509",
+      "path": "governance/agent_execution/GCL-ARC-001/witness-38988609732.json",
+      "sha256": "e9a6cc3f140a3ab1befdf5500c4779a10873b32886b7c69a785bb05b2d6198ab"
+    },
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "role_output_sha256": {
+      "ADVERSARY": "808896682ac451de4fc193b4b061ef818f046b667403fb55cfc8d104a4fd2092",
+      "REFEREE": "bb32b7394c3cd71464b7dcd406324ff890929c46ecb6a7de8ca32669a83dcc6b",
+      "VERIFIER": "fb00fe2cd41aa027bfbcaf3a5bceb40438a37a8d3283908be8129c0569affe0a"
+    },
+    "run_attempt": 1,
+    "run_id": 38988609732,
+    "run_url": "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/38988609732",
+    "workflow_head_sha": "80f3b83d94795dba2acceef05f66b386ac6f735d"
+  },
+  "record_type": "GCL_AGENT_PLATFORM_ORIGIN_DOSSIER_V3",
+  "schema_version": "3.0.0",
+  "source_review_note": "This source dossier is pending an independent native exact-head GitHub review on its own PR; that review is not present at creation. A separate V3 admission receipt requires this PR to merge first.",
+  "subject": {
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4",
+    "pr_number": 2710,
+    "repository": "grandchallenge/MATH-PROGRAMME"
+  }
+}
