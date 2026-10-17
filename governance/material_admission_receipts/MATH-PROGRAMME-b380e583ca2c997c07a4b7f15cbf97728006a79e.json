@@ -1,0 +1,41 @@
+{
+  "schema_version": "3.0.0",
+  "record_type": "GCL_PROTECTED_AGENT_ROLE_ADMISSION_EVIDENCE_V2",
+  "authority_domain": "PROTECTION",
+  "source_repository": "grandchallenge/INTELLECT",
+  "subject": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "head_sha": "b380e583ca2c997c07a4b7f15cbf97728006a79e",
+    "material_sha256": "b6b353decee67953b74c984a1c8856c3ea56debbae0599f759564f13bbe214b4"
+  },
+  "verdict": "ADMISSIBLE_FOR_PROTECTED_ADMISSION",
+  "review_scope": "SECURITY_AND_GOVERNANCE_REVIEW",
+  "protected_evidence": {
+    "path": "governance/agent_execution/reviews/MATH-PROGRAMME-b380e583ca2c997c07a4b7f15cbf97728006a79e.json",
+    "blob_sha": "ddb195a8a1e4f4b6297eefbb652c12bf7c0b9565"
+  },
+  "source_review_anchor": {
+    "source_pr_number": 124,
+    "source_pr_head_sha": "8f1f72d5ec42aaf6f1f1bd3342aff296a2d82eec",
+    "review_dossier_blob_sha": "ddb195a8a1e4f4b6297eefbb652c12bf7c0b9565",
+    "source_protected_merge_sha": "2dabc07788bdf8d9bca3ffea9bac868e64ef693e",
+    "native_nonauthor_review_id": 5554723877,
+    "native_nonauthor_reviewer_login": "jimsteeg"
+  },
+  "identity_policy": "GI-STEWARD-0003 GCL-ARC-001: sequential same-system logical specialist passes under authenticated shared transport fyremael; distinct native nonauthor GitHub source approval jimsteeg",
+  "non_author_specialist_person_claim": false,
+  "execution_evidence": {
+    "record_type": "GCL_PROTECTED_ROLE_EXECUTION_OUTPUT_V1",
+    "captured_raw_outputs": 3,
+    "protected_source_pr": 124,
+    "independent_execution_certified": false
+  },
+  "limits": {
+    "mathematical_certification": false,
+    "claim_promotion": false,
+    "security_permission_expansion": false,
+    "council_clerk_execution": false,
+    "protected_branch_bypass": false,
+    "source_pr_native_approval_does_not_authenticate_execution": true
+  }
+}
