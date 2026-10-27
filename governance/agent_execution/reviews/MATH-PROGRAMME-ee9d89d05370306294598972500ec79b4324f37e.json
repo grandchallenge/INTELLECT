@@ -1,0 +1,93 @@
+{
+  "record_type": "GCL_AGENT_REVIEW_DOSSIER_V1",
+  "schema_version": "1.0.0",
+  "review_date_utc": "2026-10-18",
+  "subject": {
+    "repository": "grandchallenge/MATH-PROGRAMME",
+    "head_sha": "ee9d89d05370306294598972500ec79b4324f37e",
+    "material_sha256": "bd988bf2fbbe7fbc2e769175af016f17dc5876913b512ceeea58659ef260a4ef"
+  },
+  "work_class": "MATERIAL_CONTROL",
+  "authority": "INTELLECT AGENTS.md; GI-STEWARD-0003; GCL-ARC-001; MP-STREAMLINED-EXECUTION-001",
+  "transport_login": "fyremael",
+  "identity_disclosure": "non_authoring_logical_security_review; authenticated fyremael transport, independent reviewer role, not a distinct human or separate GitHub account; material source not mutated",
+  "review_scope": "CI_WORKFLOW_DEPENDENCY_PROTECTION_SCOPED_POSTMERGE",
+  "passes": [
+    {
+      "role": "SECURITY_ADVERSARY",
+      "logical_pass_id": "EC-BULK-CI-2723-PROTECTION-20261018",
+      "reviewer_system_id": "GPT-6",
+      "transport_login": "fyremael",
+      "subject_head_sha": "ee9d89d05370306294598972500ec79b4324f37e",
+      "mode": "non_authoring_read_only",
+      "read_set": [
+        "grandchallenge/MATH-PROGRAMME PR2723 exact two-file patch",
+        "INTELLECT CONSTITUTION and constitutional_authority_schedule",
+        "INTELLECT AGENTS.md and ADR-0002",
+        "grandchallenge/MATH-PROGRAMME AGENTS.md, STREAMLINED_EXECUTION_AMENDMENT.md",
+        ".github/workflows/ci.yml",
+        "requirements/erdos_compendium_finite_qa.txt",
+        "requirements/oz_source_revision_delta.txt",
+        "tests/test_policy_routing_workflow_coverage.py",
+        "tests/test_workflow_coverage_audit.py",
+        "PR2723 exact-head and merge check-runs"
+      ],
+      "write_set": [],
+      "checks": [
+        {
+          "command": "python3 -m unittest discover -s tests -p test_policy_routing_workflow_coverage.py -v",
+          "exit_code": 0,
+          "receipt_sha256": "559401c783f75061ded39ab1f513daba7b4916e4649d8677d16e1a59cabad393"
+        },
+        {
+          "command": "python3 -m unittest discover -s tests -p test_workflow_coverage_audit.py -v",
+          "exit_code": 0,
+          "receipt_sha256": "559401c783f75061ded39ab1f513daba7b4916e4649d8677d16e1a59cabad393"
+        },
+        {
+          "command": "inspect two exact candidate blobs versus protected main; inspect pinned dependency subset, read-only GITHUB_TOKEN, no persisted checkout credentials, literal shard condition",
+          "exit_code": 0,
+          "receipt_sha256": "0a7c54d44c0aafa012712101518be492ca9870f44d0f8d4e97cbab649fdd3739"
+        }
+      ],
+      "negative_controls": [
+        "No wildcard permission increase: workflow declares permissions contents:read, checkout persist-credentials:false",
+        "No unconditional external-install step: only matrix.shard == repository-regression adds two exact version-pinned public packages",
+        "Versions equal previously used sympy==1.14.0 and mpmath==1.3.0 already in requirements/oz_source_revision_delta.txt",
+        "No arbitrary shell expansion or interpolation of untrusted PR metadata in added run step",
+        "No editing of candidate branch or protections from this review role"
+      ],
+      "finding": "ACCEPT_BOUNDED",
+      "unresolved": [
+        "Review is completed after PR2723 had already merged at 815ff189611709aa163f7ebe087beeb52c4d0e17; does not retroactively authorize the protected merge.",
+        "The exact-head Protected material-profile delegated review concluded FAILURE (fail-closed mixed/protection specialist classification); the PR nevertheless merged. No protected INTELLECT review receipt prior to merge was found; process gap requires separate historical admission reconciliation.",
+        "Version pins are exact but not hash-locked; existing OZ dependencies already use same versions. Scoped supply-chain risk is not zero, and future dependency changes must obey protected workflow review."
+      ],
+      "interpretation": "Scoped code/security verdict ACCEPT_BOUNDED for two unchanged blobs. Eleven local workflow/routing tests passed (1+10); remote policy repository-regression passed. No elevated permissions, secrets disclosure, new privileged context or shell injection was found. Approval is about material source only; do not infer PR merge compliance, a previous independent approval receipt, or absence of upstream package risk."
+    }
+  ],
+  "additional_evidence": {
+    "source_pr": "https://github.com/grandchallenge/MATH-PROGRAMME/pull/2723",
+    "postmerge_commit": "815ff189611709aa163f7ebe087beeb52c4d0e17",
+    "protected_main_readback": "47d83ea4d550626867d8f40145a3bf0ce3839501",
+    "workflow_sha256": "c7e8642b6f202ef39b490747b7b8cc914c03b1d92f379a090880ea2c1f7fe0a1",
+    "requirements_sha256": "47fd19021144e071cc43b6e265aafada0056abe89724ad95bd6e3a8e37995b94",
+    "remote_regression_check": "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/39012745578/job/117338595372",
+    "failed_delegated_review_check": "https://github.com/grandchallenge/MATH-PROGRAMME/actions/runs/39012939508/job/117339118408",
+    "non_author_git_review": "jimsteeg approved exact head on 2026-10-17T09:43:56Z; approval body empty, therefore not treated as a material security dossier",
+    "test_log_paths": [
+      "/home/jim/GCL/ED08/evidence/review2723-policy-routing-test.log",
+      "/home/jim/GCL/ED08/evidence/review2723-workflow-coverage-test.log"
+    ],
+    "test_count": 11,
+    "derived_material_sha256_format": "sha256(utf8(path1) + NUL + raw_blob1 + utf8(path2) + NUL + raw_blob2)",
+    "review_limits": "No adversarial runtime pip package rebuild was necessary: installed local versions and pinned requirements were checked; no independent third-party audit, formal mathematics certification, or reconstruction of a pre-merge review is claimed."
+  },
+  "claimed_effects": {
+    "mathematical_certification": false,
+    "reserved_authorization": false,
+    "credential_escalation": false,
+    "retroactive_merge_authority": false
+  },
+  "postmerge_reconciliation_required": true
+}
