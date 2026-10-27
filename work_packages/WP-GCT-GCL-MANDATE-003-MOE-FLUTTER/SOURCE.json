@@ -1,0 +1,14 @@
+{
+  "authority": "local_authoring_projection_only",
+  "gct_canonical_revision": "312545913032e79c925338cafc953c05998cdf77",
+  "gct_mandate_blob_sha1": "23a0d2a1e2bb0cd0201b9411eb596e8eec486c70",
+  "gct_mandate_path": "mandates/GCT-GCL-MANDATE-003-MOE-FLUTTER.md",
+  "gct_repository": "grandchallenge/GCT-EXECUTIVE",
+  "intellect_base_revision": "565ed31f413b4698f400a260fc4a8ea65e7e1255",
+  "intellect_issue": 85,
+  "publicity_class": "INTERNAL",
+  "resource_envelope": "UNALLOCATED",
+  "risk_class": "high",
+  "schema_blob_sha1": "6fb9f604483faadb6787e10f5ef0992140eb0920",
+  "schema_version": "gct.intellect-intake.v1"
+}
