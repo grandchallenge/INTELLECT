@@ -1,0 +1,21 @@
+{
+  "contract_id": "GCL-CIR-001",
+  "version": "1.0.0",
+  "component_id": "resumable_work",
+  "owner": "INTELLECT agent execution engineering",
+  "paths": {
+    "exact": [
+      "scripts/gcl_resume.py",
+      "governance/agent_execution/GCL-RWP-001.md",
+      "governance/agent_execution/jobs/RWP-001-SMOKE.json"
+    ],
+    "prefixes": [],
+    "test_prefixes": [
+      "tests/test_gcl_resume"
+    ]
+  },
+  "depends_on": [],
+  "checks": [
+    "intellect-test-matrix"
+  ]
+}
