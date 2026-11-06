@@ -31,5 +31,3 @@ Agents may not ratify a constitutional amendment, manufacture Human Steward
 authorization, self-certify a mathematical claim, exercise reserved authority,
 bypass protected controls, or write directly to protected branches. Follow
 `GI-STEWARD-0003` only when it is selected by the protected schedule.
-
-For interruption-prone bounded execution, use the additive [GCL-RWP-001](governance/agent_execution/GCL-RWP-001.md): preserve operation identity and next obligation in GitHub, reconcile uncertain remote effects before replay, localize explicit platform denials to their exact invocation, and resume from authoritative artifacts rather than chat state. The GitHub Actions pilot performs only read-only source-bound tests; it does not instantiate an autonomous mathematical worker, confer certification, or override protected controls.
