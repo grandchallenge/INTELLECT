@@ -1,0 +1,9 @@
+{
+  "record_type": "GCL_BOUNDED_JOB/1",
+  "work_id": "RWP-001-SMOKE",
+  "step_id": "unit-tests",
+  "repository": "grandchallenge/INTELLECT",
+  "effect_class": "READ_ONLY",
+  "action": "PYTHON_UNITTEST",
+  "test_file": "test_gcl_resume.py"
+}
