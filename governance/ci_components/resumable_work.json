@@ -7,12 +7,11 @@
     "exact": [
       "scripts/gcl_resume.py",
       "governance/agent_execution/GCL-RWP-001.md",
-      "governance/agent_execution/jobs/RWP-001-SMOKE.json"
+      "governance/agent_execution/jobs/RWP-001-SMOKE.json",
+      "tests/test_gcl_resume.py"
     ],
     "prefixes": [],
-    "test_prefixes": [
-      "tests/test_gcl_resume"
-    ]
+    "test_prefixes": []
   },
   "depends_on": [],
   "checks": [
