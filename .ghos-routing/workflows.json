@@ -53,8 +53,7 @@
     {
       "path": ".github/workflows/gcl-resumable-execution.yml",
       "observed_features": [
-        "OPAQUE_EXECUTION",
-        "UNATTENDED_DISPATCH"
+        "OPAQUE_EXECUTION"
       ],
       "topology": "PERSISTENT_CONTROLLER_REQUIRED",
       "controller_id": "GITHUB_ACTIONS"
