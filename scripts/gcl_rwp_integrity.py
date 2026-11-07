@@ -102,6 +102,10 @@ def verify_github_job(record: dict, run_id: int, provider: GithubCLIReadback) ->
     zip_digest = artifact.get("digest", "")
     require(type(zip_digest) is str and zip_digest.startswith("sha256:")
             and HEX.fullmatch(zip_digest[7:]) is not None, "ARTIFACT_ZIP_DIGEST_INVALID")
+    if record["receipt"] is not None:
+        require(record["receipt"]["remote_identity"] == f"github://actions/{run_id}"
+                and record["receipt"]["artifact_sha256"] == zip_digest[7:],
+                "STORED_POINTER_CONFLICTS_WITH_REMOTE")
     receipt_bytes = provider.artifact_json(repo, run_id, artifact_name)
     receipt = json.loads(receipt_bytes)
     require(type(receipt) is dict, "RECEIPT_OBJECT_REQUIRED")
