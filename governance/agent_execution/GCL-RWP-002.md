@@ -1,6 +1,6 @@
 # GCL-RWP-002 — Verifiable continuity and bounded concurrency
 
-Status: protected-admission candidate for INTELLECT #137. Parent bounded pilot #135 remains historically accepted; its original receipt and digest are not rewritten.
+Status source: INTELLECT #137 is authoritative for protected admission, execution acceptance and final disposition. This source document does not assert its own terminal state. Parent bounded pilot #135 remains historically accepted; its original receipt and digest are not rewritten.
 
 ## Purpose
 
