@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import unittest
 
-from scripts.gcl_resume import ContractError, decide, read_job, validate_continuation, validate_job
+from scripts.gcl_resume import ContractError, decide, read_job, validate_continuation, validate_job, record_for_job
 
 SHA = "a" * 40
 BASE = {
@@ -39,8 +39,13 @@ def obs(**changes):
     return dict(OBS, **changes)
 
 class ContinuationTests(unittest.TestCase):
-    def test_intent_can_dispatch(self):
+    def test_mutation_intent_requires_atomic_claim(self):
         result = decide(record(), obs())
+        self.assertEqual(result["action"], "CLAIM_REQUIRED")
+        self.assertFalse(result["effect_authorized"])
+
+    def test_read_only_intent_can_dispatch(self):
+        result = decide(record(effect_class="READ_ONLY"), obs())
         self.assertEqual(result["action"], "DISPATCH_ELIGIBLE")
         self.assertTrue(result["effect_authorized"])
 
@@ -56,7 +61,8 @@ class ContinuationTests(unittest.TestCase):
         result = decide(record(), obs(signal="EXPLICIT_DENIAL"))
         self.assertEqual(result["action"], "HOLD_EXACT_OPERATION")
         self.assertFalse(result["effect_authorized"])
-        self.assertTrue(result["independent_siblings_eligible"])
+        self.assertFalse(result["independent_siblings_eligible"])
+        self.assertEqual(result["sibling_assessment"], "DEPENDENCY_AND_AUTHORITY_CHECK_REQUIRED")
         self.assertEqual(decide(record(state="POLICY_HELD"), obs())["action"], "HOLD_EXACT_OPERATION")
 
     def test_read_only_retries_bounded(self):
@@ -78,21 +84,31 @@ class ContinuationTests(unittest.TestCase):
     def test_authority_boundary(self):
         self.assertEqual(decide(record(), obs(signal="AUTHORITY_DENIAL"))["action"], "HOLD_AUTHORITY")
 
-    def test_matching_remote_readback(self):
+    def test_stored_terminal_receipt_is_not_live_proof(self):
         key = validate_continuation(record())
         receipt = {"operation_key": key, "remote_identity": "github://run/123",
-                   "verified_by_readback": True}
-        self.assertEqual(decide(record(state="EFFECT_VERIFIED", receipt=receipt), obs())["action"], "ADVANCE_VERIFIED")
-        self.assertEqual(decide(record(state="COMPLETE", receipt=receipt), obs())["action"], "ALREADY_COMPLETE")
+                   "artifact_sha256": "a" * 64}
+        for state in ("EFFECT_VERIFIED", "COMPLETE"):
+            value = record(state=state, receipt=receipt)
+            self.assertEqual(validate_continuation(value), key)
+            decision = decide(value, obs(signal="REMOTE_EFFECT_VERIFIED"))
+            self.assertEqual(decision["action"], "VERIFY_REMOTE")
+            self.assertFalse(decision["effect_authorized"])
         with self.assertRaises(ContractError):
             validate_continuation(record(state="COMPLETE", receipt={**receipt, "operation_key": "0" * 64}))
 
-    def test_ack_is_not_effect(self):
+    def test_forged_boolean_receipt_is_rejected(self):
         key = validate_continuation(record())
         receipt = {"operation_key": key, "remote_identity": "mcp-reply",
-                   "verified_by_readback": False}
+                   "verified_by_readback": True}
         with self.assertRaises(ContractError):
             validate_continuation(record(state="COMPLETE", receipt=receipt))
+
+    def test_job_identity_matches_continuation(self):
+        job_record = record_for_job(JOB, SHA)
+        key = validate_continuation(job_record)
+        self.assertEqual(key, validate_continuation(record_for_job(JOB, SHA)))
+        self.assertNotEqual(key, validate_continuation(record_for_job({**JOB, "test_file": "test_gcl_resume_integration.py"}, SHA)))
 
     def test_identity_stable_but_target_bound(self):
         self.assertEqual(validate_continuation(record()), validate_continuation(copy.deepcopy(record())))
