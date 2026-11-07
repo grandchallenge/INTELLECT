@@ -5,10 +5,14 @@
   "owner": "INTELLECT agent execution engineering",
   "paths": {
     "exact": [
-      "scripts/gcl_resume.py",
       "governance/agent_execution/GCL-RWP-001.md",
+      "governance/agent_execution/GCL-RWP-002.md",
       "governance/agent_execution/jobs/RWP-001-SMOKE.json",
-      "tests/test_gcl_resume.py"
+      "governance/agent_execution/jobs/RWP-002-SMOKE.json",
+      "scripts/gcl_resume.py",
+      "scripts/gcl_rwp_integrity.py",
+      "tests/test_gcl_resume.py",
+      "tests/test_gcl_resume_integration.py"
     ],
     "prefixes": [],
     "test_prefixes": []
