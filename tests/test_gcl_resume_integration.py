@@ -43,7 +43,8 @@ class FakeGithub:
         self.remote = {
             "run": {"id": RUN_ID, "event": "workflow_dispatch",
                     "head_sha": sha, "head_branch": "main",
-                    "name": "Agent continuity policy", "status": "completed",
+                    "name": "Agent continuity policy",
+                    "path": ".github/workflows/agent-continuity-policy.yml", "status": "completed",
                     "conclusion": "success", "run_attempt": 1},
             "jobs": {"total_count": 2, "jobs": [
                 {"name": "Validate continuity contract", "status": "completed", "conclusion": "success"},
@@ -157,6 +158,7 @@ class VerifiedJobTests(unittest.TestCase):
         changes = (("run", "head_sha", "d" * 40),
                    ("run", "conclusion", "failure"),
                    ("run", "head_branch", "unprotected"),
+                   ("run", "path", ".github/workflows/other.yml"),
                    ("jobs", None, None))
         for bucket, key, val in changes:
             with self.subTest(bucket=bucket, key=key):
