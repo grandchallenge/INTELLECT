@@ -190,6 +190,18 @@ class VerifiedJobTests(unittest.TestCase):
         self.assertEqual(verify_github_job(record, RUN_ID, self.provider)["result"],
                          "VERIFIED_READ_ONLY_EXECUTION")
 
+    def test_stored_pointer_conflict_fails(self):
+        proof = {"operation_key": self.provider.key,
+                 "remote_identity": f"github://actions/{RUN_ID}",
+                 "artifact_sha256": "0" * 64}
+        value = {**self.record, "state": "COMPLETE", "receipt": proof}
+        with self.assertRaisesRegex(ContractError, "STORED_POINTER_CONFLICTS"):
+            verify_github_job(value, RUN_ID, self.provider)
+        value["receipt"] = {**proof, "artifact_sha256": "b" * 64,
+                            "remote_identity": "github://actions/999"}
+        with self.assertRaisesRegex(ContractError, "STORED_POINTER_CONFLICTS"):
+            verify_github_job(value, RUN_ID, self.provider)
+
     def test_successor_with_no_conversation_state(self):
         with tempfile.TemporaryDirectory() as d:
             p = Path(d) / "checkpoint.json"
