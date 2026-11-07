@@ -80,6 +80,7 @@ def verify_github_job(record: dict, run_id: int, provider: GithubCLIReadback) ->
     require(run["id"] == run_id and run["event"] == "workflow_dispatch"
             and run["head_sha"] == sha and run.get("head_branch") == "main"
             and run["name"] == "Agent continuity policy"
+            and run.get("path") == ".github/workflows/agent-continuity-policy.yml"
             and run["status"] == "completed" and run["conclusion"] == "success",
             "RUN_NOT_EXACT_VERIFIED_SUCCESS")
     attempt = run.get("run_attempt")
