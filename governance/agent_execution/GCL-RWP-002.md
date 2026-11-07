@@ -20,7 +20,7 @@ The only allowed test modules are test_gcl_resume.py and test_gcl_resume_integra
 
 A stored COMPLETE or EFFECT_VERIFIED state is an untrusted assertion. The pure classifier returns VERIFY_REMOTE and effect_authorized=false rather than granting completion. A stored evidence pointer is insufficient.
 
-A separately dispatched verification job uses GithubCLIReadback and the scoped GitHub token to query the original run, jobs and artifacts, download the original receipt, check source SHA, logical key, run identity/attempt, target fingerprint, job conclusions and receipt schema. It writes a GCL_RUN_VERIFICATION/1 witness. Missing, expired, incomplete or mismatched evidence fails closed. Test mocks cannot be represented as live authenticated proof.
+A separate, authenticated successor process uses GithubCLIReadback with an existing approved GitHub CLI identity to query the original run, jobs and artifacts, download the original receipt, check source SHA, logical key, run identity/attempt, target fingerprint, job conclusions and receipt schema. It writes a GCL_RUN_VERIFICATION/1 witness. Invoke it from the exact protected checkout with python -m scripts.gcl_resume verify-run; it does not require a new workflow or change the protected GHOS registry. Missing, expired, incomplete or mismatched evidence fails closed. Test mocks cannot be represented as live authenticated proof.
 
 GitHub Actions artifacts expire (current workflow retention: 30 days). Durable issues must retain exact source, run/job/artifact IDs, artifact ZIP digest, receipt digest, output digest, review and admission references, and limitations BEFORE expiry. A digest does not substitute for the original expired bytes.
 
@@ -49,7 +49,7 @@ Technical read failures permit bounded retries. An uncertain external mutation r
 | Main moves or lease is stale | Fence; no automatic dispatch |
 | Successor without chat history | Recover solely from durable record and provider readback |
 | Live source-pinned GitHub execution | Verify run, jobs, receipt and artifact |
-| Separately dispatched verifier | Verify current authenticated provider state |
+| Separate authenticated successor process | Verify current provider run, job and artifact state |
 | Nonproduction ref effect | One claim, one effect, replay-safe readback |
 
 These are pilot tests, not mathematical certification or proof of unrestricted GCL agent continuity.
@@ -59,8 +59,12 @@ These are pilot tests, not mathematical certification or proof of unrestricted G
 1. Source CI, two Python versions, governance and workflow checks pass.
 2. Obtain INTELLECT's independent GitHub approval and protected merge/readback.
 3. Run the integration capsule on exact admitted main; read back genuine GitHub execution evidence.
-4. Run the separate authenticated verification job; inspect its real witness and artifact.
+4. Run the authenticated verifier as a separate process from the original execution using the exact admitted source SHA; retain the actual verification witness and CLI readback receipt on INTELLECT #137.
 5. Run fixed nonproduction Git ref fixture on authenticated operator shell; read back the ref and repeat the read-only verification with same identity.
 6. Record exact durable evidence and non-author review before closing #137.
 
 General production-effect fencing, cross-programme expansion and autonomous research-agent execution are NOT conferred by this package.
+
+## Routing custody
+
+The pre-existing agent-continuity-policy.yml workflow and frozen GHOS routing registry remain byte-for-byte unchanged. A proposed workflow extension triggered a new SECRET_CREDENTIAL classification and was withdrawn, rather than rewriting frozen RSI evidence or misdeclaring credentials. Authenticated follow-up verification uses the separately approved CHAD operator surface and does not bypass GitHub branch rulesets.
