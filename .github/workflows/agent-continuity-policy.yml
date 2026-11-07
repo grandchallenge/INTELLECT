@@ -17,7 +17,12 @@ on:
   workflow_dispatch:
     inputs:
       job_path:
-        description: "Optional protected, read-only bounded job capsule"
+        description: "Optional protected, bounded test capsule"
+        type: string
+        required: false
+        default: ""
+      verify_run_id:
+        description: "Optional prior run ID for independent authenticated readback"
         type: string
         required: false
         default: ""
@@ -38,7 +43,7 @@ jobs:
 
   bounded-execution:
     name: Execute exact-source bounded task
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.job_path != ''
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.job_path != '' && inputs.verify_run_id == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     concurrency:
@@ -65,5 +70,40 @@ jobs:
         with:
           name: gcl-rwp-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/gcl-rwp-receipt.json
+          retention-days: 30
+          if-no-files-found: error
+
+  verify-readback:
+    name: Independently verify prior bounded run
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.job_path != '' && inputs.verify_run_id != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      actions: read
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: "3.12.13"
+      - name: Authenticated run, job, artifact and receipt readback
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GCL_JOB_PATH: ${{ inputs.job_path }}
+          GCL_PRIOR_RUN: ${{ inputs.verify_run_id }}
+          GCL_SOURCE_SHA: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/gcl_resume.py verify-run --job-path "$GCL_JOB_PATH" --source-sha "$GCL_SOURCE_SHA" --run-id "$GCL_PRIOR_RUN" --output "$RUNNER_TEMP/gcl-rwp-verification.json"
+      - name: Archive authenticated readback summary
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: gcl-rwp-verified-${{ inputs.verify_run_id }}-${{ github.run_id }}
+          path: ${{ runner.temp }}/gcl-rwp-verification.json
           retention-days: 30
           if-no-files-found: error
