@@ -38,6 +38,7 @@ class FakeGithub:
         self.fixture_calls = 0
         self.lost_ack = False
         self.lost_fixture_ack = False
+        self.move_main_on_claim = False
         self.fail_artifact = False
         self.remote = {
             "run": {"id": RUN_ID, "event": "workflow_dispatch",
@@ -103,6 +104,8 @@ class FakeGithub:
             if ref in self.refs:
                 raise ContractError("CLAIM_EXISTS")
             self.refs[ref] = sha
+            if self.move_main_on_claim:
+                self.remote["main"]["commit"]["sha"] = "f" * 40
             if self.lost_ack:
                 raise ContractError("RESPONSE_LOST_AFTER_EFFECT")
             return {"ref": ref, "object": {"sha": sha}}
@@ -284,6 +287,12 @@ class NonproductionEffectFixtureTests(unittest.TestCase):
         self.assertEqual(self.provider.fixture_calls, 0)
         second = execute_nonproduction_fixture(self.record, self.provider)
         self.assertEqual(second["result"], "OUTCOME_UNKNOWN_HOLD")
+        self.assertEqual(self.provider.fixture_calls, 0)
+
+    def test_main_moves_after_claim_effect_is_not_sent(self):
+        self.provider.move_main_on_claim = True
+        outcome = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(outcome["result"], "OUTCOME_UNKNOWN_HOLD")
         self.assertEqual(self.provider.fixture_calls, 0)
 
     def test_wrong_target_denied(self):
