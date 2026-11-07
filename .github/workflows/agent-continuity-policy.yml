@@ -15,6 +15,12 @@ on:
       - "scripts/validate_agent_continuity.py"
       - ".github/workflows/agent-continuity-policy.yml"
   workflow_dispatch:
+    inputs:
+      job_path:
+        description: "Optional protected, read-only bounded job capsule"
+        type: string
+        required: false
+        default: ""
 
 permissions:
   contents: read
@@ -29,3 +35,35 @@ jobs:
           persist-credentials: false
       - name: Validate canonical policy binding
         run: python3 scripts/validate_agent_continuity.py
+
+  bounded-execution:
+    name: Execute exact-source bounded task
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.job_path != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: gcl-rwp-${{ inputs.job_path }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: "3.12.13"
+      - name: Execute bounded task with source-bound receipt
+        env:
+          GCL_JOB_PATH: ${{ inputs.job_path }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/gcl_resume.py execute --job-path "$GCL_JOB_PATH" --output "$RUNNER_TEMP/gcl-rwp-receipt.json"
+      - name: Archive execution receipt
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: gcl-rwp-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/gcl-rwp-receipt.json
+          retention-days: 30
+          if-no-files-found: error
