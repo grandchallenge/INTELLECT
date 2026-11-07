@@ -6,6 +6,7 @@
   "paths": {
     "exact": [
       "governance/agent_execution/GCL-RWP-001.md",
+      "governance/agent_execution/GCL-RWP-002.md",
       "governance/agent_execution/jobs/RWP-001-SMOKE.json",
       "governance/agent_execution/jobs/RWP-002-SMOKE.json",
       "scripts/gcl_resume.py",
