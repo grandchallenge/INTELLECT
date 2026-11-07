@@ -195,10 +195,18 @@ def execute_nonproduction_fixture(record: dict, provider: GithubCLIReadback) -> 
     effect_ref = f"refs/heads/gcl-rwp-fixtures/{key}"
     claim = acquire_github_claim(record, provider)
     if claim["claim_state"] == "CLAIM_CREATED_THIS_ATTEMPT":
+        # Recheck exact protected source after claiming: a moved main invalidates
+        # this new effect attempt even when the claim itself succeeded.
         try:
-            provider.create_fixture("grandchallenge/INTELLECT", effect_ref, record["source_sha"])
-        except (ContractError, OSError, ValueError, subprocess.SubprocessError):
-            pass
+            latest = provider.api_json("repos/grandchallenge/INTELLECT/branches/main")
+            still_current = latest["commit"]["sha"] == record["source_sha"]
+        except (ContractError, OSError, ValueError, KeyError, subprocess.SubprocessError):
+            still_current = False
+        if still_current:
+            try:
+                provider.create_fixture("grandchallenge/INTELLECT", effect_ref, record["source_sha"])
+            except (ContractError, OSError, ValueError, subprocess.SubprocessError):
+                pass
     try:
         effect = provider.api_json(f"repos/grandchallenge/INTELLECT/git/ref/heads/gcl-rwp-fixtures/{key}")
         verified = effect.get("ref") == effect_ref and effect.get("object", {}).get("sha") == record["source_sha"]
