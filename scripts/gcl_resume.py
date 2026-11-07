@@ -203,6 +203,8 @@ def main() -> int:
     p.add_argument("--source-sha", required=True)
     p.add_argument("--run-id", required=True, type=int)
     p.add_argument("--output", required=True)
+    p = sub.add_parser("fixture")
+    p.add_argument("--source-sha", required=True)
     args = parser.parse_args()
     try:
         if args.mode == "decide":
@@ -211,6 +213,14 @@ def main() -> int:
             print(json.dumps(decide(record, obs), sort_keys=True))
         elif args.mode == "validate-job":
             print(json.dumps(read_job(Path.cwd(), args.job_path), sort_keys=True))
+        elif args.mode == "fixture":
+            from scripts.gcl_rwp_integrity import (
+                GithubCLIReadback, fixture_record, execute_nonproduction_fixture,
+            )
+            result = execute_nonproduction_fixture(
+                fixture_record(args.source_sha), GithubCLIReadback())
+            print(json.dumps(result, sort_keys=True))
+            return 0 if result["external_mutation_verified"] else 3
         elif args.mode == "verify-run":
             from scripts.gcl_rwp_integrity import GithubCLIReadback, verify_github_job
             job = read_job(Path.cwd(), args.job_path)
