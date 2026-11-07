@@ -47,6 +47,14 @@ class GithubCLIReadback:
             require(file.stat().st_size <= 32768, "ARTIFACT_TOO_LARGE")
             return file.read_bytes()
 
+    def create_fixture(self, repository: str, ref: str, sha: str) -> dict:
+        require(repository == "grandchallenge/INTELLECT", "FIXTURE_REPOSITORY_INVALID")
+        require(ref.startswith("refs/heads/gcl-rwp-fixtures/"), "FIXTURE_REF_INVALID")
+        require(SHA.fullmatch(sha) is not None, "FIXTURE_SHA_INVALID")
+        return json.loads(self._call(["api", "--method", "POST",
+            f"repos/{repository}/git/refs", "-f", f"ref={ref}",
+            "-f", f"sha={sha}"]))
+
     def create_claim(self, repository: str, ref: str, sha: str) -> dict:
         require(repository == "grandchallenge/INTELLECT", "CLAIM_REPOSITORY_INVALID")
         require(ref.startswith("refs/heads/gcl-rwp-claims/"), "CLAIM_REF_INVALID")
@@ -159,3 +167,46 @@ def acquire_github_claim(record: dict, provider: GithubCLIReadback) -> dict:
             "next_action": "INDEPENDENT_EFFECT_AUTHORIZATION_AND_READBACK"
                            if state == "CLAIM_CREATED_THIS_ATTEMPT"
                            else "HOLD_AND_RECONCILE_NO_REPLAY"}
+
+
+FIXTURE_TARGET = hashlib.sha256(
+    b'{"effect":"CREATE_DEDICATED_TEST_REF","contract":"GCL_NONPRODUCTION_REF_EFFECT/1"}'
+).hexdigest()
+
+
+def fixture_record(source_sha: str) -> dict:
+    """Separate, fixed, nonproduction GitHub ref mutation; not a general worker."""
+    from scripts.gcl_resume import RECORD
+    return {"record_type": RECORD, "work_id": "RWP-002-FIXTURE",
+            "step_id": "test-unique-ref", "repository": "grandchallenge/INTELLECT",
+            "source_sha": source_sha, "effect_class": "EXTERNAL_MUTATION",
+            "target_digest": FIXTURE_TARGET, "state": "INTENT_RECORDED",
+            "attempts": 0, "lease_epoch": 0, "receipt": None}
+
+
+def execute_nonproduction_fixture(record: dict, provider: GithubCLIReadback) -> dict:
+    """A tightly specified test Git ref; deliberately cannot write protected main.
+
+    Creates at most one effect ref per operation key, conditional on winning the
+    one-shot claim. A successor can verify it after an acknowledgment loss.
+    """
+    key = validate_continuation(record)
+    require(record == fixture_record(record["source_sha"]), "NOT_FIXED_NONPRODUCTION_FIXTURE")
+    effect_ref = f"refs/heads/gcl-rwp-fixtures/{key}"
+    claim = acquire_github_claim(record, provider)
+    if claim["claim_state"] == "CLAIM_CREATED_THIS_ATTEMPT":
+        try:
+            provider.create_fixture("grandchallenge/INTELLECT", effect_ref, record["source_sha"])
+        except (ContractError, OSError, ValueError, subprocess.SubprocessError):
+            pass
+    try:
+        effect = provider.api_json(f"repos/grandchallenge/INTELLECT/git/ref/heads/gcl-rwp-fixtures/{key}")
+        verified = effect.get("ref") == effect_ref and effect.get("object", {}).get("sha") == record["source_sha"]
+    except (ContractError, OSError, ValueError, KeyError, subprocess.SubprocessError):
+        verified = False
+    return {"record_type": "GCL_NONPRODUCTION_EFFECT_READBACK/1",
+            "operation_key": key, "claim_state": claim["claim_state"],
+            "effect_ref": effect_ref, "result": "VERIFIED_NONPRODUCTION_REF_EFFECT"
+            if verified else "OUTCOME_UNKNOWN_HOLD",
+            "external_mutation_verified": verified,
+            "general_mutation_executor_authorized": False}
