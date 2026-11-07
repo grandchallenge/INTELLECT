@@ -17,6 +17,8 @@ import sys
 RECORD = "GCL_CONTINUATION/1"
 JOB = "GCL_BOUNDED_JOB/1"
 RECEIPT = "GCL_BOUNDED_EXECUTION_RECEIPT/1"
+KEY_VERSION = "GCL_OPERATION_KEY/2"
+ALLOWED_TESTS = {"test_gcl_resume.py", "test_gcl_resume_integration.py"}
 HEX = re.compile(r"[0-9a-f]{64}\Z")
 SHA = re.compile(r"[0-9a-f]{40}\Z")
 IDENT = re.compile(r"[A-Za-z0-9][A-Za-z0-9._-]{2,95}\Z")
@@ -41,6 +43,22 @@ def digest(value: object) -> str:
     data = json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(data).hexdigest()
 
+def operation_key(record: dict) -> str:
+    """One canonical identity across intent, job execution and remote evidence."""
+    return digest({"key_version": KEY_VERSION, **{k: record[k] for k in
+       ("work_id", "step_id", "repository", "source_sha", "effect_class", "target_digest")}})
+
+def job_target_digest(job: dict) -> str:
+    return digest({"target_type": "GCL_UNITTEST_TARGET/1",
+                   "action": job["action"], "test_file": job["test_file"]})
+
+def record_for_job(job: dict, source_sha: str) -> dict:
+    validate_job(job)
+    return {"record_type": RECORD, "work_id": job["work_id"], "step_id": job["step_id"],
+            "repository": job["repository"], "source_sha": source_sha,
+            "effect_class": job["effect_class"], "target_digest": job_target_digest(job),
+            "state": "INTENT_RECORDED", "attempts": 0, "lease_epoch": 0, "receipt": None}
+
 def validate_continuation(record: dict) -> str:
     require(type(record) is dict, "RECORD_OBJECT_REQUIRED")
     fields = {"record_type", "work_id", "step_id", "repository", "source_sha",
@@ -52,21 +70,22 @@ def validate_continuation(record: dict) -> str:
         require(isinstance(record[field], str) and IDENT.fullmatch(record[field]) is not None, field + "_INVALID")
     require(isinstance(record["repository"], str) and REPO.fullmatch(record["repository"]) is not None, "REPOSITORY_INVALID")
     require(isinstance(record["source_sha"], str) and SHA.fullmatch(record["source_sha"]) is not None, "SOURCE_SHA_INVALID")
-    require(record["effect_class"] in EFFECTS, "EFFECT_CLASS_INVALID")
+    require(type(record["effect_class"]) is str and record["effect_class"] in EFFECTS, "EFFECT_CLASS_INVALID")
     require(isinstance(record["target_digest"], str) and HEX.fullmatch(record["target_digest"]) is not None, "TARGET_DIGEST_INVALID")
-    require(record["state"] in STATES, "STATE_INVALID")
+    require(type(record["state"]) is str and record["state"] in STATES, "STATE_INVALID")
     require(type(record["attempts"]) is int and record["attempts"] >= 0, "ATTEMPTS_INVALID")
     require(type(record["lease_epoch"]) is int and record["lease_epoch"] >= 0, "LEASE_EPOCH_INVALID")
-    key = digest({k: record[k] for k in
-       ("work_id", "step_id", "repository", "source_sha", "effect_class", "target_digest")})
+    key = operation_key(record)
     receipt = record["receipt"]
     if receipt is not None:
-        require(type(receipt) is dict and set(receipt) == {"operation_key", "remote_identity", "verified_by_readback"}, "RECEIPT_FIELDS_INVALID")
+        require(type(receipt) is dict and set(receipt) == {"operation_key", "remote_identity", "artifact_sha256"}, "RECEIPT_FIELDS_INVALID")
         require(receipt["operation_key"] == key, "RECEIPT_OPERATION_CONFLICT")
         require(isinstance(receipt["remote_identity"], str) and receipt["remote_identity"].strip() != "", "REMOTE_IDENTITY_REQUIRED")
-        require(type(receipt["verified_by_readback"]) is bool, "RECEIPT_VERIFICATION_INVALID")
+        require(isinstance(receipt["artifact_sha256"], str) and HEX.fullmatch(receipt["artifact_sha256"]) is not None, "ARTIFACT_DIGEST_INVALID")
     if record["state"] in {"EFFECT_VERIFIED", "COMPLETE"}:
-        require(receipt is not None and receipt["verified_by_readback"], "TERMINAL_REQUIRES_READBACK")
+        require(receipt is not None, "TERMINAL_REQUIRES_EVIDENCE_POINTER")
+    # A syntactically valid pointer, or a claimed terminal state, is NOT verified
+    # evidence. The verifier must perform new authenticated GitHub readback.
     return key
 
 def decide(record: dict, observation: dict) -> dict:
@@ -76,14 +95,7 @@ def decide(record: dict, observation: dict) -> dict:
     require(observation["signal"] in SIGNALS, "SIGNAL_INVALID")
     require(isinstance(observation["current_sha"], str) and SHA.fullmatch(observation["current_sha"]) is not None, "OBSERVED_HEAD_INVALID")
     require(type(observation["lease_epoch"]) is int and observation["lease_epoch"] >= 0, "OBSERVED_LEASE_INVALID")
-    if record["state"] == "COMPLETE":
-        action = "ALREADY_COMPLETE"
-    elif record["state"] == "EFFECT_VERIFIED" or (
-        observation["signal"] == "REMOTE_EFFECT_VERIFIED" and record["receipt"] is not None
-        and record["receipt"]["verified_by_readback"]
-    ):
-        action = "ADVANCE_VERIFIED"
-    elif record["state"] == "POLICY_HELD" or observation["signal"] == "EXPLICIT_DENIAL":
+    if record["state"] == "POLICY_HELD" or observation["signal"] == "EXPLICIT_DENIAL":
         action = "HOLD_EXACT_OPERATION"
     elif observation["signal"] == "AUTHORITY_DENIAL":
         action = "HOLD_AUTHORITY"
@@ -91,6 +103,8 @@ def decide(record: dict, observation: dict) -> dict:
         action = "FENCE_AND_RECONCILE"
     elif observation["current_sha"] != record["source_sha"]:
         action = "REVALIDATE_SOURCE"
+    elif record["state"] in {"EFFECT_VERIFIED", "COMPLETE"}:
+        action = "VERIFY_REMOTE"
     elif record["state"] in {"DISPATCHED", "OUTCOME_UNKNOWN"} and record["effect_class"] == "EXTERNAL_MUTATION":
         action = "RECONCILE_REMOTE"
     elif observation["signal"] == "LEASE_EXPIRED":
@@ -100,13 +114,17 @@ def decide(record: dict, observation: dict) -> dict:
     elif observation["signal"] in {"TRANSIENT", "RESPONSE_LOST"}:
         action = "RETRY_BOUNDED_READ" if record["effect_class"] == "READ_ONLY" and record["attempts"] < 3 else "RECONCILE_REMOTE"
     elif record["state"] == "INTENT_RECORDED" and observation["signal"] == "NONE":
-        action = "DISPATCH_ELIGIBLE"
+        action = "CLAIM_REQUIRED" if record["effect_class"] == "EXTERNAL_MUTATION" else "DISPATCH_ELIGIBLE"
     else:
         action = "RECONCILE_REMOTE"
     return {"record_type": "GCL_RESUME_DECISION/1", "work_id": record["work_id"],
             "step_id": record["step_id"], "operation_key": key,
-            "action": action, "effect_authorized": action in {"DISPATCH_ELIGIBLE", "RETRY_BOUNDED_READ"},
-            "independent_siblings_eligible": True, "source_sha": record["source_sha"]}
+            "action": action,
+            "effect_authorized": record["effect_class"] == "READ_ONLY"
+                                 and action in {"DISPATCH_ELIGIBLE", "RETRY_BOUNDED_READ"},
+            "independent_siblings_eligible": False,
+            "sibling_assessment": "DEPENDENCY_AND_AUTHORITY_CHECK_REQUIRED",
+            "source_sha": record["source_sha"]}
 
 def validate_job(job: dict) -> dict:
     require(type(job) is dict, "JOB_OBJECT_REQUIRED")
@@ -117,6 +135,7 @@ def validate_job(job: dict) -> dict:
     require(isinstance(job["repository"], str) and REPO.fullmatch(job["repository"]) is not None, "JOB_REPOSITORY_INVALID")
     require(job["effect_class"] == "READ_ONLY" and job["action"] == "PYTHON_UNITTEST", "UNSUPPORTED_EFFECT_OR_ACTION")
     require(isinstance(job["test_file"], str) and TEST_FILE.fullmatch(job["test_file"]) is not None, "TEST_FILE_INVALID")
+    require(job["test_file"] in ALLOWED_TESTS, "TEST_FILE_NOT_ALLOWLISTED")
     return job
 
 def read_job(root: Path, job_path: str) -> dict:
@@ -140,9 +159,8 @@ def run_job(job_path: str, output: str) -> int:
     require(actual == sha, "RUN_SOURCE_NOT_EXACT")
     test_path = root / "tests" / job["test_file"]
     require(test_path.is_file() and not test_path.is_symlink(), "TEST_FILE_NOT_TRACKED")
-    key = digest({"work_id": job["work_id"], "step_id": job["step_id"],
-                  "repository": repo, "source_sha": sha,
-                  "action": job["action"], "test_file": job["test_file"]})
+    target_digest = job_target_digest(job)
+    key = validate_continuation(record_for_job(job, sha))
     command = [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-p", job["test_file"], "-v"]
     try:
         p = subprocess.run(command, cwd=root, capture_output=True, text=True, timeout=240, check=False)
@@ -153,6 +171,7 @@ def run_job(job_path: str, output: str) -> int:
         result, code, output_digest = "TIMED_OUT", 1, None
     receipt = {"record_type": RECEIPT, "work_id": job["work_id"],
                "step_id": job["step_id"], "operation_key": key,
+               "operation_key_version": KEY_VERSION, "target_digest": target_digest,
                "repository": repo, "source_sha": sha,
                "run_id": run_id, "run_attempt": attempt,
                "result": result, "output_sha256": output_digest,
@@ -179,6 +198,11 @@ def main() -> int:
     p = sub.add_parser("execute")
     p.add_argument("--job-path", required=True)
     p.add_argument("--output", required=True)
+    p = sub.add_parser("verify-run")
+    p.add_argument("--job-path", required=True)
+    p.add_argument("--source-sha", required=True)
+    p.add_argument("--run-id", required=True, type=int)
+    p.add_argument("--output", required=True)
     args = parser.parse_args()
     try:
         if args.mode == "decide":
@@ -187,6 +211,15 @@ def main() -> int:
             print(json.dumps(decide(record, obs), sort_keys=True))
         elif args.mode == "validate-job":
             print(json.dumps(read_job(Path.cwd(), args.job_path), sort_keys=True))
+        elif args.mode == "verify-run":
+            from scripts.gcl_rwp_integrity import GithubCLIReadback, verify_github_job
+            job = read_job(Path.cwd(), args.job_path)
+            result = verify_github_job(record_for_job(job, args.source_sha),
+                                       args.run_id, GithubCLIReadback())
+            dest = Path(args.output)
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            dest.write_text(json.dumps(result, sort_keys=True, indent=2) + "\n", encoding="utf-8")
+            print(json.dumps(result, sort_keys=True))
         else:
             return run_job(args.job_path, args.output)
     except (ContractError, ValueError, OSError, subprocess.SubprocessError) as exc:
