@@ -14,7 +14,10 @@ import unittest
 from scripts.gcl_resume import (
     ContractError, KEY_VERSION, decide, record_for_job, validate_continuation,
 )
-from scripts.gcl_rwp_integrity import acquire_github_claim, verify_github_job
+from scripts.gcl_rwp_integrity import (
+    acquire_github_claim, execute_nonproduction_fixture,
+    fixture_record, verify_github_job,
+)
 
 SHA = "a" * 40
 RUN_ID = 424242
@@ -32,7 +35,9 @@ class FakeGithub:
         self.refs = {}
         self.lock = Lock()
         self.create_calls = 0
+        self.fixture_calls = 0
         self.lost_ack = False
+        self.lost_fixture_ack = False
         self.fail_artifact = False
         self.remote = {
             "run": {"id": RUN_ID, "event": "workflow_dispatch",
@@ -68,9 +73,10 @@ class FakeGithub:
             return copy.deepcopy(self.remote["jobs"])
         if path.endswith("/artifacts?per_page=100"):
             return copy.deepcopy(self.remote["artifacts"])
-        if "/git/ref/heads/gcl-rwp-claims/" in path:
+        if "/git/ref/heads/gcl-rwp-claims/" in path or "/git/ref/heads/gcl-rwp-fixtures/" in path:
             key = path.split("/")[-1]
-            ref = "refs/heads/gcl-rwp-claims/" + key
+            prefix = "refs/heads/gcl-rwp-claims/" if "/gcl-rwp-claims/" in path else "refs/heads/gcl-rwp-fixtures/"
+            ref = prefix + key
             if ref not in self.refs:
                 raise ContractError("NOT_FOUND")
             return {"ref": ref, "object": {"sha": self.refs[ref]}}
@@ -80,6 +86,16 @@ class FakeGithub:
         if self.fail_artifact:
             raise ContractError("ARTIFACT_UNAVAILABLE")
         return (json.dumps(self.receipt, sort_keys=True) + "\n").encode()
+
+    def create_fixture(self, repository, ref, sha):
+        with self.lock:
+            self.fixture_calls += 1
+            if ref in self.refs:
+                raise ContractError("FIXTURE_EXISTS")
+            self.refs[ref] = sha
+            if self.lost_fixture_ack:
+                raise ContractError("RESPONSE_LOST_AFTER_FIXTURE")
+            return {"ref": ref, "object": {"sha": sha}}
 
     def create_claim(self, repository, ref, sha):
         with self.lock:
@@ -236,6 +252,57 @@ class AtomicClaimTests(unittest.TestCase):
         decision = decide(self.record, {"signal": "NONE", "current_sha": SHA, "lease_epoch": 5})
         self.assertEqual(decision["action"], "FENCE_AND_RECONCILE")
         self.assertFalse(decision["effect_authorized"])
+
+
+class NonproductionEffectFixtureTests(unittest.TestCase):
+    def setUp(self):
+        self.provider = FakeGithub()
+        self.record = fixture_record(SHA)
+
+    def test_one_effect_across_replay_and_successor(self):
+        first = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(first["result"], "VERIFIED_NONPRODUCTION_REF_EFFECT")
+        self.assertTrue(first["external_mutation_verified"])
+        self.assertFalse(first["general_mutation_executor_authorized"])
+        second = execute_nonproduction_fixture(json.loads(json.dumps(self.record)), self.provider)
+        self.assertEqual(second["result"], "VERIFIED_NONPRODUCTION_REF_EFFECT")
+        self.assertEqual(second["claim_state"], "EXISTING_CLAIM_OUTCOME_UNCERTAIN")
+        self.assertEqual(self.provider.fixture_calls, 1)
+
+    def test_lost_effect_ack_recovered_by_readback(self):
+        self.provider.lost_fixture_ack = True
+        first = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(first["result"], "VERIFIED_NONPRODUCTION_REF_EFFECT")
+        second = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(second["result"], "VERIFIED_NONPRODUCTION_REF_EFFECT")
+        self.assertEqual(self.provider.fixture_calls, 1)
+
+    def test_claim_ack_lost_does_not_create_effect(self):
+        self.provider.lost_ack = True
+        first = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(first["result"], "OUTCOME_UNKNOWN_HOLD")
+        self.assertEqual(self.provider.fixture_calls, 0)
+        second = execute_nonproduction_fixture(self.record, self.provider)
+        self.assertEqual(second["result"], "OUTCOME_UNKNOWN_HOLD")
+        self.assertEqual(self.provider.fixture_calls, 0)
+
+    def test_wrong_target_denied(self):
+        with self.assertRaisesRegex(ContractError, "NOT_FIXED_NONPRODUCTION_FIXTURE"):
+            execute_nonproduction_fixture({**self.record, "target_digest": "0"*64}, self.provider)
+        self.assertEqual(self.provider.create_calls, 0)
+
+    def test_two_workers_one_effect(self):
+        results = []
+        guard = Lock()
+        def attempt():
+            out = execute_nonproduction_fixture(self.record, self.provider)
+            with guard:
+                results.append(out["result"])
+        threads = [Thread(target=attempt) for _ in range(2)]
+        for t in threads: t.start()
+        for t in threads: t.join()
+        self.assertEqual(results, ["VERIFIED_NONPRODUCTION_REF_EFFECT"]*2)
+        self.assertEqual(self.provider.fixture_calls, 1)
 
 
 if __name__ == "__main__":
