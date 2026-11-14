@@ -1,5 +1,7 @@
 # The Grand Intellect
 
+**Engineering governance:** [GCL-ENGINEERING-001 adoption](governance/GCL_ENGINEERING_001_ADOPTION.md) pins the shared agent engineering judgment and operational simplicity standard, subordinate to INTELLECT constitutional authority. The historically attested root `AGENTS.md` is deliberately unchanged.
+
 **A constitutional architecture for collective intelligence, implemented over the AETHER semantic coordination fabric.**
 
 The Grand Intellect turns a collection of agents into a governed cognitive institution. It separates the production of possibilities, contact with reality, purposive judgment, institutional memory, execution, review, and disposal so that no agent can manufacture and certify its own success.
